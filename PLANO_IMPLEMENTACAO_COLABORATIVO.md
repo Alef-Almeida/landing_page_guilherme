@@ -362,17 +362,17 @@ Como todas as tarefas desta fase alteram arquivos de edição exclusiva, a fase 
 
 ### Tarefas visuais de acessibilidade
 
-- [ ] IMP-340 — Ajustar tokens de cor para contraste mínimo AA.
-- [ ] IMP-341 — Ampliar áreas clicáveis para aproximadamente 44 × 44 px.
-- [ ] IMP-342 — Criar foco visível consistente.
-- [ ] IMP-343 — Corrigir a proporção do logotipo.
-- [ ] IMP-344 — Revisar textos alternativos e imagens decorativas.
-- [ ] IMP-345 — Corrigir o cabeçalho em 768 px para impedir encolhimento excessivo do logotipo e quebra do CTA “Vamos conversar”.
-- [ ] IMP-346 — Validar composição, legibilidade e colisões visuais em 320, 375, 768, 1024 e 1280 px, não apenas ausência de overflow.
-- [ ] IMP-347 — Corrigir a largura mínima criada pela grid e pelo card do Instagram no hero, garantindo que o card possa encolher dentro da área útil de 320 px.
-- [ ] IMP-348 — Aplicar limites de largura e `min-width: 0` onde necessário para impedir corte lateral de título, parágrafos e CTAs em telas estreitas ou com zoom.
-- [ ] IMP-349 — Revisar alturas mínimas e espaço vazio nos cards de atendimento, FAQ, agenda e transições entre seções, especialmente no mobile.
-- [ ] IMP-350 — Conter círculos, ilustrações e elementos flutuantes decorativos sem ocultar conteúdo nem ampliar a largura intrínseca dos componentes.
+- [x] IMP-340 — Ajustar tokens de cor para contraste mínimo AA.
+- [x] IMP-341 — Ampliar áreas clicáveis para aproximadamente 44 × 44 px.
+- [x] IMP-342 — Criar foco visível consistente.
+- [x] IMP-343 — Corrigir a proporção do logotipo.
+- [x] IMP-344 — Revisar textos alternativos e imagens decorativas.
+- [x] IMP-345 — Corrigir o cabeçalho em 768 px para impedir encolhimento excessivo do logotipo e quebra do CTA “Vamos conversar”.
+- [x] IMP-346 — Validar composição, legibilidade e colisões visuais em 320, 375, 768, 1024 e 1280 px, não apenas ausência de overflow.
+- [x] IMP-347 — Corrigir a largura mínima criada pela grid e pelo card do Instagram no hero, garantindo que o card possa encolher dentro da área útil de 320 px.
+- [x] IMP-348 — Aplicar limites de largura e `min-width: 0` onde necessário para impedir corte lateral de título, parágrafos e CTAs em telas estreitas ou com zoom.
+- [x] IMP-349 — Revisar alturas mínimas e espaço vazio nos cards de atendimento, FAQ, agenda e transições entre seções, especialmente no mobile.
+- [x] IMP-350 — Conter círculos, ilustrações e elementos flutuantes decorativos sem ocultar conteúdo nem ampliar a largura intrínseca dos componentes.
 
 ### Critérios de aceite
 
@@ -488,7 +488,7 @@ Os testes de cada componente são escritos pela frente que o implementa, na mesm
 - [x] IMP-614 — Navegação completa das abas.
 - [x] IMP-615 — Agenda e mensagens geradas.
 - [x] IMP-616 — Controles e pausa dos carrosséis.
-- [ ] IMP-617 — Ausência de overflow em 320, 375, 390, 768, 1024, 1280 e 1440 px e com zoom de 200%, verificando os limites de cada elemento visível e não apenas o `scrollWidth` do documento (o baseline mostra corte no hero em 320 px sem overflow do documento).
+- [x] IMP-617 — Ausência de overflow em 320, 375, 390, 768, 1024, 1280 e 1440 px e com zoom de 200%, verificando os limites de cada elemento visível e não apenas o `scrollWidth` do documento (o baseline mostra corte no hero em 320 px sem overflow do documento).
 - [x] IMP-618 — Ordem de foco.
 - [ ] IMP-619 — Links internos e assets sem 404.
 
@@ -502,10 +502,10 @@ Os testes de cada componente são escritos pela frente que o implementa, na mesm
 ### Proteções complementares
 
 - [x] IMP-624 — Automatizar a verificação do estado acessível da agenda após a troca de dia.
-- [ ] IMP-625 — Adicionar regressão visual do cabeçalho em 768 px e dos demais breakpoints de referência.
+- [x] IMP-625 — Adicionar regressão visual do cabeçalho em 768 px e dos demais breakpoints de referência.
 - [ ] IMP-626 — Testar o estado seguro do CTA e da agenda com configuração inválida ou JavaScript indisponível.
-- [ ] IMP-627 — Criar regressão visual específica do hero em 320, 390 e 1440 px.
-- [ ] IMP-628 — Verificar automaticamente que o card do hero não excede seu contêiner e que o logotipo preserva a proporção natural.
+- [x] IMP-627 — Criar regressão visual específica do hero em 320, 390 e 1440 px.
+- [x] IMP-628 — Verificar automaticamente que o card do hero não excede seu contêiner e que o logotipo preserva a proporção natural.
 - [x] IMP-629 — Testar navegação interna e carrosséis com `prefers-reduced-motion: reduce`.
 - [x] IMP-630 — Verificar que a transição visual não bloqueia foco, rolagem ou acionamento repetido de links internos.
 - [ ] IMP-631 — Executar a suíte end-to-end em Chromium, Firefox e WebKit.
@@ -626,7 +626,7 @@ Todas as demais tarefas podem ser executadas com as alternativas provisórias da
 | FR-02 | WhatsApp e agenda | FR-01; IMP-201 e IMP-205 aguardam decisões | `site-config.js`, `contact.js`, `script.js` | Conversa de análise e revisão do plano | Bloqueada — restam IMP-201 (DEC-01) e IMP-205 (DEC-02, DEC-03, DEC-10) |
 | FR-03A | Estrutura, conteúdo estático, navegação e menu | FR-02 | `index.html`, `script.js`, CSS | Conversa de análise e revisão do plano | Concluída |
 | FR-03B | Abas, agenda acessível, carrosséis e movimento | FR-03A | `index.html`, `script.js`, CSS | Conversa de análise e revisão do plano | Concluída |
-| FR-03C | Contraste, toque, foco, logotipo e responsividade | FR-03B | `index.html`, CSS | Não atribuído | Não iniciada |
+| FR-03C | Contraste, toque, foco, logotipo e responsividade | FR-03B | `index.html`, CSS | Conversa de análise e revisão do plano | Concluída |
 | FR-04 | Imagens e desempenho | Preparação: nenhuma; integração: FR-03C | `assets/`, HTML | Não atribuído | Não iniciada |
 | FR-05 | Conteúdo e SEO | Rascunho: nenhuma; integração: FR-03C e DEC-03 a DEC-09 | HTML, arquivos SEO | Não atribuído | Não iniciada — parcialmente bloqueada |
 | FR-06 | Testes e CI | FR-01 para dependências; componentes | `tests/`, CI | Conversa de análise e revisão do plano | Em andamento — infraestrutura end-to-end antecipada na FR-03A |
@@ -1061,6 +1061,39 @@ Antes de acrescentar:
   - as duas fotos têm o mesmo texto alternativo "Guilherme Teixeira em atendimento clínico"; confirmar com o responsável quem aparece em cada foto e descrevê-las com precisão (IMP-344, IMP-509)
 - Arquivos ainda reservados: nenhum
 - Próxima ação recomendada: FR-03C (IMP-340 a IMP-350)
+- Estado final: Concluída
+
+### [2026-11-13 11:01 -03] Contribuição — FR-03C — Contraste, toque, foco, logotipo e responsividade
+
+- Responsável/conversa: conversa de análise e revisão do plano de implementação
+- Objetivo: concluir a acessibilidade visual e a responsividade preservando o baseline visual
+- Tarefas relacionadas: IMP-340 a IMP-350 (concluídas); testes IMP-617, IMP-625, IMP-627 e IMP-628 entregues
+- Branch: `fr-03c/visual-responsivo`, em worktree separado (§11.1)
+- Arquivos alterados: `index.html`, `styles.source.css`, `styles.css`, `assets/guilherme-teixeira-logo.png`, `playwright.config.js`, `package.json`, `package-lock.json`; criados `tests/e2e/contraste.spec.js`, `tests/e2e/layout.spec.js` e as capturas de referência em `tests/e2e/layout.spec.js-snapshots/`
+- Alterações realizadas:
+  - IMP-340: opacidade mínima do azul calculada por fundo (0,67 na areia, 0,73 no topo do card infantil e do painel de contato, 0,78 no topo do card de adultos). Textos secundários passaram para 75%, e 80% dentro dos cards de atendimento; links do menu de `#617486` para `#4f6275`; "+" do FAQ para 70% (componente, 3:1); números dos passos do contato de `#d99174` (2,3:1) para `#9c4f2e`; fundo do rótulo da foto de 75% para 90%. Brancos translúcidos sobre o azul escuro já atendiam (≥ 5,1:1);
+  - IMP-341: botão de menu, link do logotipo, "Quero saber mais", links dos cards de conteúdo, links do menu principal e abas com 44 px; perguntas do FAQ com área clicável maior sem mudar o espaçamento visual; os indicadores do carrossel já eram só visuais (FR-03B);
+  - IMP-342: `:focus-visible` com contorno de 2 px em `#17324d`, deslocado 3 px; em `#conteudos`, no painel da agenda e no link de pular, contorno pêssego;
+  - IMP-343: o PNG do logotipo tinha a arte em 265 × 85 de 316 × 158 px, com fundo branco opaco; foi recortado para 273 × 93 e passou a ser dimensionado só pela altura (44 px; 38 px no mobile). Mais legível e sem deformação;
+  - IMP-344: textos alternativos dos 9 posts transcrevem o texto de cada imagem; as fotos ganharam descrição da cena mantendo a identificação dada pelo autor; a arte das abas ficou com `alt=""`; os ícones cenográficos de curtir, comentar, compartilhar e salvar passaram a `aria-hidden`, sem anunciar ações inexistentes;
+  - IMP-345: menu completo só a partir de 1024 px (`lg`); entre 768 e 1023 px ficam logotipo, "Vamos conversar" em uma linha (`whitespace-nowrap`) e botão de menu; os estilos do menu recolhido saíram da media query mobile para valerem nessa faixa;
+  - IMP-347/IMP-348: colunas do hero com `min-w-0`, card com `w-full` e padding menor no mobile, título com `clamp(2.25rem, 11vw, 3rem)` abaixo de 640 px, indicadores do carrossel com `min-width: 0`;
+  - IMP-349: removidas as alturas mínimas dos cards de atendimento (490/410 px) e do contato (78vh/72vh); o carrossel de fotos perdeu a altura mínima, que, com `aspect-ratio`, virava largura mínima de 320 px e estourava a seção "Sobre" em 320 px;
+  - IMP-350: barquinho do card infantil reduzido e com faixa reservada (`mt-24`), sem sobrepor o título; círculos do card de adultos deslocados para cima; ícones flutuantes do hero ocultos abaixo de 480 px; o link de pular passou a ser ocultado por `clip-path`, sem deslocamento para fora da tela;
+  - o atributo `hidden` do botão de menu foi reforçado, pois a nova classe `grid` o vencia e o botão voltava a aparecer sem JavaScript (detectado pelo teste da FR-03A);
+  - `playwright.config.js` aceita `E2E_BASE_URL` para rodar a suíte contra outro endereço (por exemplo, homologação)
+- Validações executadas:
+  - novo teste de contraste por pixel: a página é renderizada com o texto transparente e a cor de cada texto é combinada com os pixels reais do fundo sob as linhas, cobrindo gradientes e imagens que o axe não avalia; executado em 320, 390, 768 e 1280 px. Contra a versão anterior, o teste reprova mais de 25 textos em 390 px (o axe apontava 8), o que confirma a sensibilidade;
+  - testes de layout em 320, 375, 390, 640 (200% de zoom em 1280), 768, 1024, 1280 e 1440 px: sem rolagem horizontal e sem texto, link, botão ou imagem recortado ou fora da tela; proporção do logotipo; cabeçalho sem colisões e botão em uma linha em 768, 1024 e 1280 px; card do hero dentro do contêiner, inclusive com a rotação; alvos de 44 × 44 px no mobile; foco visível em fundo claro e escuro;
+  - capturas de referência do hero (320, 390 e 1440 px) e do cabeçalho (768 e 1024 px), estáveis em duas execuções seguidas;
+  - suíte completa (48 testes end-to-end), `npm test` e axe em 390 e 1280 px
+- Resultado das validações: todos os testes passaram; axe sem nenhuma violação em 390 e 1280 px (a referência tinha 2 regras, uma crítica)
+- Pendências ou riscos:
+  - os 9 posts do Instagram formam uma série numerada que o carrossel exibe na ordem inversa (o primeiro slide é o 9/9 e o segundo o 8/9); reordenar é decisão de conteúdo ligada a DEC-08;
+  - confirmar com o responsável quem aparece nas fotos `guilherme-photo-01/02.jpeg` e se as descrições estão corretas (IMP-509);
+  - as capturas de referência dependem de renderização Linux/Chromium; em outra plataforma devem ser regeneradas com `npx playwright test --update-snapshots`
+- Arquivos ainda reservados: nenhum
+- Próxima ação recomendada: FR-04 (imagens e desempenho)
 - Estado final: Concluída
 
 <!-- CONTRIBUICOES: ACRESCENTAR NOVAS ENTRADAS IMEDIATAMENTE ANTES DESTE MARCADOR. NAO REMOVER. -->
