@@ -34,7 +34,12 @@ const collect = (skipBoat) => {
   const norm = (v) => v.replace(/https?:\/\/127\.0\.0\.1:\d+/g, '').replace(/, -webkit-text-decoration-color/g, '');
   const pathOf = (el) => {
     const parts = [];
+    // Ancora o caminho no id mais próximo, para que mudar a ordem de seções não embaralhe a comparação.
     for (let n = el; n && n.nodeType === 1; n = n.parentElement) {
+      if (n.id) {
+        parts.unshift(`#${n.id}`);
+        break;
+      }
       let i = 1;
       for (let s = n.previousElementSibling; s; s = s.previousElementSibling) if (s.tagName === n.tagName) i++;
       parts.unshift(`${n.tagName.toLowerCase()}[${i}]`);
@@ -122,6 +127,14 @@ const load = async (url, viewport) => {
   page.on('requestfailed', (r) => errors.push(`requestfailed: ${r.url()}`));
   await page.goto(url);
   await page.waitForLoadState('networkidle');
+  // Carrega explicitamente os pesos usados; só document.fonts.ready deixava variações de subpixel entre execuções.
+  await page.evaluate(() =>
+    Promise.all(
+      ['400', '500', '600', '700']
+        .flatMap((w) => [`${w} 16px Inter`, `${w} 16px "DM Sans"`])
+        .map((font) => document.fonts.load(font)),
+    ),
+  );
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(400);
   await page.evaluate(settleAnimations);

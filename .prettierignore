@@ -8,3 +8,6 @@ tests/baseline/
 PLANO_IMPLEMENTACAO_COLABORATIVO.md
 RELATORIO_*.md
 
+
+test-results/
+playwright-report/
