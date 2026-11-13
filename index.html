@@ -3,57 +3,399 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Psicologia clínica para crianças, adolescentes e adultos com Guilherme dos Santos Teixeira." />
+    <meta
+      name="description"
+      content="Psicologia clínica para crianças, adolescentes e adultos com Guilherme dos Santos Teixeira."
+    />
     <title>Guilherme dos Santos Teixeira | Psicologia</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body class="bg-sand text-ink font-body antialiased">
     <div class="brand-wave" aria-hidden="true">
       <svg viewBox="0 0 54 900" preserveAspectRatio="none">
-        <defs><linearGradient id="wave-gradient" x1="0" y1="0" x2="0" y2="900" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f6af83"/><stop offset=".5" stop-color="#f6af83"/><stop offset=".5" stop-color="#9fdff8"/><stop offset="1" stop-color="#9fdff8"/></linearGradient></defs>
-        <path id="brand-wave-path" class="wave" d="M27 0 C3 75 51 150 27 225 S3 375 27 450 S51 600 27 675 S3 825 27 900" />
-        <g id="scroll-boat" class="side-boat boat-orange" transform="translate(13 20) rotate(-8)"><path d="M2 10h24l-5 8H7L2 10Z" /><path d="M2 10 13 4l13 6" /><path d="M13 4v6" /></g>
+        <defs>
+          <linearGradient id="wave-gradient" x1="0" y1="0" x2="0" y2="900" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#f6af83" />
+            <stop offset=".5" stop-color="#f6af83" />
+            <stop offset=".5" stop-color="#9fdff8" />
+            <stop offset="1" stop-color="#9fdff8" />
+          </linearGradient>
+        </defs>
+        <path
+          id="brand-wave-path"
+          class="wave"
+          d="M27 0 C3 75 51 150 27 225 S3 375 27 450 S51 600 27 675 S3 825 27 900"
+        />
+        <g id="scroll-boat" class="side-boat boat-orange" transform="translate(13 20) rotate(-8)">
+          <path d="M2 10h24l-5 8H7L2 10Z" />
+          <path d="M2 10 13 4l13 6" />
+          <path d="M13 4v6" />
+        </g>
       </svg>
     </div>
     <header class="fixed inset-x-0 top-0 z-50 border-b border-ink/[.08] bg-sand/[.94] backdrop-blur-xl">
       <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-8">
         <a href="#inicio" class="flex items-center gap-3" aria-label="Voltar ao início">
-          <img class="brand-logo" src="./assets/guilherme-teixeira-logo.png" alt="Guilherme Teixeira — Psicólogo, CRP 03/36532" />
+          <img
+            class="brand-logo"
+            src="./assets/guilherme-teixeira-logo.png"
+            alt="Guilherme Teixeira — Psicólogo, CRP 03/36532"
+          />
         </a>
         <nav class="hidden items-center gap-8 text-sm text-ink/70 md:flex" aria-label="Navegação principal">
-          <a class="nav-link" href="#atendimentos">Atendimentos</a><a class="nav-link" href="#sobre">Sobre</a><a class="nav-link" href="#conteudos">Conteúdos</a><a class="nav-link" href="#faq">Dúvidas</a><a class="nav-link" href="#agenda">Agenda</a><a class="nav-link" href="#contato">Contato</a>
+          <a class="nav-link" href="#atendimentos">Atendimentos</a><a class="nav-link" href="#sobre">Sobre</a
+          ><a class="nav-link" href="#conteudos">Conteúdos</a><a class="nav-link" href="#faq">Dúvidas</a
+          ><a class="nav-link" href="#agenda">Agenda</a><a class="nav-link" href="#contato">Contato</a>
         </nav>
-        <a href="#contato" class="hidden rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-ink/90 md:inline-flex">Vamos conversar</a>
-        <button id="menu-toggle" class="rounded-full border border-ink/10 p-2 md:hidden" aria-label="Abrir menu"><span class="block h-0.5 w-5 bg-ink"></span><span class="mt-1 block h-0.5 w-5 bg-ink"></span></button>
+        <a
+          href="#contato"
+          class="hidden rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-ink/90 md:inline-flex"
+          >Vamos conversar</a
+        >
+        <button id="menu-toggle" class="rounded-full border border-ink/10 p-2 md:hidden" aria-label="Abrir menu">
+          <span class="block h-0.5 w-5 bg-ink"></span><span class="mt-1 block h-0.5 w-5 bg-ink"></span>
+        </button>
       </div>
-      <div id="mobile-menu" class="hidden border-t border-ink/5 px-6 pb-5 pt-3 md:hidden"><a href="#atendimentos">Atendimentos</a><a href="#sobre">Sobre</a><a href="#conteudos">Conteúdos</a><a href="#faq">Dúvidas</a><a href="#agenda">Agenda</a><a href="#contato">Contato</a></div>
+      <div id="mobile-menu" class="hidden border-t border-ink/5 px-6 pb-5 pt-3 md:hidden">
+        <a href="#atendimentos">Atendimentos</a><a href="#sobre">Sobre</a><a href="#conteudos">Conteúdos</a
+        ><a href="#faq">Dúvidas</a><a href="#agenda">Agenda</a><a href="#contato">Contato</a>
+      </div>
     </header>
 
     <div class="page-transition" aria-hidden="true"></div>
     <main id="inicio">
       <section class="relative overflow-hidden px-6 pb-20 pt-36 lg:px-8 lg:pb-28 lg:pt-48">
-        <div class="absolute -right-24 top-24 h-72 w-72 rounded-full bg-sky/70 blur-3xl"></div><div class="absolute -left-32 bottom-0 h-80 w-80 rounded-full bg-peach/20 blur-3xl"></div>
+        <div class="absolute -right-24 top-24 h-72 w-72 rounded-full bg-sky/70 blur-3xl"></div>
+        <div class="absolute -left-32 bottom-0 h-80 w-80 rounded-full bg-peach/20 blur-3xl"></div>
         <div class="relative mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1.05fr_.95fr]">
-          <div class="reveal"><p class="mb-6 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/60 px-4 py-2 text-xs font-semibold uppercase tracking-[.18em] text-ink/65"><span class="h-2 w-2 rounded-full bg-peach"></span> Um espaço para você</p><h1 class="max-w-2xl font-display text-5xl font-semibold leading-[1.03] tracking-[-.045em] sm:text-6xl lg:text-7xl">Cuidar da mente é abrir espaço para novas possibilidades.</h1><p class="mt-7 max-w-xl text-lg leading-8 text-ink/65">Psicologia clínica para crianças, adolescentes e adultos, com escuta, respeito às singularidades e cuidado construído em conjunto.</p><div class="mt-9 flex flex-col gap-3 sm:flex-row"><a href="#atendimentos" class="rounded-full bg-ink px-6 py-4 text-center text-sm font-semibold text-white transition hover:-translate-y-1 hover:shadow-soft">Encontrar meu atendimento <span class="ml-2">→</span></a><a href="#sobre" class="rounded-full border border-ink/15 px-6 py-4 text-center text-sm font-semibold transition hover:bg-white">Conhecer o trabalho</a></div><p class="mt-6 text-xs text-ink/50">Atendimento ético, individualizado e sem promessas prontas.</p></div>
-          <div class="relative reveal delay-1"><div class="hero-card relative mx-auto max-w-md rounded-[2rem] bg-white p-5 shadow-soft"><div class="rounded-[1.5rem] bg-mist p-8"><div class="flex items-center justify-between"><span class="rounded-full bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-[.16em] text-ink/55">presença</span><span class="text-2xl text-peach">✦</span></div><div class="boat-scene mt-12"><div class="sun"></div><svg class="hero-boat" viewBox="0 0 320 170" fill="none"><path d="m38 86 235-65-70 128-45-50L38 86Z" fill="#F5B79C"/><path d="m158 99 115-78-70 128" stroke="#17324D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="m38 86 120 13" stroke="#17324D" stroke-width="5" stroke-linecap="round"/><path d="M34 137c52-17 106-18 163-1 45 14 75 14 104-3" stroke="#7FAFC4" stroke-width="4" stroke-linecap="round"/></svg></div><div class="mt-8 grid grid-cols-2 gap-3 text-xs text-ink/60"><div class="rounded-2xl bg-white p-4"><span class="mb-2 block text-xl">◌</span>Escuta<br/>individualizada</div><div class="rounded-2xl bg-white p-4"><span class="mb-2 block text-xl">↗</span>Construção<br/>de possibilidades</div></div></div></div><div class="absolute -bottom-6 -left-6 rounded-2xl border border-ink/5 bg-white px-5 py-4 shadow-soft"><p class="font-display text-2xl font-semibold">cada história</p><p class="text-xs text-ink/55">tem seu próprio caminho</p></div></div>
+          <div class="reveal">
+            <p
+              class="mb-6 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/60 px-4 py-2 text-xs font-semibold uppercase tracking-[.18em] text-ink/65"
+            >
+              <span class="h-2 w-2 rounded-full bg-peach"></span> Um espaço para você
+            </p>
+            <h1
+              class="max-w-2xl font-display text-5xl font-semibold leading-[1.03] tracking-[-.045em] sm:text-6xl lg:text-7xl"
+            >
+              Cuidar da mente é abrir espaço para novas possibilidades.
+            </h1>
+            <p class="mt-7 max-w-xl text-lg leading-8 text-ink/65">
+              Psicologia clínica para crianças, adolescentes e adultos, com escuta, respeito às singularidades e cuidado
+              construído em conjunto.
+            </p>
+            <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="#atendimentos"
+                class="rounded-full bg-ink px-6 py-4 text-center text-sm font-semibold text-white transition hover:-translate-y-1 hover:shadow-soft"
+                >Encontrar meu atendimento <span class="ml-2">→</span></a
+              ><a
+                href="#sobre"
+                class="rounded-full border border-ink/15 px-6 py-4 text-center text-sm font-semibold transition hover:bg-white"
+                >Conhecer o trabalho</a
+              >
+            </div>
+            <p class="mt-6 text-xs text-ink/50">Atendimento ético, individualizado e sem promessas prontas.</p>
+          </div>
+          <div class="relative reveal delay-1">
+            <div class="hero-card relative mx-auto max-w-md rounded-[2rem] bg-white p-5 shadow-soft">
+              <div class="rounded-[1.5rem] bg-mist p-8">
+                <div class="flex items-center justify-between">
+                  <span
+                    class="rounded-full bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-[.16em] text-ink/55"
+                    >presença</span
+                  ><span class="text-2xl text-peach">✦</span>
+                </div>
+                <div class="boat-scene mt-12">
+                  <div class="sun"></div>
+                  <svg class="hero-boat" viewBox="0 0 320 170" fill="none">
+                    <path d="m38 86 235-65-70 128-45-50L38 86Z" fill="#F5B79C" />
+                    <path
+                      d="m158 99 115-78-70 128"
+                      stroke="#17324D"
+                      stroke-width="5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path d="m38 86 120 13" stroke="#17324D" stroke-width="5" stroke-linecap="round" />
+                    <path
+                      d="M34 137c52-17 106-18 163-1 45 14 75 14 104-3"
+                      stroke="#7FAFC4"
+                      stroke-width="4"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+                <div class="mt-8 grid grid-cols-2 gap-3 text-xs text-ink/60">
+                  <div class="rounded-2xl bg-white p-4">
+                    <span class="mb-2 block text-xl">◌</span>Escuta<br />individualizada
+                  </div>
+                  <div class="rounded-2xl bg-white p-4">
+                    <span class="mb-2 block text-xl">↗</span>Construção<br />de possibilidades
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="absolute -bottom-6 -left-6 rounded-2xl border border-ink/5 bg-white px-5 py-4 shadow-soft">
+              <p class="font-display text-2xl font-semibold">cada história</p>
+              <p class="text-xs text-ink/55">tem seu próprio caminho</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="atendimentos" class="bg-white px-6 py-20 lg:px-8 lg:py-28"><div class="mx-auto max-w-6xl"><div class="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p class="eyebrow">Escolha seu caminho</p><h2 class="section-title">Um cuidado que considera<br class="hidden sm:block" /> a pessoa inteira.</h2></div><p class="max-w-sm text-sm leading-6 text-ink/60">Cada processo começa com uma conversa. A partir dela, entendemos juntos o que faz sentido para o momento atual.</p></div><div class="grid gap-5 lg:grid-cols-2"><article class="service-card child-card group bg-sky"><div class="child-decor" aria-hidden="true"><svg viewBox="0 0 240 105" fill="none"><path d="M8 75c31-24 61-25 91-3 31 22 64 21 133-18" stroke="#7FAFC4" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 7"/><g class="mini-boat mini-boat-one"><path d="M26 49h38l-8 13H34l-8-13Z" fill="#F5B79C"/><path d="m26 49 19-12 19 12M45 37v12" stroke="#17324D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></g><g class="mini-boat mini-boat-two"><path d="M153 28h31l-7 11h-17l-7-11Z" fill="#F5B79C"/><path d="m153 28 15-10 16 10M168 18v10" stroke="#17324D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g><circle cx="217" cy="20" r="7" fill="#F5B79C" opacity=".7"/><circle cx="229" cy="34" r="3" fill="#7FAFC4"/></svg></div><div class="hidden items-start justify-between"><span class="icon-disc bg-white">✦</span><span class="text-3xl text-ink/30 transition group-hover:translate-x-1 group-hover:-translate-y-1">↗</span></div><div class="mt-10 max-w-md"><p class="mb-3 text-xs font-semibold uppercase tracking-[.18em] text-ink/55">01 · Infância e adolescência</p><h3 class="font-display text-3xl font-semibold">Para crescer com acolhimento, vínculo e respeito.</h3><p class="mt-4 leading-7 text-ink/65">Acompanhamento para crianças, adolescentes e famílias, considerando singularidades, neurodivergências, emoções, comportamento e os contextos que fazem parte de cada história.</p><a href="#contato" class="mt-8 inline-flex items-center text-sm font-semibold">Quero saber mais <span class="ml-2 transition group-hover:ml-3">→</span></a></div></article><article class="service-card adult-card group bg-peach"><div class="adult-decor" aria-hidden="true"><span></span><span></span><span></span></div><div class="hidden items-start justify-between"><span class="icon-disc bg-white/60">◌</span><span class="text-3xl text-ink/30 transition group-hover:translate-x-1 group-hover:-translate-y-1">↗</span></div><div class="mt-10 max-w-md"><p class="mb-3 text-xs font-semibold uppercase tracking-[.18em] text-ink/55">02 · Adultos</p><h3 class="font-display text-3xl font-semibold">Um lugar para compreender o que você vive.</h3><p class="mt-4 leading-7 text-ink/65">Psicoterapia para adultos que desejam olhar para suas experiências, lidar com dificuldades emocionais e desenvolver recursos para os desafios da vida cotidiana.</p><a href="#contato" class="mt-8 inline-flex items-center text-sm font-semibold">Quero saber mais <span class="ml-2 transition group-hover:ml-3">→</span></a></div></article></div></div></section>
+      <section id="atendimentos" class="bg-white px-6 py-20 lg:px-8 lg:py-28">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+            <div>
+              <p class="eyebrow">Escolha seu caminho</p>
+              <h2 class="section-title">
+                Um cuidado que considera<br class="hidden sm:block" />
+                a pessoa inteira.
+              </h2>
+            </div>
+            <p class="max-w-sm text-sm leading-6 text-ink/60">
+              Cada processo começa com uma conversa. A partir dela, entendemos juntos o que faz sentido para o momento
+              atual.
+            </p>
+          </div>
+          <div class="grid gap-5 lg:grid-cols-2">
+            <article class="service-card child-card group bg-sky">
+              <div class="child-decor" aria-hidden="true">
+                <svg viewBox="0 0 240 105" fill="none">
+                  <path
+                    d="M8 75c31-24 61-25 91-3 31 22 64 21 133-18"
+                    stroke="#7FAFC4"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-dasharray="2 7"
+                  />
+                  <g class="mini-boat mini-boat-one">
+                    <path d="M26 49h38l-8 13H34l-8-13Z" fill="#F5B79C" />
+                    <path
+                      d="m26 49 19-12 19 12M45 37v12"
+                      stroke="#17324D"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </g>
+                  <g class="mini-boat mini-boat-two">
+                    <path d="M153 28h31l-7 11h-17l-7-11Z" fill="#F5B79C" />
+                    <path
+                      d="m153 28 15-10 16 10M168 18v10"
+                      stroke="#17324D"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </g>
+                  <circle cx="217" cy="20" r="7" fill="#F5B79C" opacity=".7" />
+                  <circle cx="229" cy="34" r="3" fill="#7FAFC4" />
+                </svg>
+              </div>
+              <div class="hidden items-start justify-between">
+                <span class="icon-disc bg-white">✦</span
+                ><span class="text-3xl text-ink/30 transition group-hover:translate-x-1 group-hover:-translate-y-1"
+                  >↗</span
+                >
+              </div>
+              <div class="mt-10 max-w-md">
+                <p class="mb-3 text-xs font-semibold uppercase tracking-[.18em] text-ink/55">
+                  01 · Infância e adolescência
+                </p>
+                <h3 class="font-display text-3xl font-semibold">Para crescer com acolhimento, vínculo e respeito.</h3>
+                <p class="mt-4 leading-7 text-ink/65">
+                  Acompanhamento para crianças, adolescentes e famílias, considerando singularidades, neurodivergências,
+                  emoções, comportamento e os contextos que fazem parte de cada história.
+                </p>
+                <a href="#contato" class="mt-8 inline-flex items-center text-sm font-semibold"
+                  >Quero saber mais <span class="ml-2 transition group-hover:ml-3">→</span></a
+                >
+              </div>
+            </article>
+            <article class="service-card adult-card group bg-peach">
+              <div class="adult-decor" aria-hidden="true"><span></span><span></span><span></span></div>
+              <div class="hidden items-start justify-between">
+                <span class="icon-disc bg-white/60">◌</span
+                ><span class="text-3xl text-ink/30 transition group-hover:translate-x-1 group-hover:-translate-y-1"
+                  >↗</span
+                >
+              </div>
+              <div class="mt-10 max-w-md">
+                <p class="mb-3 text-xs font-semibold uppercase tracking-[.18em] text-ink/55">02 · Adultos</p>
+                <h3 class="font-display text-3xl font-semibold">Um lugar para compreender o que você vive.</h3>
+                <p class="mt-4 leading-7 text-ink/65">
+                  Psicoterapia para adultos que desejam olhar para suas experiências, lidar com dificuldades emocionais
+                  e desenvolver recursos para os desafios da vida cotidiana.
+                </p>
+                <a href="#contato" class="mt-8 inline-flex items-center text-sm font-semibold"
+                  >Quero saber mais <span class="ml-2 transition group-hover:ml-3">→</span></a
+                >
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
 
-      <section id="sobre" class="px-6 py-20 lg:px-8 lg:py-28"><div class="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[.8fr_1.2fr]"><div class="relative"><div class="portrait-placeholder"><span>G</span><div class="portrait-line"></div></div><div class="absolute -bottom-5 -right-3 rounded-2xl bg-white px-5 py-4 shadow-soft"><p class="text-xs uppercase tracking-[.16em] text-ink/50">CRP 03/36532</p><p class="mt-1 text-sm font-semibold">Psicólogo clínico</p></div></div><div><p class="eyebrow">Sobre o profissional</p><h2 class="section-title max-w-2xl">Um trabalho guiado por escuta, ciência e humanidade.</h2><p class="mt-6 max-w-2xl text-lg leading-8 text-ink/65">Sou Guilherme dos Santos Teixeira, psicólogo com atuação clínica orientada pela Terapia Cognitivo-Comportamental. Meu trabalho parte da compreensão de que cada pessoa tem uma história, necessidades e potencialidades próprias.</p><p class="mt-5 max-w-2xl leading-7 text-ink/60">Sou pós-graduando em Desenvolvimento Infantil e Análise do Comportamento Aplicada (ABA) e atuo em equipe multidisciplinar na área de educação inclusiva. Essa experiência amplia meu olhar para o desenvolvimento, a inclusão e o cuidado em rede.</p><div class="mt-8 grid max-w-xl gap-3 sm:grid-cols-3"><div class="stat"><strong>TCC</strong><span>abordagem clínica</span></div><div class="stat"><strong>Infância</strong><span>desenvolvimento</span></div><div class="stat"><strong>Inclusão</strong><span>olhar em rede</span></div></div></div></div></section>
+      <section id="sobre" class="px-6 py-20 lg:px-8 lg:py-28">
+        <div class="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[.8fr_1.2fr]">
+          <div class="relative">
+            <div class="portrait-placeholder">
+              <span>G</span>
+              <div class="portrait-line"></div>
+            </div>
+            <div class="absolute -bottom-5 -right-3 rounded-2xl bg-white px-5 py-4 shadow-soft">
+              <p class="text-xs uppercase tracking-[.16em] text-ink/50">CRP 03/36532</p>
+              <p class="mt-1 text-sm font-semibold">Psicólogo clínico</p>
+            </div>
+          </div>
+          <div>
+            <p class="eyebrow">Sobre o profissional</p>
+            <h2 class="section-title max-w-2xl">Um trabalho guiado por escuta, ciência e humanidade.</h2>
+            <p class="mt-6 max-w-2xl text-lg leading-8 text-ink/65">
+              Sou Guilherme dos Santos Teixeira, psicólogo com atuação clínica orientada pela Terapia
+              Cognitivo-Comportamental. Meu trabalho parte da compreensão de que cada pessoa tem uma história,
+              necessidades e potencialidades próprias.
+            </p>
+            <p class="mt-5 max-w-2xl leading-7 text-ink/60">
+              Sou pós-graduando em Desenvolvimento Infantil e Análise do Comportamento Aplicada (ABA) e atuo em equipe
+              multidisciplinar na área de educação inclusiva. Essa experiência amplia meu olhar para o desenvolvimento,
+              a inclusão e o cuidado em rede.
+            </p>
+            <div class="mt-8 grid max-w-xl gap-3 sm:grid-cols-3">
+              <div class="stat"><strong>TCC</strong><span>abordagem clínica</span></div>
+              <div class="stat"><strong>Infância</strong><span>desenvolvimento</span></div>
+              <div class="stat"><strong>Inclusão</strong><span>olhar em rede</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <section id="conteudos" class="bg-ink px-6 py-20 text-white lg:px-8 lg:py-28"><div class="mx-auto max-w-6xl"><div class="flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p class="eyebrow text-peach">Conteúdos para você</p><h2 class="section-title text-white">Informação também<br class="hidden sm:block" /> pode ser cuidado.</h2></div><p class="max-w-sm text-sm leading-6 text-white/60">Materiais para ajudar a pensar sobre emoções, relações e desenvolvimento com mais clareza e gentileza.</p></div><div class="mt-12 grid gap-4 md:grid-cols-3"><article class="content-card"><span class="text-peach">01</span><h3>Neurodivergência e respeito às diferenças</h3><p>Um olhar para além dos diagnósticos, valorizando singularidades e potencialidades.</p><a href="#contato">Em breve →</a></article><article class="content-card"><span class="text-peach">02</span><h3>Regulação emocional no dia a dia</h3><p>Como reconhecer emoções e construir recursos possíveis para atravessar momentos difíceis.</p><a href="#contato">Em breve →</a></article><article class="content-card"><span class="text-peach">03</span><h3>Dúvidas sobre psicoterapia</h3><p>Respostas acessíveis para quem está pensando em iniciar um acompanhamento.</p><a href="#faq">Ver dúvidas →</a></article></div></div></section>
+      <section id="conteudos" class="bg-ink px-6 py-20 text-white lg:px-8 lg:py-28">
+        <div class="mx-auto max-w-6xl">
+          <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+            <div>
+              <p class="eyebrow text-peach">Conteúdos para você</p>
+              <h2 class="section-title text-white">
+                Informação também<br class="hidden sm:block" />
+                pode ser cuidado.
+              </h2>
+            </div>
+            <p class="max-w-sm text-sm leading-6 text-white/60">
+              Materiais para ajudar a pensar sobre emoções, relações e desenvolvimento com mais clareza e gentileza.
+            </p>
+          </div>
+          <div class="mt-12 grid gap-4 md:grid-cols-3">
+            <article class="content-card">
+              <span class="text-peach">01</span>
+              <h3>Neurodivergência e respeito às diferenças</h3>
+              <p>Um olhar para além dos diagnósticos, valorizando singularidades e potencialidades.</p>
+              <a href="#contato">Em breve →</a>
+            </article>
+            <article class="content-card">
+              <span class="text-peach">02</span>
+              <h3>Regulação emocional no dia a dia</h3>
+              <p>Como reconhecer emoções e construir recursos possíveis para atravessar momentos difíceis.</p>
+              <a href="#contato">Em breve →</a>
+            </article>
+            <article class="content-card">
+              <span class="text-peach">03</span>
+              <h3>Dúvidas sobre psicoterapia</h3>
+              <p>Respostas acessíveis para quem está pensando em iniciar um acompanhamento.</p>
+              <a href="#faq">Ver dúvidas →</a>
+            </article>
+          </div>
+        </div>
+      </section>
 
-      <section id="faq" class="bg-white px-6 py-20 lg:px-8 lg:py-28"><div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><p class="eyebrow">Primeiros passos</p><h2 class="section-title">Talvez sua dúvida já esteja aqui.</h2><p class="mt-5 max-w-sm leading-7 text-ink/60">Se não estiver, será um prazer conversar e explicar como funciona o atendimento.</p></div><div class="space-y-3"><details><summary>Como funciona o primeiro contato?</summary><p>O primeiro contato é um momento para você apresentar sua demanda, tirar dúvidas sobre o atendimento e entender se o processo faz sentido para o seu momento.</p></details><details><summary>O atendimento é online ou presencial?</summary><p>Entre em contato pelo WhatsApp para consultar os formatos disponíveis, horários e demais informações práticas.</p></details><details><summary>Como funciona o atendimento de crianças e adolescentes?</summary><p>O processo é construído de forma individualizada, com atenção ao vínculo, ao desenvolvimento e à participação dos responsáveis quando pertinente.</p></details></div></div></section>
+      <section id="faq" class="bg-white px-6 py-20 lg:px-8 lg:py-28">
+        <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[.8fr_1.2fr]">
+          <div>
+            <p class="eyebrow">Primeiros passos</p>
+            <h2 class="section-title">Talvez sua dúvida já esteja aqui.</h2>
+            <p class="mt-5 max-w-sm leading-7 text-ink/60">
+              Se não estiver, será um prazer conversar e explicar como funciona o atendimento.
+            </p>
+          </div>
+          <div class="space-y-3">
+            <details>
+              <summary>Como funciona o primeiro contato?</summary>
+              <p>
+                O primeiro contato é um momento para você apresentar sua demanda, tirar dúvidas sobre o atendimento e
+                entender se o processo faz sentido para o seu momento.
+              </p>
+            </details>
+            <details>
+              <summary>O atendimento é online ou presencial?</summary>
+              <p>
+                Entre em contato pelo WhatsApp para consultar os formatos disponíveis, horários e demais informações
+                práticas.
+              </p>
+            </details>
+            <details>
+              <summary>Como funciona o atendimento de crianças e adolescentes?</summary>
+              <p>
+                O processo é construído de forma individualizada, com atenção ao vínculo, ao desenvolvimento e à
+                participação dos responsáveis quando pertinente.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
 
-      <section id="contato" class="px-6 pb-20 lg:px-8 lg:pb-28"><div class="contact-panel mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-sky px-7 py-12 sm:px-12 lg:flex lg:items-center lg:justify-between lg:px-16"><div><p class="eyebrow">Vamos conversar</p><h2 class="max-w-2xl font-display text-4xl font-semibold leading-tight tracking-[-.035em] sm:text-5xl">O primeiro passo pode ser uma mensagem.</h2><p class="mt-5 max-w-xl leading-7 text-ink/65">Conte um pouco sobre o que você está buscando. O contato inicial é acolhedor, cuidadoso e sem compromisso.</p></div><a id="whatsapp-link" href="#" target="_blank" rel="noreferrer" class="mt-8 inline-flex shrink-0 items-center justify-center rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white transition hover:-translate-y-1 hover:shadow-soft lg:mt-0">Falar pelo WhatsApp <span class="ml-2">↗</span></a></div></section>
-      <section id="agenda" class="agenda-section bg-sand px-6 py-20 lg:px-8 lg:py-28"><div class="mx-auto max-w-6xl"><div class="flex flex-col justify-between gap-6 md:flex-row md:items-end"><div><p class="eyebrow">Agenda de atendimento</p><h2 class="section-title">Escolha um horário<br class="hidden sm:block" /> para começar a conversa.</h2></div><div class="agenda-note"><span class="agenda-dot"></span><span>Horários demonstrativos · confirmação pelo WhatsApp</span></div></div><div id="schedule" class="mt-12"></div></div></section>
+      <section id="contato" class="px-6 pb-20 lg:px-8 lg:pb-28">
+        <div
+          class="contact-panel mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-sky px-7 py-12 sm:px-12 lg:flex lg:items-center lg:justify-between lg:px-16"
+        >
+          <div>
+            <p class="eyebrow">Vamos conversar</p>
+            <h2 class="max-w-2xl font-display text-4xl font-semibold leading-tight tracking-[-.035em] sm:text-5xl">
+              O primeiro passo pode ser uma mensagem.
+            </h2>
+            <p class="mt-5 max-w-xl leading-7 text-ink/65">
+              Conte um pouco sobre o que você está buscando. O contato inicial é acolhedor, cuidadoso e sem compromisso.
+            </p>
+          </div>
+          <a
+            id="whatsapp-link"
+            href="#"
+            target="_blank"
+            rel="noreferrer"
+            class="mt-8 inline-flex shrink-0 items-center justify-center rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white transition hover:-translate-y-1 hover:shadow-soft lg:mt-0"
+            >Falar pelo WhatsApp <span class="ml-2">↗</span></a
+          >
+        </div>
+      </section>
+      <section id="agenda" class="agenda-section bg-sand px-6 py-20 lg:px-8 lg:py-28">
+        <div class="mx-auto max-w-6xl">
+          <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <p class="eyebrow">Agenda de atendimento</p>
+              <h2 class="section-title">
+                Escolha um horário<br class="hidden sm:block" />
+                para começar a conversa.
+              </h2>
+            </div>
+            <div class="agenda-note">
+              <span class="agenda-dot"></span><span>Horários demonstrativos · confirmação pelo WhatsApp</span>
+            </div>
+          </div>
+          <div id="schedule" class="mt-12"></div>
+        </div>
+      </section>
     </main>
-    <footer class="border-t border-ink/10 px-6 py-8 lg:px-8"><div class="mx-auto flex max-w-6xl flex-col justify-between gap-3 text-xs text-ink/50 sm:flex-row"><span>© 2026 Guilherme dos Santos Teixeira · Psicologia</span><span>CRP 03/36532 · Atendimento ético e individualizado</span></div></footer>
+    <footer class="border-t border-ink/10 px-6 py-8 lg:px-8">
+      <div class="mx-auto flex max-w-6xl flex-col justify-between gap-3 text-xs text-ink/50 sm:flex-row">
+        <span>© 2026 Guilherme dos Santos Teixeira · Psicologia</span
+        ><span>CRP 03/36532 · Atendimento ético e individualizado</span>
+      </div>
+    </footer>
     <script src="./script.js"></script>
   </body>
 </html>

@@ -1140,7 +1140,15 @@ details p {
 }
 
 #faq {
-  background: linear-gradient(180deg, #17324d 0, #17324d 0.7rem, #a9ced8 1.45rem, #eaf5f7 2.1rem, #fff 2.8rem, #fff 100%);
+  background: linear-gradient(
+    180deg,
+    #17324d 0,
+    #17324d 0.7rem,
+    #a9ced8 1.45rem,
+    #eaf5f7 2.1rem,
+    #fff 2.8rem,
+    #fff 100%
+  );
 }
 
 #contato {

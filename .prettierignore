@@ -1,0 +1,12 @@
+# Gerados
+styles.css
+package-lock.json
+node_modules/
+tests/baseline/
+
+# Documentos de auditoria e coordenação: não reformatar (ver §10 do plano)
+PLANO_IMPLEMENTACAO_COLABORATIVO.md
+RELATORIO_*.md
+
+# Fora do escopo da FR-01: será formatado pela frente que o reservar (FR-02)
+script.js
