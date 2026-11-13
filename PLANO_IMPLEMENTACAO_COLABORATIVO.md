@@ -484,7 +484,7 @@ Os testes de cada componente são escritos pela frente que o implementa, na mesm
 - [x] IMP-610 — Carregamento sem erro JavaScript.
 - [x] IMP-611 — Navegação desktop e mobile, incluindo Voltar/Avançar do navegador após uso das âncoras.
 - [x] IMP-612 — Abertura e fechamento do menu por teclado.
-- [ ] IMP-613 — FAQ.
+- [x] IMP-613 — FAQ.
 - [x] IMP-614 — Navegação completa das abas.
 - [x] IMP-615 — Agenda e mensagens geradas.
 - [x] IMP-616 — Controles e pausa dos carrosséis.
@@ -494,23 +494,23 @@ Os testes de cada componente são escritos pela frente que o implementa, na mesm
 
 ### Auditorias automatizadas
 
-- [ ] IMP-620 — Integrar axe ou ferramenta equivalente.
-- [ ] IMP-621 — Executar Lighthouse em perfil mobile, registrando o método de throttling. Comparar versões com `--throttling-method=devtools` (mediana de 3 execuções): a simulação padrão pode atribuir ao LCP o download de imagens que não bloqueiam o elemento, como ocorreu na FR-01.
-- [ ] IMP-622 — Verificar HTML, links e formatação.
-- [ ] IMP-623 — Criar pipeline de CI para build e testes.
+- [x] IMP-620 — Integrar axe ou ferramenta equivalente.
+- [x] IMP-621 — Executar Lighthouse em perfil mobile, registrando o método de throttling. Comparar versões com `--throttling-method=devtools` (mediana de 3 execuções): a simulação padrão pode atribuir ao LCP o download de imagens que não bloqueiam o elemento, como ocorreu na FR-01.
+- [x] IMP-622 — Verificar HTML, links e formatação.
+- [x] IMP-623 — Criar pipeline de CI para build e testes.
 
 ### Proteções complementares
 
 - [x] IMP-624 — Automatizar a verificação do estado acessível da agenda após a troca de dia.
 - [x] IMP-625 — Adicionar regressão visual do cabeçalho em 768 px e dos demais breakpoints de referência.
-- [ ] IMP-626 — Testar o estado seguro do CTA e da agenda com configuração inválida ou JavaScript indisponível.
+- [x] IMP-626 — Testar o estado seguro do CTA e da agenda com configuração inválida ou JavaScript indisponível.
 - [x] IMP-627 — Criar regressão visual específica do hero em 320, 390 e 1440 px.
 - [x] IMP-628 — Verificar automaticamente que o card do hero não excede seu contêiner e que o logotipo preserva a proporção natural.
 - [x] IMP-629 — Testar navegação interna e carrosséis com `prefers-reduced-motion: reduce`.
 - [x] IMP-630 — Verificar que a transição visual não bloqueia foco, rolagem ou acionamento repetido de links internos.
 - [ ] IMP-631 — Executar a suíte end-to-end em Chromium, Firefox e WebKit.
 - [x] IMP-632 — Testar a página com JavaScript desabilitado: conteúdo essencial visível, caminho de contato seguro e nenhum controle sem função.
-- [ ] IMP-633 — Comparar as métricas finais com o baseline de IMP-007 e registrar a evolução.
+- [x] IMP-633 — Comparar as métricas finais com o baseline de IMP-007 e registrar a evolução.
 
 ### Metas iniciais
 
@@ -629,7 +629,7 @@ Todas as demais tarefas podem ser executadas com as alternativas provisórias da
 | FR-03C | Contraste, toque, foco, logotipo e responsividade | FR-03B | `index.html`, CSS | Conversa de análise e revisão do plano | Concluída |
 | FR-04 | Imagens e desempenho | Preparação: nenhuma; integração: FR-03C | `assets/`, HTML | Conversa de análise e revisão do plano | Concluída |
 | FR-05 | Conteúdo e SEO | Rascunho: nenhuma; integração: FR-03C e DEC-03 a DEC-09 | HTML, arquivos SEO | Conversa de análise e revisão do plano | Bloqueada — restam tarefas dependentes de DEC-03 a DEC-09 |
-| FR-06 | Testes e CI | FR-01 para dependências; componentes | `tests/`, CI | Conversa de análise e revisão do plano | Em andamento — infraestrutura end-to-end antecipada na FR-03A |
+| FR-06 | Testes e CI | FR-01 para dependências; componentes | `tests/`, CI | Conversa de análise e revisão do plano | Aceita com limitação — WebKit configurado, mas executado só no CI |
 | FR-07 | Documentação e release | Todas | README e deploy | Não atribuído | Não iniciada |
 
 ## 10. Regras para outras conversas
@@ -1147,5 +1147,32 @@ Antes de acrescentar:
 - Arquivos ainda reservados: nenhum
 - Próxima ação recomendada: FR-06 (IMP-620 a IMP-623 e IMP-631) e FR-07
 - Estado final: Bloqueada (restam tarefas dependentes de decisão); demais concluídas
+
+### [2026-11-13 11:36 -03] Contribuição — FR-06 — Testes automatizados e regressão
+
+- Responsável/conversa: conversa de análise e revisão do plano de implementação
+- Objetivo: fechar a cobertura de testes, integrar auditorias e criar o pipeline de CI
+- Tarefas relacionadas: IMP-613, IMP-620 a IMP-623, IMP-626 e IMP-633 (concluídas); IMP-631 aceita com limitação. As demais tarefas da Fase 6 foram entregues junto com as frentes FR-02 a FR-05
+- Branch: `fr-06/testes-ci`, em worktree separado (§11.1)
+- Arquivos alterados: `contact.js`, `index.html`, `script.js`, `styles.css`, `playwright.config.js`, `package.json`, `package-lock.json`, `.gitignore`, `.prettierignore`, `README.md`, `tests/e2e/helpers.js`, `tests/e2e/acessibilidade.spec.js`, `tests/e2e/componentes-movimento.spec.js`, `tests/e2e/contraste.spec.js`, `tests/e2e/layout.spec.js`, `tests/e2e/visual.spec.js`; criados `.htmlvalidate.json`, `.github/workflows/ci.yml`, `scripts/lighthouse.mjs`, `tests/e2e/contato.spec.js`, `tests/e2e/faq.spec.js`
+- Alterações realizadas:
+  - IMP-620: `tests/e2e/acessibilidade.spec.js` roda o axe no estado atual em 390 e 1280 px, com a agenda manual e o contato ativos, e no menu mobile aberto (restrito ao cabeçalho, porque o resto da página fica sob o menu). As auditorias esperam o fim das animações de entrada. O axe encontrou uma falha real: o nome acessível dos dias da agenda ("sexta-feira, 20 de novembro de 2026") não continha o texto visível ("Sexta 20 nov"), contra o critério WCAG 2.5.3. O nome passou a ser o texto visível mais o ano só para leitores de tela ("sexta 20 nov de 2026");
+  - IMP-626: `tests/e2e/contato.spec.js` cobre sem número, número fora de produção (URL em `data-whatsapp-preview`), produção (link, `target` e `rel`), `site-config.js` ausente sem erro de script, agenda manual sem horários futuros e página sem JavaScript;
+  - IMP-613: FAQ abre e fecha por clique, Enter e Espaço;
+  - IMP-622: `html-validate` 11.21.1 em `npm run check:html`, incluído no `npm test`, com estilo de doctype e elementos vazios alinhado ao Prettier. A validação encontrou `aria-label` num `<div>` sem papel (lista de abas); o nome passou a ser aplicado pelo JavaScript junto com `role="tablist"`. Links internos e formatação já eram verificados (IMP-619 e Prettier);
+  - IMP-631: projetos Chromium, Firefox e WebKit; `npm run test:e2e` usa o Chromium e `npm run test:e2e:all` os três. Capturas de referência e contraste por pixel rodam só no Chromium. Dois testes sensíveis a tempo (rolagem imediata e retorno pelo histórico) ganharam folga para máquinas carregadas;
+  - IMP-621/IMP-633: `npm run lighthouse` roda 3 execuções mobile com throttling real e falha se alguma categoria ficar abaixo da meta do plano ou da referência inicial; relatório da mediana em `lighthouse-report/`;
+  - IMP-623: `.github/workflows/ci.yml` com três jobs: verificações (`npm test`), end-to-end nos três navegadores (`--with-deps`) e Lighthouse, com artefatos de falha e do relatório;
+  - dependências de auditoria: `html-validate` 9 e `lighthouse` 12 traziam vulnerabilidades indiretas (`glob`, `minimatch`, `basic-ftp`, `@opentelemetry/*`); foram usadas as versões 11.21.1 e 13.6.0, e `npm audit` não aponta nenhuma vulnerabilidade
+- Validações executadas: `npm test`; suíte end-to-end no Chromium (87 testes) também com `CI=1`; no Firefox (64 testes, 23 pulados por serem exclusivos do Chromium); `npm run lighthouse`; validação do YAML do workflow; `npm audit`
+- Resultado das validações:
+  - todos os testes passaram no Chromium e no Firefox;
+  - Lighthouse mobile, mediana de 3 execuções com throttling real, comparado ao baseline de IMP-007 (throttling simulado): desempenho 97 (73), acessibilidade 100 (90), boas práticas 100 (96), SEO 100 (100); LCP 2,14 s (7,21 s), FCP 2,05 s (2,37 s), CLS 0, peso total 649 KB (2.414 KB)
+- Pendências ou riscos:
+  - o WebKit não pôde ser executado localmente: faltam bibliotecas do sistema que exigem `sudo` (`sudo npx playwright install-deps webkit`); no CI elas são instaladas pelo `--with-deps`;
+  - o workflow só roda depois do push; as capturas de referência foram geradas nesta máquina Linux e, se o runner do GitHub renderizar diferente, precisam ser regeneradas a partir do artefato do CI
+- Arquivos ainda reservados: nenhum
+- Próxima ação recomendada: FR-07 (documentação, homologação e publicação)
+- Estado final: Aceita com limitação
 
 <!-- CONTRIBUICOES: ACRESCENTAR NOVAS ENTRADAS IMEDIATAMENTE ANTES DESTE MARCADOR. NAO REMOVER. -->
