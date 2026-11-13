@@ -7,6 +7,8 @@ const config = require('../site-config.js');
 const { validateConfig } = require('../contact.js');
 
 const { errors, warnings } = validateConfig(config, { release: true });
+// Metadados que dependem do domínio precisam estar gerados com o site.url atual.
+if (config.site?.url) errors.push(...(await import('./seo.mjs').then((m) => m.checkSeo(config))));
 for (const warning of warnings) console.warn(`! ${warning}`);
 if (errors.length) {
   console.error('✗ A página não está pronta para publicação:');

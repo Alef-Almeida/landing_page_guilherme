@@ -25,6 +25,9 @@ Abra <http://127.0.0.1:8080/>. O comando `dev` recompila o CSS a cada alteraçã
 | `npm run dev`           | Servidor local em `127.0.0.1:8080` com recompilação automática do CSS                                                                        |
 | `npm run build`         | Gera `styles.css` minificado a partir de `styles.source.css`                                                                                 |
 | `npm run images`        | Regenera as imagens otimizadas (AVIF/WebP em dois tamanhos), o favicon e os ícones a partir de `assets/source/` e `assets/icons/favicon.svg` |
+| `npm run fonts`         | Copia as fontes Inter e DM Sans (variáveis, subconjunto latino) dos pacotes para `assets/fonts/`                                             |
+| `npm run og-image`      | Regenera `assets/og-image.jpg`, a imagem de compartilhamento (1200 × 630)                                                                    |
+| `npm run seo`           | Gera canonical, Open Graph absoluto, `robots.txt` e `sitemap.xml` a partir de `site.url`                                                     |
 | `npm run serve`         | Somente serve a página (use `npm run serve -- --port 3000` para outra porta)                                                                 |
 | `npm run format`        | Formata os arquivos com Prettier                                                                                                             |
 | `npm run format:check`  | Verifica a formatação sem alterar arquivos                                                                                                   |
@@ -47,6 +50,7 @@ Todos os dados operacionais ficam em [`site-config.js`](site-config.js). Não es
 | `schedule.mode`        | `'whatsapp-only'` (consulta pelo WhatsApp) ou `'manual-schedule'` (horários publicados)               | `'whatsapp-only'` até DEC-02 e DEC-10 |
 | `schedule.days`        | Somente no modo manual: `[{ date: 'AAAA-MM-DD', times: ['HH:MM'] }]`                                  | Vazio                                 |
 | `schedule.timeZone`    | Fuso usado para esconder datas e horários que já passaram                                             | `America/Bahia`                       |
+| `site.url`             | Endereço público com https e barra final; depois de preencher, rode `npm run seo`                     | Vazio até DEC-04                      |
 
 Como a página se comporta:
 
@@ -67,6 +71,12 @@ Os textos e as regras ficam em [`contact.js`](contact.js), coberto por `npm run 
 - Não use `!important`: resolva conflitos pela especificidade do seletor ou ajustando as classes no HTML.
 - Prefixos de navegador são gerados pelo autoprefixer conforme `browserslist` em `package.json` (padrão do mercado, mais Safari e iOS 15 ou superior).
 - A minificação (`postcss.build.config.js`) usa cssnano com as transformações de cor, gradiente, posição e unidades desligadas, para que o CSS final seja idêntico ao escrito.
+
+## Segurança e privacidade
+
+- A página não carrega nenhum recurso de terceiros: fontes, imagens e scripts são servidos pelo próprio site. O WhatsApp é apenas um link.
+- Os cabeçalhos de segurança (CSP, Referrer-Policy, Permissions-Policy e outros) ficam em `security-headers.json`. O servidor local já os aplica, e os testes end-to-end falham se houver violação de CSP. A hospedagem precisa reproduzi-los, incluindo os exclusivos de produção (HSTS e `upgrade-insecure-requests`).
+- Não use scripts ou estilos inline: a CSP bloqueia. Dados estruturados em `<script type="application/ld+json">` são permitidos, pois não são executados.
 
 ## Imagens
 

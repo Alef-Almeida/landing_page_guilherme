@@ -160,6 +160,19 @@
       const hosts = config.site?.productionHosts;
       if (!Array.isArray(hosts) || !hosts.length)
         errors.push('site.productionHosts: informe o domínio oficial (DEC-04); sem ele o link fica desativado.');
+      const siteUrl = String(config.site?.url ?? '');
+      let parsed = null;
+      try {
+        parsed = new URL(siteUrl);
+      } catch {
+        parsed = null;
+      }
+      if (!parsed || parsed.protocol !== 'https:' || !siteUrl.endsWith('/'))
+        errors.push(
+          "site.url: informe o endereço público com https e barra final, por exemplo 'https://www.dominio.com.br/' (DEC-04).",
+        );
+      else if (Array.isArray(hosts) && hosts.length && !hosts.includes(parsed.hostname))
+        errors.push(`site.url: o domínio ${parsed.hostname} precisa constar em site.productionHosts.`);
       if (!Array.isArray(config.modalities) || !config.modalities.length)
         warnings.push('modalities está vazio: a página não informará a modalidade de atendimento (DEC-03).');
     }

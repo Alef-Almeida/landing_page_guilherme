@@ -9,6 +9,10 @@
     professionalName: 'Guilherme',
 
     site: {
+      // Endereço público da página, com https e barra final, por exemplo 'https://www.dominio.com.br/'.
+      // Depois de preencher, rode `npm run seo` para gerar canonical, Open Graph, robots.txt e sitemap.xml.
+      // Pendente: DEC-04.
+      url: '',
       // Domínios em que o link do WhatsApp fica ativo, por exemplo ['www.dominio.com.br', 'dominio.com.br'].
       // Em qualquer outro endereço (localhost, homologação, testes) o link fica desativado para não enviar
       // mensagens reais. Pendente: DEC-04 (domínio e hospedagem).
