@@ -1,97 +1,1273 @@
-/* passo 1: cópia fiel — styles.css original */
-:root{scroll-behavior:smooth}*{box-sizing:border-box}.font-display{font-family:'DM Sans',sans-serif}.brand-mark{display:grid;height:38px;width:38px;place-items:center;border-radius:13px;background:#DDECF5}.brand-mark svg{width:28px}.brand-wave{position:fixed;z-index:40;left:12px;top:88px;bottom:20px;width:54px;pointer-events:none;opacity:.78}.brand-wave svg{height:100%;width:100%;overflow:visible}.wave{fill:none;stroke:url(#wave-gradient);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:2 7}.side-boat{fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.boat-blue{stroke:#5B91AD;fill:#DDECF5}.boat-orange{stroke:#D99174;fill:#F5B79C}.nav-link{transition:color .2s}.nav-link:hover{color:#17324D}.nav-link.active{color:#17324D;font-weight:600}.eyebrow{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(23,50,77,.55)}.section-title{margin-top:.7rem;font-family:'DM Sans',sans-serif;font-size:clamp(2.2rem,4.4vw,4rem);font-weight:600;line-height:1.04;letter-spacing:-.045em}.service-card{position:relative;min-height:490px;border-radius:2rem;padding:2rem;overflow:hidden;transition:transform .3s,box-shadow .3s}.service-card:hover{transform:translateY(-5px);box-shadow:0 20px 70px rgba(23,50,77,.1)}.child-card{background:linear-gradient(145deg,#DDECF5 0%,#E8F4F7 100%)}.adult-card{background:linear-gradient(145deg,#F5B79C 0%,#F8C6AE 100%)}.child-decor{position:absolute;right:1.1rem;top:1.7rem;width:275px;opacity:.9;transition:transform .35s}.child-card:hover .child-decor{transform:translateY(-4px) rotate(-1deg)}.child-decor svg{width:100%;height:auto}.mini-boat{transform-box:fill-box;transform-origin:center;transition:transform .35s}.child-card:hover .mini-boat-one{transform:translate(3px,-2px) rotate(-3deg)}.child-card:hover .mini-boat-two{transform:translate(-2px,2px) rotate(3deg)}.adult-decor{position:absolute;right:-40px;top:-36px;height:210px;width:300px;opacity:.35}.adult-decor span{position:absolute;display:block;border:1px solid rgba(23,50,77,.5);border-radius:50%}.adult-decor span:nth-child(1){right:18px;top:18px;height:180px;width:180px}.adult-decor span:nth-child(2){right:68px;top:58px;height:135px;width:135px}.adult-decor span:nth-child(3){right:123px;top:100px;height:85px;width:85px}.adult-card:hover .adult-decor{transform:translate(-6px,4px);transition:transform .45s}.icon-disc{position:relative;z-index:1;display:grid;height:48px;width:48px;place-items:center;border-radius:50%;font-size:1.3rem}.hero-card{transform:rotate(2deg);transition:transform .5s}.hero-card:hover{transform:rotate(0) translateY(-4px)}.boat-scene{position:relative;height:175px}.sun{position:absolute;right:20%;top:-20px;height:70px;width:70px;border-radius:50%;background:#F5B79C;opacity:.75}.hero-boat{position:relative;z-index:1;height:100%;width:100%}.portrait-placeholder{position:relative;display:grid;min-height:450px;place-items:center;overflow:hidden;border-radius:2rem;background:linear-gradient(145deg,#DDECF5,#F5B79C)}.portrait-placeholder:before,.portrait-placeholder:after{position:absolute;content:'';border:1px solid rgba(23,50,77,.18);border-radius:50%}.portrait-placeholder:before{height:330px;width:330px}.portrait-placeholder:after{height:470px;width:470px}.portrait-placeholder span{position:relative;z-index:2;font-family:'DM Sans';font-size:10rem;font-weight:600;color:rgba(255,255,255,.8)}.portrait-line{position:absolute;bottom:22%;left:10%;height:1px;width:80%;background:rgba(23,50,77,.2);transform:rotate(-8deg)}.stat{border-left:2px solid #F5B79C;padding-left:12px}.stat strong{display:block;font-family:'DM Sans';font-size:1.15rem}.stat span{display:block;margin-top:3px;font-size:11px;color:rgba(23,50,77,.55)}.content-card{border:1px solid rgba(255,255,255,.15);border-radius:1.25rem;padding:1.5rem;transition:background .2s,transform .2s}.content-card:hover{background:rgba(255,255,255,.08);transform:translateY(-4px)}.content-card span{font-size:11px;letter-spacing:.15em}.content-card h3{margin-top:3rem;font-family:'DM Sans';font-size:1.4rem;line-height:1.15}.content-card p{margin-top:1rem;font-size:.9rem;line-height:1.6;color:rgba(255,255,255,.6)}.content-card a{display:block;margin-top:1.5rem;font-size:.8rem;font-weight:600;color:#F5B79C}details{border-bottom:1px solid rgba(23,50,77,.12);padding:1.25rem 0}summary{cursor:pointer;list-style:none;padding-right:2rem;font-family:'DM Sans';font-size:1.15rem;font-weight:600;position:relative}summary::-webkit-details-marker{display:none}summary:after{position:absolute;right:0;content:'+';font-size:1.5rem;font-weight:400;color:rgba(23,50,77,.45)}details[open] summary:after{content:'–'}details p{max-width:600px;padding-top:1rem;font-size:.95rem;line-height:1.7;color:rgba(23,50,77,.6)}.contact-panel{position:relative}.contact-panel:after{position:absolute;right:-30px;top:-85px;height:240px;width:240px;border:1px solid rgba(23,50,77,.1);border-radius:50%;content:''}.contact-panel>*{position:relative;z-index:1}.reveal{animation:rise .8s both}.delay-1{animation-delay:.15s}@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}@media(max-width:767px){.brand-wave{display:none}#mobile-menu a{display:block;padding:.7rem 0;font-size:.9rem;color:rgba(23,50,77,.7)}.service-card{min-height:410px}.portrait-placeholder{min-height:320px}.portrait-placeholder span{font-size:7rem}.child-decor{width:220px;right:.5rem;top:1.3rem}.adult-decor{right:-90px}}
-:root{--schedule-ink:#17324D}.agenda-section{background:linear-gradient(180deg,#F8F5F1 0%,#FFFFFF 100%)}.agenda-note{display:inline-flex;align-items:center;gap:9px;font-size:.75rem;color:rgba(23,50,77,.55)}.agenda-dot{display:block;height:8px;width:8px;border-radius:50%;background:#F5B79C;box-shadow:0 0 0 5px rgba(245,183,156,.18)}.schedule-layout{display:grid;gap:1rem;grid-template-columns:minmax(260px,.55fr) 1.45fr}.schedule-days{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem}.schedule-day{display:flex;min-height:130px;flex-direction:column;align-items:flex-start;justify-content:center;border:1px solid rgba(23,50,77,.12);border-radius:1.35rem;background:rgba(255,255,255,.56);padding:1.15rem;text-align:left;color:rgba(23,50,77,.6);transition:transform .2s,background .2s,border-color .2s}.schedule-day:hover{transform:translateY(-3px);border-color:rgba(23,50,77,.25)}.schedule-day span{font-size:.72rem;text-transform:capitalize}.schedule-day strong{margin-top:.25rem;font-family:'DM Sans';font-size:2.25rem;line-height:1;color:#17324D}.schedule-day small{margin-top:.35rem;text-transform:uppercase;letter-spacing:.16em;font-size:.63rem}.schedule-day.is-active{border-color:#7FAFC4;background:#DDECF5;color:#17324D;box-shadow:0 15px 35px rgba(23,50,77,.08)}.schedule-panel{border-radius:1.7rem;background:#17324D;padding:2rem;color:#fff}.schedule-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;border-bottom:1px solid rgba(255,255,255,.14);padding-bottom:1.5rem}.schedule-panel .eyebrow{color:rgba(255,255,255,.55)}.schedule-panel h3{margin-top:.5rem;font-family:'DM Sans';font-size:1.65rem;font-weight:600;line-height:1.15}.schedule-status{border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:.55rem .8rem;font-size:.68rem;color:rgba(255,255,255,.68);white-space:nowrap}.schedule-slots{display:grid;gap:.7rem;margin-top:1.4rem}.schedule-slot{display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(255,255,255,.13);border-radius:1rem;padding:1rem 1.1rem;color:#fff;transition:background .2s,transform .2s}.schedule-slot:hover{transform:translateX(4px);background:rgba(255,255,255,.1)}.schedule-slot>span:first-child{font-family:'DM Sans';font-size:1.25rem}.schedule-slot>span:last-child{font-size:.75rem;color:#F5B79C}.schedule-slot b{margin-left:.4rem;font-size:1rem}@media(max-width:767px){.schedule-layout{grid-template-columns:1fr}.schedule-days{grid-template-columns:repeat(4,1fr)}.schedule-day{min-height:100px;padding:.75rem}.schedule-day strong{font-size:1.7rem}.schedule-panel-head{flex-direction:column}.schedule-status{align-self:flex-start}}
-:root{--g-blue:#9fdff8;--g-orange:#f6af83;--g-ink:#17324d}.child-decor{height:112px;background:url('./assets/paper-boat-line.png') right top/220px auto no-repeat}.child-decor svg{display:none}.child-card:after{display:none}.adult-decor{opacity:.22}.about-interactive{border-top:1px solid rgba(23,50,77,.12);padding-top:1.6rem}.about-tab-list{display:flex;flex-wrap:wrap;gap:.55rem}.about-tab{border:1px solid rgba(23,50,77,.14);border-radius:999px;background:#fff;padding:.7rem 1rem;color:rgba(23,50,77,.62);font-size:.78rem;font-weight:600;transition:background .2s,color .2s,transform .2s}.about-tab:hover{transform:translateY(-2px)}.about-tab.is-active{border-color:#17324d;background:#17324d;color:#fff}.about-tab-content{display:grid;grid-template-columns:180px 1fr;align-items:center;gap:2rem;margin-top:1rem;border-radius:1.5rem;background:linear-gradient(135deg,#f8f5f1,#fff);padding:1.25rem 1.5rem}.about-tab-art{display:grid;min-height:110px;place-items:center;border-radius:1rem;background:#e9f8fc}.about-tab-art img{width:150px;mix-blend-mode:multiply}.about-tab-content h3{margin-top:.45rem;font-family:'DM Sans';font-size:clamp(1.35rem,2vw,2rem);line-height:1.1}.about-tab-content p{margin-top:.6rem;max-width:620px;line-height:1.7;color:rgba(23,50,77,.62)}.contact-panel{background:linear-gradient(135deg,#9fdff8 0%,#eaf9fc 100%)!important;box-shadow:0 24px 70px rgba(23,50,77,.12)}.contact-panel:before{position:absolute;right:16%;bottom:-16px;width:220px;height:105px;background:url('./assets/paper-boat-line.png') center/contain no-repeat;content:'';opacity:.68;mix-blend-mode:multiply}.contact-panel:after{border-color:rgba(23,50,77,.12)}.contact-panel a{background:#17324d;box-shadow:0 10px 24px rgba(23,50,77,.16)}.contact-panel a:hover{background:#f6af83;color:#17324d}.content-card a{color:#f6af83}.service-card a:hover{color:#17324d}@media(max-width:767px){.about-tab-content{grid-template-columns:1fr}.about-tab-art{min-height:95px}.contact-panel:before{right:2%;bottom:5px;width:150px}}
-/* passo 1: bloco <style> 1 do index.html */
-.page-transition{position:fixed;inset:0;z-index:100;pointer-events:none;background:linear-gradient(135deg,rgba(248,245,241,.98) 0%,rgba(221,236,245,.96) 52%,rgba(245,183,156,.95) 100%);opacity:0;transform:scale(1.02);transition:opacity .34s ease,transform .48s ease}
-      .page-transition.is-visible{opacity:1;transform:scale(1)}
-      .page-transition:after{position:absolute;left:50%;top:50%;height:10px;width:10px;border-radius:50%;background:#17324D;content:'';opacity:.18;transform:translate(-50%,-50%) scale(1);transition:transform .5s ease}
-      .page-transition.is-visible:after{transform:translate(-50%,-50%) scale(34)}
-/* passo 1: bloco <style> 2 do index.html */
-.reveal > p:first-child{display:none}main{display:flex;flex-direction:column}main>#contato{order:99}header{background:rgba(248,245,241,.94)!important;border-color:rgba(23,50,77,.08)!important}.brand-logo{display:block;width:178px;height:auto;max-height:50px;object-fit:contain;object-position:left center;mix-blend-mode:multiply}.nav-link{color:#617486}.nav-link:hover,.nav-link.active{color:#17324D}.child-card{background:linear-gradient(145deg,#9fdff8 0%,#dff5fb 100%)}.adult-card{background:linear-gradient(145deg,#f6af83 0%,#fbd1b8 100%)}.child-card:after{position:absolute;right:1.25rem;bottom:1rem;width:140px;height:56px;background:url('./assets/paper-boat-line.png') right bottom/contain no-repeat;content:'';opacity:.72;mix-blend-mode:multiply;pointer-events:none}.brand-wave .wave{stroke:url(#wave-gradient)}
-    @media(max-width:767px){.brand-logo{width:158px;max-height:44px}}
-/* passo 1: bloco <style> 3 do index.html */
-.child-decor{mix-blend-mode:multiply;opacity:.78}.service-card>.flex.items-start.justify-between{display:none!important}.service-card .mt-20{margin-top:2.5rem!important}
-/* passo 1: bloco <style> 4 do index.html */
-#contato{flex-direction:column;justify-content:center;min-height:0;padding-top:6rem!important;padding-bottom:6rem!important}
-      #contato>.contact-panel{flex:none}
-      #contato>.contact-steps{flex:none;width:100%;margin-top:2rem!important}
-      @media(max-width:767px){#contato{padding-top:4rem!important;padding-bottom:4rem!important}}
-/* passo 1: bloco <style> 5 do index.html */
-#contato{position:relative;isolation:isolate;margin-top:2rem;padding-top:5rem!important;padding-bottom:5.5rem!important;background:#f8f5f1;border-top:1px solid rgba(23,50,77,.1);border-bottom:1px solid rgba(23,50,77,.1);overflow:hidden}
-      #contato:before{position:absolute;z-index:-1;top:16%;left:0;width:260px;height:120px;background:url('./assets/paper-boat-line.png') center/contain no-repeat;content:'';opacity:.17;mix-blend-mode:multiply;animation:contact-voyage 18s ease-in-out infinite alternate}
-      #contato:after{position:absolute;z-index:-1;right:-120px;bottom:-180px;height:420px;width:420px;border:1px solid rgba(159,223,248,.7);border-radius:50%;content:''}
-      #contato>.contact-panel{position:relative;z-index:1;margin-top:0;margin-bottom:0;border:1px solid rgba(23,50,77,.06);box-shadow:0 24px 80px rgba(23,50,77,.14)}#contato>.contact-panel:before{display:none}
-      @keyframes contact-voyage{0%{transform:translateX(-24px) translateY(15px) rotate(-2deg)}50%{transform:translateX(32vw) translateY(-8px) rotate(1deg)}100%{transform:translateX(66vw) translateY(18px) rotate(-1deg)}}
-      @media(max-width:767px){#contato{margin-top:1rem;padding-top:3.5rem!important;padding-bottom:4rem!important}#contato:before{top:8%;width:180px}}
-/* passo 1: bloco <style> 6 do index.html */
-#contato{min-height:78vh;display:flex;align-items:center;padding-top:7rem!important;padding-bottom:7rem!important;background:linear-gradient(180deg,#f8f5f1 0%,#eefaff 50%,#dff5fb 100%)}
-      #contato:before{top:0;left:0;width:100%;height:100%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='180' viewBox='0 0 520 180' fill='none'%3E%3Cpath d='M-20 48c70-36 130-36 200 0s130 36 200 0 130-36 200 0' stroke='%2317324d' stroke-opacity='.16' stroke-width='2'/%3E%3Cpath d='M-20 96c70-36 130-36 200 0s130 36 200 0 130-36 200 0' stroke='%239fdff8' stroke-opacity='.3' stroke-width='3'/%3E%3Cpath d='M-20 144c70-36 130-36 200 0s130 36 200 0 130-36 200 0' stroke='%23f6af83' stroke-opacity='.18' stroke-width='2'/%3E%3C/svg%3E");background-repeat:repeat;background-size:520px 180px;opacity:.72;animation:sea-drift 24s linear infinite}
-      #contato:after{right:-110px;bottom:-200px;height:480px;width:480px;border-color:rgba(159,223,248,.5)}
-      #contato:before,#contato:after{display:none!important}
-      #contato>.contact-panel{width:100%;align-items:center;background:linear-gradient(135deg,rgba(159,223,248,.94),rgba(234,249,252,.94))!important}
-      #contato>.contact-panel:before{display:block;right:9%;bottom:8%;width:260px;height:125px;background:url('./assets/paper-boat-line.png') center/contain no-repeat;content:'';opacity:.3;mix-blend-mode:multiply;animation:boat-float 5.5s ease-in-out infinite}
-      @keyframes sea-drift{from{background-position:0 0}to{background-position:520px 0}}@keyframes boat-float{0%,100%{transform:translate3d(0,0,0) rotate(-1deg)}50%{transform:translate3d(12px,-9px,0) rotate(1deg)}}
-      .contact-steps{position:relative;z-index:1}.contact-steps>div{border-top:1px solid rgba(23,50,77,.16);padding:1rem .2rem .2rem}.contact-steps span{display:block;font-size:.68rem;font-weight:700;letter-spacing:.16em;color:#d99174}.contact-steps strong{display:block;margin-top:.45rem;font-family:'DM Sans';font-size:1rem;color:#17324d}.contact-steps p{margin-top:.25rem;font-size:.78rem;line-height:1.5;color:rgba(23,50,77,.58)}
-      @media(max-width:767px){#contato{min-height:72vh;padding-top:5rem!important;padding-bottom:5rem!important}#contato>.contact-panel:before{right:4%;bottom:5%;width:170px}}
-/* passo 1: bloco <style> 7 do index.html */
-main>section{position:relative;isolation:isolate}
-      main>section+section{border-top:0!important}
-      #atendimentos{background:linear-gradient(180deg,#f8f5f1 0,#fff 5.5rem,#fff 100%)!important}
-      #sobre{background:linear-gradient(180deg,#fff 0,#fff 3rem,#f8f5f1 8rem,#f8f5f1 100%)!important}
-      #conteudos{background:linear-gradient(180deg,#f8f5f1 0,#f8f5f1 3rem,#17324d 9rem,#17324d 100%)!important}
-      #faq{background:linear-gradient(180deg,#17324d 0,#17324d 3rem,#fff 9rem,#fff 100%)!important}
-      #contato{background:linear-gradient(180deg,#fff 0,#fff 3rem,#f8f5f1 9rem,#dff5fb 100%)!important}
-      #agenda{background:linear-gradient(180deg,#dff5fb 0,#f8f5f1 7rem,#fff 15rem,#fff 100%)!important}
-      @media(max-width:767px){#atendimentos{background:linear-gradient(180deg,#f8f5f1 0,#fff 4rem,#fff 100%)!important}#conteudos,#faq,#contato,#agenda{background-position:0 0!important}}
-/* passo 1: bloco <style> 8 do index.html */
-html,body{overflow-x:hidden}
-      .brand-wave{left:0;width:48px;opacity:.48;mask-image:linear-gradient(to bottom,transparent 0%,#000 7%,#000 93%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 7%,#000 93%,transparent 100%)}
-      .brand-wave .wave{stroke-width:1.8;opacity:.72}
-      main>section{background-clip:padding-box;transition:background .5s ease}
-      main>section:before{position:absolute;inset:0;z-index:-1;pointer-events:none;content:'';opacity:.12;background:linear-gradient(180deg,rgba(255,255,255,.35),transparent 18%,transparent 82%,rgba(23,50,77,.04))}
-      @media(max-width:767px){.brand-wave{display:none}}
-/* passo 1: bloco <style> 9 do index.html */
-main>section:before{display:none!important}
-      #conteudos{background:linear-gradient(180deg,#f8f5f1 0,#f3f5f5 1.2rem,#17324d 4.2rem,#17324d 100%)!important}
-      #faq{background:linear-gradient(180deg,#17324d 0,#27435a 1.2rem,#fff 4.2rem,#fff 100%)!important}
-      #contato{background:linear-gradient(180deg,#fff 0,#f8f5f1 3rem,#dff5fb 10rem,#dff5fb 100%)!important}
-      #agenda{background:linear-gradient(180deg,#dff5fb 0,#f8f5f1 4rem,#fff 10rem,#fff 100%)!important}
-/* passo 1: bloco <style> 10 do index.html */
-#conteudos{background:linear-gradient(180deg,#f8f5f1 0,#f8f5f1 1.2rem,#eaf5f7 2.2rem,#c5e1e8 3.3rem,#7fa9bb 4.5rem,#17324d 5.8rem,#17324d 100%)!important}
-      #faq{background:linear-gradient(180deg,#17324d 0,#17324d 1.2rem,#7fa9bb 2.5rem,#c5e1e8 3.6rem,#eaf5f7 4.8rem,#fff 6rem,#fff 100%)!important}
-      #contato{background:linear-gradient(180deg,#fff 0,#fbfaf8 1.5rem,#f8f5f1 3rem,#eaf7fa 5rem,#dff5fb 7rem,#dff5fb 100%)!important}
-      #agenda{background:linear-gradient(180deg,#dff5fb 0,#eaf7fa 2rem,#f8f5f1 4rem,#fbfaf8 5.5rem,#fff 7rem,#fff 100%)!important}
-/* passo 1: bloco <style> 11 do index.html */
-#conteudos{background:linear-gradient(180deg,#f8f5f1 0,#f8f5f1 .7rem,#eaf5f7 1.35rem,#a9ced8 2rem,#17324d 2.8rem,#17324d 100%)!important}
-      #faq{background:linear-gradient(180deg,#17324d 0,#17324d .7rem,#a9ced8 1.45rem,#eaf5f7 2.1rem,#fff 2.8rem,#fff 100%)!important}
-      #contato{background:linear-gradient(180deg,#fff 0,#f8f5f1 1.2rem,#eaf7fa 2rem,#dff5fb 2.8rem,#dff5fb 100%)!important}
-      #agenda{background:linear-gradient(180deg,#dff5fb 0,#eaf7fa 1rem,#f8f5f1 1.8rem,#fff 2.8rem,#fff 100%)!important}
-/* passo 1: bloco <style> 12 do index.html */
-.brand-wave{z-index:120!important;opacity:.7}
-      .brand-wave .wave{opacity:.62}
-      .brand-wave .side-boat{opacity:1;filter:drop-shadow(0 2px 2px rgba(23,50,77,.18))}
-      .page-transition{z-index:100!important}
-/* passo 1: bloco <style> 13 do index.html */
-.instagram-card{position:relative;isolation:isolate;transform:rotate(2.2deg);transition:transform .45s ease,box-shadow .45s ease}
-      .instagram-card:hover{transform:rotate(0deg) translateY(-5px)}
-      .instagram-shell{position:relative;overflow:visible;border:1px solid rgba(23,50,77,.08);border-radius:1.65rem;background:rgba(255,255,255,.88);padding:.7rem;box-shadow:0 24px 70px rgba(23,50,77,.16)}
-      .instagram-post{position:relative;overflow:hidden;aspect-ratio:4/5;border-radius:1.2rem;background:#eef7f8}
-      .instagram-post img{position:absolute;inset:0;display:block;height:100%;width:100%;object-fit:cover;opacity:0;transition:opacity .4s ease,transform .6s ease}
-      .instagram-post img.is-active{opacity:1}
-      .instagram-post:after{position:absolute;inset:0;pointer-events:none;content:'';background:linear-gradient(180deg,rgba(255,255,255,.08),transparent 45%,rgba(23,50,77,.12))}
-      .instagram-top{position:absolute;left:1rem;right:1rem;top:.9rem;z-index:2;display:flex;align-items:center;justify-content:space-between;color:#fff;text-shadow:0 1px 8px rgba(23,50,77,.25)}
-      .instagram-user{display:flex;align-items:center;gap:.45rem;font-size:.68rem;font-weight:600;letter-spacing:.04em}
-      .instagram-avatar{display:grid;height:1.8rem;width:1.8rem;place-items:center;border:1px solid rgba(255,255,255,.7);border-radius:50%;background:rgba(255,255,255,.7);color:#17324D;font-size:.62rem}
-      .instagram-mark{height:1.3rem;width:1.3rem}.instagram-actions{display:flex;align-items:center;justify-content:space-between;padding:.7rem .2rem .15rem;color:#17324D}.instagram-actions-left{display:flex;gap:.75rem}.instagram-action{height:1.15rem;width:1.15rem;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.8}.instagram-dots{display:flex;gap:.25rem}.instagram-dots button{height:.3rem;width:.3rem;border:0;border-radius:50%;background:#b6d3dd;padding:0;transition:transform .2s,background .2s}.instagram-dots button.is-active{background:#17324D;transform:scale(1.3)}
-      .ig-float{position:absolute;z-index:4;display:grid;height:2.6rem;width:2.6rem;place-items:center;border:1px solid rgba(255,255,255,.7);border-radius:50%;background:rgba(255,255,255,.86);box-shadow:0 12px 28px rgba(23,50,77,.12);color:#17324D;animation:ig-float 4.5s ease-in-out infinite}.ig-float svg{height:1.15rem;width:1.15rem;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.7}.ig-float-one{right:-1.1rem;top:13%;color:#d99174}.ig-float-two{left:-1.25rem;top:43%;animation-delay:-1.6s;color:#7fa9bb}.ig-float-three{right:-.9rem;bottom:17%;animation-delay:-3s;color:#17324D}@keyframes ig-float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-8px) rotate(5deg)}}
-      @media(max-width:767px){.instagram-shell{padding:.55rem}.ig-float{height:2.15rem;width:2.15rem}.ig-float-one{right:-.6rem}.ig-float-two{left:-.65rem}.ig-float-three{right:-.55rem}}
-/* passo 1: bloco <style> 14 do index.html */
-.portrait-carousel{position:relative;display:block;min-height:450px;aspect-ratio:1/1;overflow:hidden;border-radius:2rem;background:linear-gradient(145deg,#DDECF5,#F5B79C)}
-      .portrait-carousel:after{position:absolute;inset:0;pointer-events:none;content:'';background:linear-gradient(180deg,rgba(23,50,77,.02),transparent 55%,rgba(23,50,77,.15))}
-      .portrait-carousel img{position:absolute;inset:0;display:block;height:100%;width:100%;object-fit:cover;object-position:center;opacity:0;transform:scale(1.025);transition:opacity 1.1s ease,transform 6s ease}.portrait-carousel img.is-active{opacity:1;transform:scale(1)}
-      .portrait-carousel .portrait-carousel-label{position:absolute;bottom:1.2rem;left:1.2rem;z-index:2;border:1px solid rgba(255,255,255,.45);border-radius:999px;background:rgba(255,255,255,.75);padding:.55rem .85rem;color:#17324D;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;backdrop-filter:blur(8px)}
-      @media(max-width:767px){.portrait-carousel{min-height:320px}}
+/*
+ * Fonte do CSS da landing page.
+ * Edite somente este arquivo; styles.css é gerado por `npm run build`.
+ *
+ * Ordem: base do Tailwind → componentes do Tailwind → estilos próprios → utilitários.
+ * Os utilitários ficam por último para continuarem vencendo os estilos próprios
+ * de mesma especificidade, como acontecia com o Tailwind via CDN.
+ */
+
 @tailwind base;
 @tailwind components;
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+:root {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Temporário: reordena Contato após Agenda. Será removido em IMP-300/IMP-301. */
+main > #contato {
+  order: 99;
+}
+
+main > section {
+  position: relative;
+  isolation: isolate;
+  background-clip: padding-box;
+  transition: background 0.5s ease;
+}
+
+/* ==========================================================================
+   Transição entre seções
+   ========================================================================== */
+
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(248, 245, 241, 0.98) 0%,
+    rgba(221, 236, 245, 0.96) 52%,
+    rgba(245, 183, 156, 0.95) 100%
+  );
+  opacity: 0;
+  transform: scale(1.02);
+  transition:
+    opacity 0.34s ease,
+    transform 0.48s ease;
+}
+
+.page-transition.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.page-transition::after {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background: #17324d;
+  content: '';
+  opacity: 0.18;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 0.5s ease;
+}
+
+.page-transition.is-visible::after {
+  transform: translate(-50%, -50%) scale(34);
+}
+
+/* ==========================================================================
+   Onda lateral com barco que acompanha a rolagem
+   ========================================================================== */
+
+.brand-wave {
+  position: fixed;
+  z-index: 120;
+  left: 0;
+  top: 88px;
+  bottom: 20px;
+  width: 48px;
+  pointer-events: none;
+  opacity: 0.7;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%);
+}
+
+.brand-wave svg {
+  height: 100%;
+  width: 100%;
+  overflow: visible;
+}
+
+.brand-wave .wave {
+  fill: none;
+  stroke: url(#wave-gradient);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-dasharray: 2 7;
+  opacity: 0.62;
+}
+
+/* Mantido com especificidade de classe única para que .boat-blue/.boat-orange definam o preenchimento. */
+.side-boat {
+  fill: none;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.brand-wave .side-boat {
+  opacity: 1;
+  filter: drop-shadow(0 2px 2px rgba(23, 50, 77, 0.18));
+}
+
+.boat-blue {
+  stroke: #5b91ad;
+  fill: #ddecf5;
+}
+
+.boat-orange {
+  stroke: #d99174;
+  fill: #f5b79c;
+}
+
+/* ==========================================================================
+   Cabeçalho e navegação
+   ========================================================================== */
+
+.brand-logo {
+  display: block;
+  width: 178px;
+  height: auto;
+  max-height: 50px;
+  object-fit: contain;
+  object-position: left center;
+  mix-blend-mode: multiply;
+}
+
+.nav-link {
+  color: #617486;
+  transition: color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #17324d;
+}
+
+.nav-link.active {
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Tipografia e animação de entrada
+   ========================================================================== */
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(23, 50, 77, 0.55);
+}
+
+.section-title {
+  margin-top: 0.7rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(2.2rem, 4.4vw, 4rem);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+}
+
+.reveal {
+  animation: rise 0.8s both;
+}
+
+.reveal > p:first-child {
+  display: none;
+}
+
+.delay-1 {
+  animation-delay: 0.15s;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   Hero: card original (sem JavaScript) e mockup do Instagram (com JavaScript)
+   ========================================================================== */
+
+.hero-card {
+  transform: rotate(2deg);
+  transition: transform 0.5s;
+}
+
+.hero-card:hover {
+  transform: rotate(0) translateY(-4px);
+}
+
+.boat-scene {
+  position: relative;
+  height: 175px;
+}
+
+.sun {
+  position: absolute;
+  right: 20%;
+  top: -20px;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  background: #f5b79c;
+  opacity: 0.75;
+}
+
+.hero-boat {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+}
+
+.instagram-card {
+  position: relative;
+  isolation: isolate;
+  transform: rotate(2.2deg);
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.instagram-card:hover {
+  transform: rotate(0deg) translateY(-5px);
+}
+
+.instagram-shell {
+  position: relative;
+  overflow: visible;
+  border: 1px solid rgba(23, 50, 77, 0.08);
+  border-radius: 1.65rem;
+  background: rgba(255, 255, 255, 0.88);
+  padding: 0.7rem;
+  box-shadow: 0 24px 70px rgba(23, 50, 77, 0.16);
+}
+
+.instagram-post {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  border-radius: 1.2rem;
+  background: #eef7f8;
+}
+
+.instagram-post img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition:
+    opacity 0.4s ease,
+    transform 0.6s ease;
+}
+
+.instagram-post img.is-active {
+  opacity: 1;
+}
+
+.instagram-post::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: '';
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 45%, rgba(23, 50, 77, 0.12));
+}
+
+.instagram-top {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  top: 0.9rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(23, 50, 77, 0.25);
+}
+
+.instagram-user {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.instagram-avatar {
+  display: grid;
+  height: 1.8rem;
+  width: 1.8rem;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  color: #17324d;
+  font-size: 0.62rem;
+}
+
+.instagram-mark {
+  height: 1.3rem;
+  width: 1.3rem;
+}
+
+.instagram-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 0.2rem 0.15rem;
+  color: #17324d;
+}
+
+.instagram-actions-left {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.instagram-action {
+  height: 1.15rem;
+  width: 1.15rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.instagram-dots {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.instagram-dots button {
+  height: 0.3rem;
+  width: 0.3rem;
+  border: 0;
+  border-radius: 50%;
+  background: #b6d3dd;
+  padding: 0;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+
+.instagram-dots button.is-active {
+  background: #17324d;
+  transform: scale(1.3);
+}
+
+.ig-float {
+  position: absolute;
+  z-index: 4;
+  display: grid;
+  height: 2.6rem;
+  width: 2.6rem;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 12px 28px rgba(23, 50, 77, 0.12);
+  color: #17324d;
+  animation: ig-float 4.5s ease-in-out infinite;
+}
+
+.ig-float svg {
+  height: 1.15rem;
+  width: 1.15rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.ig-float-one {
+  right: -1.1rem;
+  top: 13%;
+  color: #d99174;
+}
+
+.ig-float-two {
+  left: -1.25rem;
+  top: 43%;
+  animation-delay: -1.6s;
+  color: #7fa9bb;
+}
+
+.ig-float-three {
+  right: -0.9rem;
+  bottom: 17%;
+  animation-delay: -3s;
+  color: #17324d;
+}
+
+@keyframes ig-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(5deg);
+  }
+}
+
+/* ==========================================================================
+   Atendimentos
+   ========================================================================== */
+
+.service-card {
+  position: relative;
+  min-height: 490px;
+  border-radius: 2rem;
+  padding: 2rem;
+  overflow: hidden;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 70px rgba(23, 50, 77, 0.1);
+}
+
+.service-card a:hover {
+  color: #17324d;
+}
+
+.child-card {
+  background: linear-gradient(145deg, #9fdff8 0%, #dff5fb 100%);
+}
+
+.adult-card {
+  background: linear-gradient(145deg, #f6af83 0%, #fbd1b8 100%);
+}
+
+.child-decor {
+  position: absolute;
+  right: 1.1rem;
+  top: 1.7rem;
+  width: 275px;
+  height: 112px;
+  background: url('./assets/paper-boat-line.png') right top/220px auto no-repeat;
+  opacity: 0.78;
+  mix-blend-mode: multiply;
+  transition: transform 0.35s;
+}
+
+.child-card:hover .child-decor {
+  transform: translateY(-4px) rotate(-1deg);
+}
+
+/* A ilustração em SVG foi substituída pela imagem de fundo acima. */
+.child-decor svg {
+  display: none;
+}
+
+.adult-decor {
+  position: absolute;
+  right: -40px;
+  top: -36px;
+  height: 210px;
+  width: 300px;
+  opacity: 0.22;
+}
+
+.adult-decor span {
+  position: absolute;
+  display: block;
+  border: 1px solid rgba(23, 50, 77, 0.5);
+  border-radius: 50%;
+}
+
+.adult-decor span:nth-child(1) {
+  right: 18px;
+  top: 18px;
+  height: 180px;
+  width: 180px;
+}
+
+.adult-decor span:nth-child(2) {
+  right: 68px;
+  top: 58px;
+  height: 135px;
+  width: 135px;
+}
+
+.adult-decor span:nth-child(3) {
+  right: 123px;
+  top: 100px;
+  height: 85px;
+  width: 85px;
+}
+
+.adult-card:hover .adult-decor {
+  transform: translate(-6px, 4px);
+  transition: transform 0.45s;
+}
+
+.icon-disc {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  height: 48px;
+  width: 48px;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 1.3rem;
+}
+
+/* ==========================================================================
+   Sobre: retrato original (sem JavaScript), carrossel de fotos e abas
+   ========================================================================== */
+
+.portrait-placeholder {
+  position: relative;
+  display: grid;
+  min-height: 450px;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 2rem;
+  background: linear-gradient(145deg, #ddecf5, #f5b79c);
+}
+
+.portrait-placeholder::before,
+.portrait-placeholder::after {
+  position: absolute;
+  content: '';
+  border: 1px solid rgba(23, 50, 77, 0.18);
+  border-radius: 50%;
+}
+
+.portrait-placeholder::before {
+  height: 330px;
+  width: 330px;
+}
+
+.portrait-placeholder::after {
+  height: 470px;
+  width: 470px;
+}
+
+.portrait-placeholder span {
+  position: relative;
+  z-index: 2;
+  font-family: 'DM Sans';
+  font-size: 10rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.portrait-line {
+  position: absolute;
+  bottom: 22%;
+  left: 10%;
+  height: 1px;
+  width: 80%;
+  background: rgba(23, 50, 77, 0.2);
+  transform: rotate(-8deg);
+}
+
+.portrait-carousel {
+  position: relative;
+  display: block;
+  min-height: 450px;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border-radius: 2rem;
+  background: linear-gradient(145deg, #ddecf5, #f5b79c);
+}
+
+.portrait-carousel::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: '';
+  background: linear-gradient(180deg, rgba(23, 50, 77, 0.02), transparent 55%, rgba(23, 50, 77, 0.15));
+}
+
+.portrait-carousel img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transform: scale(1.025);
+  transition:
+    opacity 1.1s ease,
+    transform 6s ease;
+}
+
+.portrait-carousel img.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.portrait-carousel .portrait-carousel-label {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1.2rem;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 0.55rem 0.85rem;
+  color: #17324d;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+.stat {
+  border-left: 2px solid #f5b79c;
+  padding-left: 12px;
+}
+
+.stat strong {
+  display: block;
+  font-family: 'DM Sans';
+  font-size: 1.15rem;
+}
+
+.stat span {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  color: rgba(23, 50, 77, 0.55);
+}
+
+.about-interactive {
+  border-top: 1px solid rgba(23, 50, 77, 0.12);
+  padding-top: 1.6rem;
+}
+
+.about-tab-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.about-tab {
+  border: 1px solid rgba(23, 50, 77, 0.14);
+  border-radius: 999px;
+  background: #fff;
+  padding: 0.7rem 1rem;
+  color: rgba(23, 50, 77, 0.62);
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+
+.about-tab:hover {
+  transform: translateY(-2px);
+}
+
+.about-tab.is-active {
+  border-color: #17324d;
+  background: #17324d;
+  color: #fff;
+}
+
+.about-tab-content {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, #f8f5f1, #fff);
+  padding: 1.25rem 1.5rem;
+}
+
+.about-tab-art {
+  display: grid;
+  min-height: 110px;
+  place-items: center;
+  border-radius: 1rem;
+  background: #e9f8fc;
+}
+
+.about-tab-art img {
+  width: 150px;
+  mix-blend-mode: multiply;
+}
+
+.about-tab-content h3 {
+  margin-top: 0.45rem;
+  font-family: 'DM Sans';
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  line-height: 1.1;
+}
+
+.about-tab-content p {
+  margin-top: 0.6rem;
+  max-width: 620px;
+  line-height: 1.7;
+  color: rgba(23, 50, 77, 0.62);
+}
+
+/* ==========================================================================
+   Conteúdos
+   ========================================================================== */
+
+.content-card {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+.content-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-4px);
+}
+
+.content-card span {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+}
+
+.content-card h3 {
+  margin-top: 3rem;
+  font-family: 'DM Sans';
+  font-size: 1.4rem;
+  line-height: 1.15;
+}
+
+.content-card p {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.content-card a {
+  display: block;
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #f6af83;
+}
+
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
+
+details {
+  border-bottom: 1px solid rgba(23, 50, 77, 0.12);
+  padding: 1.25rem 0;
+}
+
+summary {
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  padding-right: 2rem;
+  font-family: 'DM Sans';
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  position: absolute;
+  right: 0;
+  content: '+';
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgba(23, 50, 77, 0.45);
+}
+
+details[open] summary::after {
+  content: '–';
+}
+
+details p {
+  max-width: 600px;
+  padding-top: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(23, 50, 77, 0.6);
+}
+
+/* ==========================================================================
+   Contato
+   ========================================================================== */
+
+#contato {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 78vh;
+  margin-top: 2rem;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+  border-bottom: 1px solid rgba(23, 50, 77, 0.1);
+  overflow: hidden;
+}
+
+#contato > .contact-panel {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  width: 100%;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  border: 1px solid rgba(23, 50, 77, 0.06);
+  background: linear-gradient(135deg, rgba(159, 223, 248, 0.94), rgba(234, 249, 252, 0.94));
+  box-shadow: 0 24px 80px rgba(23, 50, 77, 0.14);
+}
+
+#contato > .contact-panel::before {
+  position: absolute;
+  right: 9%;
+  bottom: 8%;
+  width: 260px;
+  height: 125px;
+  background: url('./assets/paper-boat-line.png') center/contain no-repeat;
+  content: '';
+  opacity: 0.3;
+  mix-blend-mode: multiply;
+  animation: boat-float 5.5s ease-in-out infinite;
+}
+
+.contact-panel::after {
+  position: absolute;
+  right: -30px;
+  top: -85px;
+  height: 240px;
+  width: 240px;
+  border: 1px solid rgba(23, 50, 77, 0.12);
+  border-radius: 50%;
+  content: '';
+}
+
+.contact-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-panel a {
+  background: #17324d;
+  box-shadow: 0 10px 24px rgba(23, 50, 77, 0.16);
+}
+
+.contact-panel a:hover {
+  background: #f6af83;
+  color: #17324d;
+}
+
+@keyframes boat-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translate3d(12px, -9px, 0) rotate(1deg);
+  }
+}
+
+.contact-steps {
+  position: relative;
+  z-index: 1;
+}
+
+#contato > .contact-steps {
+  flex: none;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.contact-steps > div {
+  border-top: 1px solid rgba(23, 50, 77, 0.16);
+  padding: 1rem 0.2rem 0.2rem;
+}
+
+.contact-steps span {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #d99174;
+}
+
+.contact-steps strong {
+  display: block;
+  margin-top: 0.45rem;
+  font-family: 'DM Sans';
+  font-size: 1rem;
+  color: #17324d;
+}
+
+.contact-steps p {
+  margin-top: 0.25rem;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: rgba(23, 50, 77, 0.58);
+}
+
+/* ==========================================================================
+   Agenda
+   ========================================================================== */
+
+.agenda-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.75rem;
+  color: rgba(23, 50, 77, 0.55);
+}
+
+.agenda-dot {
+  display: block;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background: #f5b79c;
+  box-shadow: 0 0 0 5px rgba(245, 183, 156, 0.18);
+}
+
+.schedule-layout {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(260px, 0.55fr) 1.45fr;
+}
+
+.schedule-days {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.7rem;
+}
+
+.schedule-day {
+  display: flex;
+  min-height: 130px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border: 1px solid rgba(23, 50, 77, 0.12);
+  border-radius: 1.35rem;
+  background: rgba(255, 255, 255, 0.56);
+  padding: 1.15rem;
+  text-align: left;
+  color: rgba(23, 50, 77, 0.6);
+  transition:
+    transform 0.2s,
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.schedule-day:hover {
+  transform: translateY(-3px);
+  border-color: rgba(23, 50, 77, 0.25);
+}
+
+.schedule-day span {
+  font-size: 0.72rem;
+  text-transform: capitalize;
+}
+
+.schedule-day strong {
+  margin-top: 0.25rem;
+  font-family: 'DM Sans';
+  font-size: 2.25rem;
+  line-height: 1;
+  color: #17324d;
+}
+
+.schedule-day small {
+  margin-top: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.63rem;
+}
+
+.schedule-day.is-active {
+  border-color: #7fafc4;
+  background: #ddecf5;
+  color: #17324d;
+  box-shadow: 0 15px 35px rgba(23, 50, 77, 0.08);
+}
+
+.schedule-panel {
+  border-radius: 1.7rem;
+  background: #17324d;
+  padding: 2rem;
+  color: #fff;
+}
+
+.schedule-panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  padding-bottom: 1.5rem;
+}
+
+.schedule-panel .eyebrow {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.schedule-panel h3 {
+  margin-top: 0.5rem;
+  font-family: 'DM Sans';
+  font-size: 1.65rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.schedule-status {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.68);
+  white-space: nowrap;
+}
+
+.schedule-slots {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1.4rem;
+}
+
+.schedule-slot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 1rem;
+  padding: 1rem 1.1rem;
+  color: #fff;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+.schedule-slot:hover {
+  transform: translateX(4px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.schedule-slot > span:first-child {
+  font-family: 'DM Sans';
+  font-size: 1.25rem;
+}
+
+.schedule-slot > span:last-child {
+  font-size: 0.75rem;
+  color: #f5b79c;
+}
+
+.schedule-slot b {
+  margin-left: 0.4rem;
+  font-size: 1rem;
+}
+
+/* ==========================================================================
+   Fundos das seções, com transição suave entre seções claras e escuras
+   ========================================================================== */
+
+#atendimentos {
+  background: linear-gradient(180deg, #f8f5f1 0, #fff 5.5rem, #fff 100%);
+}
+
+#sobre {
+  background: linear-gradient(180deg, #fff 0, #fff 3rem, #f8f5f1 8rem, #f8f5f1 100%);
+}
+
+#conteudos {
+  background: linear-gradient(
+    180deg,
+    #f8f5f1 0,
+    #f8f5f1 0.7rem,
+    #eaf5f7 1.35rem,
+    #a9ced8 2rem,
+    #17324d 2.8rem,
+    #17324d 100%
+  );
+}
+
+#faq {
+  background: linear-gradient(180deg, #17324d 0, #17324d 0.7rem, #a9ced8 1.45rem, #eaf5f7 2.1rem, #fff 2.8rem, #fff 100%);
+}
+
+#contato {
+  background: linear-gradient(180deg, #fff 0, #f8f5f1 1.2rem, #eaf7fa 2rem, #dff5fb 2.8rem, #dff5fb 100%);
+}
+
+#agenda {
+  background: linear-gradient(180deg, #dff5fb 0, #eaf7fa 1rem, #f8f5f1 1.8rem, #fff 2.8rem, #fff 100%);
+}
+
+/* ==========================================================================
+   Mobile (até 767px)
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .brand-wave {
+    display: none;
+  }
+
+  .brand-logo {
+    width: 158px;
+    max-height: 44px;
+  }
+
+  #mobile-menu a {
+    display: block;
+    padding: 0.7rem 0;
+    font-size: 0.9rem;
+    color: rgba(23, 50, 77, 0.7);
+  }
+
+  .instagram-shell {
+    padding: 0.55rem;
+  }
+
+  .ig-float {
+    height: 2.15rem;
+    width: 2.15rem;
+  }
+
+  .ig-float-one {
+    right: -0.6rem;
+  }
+
+  .ig-float-two {
+    left: -0.65rem;
+  }
+
+  .ig-float-three {
+    right: -0.55rem;
+  }
+
+  .service-card {
+    min-height: 410px;
+  }
+
+  .child-decor {
+    width: 220px;
+    right: 0.5rem;
+    top: 1.3rem;
+  }
+
+  .adult-decor {
+    right: -90px;
+  }
+
+  .portrait-placeholder {
+    min-height: 320px;
+  }
+
+  .portrait-placeholder span {
+    font-size: 7rem;
+  }
+
+  .portrait-carousel {
+    min-height: 320px;
+  }
+
+  .about-tab-content {
+    grid-template-columns: 1fr;
+  }
+
+  .about-tab-art {
+    min-height: 95px;
+  }
+
+  #contato {
+    min-height: 72vh;
+    margin-top: 1rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  #contato > .contact-panel::before {
+    right: 4%;
+    bottom: 5%;
+    width: 170px;
+  }
+
+  .schedule-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .schedule-days {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .schedule-day {
+    min-height: 100px;
+    padding: 0.75rem;
+  }
+
+  .schedule-day strong {
+    font-size: 1.7rem;
+  }
+
+  .schedule-panel-head {
+    flex-direction: column;
+  }
+
+  .schedule-status {
+    align-self: flex-start;
+  }
+
+  #atendimentos {
+    background: linear-gradient(180deg, #f8f5f1 0, #fff 4rem, #fff 100%);
+  }
+}
+
 @tailwind utilities;
