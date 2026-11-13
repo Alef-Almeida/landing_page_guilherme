@@ -41,37 +41,39 @@
       </svg>
     </div>
     <header class="fixed inset-x-0 top-0 z-50 border-b border-ink/[.08] bg-sand/[.94] backdrop-blur-xl">
-      <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-8">
-        <a href="#inicio" class="flex items-center gap-3" aria-label="Voltar ao início">
+      <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4 lg:px-8">
+        <a href="#inicio" class="flex min-h-11 shrink-0 items-center gap-3" aria-label="Voltar ao início">
           <img
             class="brand-logo"
             src="./assets/guilherme-teixeira-logo.png"
             alt="Guilherme Teixeira — Psicólogo, CRP 03/36532"
           />
         </a>
-        <nav class="hidden items-center gap-8 text-sm text-ink/70 md:flex" aria-label="Navegação principal">
+        <nav class="hidden items-center gap-6 text-sm lg:flex xl:gap-8" aria-label="Navegação principal">
           <a class="nav-link" href="#atendimentos">Atendimentos</a><a class="nav-link" href="#sobre">Sobre</a
           ><a class="nav-link" href="#conteudos">Conteúdos</a><a class="nav-link" href="#faq">Dúvidas</a
           ><a class="nav-link" href="#agenda">Agenda</a><a class="nav-link" href="#contato">Contato</a>
         </nav>
         <a
           href="#contato"
-          class="hidden rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition motion-reduce:transition-none hover:-translate-y-0.5 hover:bg-ink/90 md:inline-flex"
+          class="hidden whitespace-nowrap rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition motion-reduce:transition-none hover:-translate-y-0.5 hover:bg-ink/90 md:inline-flex"
           >Vamos conversar</a
         >
         <button
           id="menu-toggle"
           type="button"
-          class="rounded-full border border-ink/10 p-2 md:hidden"
+          class="grid h-11 w-11 place-items-center rounded-full border border-ink/10 lg:hidden"
           aria-label="Abrir menu"
           aria-controls="mobile-menu"
           aria-expanded="false"
           hidden
         >
-          <span class="block h-0.5 w-5 bg-ink"></span><span class="mt-1 block h-0.5 w-5 bg-ink"></span>
+          <span aria-hidden="true"
+            ><span class="block h-0.5 w-5 bg-ink"></span><span class="mt-1 block h-0.5 w-5 bg-ink"></span
+          ></span>
         </button>
       </div>
-      <nav id="mobile-menu" class="border-t border-ink/5 px-6 pb-5 pt-3 md:hidden" aria-label="Menu" hidden>
+      <nav id="mobile-menu" class="border-t border-ink/5 px-6 pb-5 pt-3 lg:hidden" aria-label="Menu" hidden>
         <a href="#atendimentos">Atendimentos</a><a href="#sobre">Sobre</a><a href="#conteudos">Conteúdos</a
         ><a href="#faq">Dúvidas</a><a href="#agenda">Agenda</a><a href="#contato">Contato</a>
       </nav>
@@ -82,19 +84,19 @@
         <div class="absolute -right-24 top-24 h-72 w-72 rounded-full bg-sky/70 blur-3xl"></div>
         <div class="absolute -left-32 bottom-0 h-80 w-80 rounded-full bg-peach/20 blur-3xl"></div>
         <div class="relative mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1.05fr_.95fr]">
-          <div class="reveal">
+          <div class="reveal min-w-0">
             <p
-              class="mb-6 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/60 px-4 py-2 text-xs font-semibold uppercase tracking-[.18em] text-ink/65"
+              class="mb-6 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/60 px-4 py-2 text-xs font-semibold uppercase tracking-[.18em] text-ink/75"
             >
               <span class="h-2 w-2 rounded-full bg-peach"></span> Um espaço para você
             </p>
             <h1
               id="hero-title"
-              class="max-w-2xl font-display text-5xl font-semibold leading-[1.03] tracking-[-.045em] sm:text-6xl lg:text-7xl"
+              class="max-w-2xl font-display text-[clamp(2.25rem,11vw,3rem)] font-semibold leading-[1.03] tracking-[-.045em] sm:text-6xl lg:text-7xl"
             >
               Cuidar da mente é abrir espaço para novas possibilidades.
             </h1>
-            <p class="mt-7 max-w-xl text-lg leading-8 text-ink/65">
+            <p class="mt-7 max-w-xl text-lg leading-8 text-ink/75">
               Psicologia clínica para crianças, adolescentes e adultos, com escuta, respeito às singularidades e cuidado
               construído em conjunto.
             </p>
@@ -109,10 +111,12 @@
                 >Conhecer o trabalho</a
               >
             </div>
-            <p class="mt-6 text-xs text-ink/50">Atendimento ético, individualizado e sem promessas prontas.</p>
+            <p class="mt-6 text-xs text-ink/75">Atendimento ético, individualizado e sem promessas prontas.</p>
           </div>
-          <div class="relative reveal delay-1">
-            <div class="hero-card instagram-card relative mx-auto max-w-md rounded-[2rem] bg-white p-5 shadow-soft">
+          <div class="relative reveal delay-1 min-w-0">
+            <div
+              class="hero-card instagram-card relative mx-auto w-full max-w-md rounded-[2rem] bg-white p-3 shadow-soft sm:p-5"
+            >
               <div
                 class="instagram-shell"
                 data-carousel
@@ -129,7 +133,10 @@
                     aria-label="1 de 9"
                     data-instagram-slide="0"
                   >
-                    <img src="./assets/instagram-01.jpeg" alt="Post do Instagram de Guilherme Teixeira 1" />
+                    <img
+                      src="./assets/instagram-01.jpeg"
+                      alt="Post do Instagram: “Um espaço para criatividade, transformação, movimento e descoberta. Embarca nessa comigo?” Assinado: Guilherme Teixeira, psicólogo, CRP 03/36532."
+                    />
                   </div>
                   <div
                     class="instagram-slide"
@@ -139,7 +146,10 @@
                     data-instagram-slide="1"
                     aria-hidden="true"
                   >
-                    <img src="./assets/instagram-02.jpeg" alt="Post do Instagram de Guilherme Teixeira 2" />
+                    <img
+                      src="./assets/instagram-02.jpeg"
+                      alt="Post do Instagram com mãos dadas de um adulto e uma criança: “A psicoterapia não precisa ser o último recurso. Ela é um espaço de cuidado que pode contribuir para superação de desafios e minimização do sofrimento emocional de crianças e adolescentes.”"
+                    />
                   </div>
                   <div
                     class="instagram-slide"
@@ -149,7 +159,10 @@
                     data-instagram-slide="2"
                     aria-hidden="true"
                   >
-                    <img src="./assets/instagram-03.jpeg" alt="Post do Instagram de Guilherme Teixeira 3" />
+                    <img
+                      src="./assets/instagram-03.jpeg"
+                      alt="Post do Instagram com um desenho infantil de casa, árvore e sol: “E nem sempre existe uma explicação pronta. Às vezes, a criança está apresentando um comportamento diferente, enfrentando desafios novos ou situações que ainda não consegue colocar em palavras. Na psicoterapia, podemos descobrir, junto à criança, o que está acontecendo.”"
+                    />
                   </div>
                   <div
                     class="instagram-slide"
@@ -159,7 +172,10 @@
                     data-instagram-slide="3"
                     aria-hidden="true"
                   >
-                    <img src="./assets/instagram-04.jpeg" alt="Post do Instagram de Guilherme Teixeira 4" />
+                    <img
+                      src="./assets/instagram-04.jpeg"
+                      alt="Post do Instagram com crianças sentadas em roda: “Quando a criança começa a duvidar de si. A psicoterapia pode ser um espaço para que a criança reconheça suas capacidades, compreenda as suas inseguranças e desenvolva uma relação mais saudável consigo mesma.”"
+                    />
                   </div>
                   <div
                     class="instagram-slide"
@@ -169,7 +185,10 @@
                     data-instagram-slide="4"
                     aria-hidden="true"
                   >
-                    <img src="./assets/instagram-05.jpeg" alt="Post do Instagram de Guilherme Teixeira 5" />
+                    <img
+                      src="./assets/instagram-05.jpeg"
+                      alt="Post do Instagram com uma criança de costas segurando um ursinho: “Quando lidar com as emoções ainda é difícil. Frustração, medo, raiva, tristeza, insegurança… fazem parte do processo. Aprender a reconhecer, nomear e manejar o que se sente também.”"
+                    />
                   </div>
                   <div
                     class="instagram-slide"
@@ -179,7 +198,10 @@
                     data-instagram-slide="5"
                     aria-hidden="true"
                   >
-                    <img src="./assets/instagram-06.jpeg" alt="Post do Instagram de Guilherme Teixeira 6" />
+                    <img
+                      src="./assets/instagram-06.jpeg"
+                      alt="Post do Instagram com crianças sorrindo sentadas no chão: “Quando as relações estão difíceis. Dificuldades para fazer amigos, conflitos frequentes, isolamento, bullying e desafios para se comunicar também podem ser trabalhados em psicoterapia, a fim de oferecer à criança recursos para lidar com a situação.”"
+                    />
                   </div>
                   <div
                     class="instagram-slide"
@@ -189,7 +211,10 @@
                     data-instagram-slide="6"
                     aria-hidden="true"
                   >
-                    <img src="./assets/instagram-07.jpeg" alt="Post do Instagram de Guilherme Teixeira 7" />
+                    <img
+                      src="./assets/instagram-07.jpeg"
+                      alt="Post do Instagram com adultos conversando com uma criança: “Quando alguma coisa muda. Mudança de escola, separação dos pais, chegada de um irmão, mudança de casa, perdas e outras alterações significativas na rotina podem mobilizar a criança.”"
+                    />
                   </div>
                   <div
                     class="instagram-slide"
@@ -199,7 +224,10 @@
                     data-instagram-slide="7"
                     aria-hidden="true"
                   >
-                    <img src="./assets/instagram-08.jpeg" alt="Post do Instagram de Guilherme Teixeira 8" />
+                    <img
+                      src="./assets/instagram-08.jpeg"
+                      alt="Post do Instagram com uma criança dobrando barquinhos de papel: “Nem toda criança tem um diagnóstico! A psicoterapia também pode acompanhar momentos de mudança, dificuldades e situações que o público infantil ainda não consegue elaborar sozinho.”"
+                    />
                   </div>
                   <div
                     class="instagram-slide"
@@ -209,25 +237,28 @@
                     data-instagram-slide="8"
                     aria-hidden="true"
                   >
-                    <img src="./assets/instagram-09.jpeg" alt="Post do Instagram de Guilherme Teixeira 9" />
+                    <img
+                      src="./assets/instagram-09.jpeg"
+                      alt="Post do Instagram com uma criança sorridente entre dinossauros de brinquedo: “Quando uma criança pode precisar de psicoterapia? Nem sempre existe um diagnóstico. Por vezes, o que existe é uma criança ou adolescente que precisa de suporte para elaborar o que está vivendo.”"
+                    />
                   </div>
                 </div>
                 <div class="instagram-actions">
                   <div class="instagram-actions-left">
-                    <svg class="instagram-action" viewBox="0 0 24 24" aria-label="Curtir">
+                    <svg class="instagram-action" viewBox="0 0 24 24" aria-hidden="true">
                       <path
                         d="M20.8 8.8c0 5.4-8.8 10.2-8.8 10.2S3.2 14.2 3.2 8.8A4.8 4.8 0 0 1 12 6.1a4.8 4.8 0 0 1 8.8 2.7Z"
                       ></path></svg
-                    ><svg class="instagram-action" viewBox="0 0 24 24" aria-label="Comentar">
+                    ><svg class="instagram-action" viewBox="0 0 24 24" aria-hidden="true">
                       <path
                         d="M20 11.2a7.8 7.8 0 0 1-8 7.5 8.8 8.8 0 0 1-3.1-.6L4 20l1.4-4.1A7.4 7.4 0 0 1 4 11.2a7.8 7.8 0 0 1 8-7.5 7.8 7.8 0 0 1 8 7.5Z"
                       ></path></svg
-                    ><svg class="instagram-action" viewBox="0 0 24 24" aria-label="Compartilhar">
+                    ><svg class="instagram-action" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="m21 3-7.2 18-3.3-7.5L3 10.2 21 3Z"></path>
                       <path d="m10.5 13.5 4.2-4.2"></path>
                     </svg>
                   </div>
-                  <svg class="instagram-action" viewBox="0 0 24 24" aria-label="Salvar">
+                  <svg class="instagram-action" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M5 4.5A1.5 1.5 0 0 1 6.5 3h11A1.5 1.5 0 0 1 19 4.5V21l-7-4-7 4V4.5Z"></path>
                   </svg>
                 </div>
@@ -277,7 +308,7 @@
             </div>
             <div class="absolute -bottom-6 -left-6 rounded-2xl border border-ink/5 bg-white px-5 py-4 shadow-soft">
               <p class="font-display text-2xl font-semibold">cada história</p>
-              <p class="text-xs text-ink/55">tem seu próprio caminho</p>
+              <p class="text-xs text-ink/75">tem seu próprio caminho</p>
             </div>
           </div>
         </div>
@@ -293,7 +324,7 @@
                 a pessoa inteira.
               </h2>
             </div>
-            <p class="max-w-sm text-sm leading-6 text-ink/60">
+            <p class="max-w-sm text-sm leading-6 text-ink/75">
               Cada processo começa com uma conversa. A partir dela, entendemos juntos o que faz sentido para o momento
               atual.
             </p>
@@ -340,16 +371,16 @@
                   >↗</span
                 >
               </div>
-              <div class="mt-10 max-w-md">
-                <p class="mb-3 text-xs font-semibold uppercase tracking-[.18em] text-ink/55">
+              <div class="mt-24 max-w-md">
+                <p class="mb-3 text-xs font-semibold uppercase tracking-[.18em] text-ink/80">
                   01 · Infância e adolescência
                 </p>
                 <h3 class="font-display text-3xl font-semibold">Para crescer com acolhimento, vínculo e respeito.</h3>
-                <p class="mt-4 leading-7 text-ink/65">
+                <p class="mt-4 leading-7 text-ink/80">
                   Acompanhamento para crianças, adolescentes e famílias, considerando singularidades, neurodivergências,
                   emoções, comportamento e os contextos que fazem parte de cada história.
                 </p>
-                <a href="#contato" class="mt-8 inline-flex items-center text-sm font-semibold"
+                <a href="#contato" class="mt-6 inline-flex min-h-11 items-center text-sm font-semibold"
                   >Quero saber mais
                   <span class="ml-2 transition motion-reduce:transition-none group-hover:ml-3">→</span></a
                 >
@@ -364,14 +395,14 @@
                   >↗</span
                 >
               </div>
-              <div class="mt-10 max-w-md">
-                <p class="mb-3 text-xs font-semibold uppercase tracking-[.18em] text-ink/55">02 · Adultos</p>
+              <div class="mt-24 max-w-md">
+                <p class="mb-3 text-xs font-semibold uppercase tracking-[.18em] text-ink/80">02 · Adultos</p>
                 <h3 class="font-display text-3xl font-semibold">Um lugar para compreender o que você vive.</h3>
-                <p class="mt-4 leading-7 text-ink/65">
+                <p class="mt-4 leading-7 text-ink/80">
                   Psicoterapia para adultos que desejam olhar para suas experiências, lidar com dificuldades emocionais
                   e desenvolver recursos para os desafios da vida cotidiana.
                 </p>
-                <a href="#contato" class="mt-8 inline-flex items-center text-sm font-semibold"
+                <a href="#contato" class="mt-6 inline-flex min-h-11 items-center text-sm font-semibold"
                   >Quero saber mais
                   <span class="ml-2 transition motion-reduce:transition-none group-hover:ml-3">→</span></a
                 >
@@ -395,13 +426,13 @@
               <div data-carousel-track aria-live="off">
                 <img
                   src="./assets/guilherme-photo-01.jpeg"
-                  alt="Guilherme Teixeira em atendimento clínico"
+                  alt="Guilherme Teixeira no consultório infantil, segurando livros sobre emoções"
                   class="is-active"
                   data-portrait-slide="0"
                 />
                 <img
                   src="./assets/guilherme-photo-02.jpeg"
-                  alt="Guilherme Teixeira em atendimento clínico"
+                  alt="Guilherme Teixeira sorrindo à mesa do consultório infantil, com livros e brinquedos ao redor"
                   data-portrait-slide="1"
                   aria-hidden="true"
                 />
@@ -419,7 +450,7 @@
               </button>
             </div>
             <div class="absolute -bottom-5 -right-3 rounded-2xl bg-white px-5 py-4 shadow-soft">
-              <p class="text-xs uppercase tracking-[.16em] text-ink/50">CRP 03/36532</p>
+              <p class="text-xs uppercase tracking-[.16em] text-ink/75">CRP 03/36532</p>
               <p class="mt-1 text-sm font-semibold">Psicólogo clínico</p>
             </div>
           </div>
@@ -428,12 +459,12 @@
             <h2 id="sobre-title" class="section-title max-w-2xl">
               Um trabalho guiado por escuta, ciência e humanidade.
             </h2>
-            <p class="mt-6 max-w-2xl text-lg leading-8 text-ink/65">
+            <p class="mt-6 max-w-2xl text-lg leading-8 text-ink/75">
               Sou Guilherme dos Santos Teixeira, psicólogo com atuação clínica orientada pela Terapia
               Cognitivo-Comportamental. Meu trabalho parte da compreensão de que cada pessoa tem uma história,
               necessidades e potencialidades próprias.
             </p>
-            <p class="mt-5 max-w-2xl leading-7 text-ink/60">
+            <p class="mt-5 max-w-2xl leading-7 text-ink/75">
               Sou pós-graduando em Desenvolvimento Infantil e Análise do Comportamento Aplicada (ABA) e atuo em equipe
               multidisciplinar na área de educação inclusiva. Essa experiência amplia meu olhar para o desenvolvimento,
               a inclusão e o cuidado em rede.
@@ -455,7 +486,7 @@
           </div>
           <div class="about-tab-content">
             <div class="about-tab-art">
-              <img src="./assets/paper-boat-line.png" alt="Barquinho de papel em uma linha de ondas" />
+              <img src="./assets/paper-boat-line.png" alt="" />
             </div>
             <div>
               <span class="eyebrow">Um olhar para cada história</span>
@@ -527,7 +558,7 @@
           <div>
             <p class="eyebrow">Primeiros passos</p>
             <h2 id="faq-title" class="section-title">Talvez sua dúvida já esteja aqui.</h2>
-            <p class="mt-5 max-w-sm leading-7 text-ink/60">
+            <p class="mt-5 max-w-sm leading-7 text-ink/75">
               Se não estiver, será um prazer conversar e explicar como funciona o atendimento.
             </p>
           </div>
@@ -613,7 +644,7 @@
             >
               O primeiro passo pode ser uma mensagem.
             </h2>
-            <p class="mt-5 max-w-xl leading-7 text-ink/65">
+            <p class="mt-5 max-w-xl leading-7 text-ink/75">
               Conte um pouco sobre o que você está buscando. O contato inicial é acolhedor, cuidadoso e sem compromisso.
             </p>
           </div>
@@ -648,7 +679,7 @@
       </section>
     </main>
     <footer class="border-t border-ink/10 px-6 py-8 lg:px-8">
-      <div class="mx-auto flex max-w-6xl flex-col justify-between gap-3 text-xs text-ink/50 sm:flex-row">
+      <div class="mx-auto flex max-w-6xl flex-col justify-between gap-3 text-xs text-ink/75 sm:flex-row">
         <span>© 2026 Guilherme dos Santos Teixeira · Psicologia</span
         ><span>CRP 03/36532 · Atendimento ético e individualizado</span>
       </div>

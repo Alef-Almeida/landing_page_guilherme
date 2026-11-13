@@ -30,12 +30,25 @@ body {
   overflow-x: hidden;
 }
 
+/* Foco visível (IMP-342): contorno azul em fundos claros e pêssego em fundos escuros. */
+:focus-visible {
+  outline: 2px solid #17324d;
+  outline-offset: 3px;
+}
+
+#conteudos :focus-visible,
+.schedule-panel :focus-visible,
+.skip-link:focus-visible {
+  outline-color: #f5b79c;
+}
+
 /* Destino do link "Pular para o conteúdo": recebe foco por programa, sem contorno permanente. */
 main:focus {
   outline: none;
 }
 
 /* O atributo hidden precisa vencer o display definido pelos componentes. */
+#menu-toggle[hidden],
 .carousel-controls[hidden],
 .carousel-button[hidden],
 .about-tab-list[hidden] {
@@ -53,11 +66,15 @@ main:focus {
   color: #fff;
   font-size: 0.875rem;
   font-weight: 600;
-  transform: translateY(-200%);
 }
 
-.skip-link:focus {
-  transform: none;
+.skip-link:not(:focus) {
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  padding: 0;
+  white-space: nowrap;
 }
 
 main > section {
@@ -127,17 +144,29 @@ main > section {
 
 .brand-logo {
   display: block;
-  width: 178px;
-  height: auto;
-  max-height: 50px;
-  object-fit: contain;
-  object-position: left center;
+  height: 44px;
+  width: auto;
   mix-blend-mode: multiply;
 }
 
 .nav-link {
-  color: #617486;
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  color: #4f6275;
   transition: color var(--motion-fast) var(--ease-standard);
+}
+
+#mobile-menu a {
+  display: block;
+  padding: 0.7rem 0;
+  font-size: 0.9rem;
+  color: rgba(23, 50, 77, 0.75);
+}
+
+#mobile-menu a[aria-current] {
+  color: #17324d;
+  font-weight: 600;
 }
 
 .nav-link:hover,
@@ -158,7 +187,7 @@ main > section {
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(23, 50, 77, 0.55);
+  color: rgba(23, 50, 77, 0.75);
 }
 
 .section-title {
@@ -280,7 +309,8 @@ main > section {
 
 .instagram-dots {
   display: flex;
-  gap: 0.25rem;
+  min-width: 0;
+  gap: 0.2rem;
 }
 
 /* Indicadores apenas visuais; a navegação acessível fica com os botões. */
@@ -409,7 +439,6 @@ main > section {
 
 .service-card {
   position: relative;
-  min-height: 490px;
   border-radius: 2rem;
   padding: 2rem;
   overflow: hidden;
@@ -435,13 +464,14 @@ main > section {
   background: linear-gradient(145deg, #f6af83 0%, #fbd1b8 100%);
 }
 
+/* Fica na faixa superior reservada pelo mt-24 do conteúdo (1,25rem + 104px < 2rem + 6rem). */
 .child-decor {
   position: absolute;
-  right: 1.1rem;
-  top: 1.7rem;
-  width: 275px;
-  height: 112px;
-  background: url('./assets/paper-boat-line.png') right top/220px auto no-repeat;
+  right: 1.25rem;
+  top: 1.25rem;
+  width: 170px;
+  height: 104px;
+  background: url('./assets/paper-boat-line.png') right top/170px auto no-repeat;
   opacity: 0.78;
   mix-blend-mode: multiply;
   transition: transform var(--motion-base) var(--ease-standard);
@@ -459,7 +489,7 @@ main > section {
 .adult-decor {
   position: absolute;
   right: -40px;
-  top: -36px;
+  top: -80px;
   height: 210px;
   width: 300px;
   opacity: 0.22;
@@ -513,10 +543,10 @@ main > section {
    Sobre: carrossel de fotos e abas
    ========================================================================== */
 
+/* Sem altura mínima: com aspect-ratio, ela viraria largura mínima e estouraria telas estreitas. */
 .portrait-carousel {
   position: relative;
   display: block;
-  min-height: 450px;
   aspect-ratio: 1/1;
   overflow: hidden;
   border-radius: 2rem;
@@ -554,7 +584,7 @@ main > section {
   z-index: 2;
   border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.9);
   padding: 0.55rem 0.85rem;
   color: #17324d;
   font-size: 0.68rem;
@@ -579,7 +609,7 @@ main > section {
   display: block;
   margin-top: 3px;
   font-size: 11px;
-  color: rgba(23, 50, 77, 0.55);
+  color: rgba(23, 50, 77, 0.75);
 }
 
 .about-interactive {
@@ -594,11 +624,12 @@ main > section {
 }
 
 .about-tab {
+  min-height: 2.75rem;
   border: 1px solid rgba(23, 50, 77, 0.14);
   border-radius: 999px;
   background: #fff;
   padding: 0.7rem 1rem;
-  color: rgba(23, 50, 77, 0.62);
+  color: rgba(23, 50, 77, 0.75);
   font-size: 0.78rem;
   font-weight: 600;
   transition:
@@ -657,7 +688,7 @@ main > section {
   margin-top: 0.6rem;
   max-width: 620px;
   line-height: 1.7;
-  color: rgba(23, 50, 77, 0.62);
+  color: rgba(23, 50, 77, 0.75);
 }
 
 /* ==========================================================================
@@ -698,8 +729,10 @@ main > section {
 }
 
 .content-card a {
-  display: block;
-  margin-top: 1.5rem;
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  margin-top: 1rem;
   font-size: 0.8rem;
   font-weight: 600;
   color: #f6af83;
@@ -711,11 +744,12 @@ main > section {
 
 details {
   border-bottom: 1px solid rgba(23, 50, 77, 0.12);
-  padding: 1.25rem 0;
+  padding: 0.75rem 0;
 }
 
 summary {
   position: relative;
+  padding-block: 0.5rem;
   cursor: pointer;
   list-style: none;
   padding-right: 2rem;
@@ -731,10 +765,11 @@ summary::-webkit-details-marker {
 summary::after {
   position: absolute;
   right: 0;
+  top: 0.25rem;
   content: '+';
   font-size: 1.5rem;
   font-weight: 400;
-  color: rgba(23, 50, 77, 0.45);
+  color: rgba(23, 50, 77, 0.7);
 }
 
 details[open] summary::after {
@@ -746,7 +781,7 @@ details p {
   padding-top: 1rem;
   font-size: 0.95rem;
   line-height: 1.7;
-  color: rgba(23, 50, 77, 0.6);
+  color: rgba(23, 50, 77, 0.75);
 }
 
 /* ==========================================================================
@@ -758,7 +793,6 @@ details p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 78vh;
   margin-top: 2rem;
   padding-top: 7rem;
   padding-bottom: 7rem;
@@ -864,7 +898,7 @@ details p {
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.16em;
-  color: #d99174;
+  color: #9c4f2e;
 }
 
 .contact-steps strong {
@@ -879,7 +913,7 @@ details p {
   margin-top: 0.25rem;
   font-size: 0.78rem;
   line-height: 1.5;
-  color: rgba(23, 50, 77, 0.58);
+  color: rgba(23, 50, 77, 0.75);
 }
 
 /* ==========================================================================
@@ -891,7 +925,7 @@ details p {
   align-items: center;
   gap: 9px;
   font-size: 0.75rem;
-  color: rgba(23, 50, 77, 0.55);
+  color: rgba(23, 50, 77, 0.75);
 }
 
 .agenda-dot {
@@ -927,7 +961,7 @@ details p {
   background: rgba(255, 255, 255, 0.56);
   padding: 1.15rem;
   text-align: left;
-  color: rgba(23, 50, 77, 0.6);
+  color: rgba(23, 50, 77, 0.75);
   transition:
     transform var(--motion-fast) var(--ease-standard),
     background var(--motion-fast) var(--ease-standard),
@@ -1168,15 +1202,7 @@ details p {
   }
 
   .brand-logo {
-    width: 158px;
-    max-height: 44px;
-  }
-
-  #mobile-menu a {
-    display: block;
-    padding: 0.7rem 0;
-    font-size: 0.9rem;
-    color: rgba(23, 50, 77, 0.7);
+    height: 38px;
   }
 
   .instagram-shell {
@@ -1200,22 +1226,8 @@ details p {
     right: -0.55rem;
   }
 
-  .service-card {
-    min-height: 410px;
-  }
-
-  .child-decor {
-    width: 220px;
-    right: 0.5rem;
-    top: 1.3rem;
-  }
-
   .adult-decor {
     right: -90px;
-  }
-
-  .portrait-carousel {
-    min-height: 320px;
   }
 
   .about-tab-content {
@@ -1227,7 +1239,6 @@ details p {
   }
 
   #contato {
-    min-height: 72vh;
     margin-top: 1rem;
     padding-top: 5rem;
     padding-bottom: 5rem;
@@ -1266,6 +1277,13 @@ details p {
 
   #atendimentos {
     background: linear-gradient(180deg, #f8f5f1 0, #fff 4rem, #fff 100%);
+  }
+}
+
+/* Telas muito estreitas: os ícones flutuantes sairiam da área visível (IMP-350). */
+@media (max-width: 479px) {
+  .ig-float {
+    display: none;
   }
 }
 
