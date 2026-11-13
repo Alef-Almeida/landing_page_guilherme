@@ -313,22 +313,22 @@ Como todas as tarefas desta fase alteram arquivos de edição exclusiva, a fase 
 
 ### Tarefas de estrutura
 
-- [ ] IMP-307 — Mover para o HTML estático o conteúdo hoje injetado por `script.js` — abas da seção “Sobre”, passos do contato, card do Instagram e carrossel de fotografias —, deixando o JavaScript somente para comportamento (melhoria progressiva). Executar antes de IMP-300, IMP-320 e IMP-330.
-- [ ] IMP-308 — Garantir que, sem JavaScript, textos, primeira aba, primeiro slide de cada carrossel e caminho de contato permaneçam visíveis, e que nenhum controle sem função seja exibido.
-- [ ] IMP-300 — Colocar Agenda e Contato na ordem visual diretamente no HTML.
-- [ ] IMP-301 — Remover `order: 99` e outras reordenações que afetem leitura/foco.
-- [ ] IMP-302 — Adicionar link “Pular para o conteúdo”.
-- [ ] IMP-303 — Revisar hierarquia de títulos e landmarks.
-- [ ] IMP-304 — Garantir compensação do cabeçalho nas âncoras.
-- [ ] IMP-305 — Expor a seção ativa da navegação com `aria-current` sem depender apenas da classe visual `active`.
-- [ ] IMP-306 — Gerenciar foco, hash e cancelamento de temporizadores na navegação interna para evitar histórico duplicado ou rolagens concorrentes; a rolagem e o foco começam imediatamente, sem aguardar animação decorativa, e Voltar/Avançar do navegador levam à seção correta.
+- [x] IMP-307 — Mover para o HTML estático o conteúdo hoje injetado por `script.js` — abas da seção “Sobre”, passos do contato, card do Instagram e carrossel de fotografias —, deixando o JavaScript somente para comportamento (melhoria progressiva). Executar antes de IMP-300, IMP-320 e IMP-330.
+- [x] IMP-308 — Garantir que, sem JavaScript, textos, primeira aba, primeiro slide de cada carrossel e caminho de contato permaneçam visíveis, e que nenhum controle sem função seja exibido.
+- [x] IMP-300 — Colocar Agenda e Contato na ordem visual diretamente no HTML.
+- [x] IMP-301 — Remover `order: 99` e outras reordenações que afetem leitura/foco.
+- [x] IMP-302 — Adicionar link “Pular para o conteúdo”.
+- [x] IMP-303 — Revisar hierarquia de títulos e landmarks.
+- [x] IMP-304 — Garantir compensação do cabeçalho nas âncoras.
+- [x] IMP-305 — Expor a seção ativa da navegação com `aria-current` sem depender apenas da classe visual `active`.
+- [x] IMP-306 — Gerenciar foco, hash e cancelamento de temporizadores na navegação interna para evitar histórico duplicado ou rolagens concorrentes; a rolagem e o foco começam imediatamente, sem aguardar animação decorativa, e Voltar/Avançar do navegador levam à seção correta.
 
 ### Tarefas do menu mobile
 
-- [ ] IMP-310 — Adicionar `aria-controls` e `aria-expanded`.
-- [ ] IMP-311 — Alternar o rótulo entre “Abrir menu” e “Fechar menu”.
-- [ ] IMP-312 — Implementar fechamento por Escape.
-- [ ] IMP-313 — Validar foco ao abrir, navegar e fechar.
+- [x] IMP-310 — Adicionar `aria-controls` e `aria-expanded`.
+- [x] IMP-311 — Alternar o rótulo entre “Abrir menu” e “Fechar menu”.
+- [x] IMP-312 — Implementar fechamento por Escape.
+- [x] IMP-313 — Validar foco ao abrir, navegar e fechar.
 
 ### Tarefas das abas
 
@@ -481,15 +481,15 @@ Os testes de cada componente são escritos pela frente que o implementa, na mesm
 
 ### Testes end-to-end
 
-- [ ] IMP-610 — Carregamento sem erro JavaScript.
-- [ ] IMP-611 — Navegação desktop e mobile, incluindo Voltar/Avançar do navegador após uso das âncoras.
-- [ ] IMP-612 — Abertura e fechamento do menu por teclado.
+- [x] IMP-610 — Carregamento sem erro JavaScript.
+- [x] IMP-611 — Navegação desktop e mobile, incluindo Voltar/Avançar do navegador após uso das âncoras.
+- [x] IMP-612 — Abertura e fechamento do menu por teclado.
 - [ ] IMP-613 — FAQ.
 - [ ] IMP-614 — Navegação completa das abas.
 - [ ] IMP-615 — Agenda e mensagens geradas.
 - [ ] IMP-616 — Controles e pausa dos carrosséis.
 - [ ] IMP-617 — Ausência de overflow em 320, 375, 390, 768, 1024, 1280 e 1440 px e com zoom de 200%, verificando os limites de cada elemento visível e não apenas o `scrollWidth` do documento (o baseline mostra corte no hero em 320 px sem overflow do documento).
-- [ ] IMP-618 — Ordem de foco.
+- [x] IMP-618 — Ordem de foco.
 - [ ] IMP-619 — Links internos e assets sem 404.
 
 ### Auditorias automatizadas
@@ -509,7 +509,7 @@ Os testes de cada componente são escritos pela frente que o implementa, na mesm
 - [ ] IMP-629 — Testar navegação interna e carrosséis com `prefers-reduced-motion: reduce`.
 - [ ] IMP-630 — Verificar que a transição visual não bloqueia foco, rolagem ou acionamento repetido de links internos.
 - [ ] IMP-631 — Executar a suíte end-to-end em Chromium, Firefox e WebKit.
-- [ ] IMP-632 — Testar a página com JavaScript desabilitado: conteúdo essencial visível, caminho de contato seguro e nenhum controle sem função.
+- [x] IMP-632 — Testar a página com JavaScript desabilitado: conteúdo essencial visível, caminho de contato seguro e nenhum controle sem função.
 - [ ] IMP-633 — Comparar as métricas finais com o baseline de IMP-007 e registrar a evolução.
 
 ### Metas iniciais
@@ -624,12 +624,12 @@ Todas as demais tarefas podem ser executadas com as alternativas provisórias da
 | FR-00 | Coordenação e decisões | Nenhuma | Este plano | Conversa principal | Em andamento |
 | FR-01 | Build e organização de CSS | IMP-006, IMP-007 | `package.json`, Tailwind, CSS, `.gitignore` | Conversa de análise e revisão do plano | Concluída |
 | FR-02 | WhatsApp e agenda | FR-01; IMP-201 e IMP-205 aguardam decisões | `site-config.js`, `contact.js`, `script.js` | Conversa de análise e revisão do plano | Bloqueada — restam IMP-201 (DEC-01) e IMP-205 (DEC-02, DEC-03, DEC-10) |
-| FR-03A | Estrutura, conteúdo estático, navegação e menu | FR-02 | `index.html`, `script.js`, CSS | Não atribuído | Não iniciada |
+| FR-03A | Estrutura, conteúdo estático, navegação e menu | FR-02 | `index.html`, `script.js`, CSS | Conversa de análise e revisão do plano | Concluída |
 | FR-03B | Abas, agenda acessível, carrosséis e movimento | FR-03A | `index.html`, `script.js`, CSS | Não atribuído | Não iniciada |
 | FR-03C | Contraste, toque, foco, logotipo e responsividade | FR-03B | `index.html`, CSS | Não atribuído | Não iniciada |
 | FR-04 | Imagens e desempenho | Preparação: nenhuma; integração: FR-03C | `assets/`, HTML | Não atribuído | Não iniciada |
 | FR-05 | Conteúdo e SEO | Rascunho: nenhuma; integração: FR-03C e DEC-03 a DEC-09 | HTML, arquivos SEO | Não atribuído | Não iniciada — parcialmente bloqueada |
-| FR-06 | Testes e CI | FR-01 para dependências; componentes | `tests/`, CI | Não atribuído | Não iniciada |
+| FR-06 | Testes e CI | FR-01 para dependências; componentes | `tests/`, CI | Conversa de análise e revisão do plano | Em andamento — infraestrutura end-to-end antecipada na FR-03A |
 | FR-07 | Documentação e release | Todas | README e deploy | Não atribuído | Não iniciada |
 
 ## 10. Regras para outras conversas
@@ -1009,5 +1009,33 @@ Antes de acrescentar:
 - Arquivos ainda reservados: nenhum; reserva da FR-02 liberada até as decisões
 - Próxima ação recomendada: integrar `fr-02/whatsapp-agenda` à `main`; iniciar a FR-03A (IMP-307, IMP-308, IMP-300 a IMP-313); obter DEC-01 a DEC-04
 - Estado final: Bloqueada (restam IMP-201 e IMP-205, dependentes de decisão); demais tarefas concluídas
+
+### [2026-11-13 10:45 -03] Contribuição — FR-03A — Estrutura, conteúdo estático, navegação e menu
+
+- Responsável/conversa: conversa de análise e revisão do plano de implementação
+- Objetivo: alinhar HTML, ordem visual e foco, tornar a página utilizável sem JavaScript e corrigir navegação e menu
+- Tarefas relacionadas: IMP-300 a IMP-308 e IMP-310 a IMP-313 (concluídas); testes IMP-610, IMP-611, IMP-612, IMP-618 e IMP-632 entregues
+- Branch: `fr-03a/estrutura-navegacao`, em worktree separado (§11.1); reserva e conclusão no mesmo ciclo, sem outras frentes ativas
+- Arquivos alterados: `index.html`, `script.js`, `styles.source.css`, `styles.css`, `package.json`, `package-lock.json`, `.gitignore`, `.prettierignore`, `tests/tools/compare-computed-styles.mjs`; criados `playwright.config.js`, `tests/e2e/helpers.js`, `tests/e2e/estrutura-navegacao.spec.js`
+- Alterações realizadas:
+  - IMP-307: passos do contato, abas do "Sobre", card do Instagram e carrossel de fotos passaram para o HTML; o `script.js` não insere mais conteúdo. O fallback antigo do hero, o placeholder do retrato e o topo do Instagram (que o script removia logo após criar) foram excluídos com seu CSS;
+  - IMP-308: sem JavaScript, os três painéis das abas ficam visíveis em sequência, e lista de abas, indicadores do carrossel e botão do menu ficam ocultos pelo atributo `hidden`; regras específicas garantem que `hidden` vença o `display` dos componentes;
+  - IMP-300/IMP-301: Agenda antes de Contato no HTML; removidos `order: 99` e o `flex` do `<main>`;
+  - IMP-302: link "Pular para o conteúdo", primeiro elemento focável, levando o foco ao `<main tabindex="-1">`;
+  - IMP-303: seções nomeadas por `aria-labelledby` (seis regiões e o hero), menu mobile como `<nav aria-label="Menu">`, um único `h1`;
+  - IMP-304/IMP-306: a navegação interna deixou de usar `preventDefault` e `pushState`; a rolagem, o foco, o histórico e Voltar/Avançar ficam com o navegador, e `scroll-padding-top: 5.5rem` compensa o cabeçalho. A transição decorativa continua, mas não atrasa a rolagem; sua revisão é IMP-336 (FR-03B);
+  - IMP-305: `aria-current="true"` no link da seção visível, no menu principal e no mobile;
+  - IMP-310 a IMP-313: botão do menu com `aria-controls`, `aria-expanded` e rótulo "Abrir menu"/"Fechar menu"; Escape fecha e devolve o foco ao botão; clique fora ou escolha de seção fecham o menu;
+  - infraestrutura end-to-end da FR-06 antecipada: `@playwright/test` 1.65.0 e `@axe-core/playwright` 4.14.0 fixados, `npm run test:e2e`, servidor automático em 127.0.0.1:4173 e utilitários para substituir `site-config.js` e fixar o relógio. `npm test` continua sem os testes end-to-end, que exigem navegador (`npx playwright install chromium`);
+  - a ferramenta de comparação de estilo passou a ancorar caminhos no `id` mais próximo e a carregar explicitamente os pesos das fontes
+- Validações executadas: `npm test`; 13 testes end-to-end (ordem das seções, landmarks, ordem de foco com contato ativo, link de pular, âncoras abaixo do cabeçalho, histórico, `aria-current`, menu mobile por teclado e clique, abas e carrosséis com JavaScript, conteúdo sem JavaScript); comparação de pixels da página inteira com a `main` em 390 e 1280 px; capturas sem JavaScript e do link de pular; axe em 390 e 1280 px
+- Resultado das validações:
+  - todos os testes passaram;
+  - página inteira idêntica à `main` em 1280 px; em 390 px, mesma altura e 0,02% dos pixels com diferença de suavização de texto (2 pixels com limiar 0,3);
+  - axe: a violação crítica `aria-required-children` da referência (indicadores com `role="tablist"`) deixou de existir; restam só `color-contrast` (8 nós em 390 px, 13 em 1280 px), tratada em IMP-340 (FR-03C)
+- Pendências ou riscos: teclado das abas e semântica dos carrosséis (IMP-320 a IMP-335) e revisão da transição (IMP-336) seguem na FR-03B; o rótulo `aria-label` sem papel no carrossel de fotos permanece para IMP-330; os botões do WhatsApp desativados não recebem foco, o que é coerente com o estado, mas a mensagem de status deve ser revista na FR-03C (IMP-342)
+- Arquivos ainda reservados: nenhum
+- Próxima ação recomendada: FR-03B (IMP-320 a IMP-339)
+- Estado final: Concluída
 
 <!-- CONTRIBUICOES: ACRESCENTAR NOVAS ENTRADAS IMEDIATAMENTE ANTES DESTE MARCADOR. NAO REMOVER. -->
