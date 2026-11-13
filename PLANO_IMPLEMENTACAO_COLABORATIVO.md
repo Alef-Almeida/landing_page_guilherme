@@ -401,19 +401,19 @@ Como todas as tarefas desta fase alteram arquivos de edição exclusiva, a fase 
 
 ### Tarefas
 
-- [ ] IMP-400 — Inventariar imagens realmente utilizadas.
-- [ ] IMP-401 — Remover ou justificar assets não utilizados.
-- [ ] IMP-402 — Gerar versões WebP/AVIF com fallback quando necessário.
-- [ ] IMP-403 — Criar tamanhos responsivos e `srcset`/`sizes`.
-- [ ] IMP-404 — Declarar dimensões para evitar deslocamento de layout.
-- [ ] IMP-405 — Usar lazy loading fora da primeira dobra.
-- [ ] IMP-406 — Priorizar somente a imagem principal necessária.
-- [ ] IMP-407 — Evitar inserir os nove slides de forma custosa no primeiro carregamento, se possível.
-- [ ] IMP-408 — Validar o enquadramento das fotografias em mobile e desktop.
-- [ ] IMP-409 — Adicionar favicon e ícones necessários.
-- [ ] IMP-410 — Revisar nitidez, enquadramento e compressão da mídia usada no hero para evitar aparência desfocada ou lavada em telas grandes.
-- [ ] IMP-411 — Atualizar, a partir do baseline de IMP-007 e após a Fase 3, as capturas de referência de hero, atendimentos, sobre, conteúdos, FAQ, agenda e contato nos breakpoints críticos.
-- [ ] IMP-412 — Comparar as capturas após a otimização para preservar paleta, hierarquia, fotografia, sombras e composição das seções já aprovadas visualmente.
+- [x] IMP-400 — Inventariar imagens realmente utilizadas.
+- [x] IMP-401 — Remover ou justificar assets não utilizados.
+- [x] IMP-402 — Gerar versões WebP/AVIF com fallback quando necessário.
+- [x] IMP-403 — Criar tamanhos responsivos e `srcset`/`sizes`.
+- [x] IMP-404 — Declarar dimensões para evitar deslocamento de layout.
+- [x] IMP-405 — Usar lazy loading fora da primeira dobra.
+- [x] IMP-406 — Priorizar somente a imagem principal necessária.
+- [x] IMP-407 — Evitar inserir os nove slides de forma custosa no primeiro carregamento, se possível.
+- [x] IMP-408 — Validar o enquadramento das fotografias em mobile e desktop.
+- [x] IMP-409 — Adicionar favicon e ícones necessários.
+- [x] IMP-410 — Revisar nitidez, enquadramento e compressão da mídia usada no hero para evitar aparência desfocada ou lavada em telas grandes.
+- [x] IMP-411 — Atualizar, a partir do baseline de IMP-007 e após a Fase 3, as capturas de referência de hero, atendimentos, sobre, conteúdos, FAQ, agenda e contato nos breakpoints críticos.
+- [x] IMP-412 — Comparar as capturas após a otimização para preservar paleta, hierarquia, fotografia, sombras e composição das seções já aprovadas visualmente.
 
 ### Critérios de aceite
 
@@ -490,7 +490,7 @@ Os testes de cada componente são escritos pela frente que o implementa, na mesm
 - [x] IMP-616 — Controles e pausa dos carrosséis.
 - [x] IMP-617 — Ausência de overflow em 320, 375, 390, 768, 1024, 1280 e 1440 px e com zoom de 200%, verificando os limites de cada elemento visível e não apenas o `scrollWidth` do documento (o baseline mostra corte no hero em 320 px sem overflow do documento).
 - [x] IMP-618 — Ordem de foco.
-- [ ] IMP-619 — Links internos e assets sem 404.
+- [x] IMP-619 — Links internos e assets sem 404.
 
 ### Auditorias automatizadas
 
@@ -627,7 +627,7 @@ Todas as demais tarefas podem ser executadas com as alternativas provisórias da
 | FR-03A | Estrutura, conteúdo estático, navegação e menu | FR-02 | `index.html`, `script.js`, CSS | Conversa de análise e revisão do plano | Concluída |
 | FR-03B | Abas, agenda acessível, carrosséis e movimento | FR-03A | `index.html`, `script.js`, CSS | Conversa de análise e revisão do plano | Concluída |
 | FR-03C | Contraste, toque, foco, logotipo e responsividade | FR-03B | `index.html`, CSS | Conversa de análise e revisão do plano | Concluída |
-| FR-04 | Imagens e desempenho | Preparação: nenhuma; integração: FR-03C | `assets/`, HTML | Não atribuído | Não iniciada |
+| FR-04 | Imagens e desempenho | Preparação: nenhuma; integração: FR-03C | `assets/`, HTML | Conversa de análise e revisão do plano | Concluída |
 | FR-05 | Conteúdo e SEO | Rascunho: nenhuma; integração: FR-03C e DEC-03 a DEC-09 | HTML, arquivos SEO | Não atribuído | Não iniciada — parcialmente bloqueada |
 | FR-06 | Testes e CI | FR-01 para dependências; componentes | `tests/`, CI | Conversa de análise e revisão do plano | Em andamento — infraestrutura end-to-end antecipada na FR-03A |
 | FR-07 | Documentação e release | Todas | README e deploy | Não atribuído | Não iniciada |
@@ -1094,6 +1094,31 @@ Antes de acrescentar:
   - as capturas de referência dependem de renderização Linux/Chromium; em outra plataforma devem ser regeneradas com `npx playwright test --update-snapshots`
 - Arquivos ainda reservados: nenhum
 - Próxima ação recomendada: FR-04 (imagens e desempenho)
+- Estado final: Concluída
+
+### [2026-11-13 11:16 -03] Contribuição — FR-04 — Imagens e desempenho
+
+- Responsável/conversa: conversa de análise e revisão do plano de implementação
+- Objetivo: reduzir o custo de carregamento das imagens sem regressão visual
+- Tarefas relacionadas: IMP-400 a IMP-412 (concluídas); teste IMP-619 entregue
+- Branch: `fr-04/imagens-desempenho`, em worktree separado (§11.1)
+- Arquivos alterados: `index.html`, `script.js`, `styles.source.css`, `styles.css`, `scripts/serve.mjs`, `package.json`, `package-lock.json`, `README.md`, `tests/e2e/estrutura-navegacao.spec.js`, `tests/e2e/componentes-movimento.spec.js`; criados `scripts/optimize-images.mjs`, `assets/img/` (44 arquivos), `assets/icons/` (`favicon.svg`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`), `favicon.ico`, `site.webmanifest`, `tests/e2e/visual.spec.js` com 14 capturas e `tests/e2e/recursos.spec.js`; movidos os 11 JPEG originais para `assets/source/`; removidos `pastel-blue.png` e `pastel-orange.png`
+- Alterações realizadas:
+  - IMP-400/IMP-401: inventário com 13 imagens em uso (logotipo, arte do barquinho, 9 posts, 2 fotos) e 2 sem uso, removidas. Os originais ficaram em `assets/source/` como fonte do script, sem serem publicados;
+  - IMP-402/IMP-410: `npm run images` (sharp 0.35.5) gera AVIF (qualidade 55) e WebP (qualidade 78). Posts em 400 e 800 px (o maior espaço é ~384 px); foto horizontal em 720 e 1440 px, porque o recorte quadrado faz a altura ser o limite; foto vertical em 480 e 960 px. Cada post caiu de 84–208 KB (JPEG 1080 × 1350) para 14–17 KB (AVIF 400 px) e 34–44 KB (AVIF 800 px), sem perda visível em telas de alta densidade;
+  - IMP-403/IMP-404: `<picture>` com AVIF e WebP, `srcset` e `sizes` calculados pela área real; `width` e `height` em todas as imagens, inclusive logotipo e arte;
+  - IMP-405 a IMP-407: fotos e arte com `loading="lazy"`; primeiro post com `fetchpriority="high"`; posts 2 a 9 começam com um GIF transparente de 1 px e recebem a imagem real após o `load` (via `requestIdleCallback`) ou assim que forem exibidos; a inicialização do carrossel não antecipa o slide seguinte;
+  - IMP-408: na foto horizontal o assunto ficava encostado na borda do recorte quadrado; `object-position: 68% 50%` centraliza o enquadramento em 390 e 1280 px. A foto vertical já estava bem enquadrada;
+  - IMP-409: favicon desenhado a partir do barquinho da marca (`assets/icons/favicon.svg`), `favicon.ico` com 16, 32 e 48 px, ícone da Apple com fundo cheio (o iOS preenche transparência com preto), ícones de 192 e 512 px e `site.webmanifest`; o servidor local passou a servir `.webmanifest` com o tipo correto;
+  - IMP-411/IMP-412: `tests/e2e/visual.spec.js` com capturas de referência de hero, atendimentos, sobre, conteúdos, FAQ, agenda e contato em 390 e 1280 px, criadas antes da otimização. Depois dela, as 14 capturas continuaram dentro da tolerância; só a seção "Sobre" foi atualizada, pela mudança intencional de enquadramento
+- Validações executadas: `npm test`; suíte end-to-end com 68 testes, três vezes seguidas; novos testes de recursos (nenhuma resposta ≥ 400 ao carregar e rolar a página, favicon e ícones do manifesto disponíveis, links internos válidos, largura e altura em todas as imagens, só o primeiro post baixado antes do `load`, `loading="lazy"` nas imagens abaixo da dobra, slide com imagem carregada ao avançar antes do adiamento); conferência visual das duas fotos em 390 e 1280 px; Lighthouse mobile com throttling real (3 execuções antes e depois)
+- Resultado das validações:
+  - todos os testes passaram nas três execuções;
+  - Lighthouse mobile (mediana): desempenho 84 → 93, boas práticas 96 → 100, acessibilidade e SEO em 100; LCP 4,14 s → 3,06 s, FCP 2,13 s → 1,67 s, CLS 0; peso total 2.331 KB → 638 KB;
+  - critério "imagens fora da primeira dobra não são todas requisitadas imediatamente": atendido. Ressalva: com rede rápida, o Chrome antecipa imagens `lazy` a até ~2.500 px da tela, o que inclui as fotos em 390 px
+- Pendências ou riscos: o CSS do Google Fonts ainda bloqueia a renderização (cerca de 1,5 s estimado no Lighthouse), tratado em IMP-511 (FR-05); compressão e cache dependem da hospedagem (DEC-04, IMP-512); os scripts não são minificados (cerca de 7 KB), ganho pequeno diante da compressão do servidor; a ordem dos posts continua invertida em relação à numeração da série (DEC-08)
+- Arquivos ainda reservados: nenhum
+- Próxima ação recomendada: FR-05 nas tarefas sem dependência de decisão (IMP-503, IMP-505, IMP-507, IMP-511, IMP-515, IMP-517) e preparação das demais
 - Estado final: Concluída
 
 <!-- CONTRIBUICOES: ACRESCENTAR NOVAS ENTRADAS IMEDIATAMENTE ANTES DESTE MARCADOR. NAO REMOVER. -->
