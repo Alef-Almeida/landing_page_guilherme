@@ -234,16 +234,16 @@ As correções devem elevar o acabamento sem transformar a página em uma interf
 
 ### Tarefas
 
-- [ ] IMP-100 — Criar `package.json` com scripts de desenvolvimento, build, formatação e testes.
-- [ ] IMP-101 — Fixar versões das dependências de desenvolvimento. O CDN resolve hoje para Tailwind **3.4.17** (baseline IMP-007); usar essa versão para reproduzir o layout atual e tratar qualquer atualização de major como mudança separada.
-- [ ] IMP-102 — Criar `tailwind.config.js` apontando para HTML e JavaScript, inclusive para as classes hoje montadas em template strings de `script.js` (até IMP-307 movê-las para o HTML).
-- [ ] IMP-103 — Criar `styles.source.css` com diretivas Tailwind e estilos próprios.
-- [ ] IMP-104 — Mover os 14 blocos `<style>` do HTML para a fonte de CSS.
-- [ ] IMP-105 — Remover regras duplicadas, sobrescritas e usos desnecessários de `!important`.
-- [ ] IMP-106 — Gerar `styles.css` minificado para produção.
-- [ ] IMP-107 — Remover `https://cdn.tailwindcss.com` e a configuração inline do HTML.
-- [ ] IMP-108 — Adicionar `.gitignore`, formatador e regras básicas de qualidade.
-- [ ] IMP-109 — Documentar os comandos no README.
+- [x] IMP-100 — Criar `package.json` com scripts de desenvolvimento, build, formatação e testes.
+- [x] IMP-101 — Fixar versões das dependências de desenvolvimento. O CDN resolve hoje para Tailwind **3.4.17** (baseline IMP-007); usar essa versão para reproduzir o layout atual e tratar qualquer atualização de major como mudança separada.
+- [x] IMP-102 — Criar `tailwind.config.js` apontando para HTML e JavaScript, inclusive para as classes hoje montadas em template strings de `script.js` (até IMP-307 movê-las para o HTML).
+- [x] IMP-103 — Criar `styles.source.css` com diretivas Tailwind e estilos próprios.
+- [x] IMP-104 — Mover os 14 blocos `<style>` do HTML para a fonte de CSS.
+- [x] IMP-105 — Remover regras duplicadas, sobrescritas e usos desnecessários de `!important`.
+- [x] IMP-106 — Gerar `styles.css` minificado para produção.
+- [x] IMP-107 — Remover `https://cdn.tailwindcss.com` e a configuração inline do HTML.
+- [x] IMP-108 — Adicionar `.gitignore`, formatador e regras básicas de qualidade.
+- [x] IMP-109 — Documentar os comandos no README.
 
 ### Arquivos de atuação exclusiva
 
@@ -495,7 +495,7 @@ Os testes de cada componente são escritos pela frente que o implementa, na mesm
 ### Auditorias automatizadas
 
 - [ ] IMP-620 — Integrar axe ou ferramenta equivalente.
-- [ ] IMP-621 — Executar Lighthouse em perfil mobile.
+- [ ] IMP-621 — Executar Lighthouse em perfil mobile, registrando o método de throttling. Comparar versões com `--throttling-method=devtools` (mediana de 3 execuções): a simulação padrão pode atribuir ao LCP o download de imagens que não bloqueiam o elemento, como ocorreu na FR-01.
 - [ ] IMP-622 — Verificar HTML, links e formatação.
 - [ ] IMP-623 — Criar pipeline de CI para build e testes.
 
@@ -622,7 +622,7 @@ Todas as demais tarefas podem ser executadas com as alternativas provisórias da
 | Frente | Escopo | Dependência | Arquivos principais | Responsável | Estado |
 | --- | --- | --- | --- | --- | --- |
 | FR-00 | Coordenação e decisões | Nenhuma | Este plano | Conversa principal | Em andamento |
-| FR-01 | Build e organização de CSS | IMP-006, IMP-007 | `package.json`, Tailwind, CSS, `.gitignore` | Conversa de análise e revisão do plano | Em andamento |
+| FR-01 | Build e organização de CSS | IMP-006, IMP-007 | `package.json`, Tailwind, CSS, `.gitignore` | Conversa de análise e revisão do plano | Concluída |
 | FR-02 | WhatsApp e agenda | FR-01; IMP-201 e IMP-205 aguardam decisões | `site-config.js`, `script.js` | Não atribuído | Não iniciada — parcialmente bloqueada |
 | FR-03A | Estrutura, conteúdo estático, navegação e menu | FR-02 | `index.html`, `script.js`, CSS | Não atribuído | Não iniciada |
 | FR-03B | Abas, agenda acessível, carrosséis e movimento | FR-03A | `index.html`, `script.js`, CSS | Não atribuído | Não iniciada |
@@ -924,5 +924,39 @@ Antes de acrescentar:
 - Estado inicial: Em andamento
 - Dependências: IMP-006 e IMP-007 concluídas
 - Observação: migração validada por comparação automática do estilo computado de todos os elementos e pseudo-elementos contra o site original com CDN, em 320, 390, 768, 1280 e 1440 px, incluindo hover e menu mobile aberto
+
+### [2026-11-12 23:03 -03] Contribuição — FR-01 — Build e organização de CSS
+
+- Responsável/conversa: conversa de análise e revisão do plano de implementação
+- Objetivo: substituir o Tailwind via CDN por build local reprodutível e consolidar o CSS sem alterar a aparência
+- Tarefas relacionadas: IMP-100 a IMP-109 (concluídas); ajuste de texto em IMP-621
+- Branch: `fr-01/build-tailwind`, em worktree separado (§11.1)
+- Arquivos alterados: `index.html`, `styles.css` (agora gerado), `README.md`, `PLANO_IMPLEMENTACAO_COLABORATIVO.md`; criados `package.json`, `package-lock.json`, `tailwind.config.js`, `postcss.config.js`, `postcss.build.config.js`, `styles.source.css`, `.gitignore`, `.editorconfig`, `.prettierrc.json`, `.prettierignore`, `scripts/serve.mjs`, `scripts/dev.mjs`, `scripts/check-css.mjs`, `tests/tools/compare-computed-styles.mjs`
+- Alterações realizadas:
+  - Tailwind fixado em 3.4.17 (a versão que o CDN servia), com autoprefixer e `browserslist` explícito (`defaults`, Safari e iOS 15 ou superior);
+  - o CDN injetava o Tailwind no fim do `<head>`; a ordem foi preservada como base → componentes → estilos próprios → utilitários;
+  - os 14 blocos `<style>` e o `styles.css` original foram consolidados em `styles.source.css`, organizado por componente: de 45 para 0 `!important`, sem regras sobrescritas, duplicadas ou mortas (cinco versões dos gradientes das seções, pseudo-elementos ocultos do `#contato`, `.agenda-section`, `.brand-mark`, variáveis sem uso, `.font-display` duplicada);
+  - no HTML, três ajustes substituem o que o `!important` forçava: `bg-sand/[.94]` e `border-ink/[.08]` no cabeçalho, `mt-10` nos cards e `hidden` na linha de ícones oculta dos cards;
+  - minificação via cssnano com `colormin`, `minifyGradients`, `normalizePositions` e `convertValues` desligados: a minificação padrão da CLI arredondava cores (`rgba(245,183,156,.2)` virava `rgba(245,184,158,.2)`);
+  - `styles.css` passou de 36,6 KB (passo fiel) para 30,5 KB e substitui os 127 KB de JavaScript do CDN;
+  - scripts `dev` (com `--watch=always`, pois o watch padrão encerra sem terminal interativo), `build`, `serve`, `format`, `format:check`, `check:js`, `check:css` e `test`; `check:css` falha se `styles.css` estiver desatualizado ou se voltarem CDN, `<style>` ou `!important`;
+  - Prettier aplicado a `index.html`, CSS, configurações e scripts; `script.js` ficou em `.prettierignore` para não sair do escopo, devendo ser formatado pela FR-02
+- Validações executadas:
+  - comparação automática do estilo computado de todos os elementos e pseudo-elementos renderizados contra o site original com CDN, em 320, 390, 768, 1280 e 1440 px, no estado padrão, em hover de 12 componentes e com o menu mobile aberto, após cada passo (`tests/tools/compare-computed-styles.mjs`);
+  - texto renderizado comparado em 390 e 1280 px;
+  - capturas comparadas pixel a pixel com o baseline de IMP-007;
+  - `npm ci`, `npm run build` e `npm test` em clone limpo da branch;
+  - servidor local testado (200, 404 e bloqueio de travessia de diretório); modo `dev` testado sem terminal interativo;
+  - Lighthouse mobile com simulação padrão e com throttling real (`devtools`), 3 execuções cada
+- Resultado das validações:
+  - estilo computado: nenhuma diferença. Duas normalizações documentadas no script: `-webkit-text-decoration-color` na lista de transição (prefixo dispensável nos navegadores-alvo) e estilo/cor de bordas de largura zero (não renderizadas);
+  - texto renderizado idêntico; páginas inteiras e capturas mobile idênticas pixel a pixel. Nas capturas de seção a partir de 768 px, as diferenças (no máximo 0,18% dos pixels) ficam na faixa da onda lateral, cuja posição do barco depende do scroll, e no link ativo do menu fixo, capturado no meio da transição de cor no baseline;
+  - console sem o aviso do Tailwind CDN; nenhum recurso de `cdn.tailwindcss.com`; `node --check script.js` aprovado; clone limpo aprovado;
+  - Lighthouse mobile com throttling real (mediana): desempenho 75 → 89, FCP 3,07 s → 1,65 s, LCP 5,14 s → 3,74 s, Speed Index 3,31 s → 1,89 s;
+  - com a simulação padrão, desempenho 73 → 74, FCP 2,4 s → 1,7 s, mas LCP 7,2 s → 10,8 s. O elemento LCP é o mesmo `<h1>`; como o CSS agora chega antes, o navegador prioriza a imagem do Instagram, e a simulação passa a atribuir ao `<h1>` o download das imagens. A medição com throttling real mostra que não há regressão; o ponto foi registrado em IMP-621
+- Pendências ou riscos: formatação de `script.js` fica para a FR-02; as ferramentas de comparação usam `playwright-core` e Chrome instalados fora do projeto até a FR-06 definir a infraestrutura de testes; o peso das imagens (2,2 MB) continua sendo o principal custo de carregamento (FR-04)
+- Arquivos ainda reservados: nenhum; reserva da FR-01 liberada
+- Próxima ação recomendada: integrar `fr-01/build-tailwind` à `main`; iniciar a FR-02 pelas tarefas independentes de decisão (IMP-200, IMP-202 a IMP-204, IMP-206 a IMP-208, IMP-210 a IMP-212)
+- Estado final: Concluída
 
 <!-- CONTRIBUICOES: ACRESCENTAR NOVAS ENTRADAS IMEDIATAMENTE ANTES DESTE MARCADOR. NAO REMOVER. -->
