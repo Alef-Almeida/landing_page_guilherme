@@ -5,7 +5,16 @@ const config = require('../../security-headers.json');
 test('a página envia os cabeçalhos de segurança definidos', async ({ page }) => {
   const response = await page.goto('/');
   const headers = response.headers();
-  for (const [name, value] of Object.entries(config.headers)) expect(headers[name.toLowerCase()], name).toBe(value);
+  for (const [name, value] of Object.entries(config.headers)) {
+    // Em produção a CSP recebe upgrade-insecure-requests no fim; por isso a comparação é pelo início.
+    if (name === 'Content-Security-Policy')
+      expect(headers[name.toLowerCase()], name).toMatch(new RegExp(`^${value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`));
+    else expect(headers[name.toLowerCase()], name).toBe(value);
+  }
+  if (response.url().startsWith('https://'))
+    expect(headers['strict-transport-security'], 'HSTS em produção').toBe(
+      config.productionOnly['Strict-Transport-Security'],
+    );
 });
 
 test('nenhuma violação de CSP ao carregar, rolar e interagir', async ({ page }) => {
@@ -28,11 +37,12 @@ test('nenhuma violação de CSP ao carregar, rolar e interagir', async ({ page }
   expect(violations).toEqual([]);
 });
 
-test('nenhum recurso é carregado de outro domínio (IMP-511)', async ({ page }) => {
+test('nenhum recurso é carregado de outro domínio (IMP-511)', async ({ page, baseURL }) => {
+  const own = new URL(baseURL).hostname;
   const external = [];
   page.on('request', (request) => {
     const url = new URL(request.url());
-    if (!['127.0.0.1', 'localhost'].includes(url.hostname) && url.protocol !== 'data:') external.push(request.url());
+    if (url.protocol !== 'data:' && url.hostname !== own) external.push(request.url());
   });
   await page.goto('/');
   await page.waitForLoadState('networkidle');

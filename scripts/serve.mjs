@@ -4,9 +4,12 @@ import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const PROJECT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+// --root permite servir outra pasta, por exemplo dist/ para conferir o pacote de publicação.
+const rootArg = process.argv.indexOf('--root');
+const ROOT = rootArg > -1 ? path.resolve(PROJECT, process.argv[rootArg + 1]) : PROJECT;
 // Mesmos cabeçalhos de segurança da publicação (sem os exclusivos de HTTPS), para que a CSP seja testada localmente.
-const { headers: SECURITY_HEADERS } = JSON.parse(await readFile(path.join(ROOT, 'security-headers.json'), 'utf8'));
+const { headers: SECURITY_HEADERS } = JSON.parse(await readFile(path.join(PROJECT, 'security-headers.json'), 'utf8'));
 const portArg = process.argv.indexOf('--port');
 const PORT = Number(portArg > -1 ? process.argv[portArg + 1] : process.env.PORT || 8080);
 const TYPES = {
