@@ -15,6 +15,11 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" href="./favicon.ico" sizes="48x48" />
+    <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="./site.webmanifest" />
+    <meta name="theme-color" content="#F8F5F1" />
   </head>
   <body class="bg-sand text-ink font-body antialiased">
     <a href="#inicio" class="skip-link">Pular para o conteúdo</a>
@@ -46,6 +51,8 @@
           <img
             class="brand-logo"
             src="./assets/guilherme-teixeira-logo.png"
+            width="273"
+            height="93"
             alt="Guilherme Teixeira — Psicólogo, CRP 03/36532"
           />
         </a>
@@ -133,10 +140,23 @@
                     aria-label="1 de 9"
                     data-instagram-slide="0"
                   >
-                    <img
-                      src="./assets/instagram-01.jpeg"
-                      alt="Post do Instagram: “Um espaço para criatividade, transformação, movimento e descoberta. Embarca nessa comigo?” Assinado: Guilherme Teixeira, psicólogo, CRP 03/36532."
-                    />
+                    <picture>
+                      <source
+                        type="image/avif"
+                        srcset="./assets/img/instagram-01-400.avif 400w, ./assets/img/instagram-01-800.avif 800w"
+                        sizes="(min-width: 640px) 384px, calc(100vw - 88px)"
+                      />
+                      <img
+                        src="./assets/img/instagram-01-400.webp"
+                        srcset="./assets/img/instagram-01-400.webp 400w, ./assets/img/instagram-01-800.webp 800w"
+                        sizes="(min-width: 640px) 384px, calc(100vw - 88px)"
+                        width="400"
+                        height="500"
+                        fetchpriority="high"
+                        decoding="async"
+                        alt="Post do Instagram: “Um espaço para criatividade, transformação, movimento e descoberta. Embarca nessa comigo?” Assinado: Guilherme Teixeira, psicólogo, CRP 03/36532."
+                      />
+                    </picture>
                   </div>
                   <div
                     class="instagram-slide"
@@ -146,10 +166,20 @@
                     data-instagram-slide="1"
                     aria-hidden="true"
                   >
-                    <img
-                      src="./assets/instagram-02.jpeg"
-                      alt="Post do Instagram com mãos dadas de um adulto e uma criança: “A psicoterapia não precisa ser o último recurso. Ela é um espaço de cuidado que pode contribuir para superação de desafios e minimização do sofrimento emocional de crianças e adolescentes.”"
-                    />
+                    <picture
+                      data-defer-avif="./assets/img/instagram-02-400.avif 400w, ./assets/img/instagram-02-800.avif 800w"
+                    >
+                      <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        data-defer-src="./assets/img/instagram-02-400.webp"
+                        data-defer-srcset="./assets/img/instagram-02-400.webp 400w, ./assets/img/instagram-02-800.webp 800w"
+                        sizes="(min-width: 640px) 384px, calc(100vw - 88px)"
+                        width="400"
+                        height="500"
+                        decoding="async"
+                        alt="Post do Instagram com mãos dadas de um adulto e uma criança: “A psicoterapia não precisa ser o último recurso. Ela é um espaço de cuidado que pode contribuir para superação de desafios e minimização do sofrimento emocional de crianças e adolescentes.”"
+                      />
+                    </picture>
                   </div>
                   <div
                     class="instagram-slide"
@@ -159,10 +189,20 @@
                     data-instagram-slide="2"
                     aria-hidden="true"
                   >
-                    <img
-                      src="./assets/instagram-03.jpeg"
-                      alt="Post do Instagram com um desenho infantil de casa, árvore e sol: “E nem sempre existe uma explicação pronta. Às vezes, a criança está apresentando um comportamento diferente, enfrentando desafios novos ou situações que ainda não consegue colocar em palavras. Na psicoterapia, podemos descobrir, junto à criança, o que está acontecendo.”"
-                    />
+                    <picture
+                      data-defer-avif="./assets/img/instagram-03-400.avif 400w, ./assets/img/instagram-03-800.avif 800w"
+                    >
+                      <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        data-defer-src="./assets/img/instagram-03-400.webp"
+                        data-defer-srcset="./assets/img/instagram-03-400.webp 400w, ./assets/img/instagram-03-800.webp 800w"
+                        sizes="(min-width: 640px) 384px, calc(100vw - 88px)"
+                        width="400"
+                        height="500"
+                        decoding="async"
+                        alt="Post do Instagram com um desenho infantil de casa, árvore e sol: “E nem sempre existe uma explicação pronta. Às vezes, a criança está apresentando um comportamento diferente, enfrentando desafios novos ou situações que ainda não consegue colocar em palavras. Na psicoterapia, podemos descobrir, junto à criança, o que está acontecendo.”"
+                      />
+                    </picture>
                   </div>
                   <div
                     class="instagram-slide"
@@ -172,10 +212,20 @@
                     data-instagram-slide="3"
                     aria-hidden="true"
                   >
-                    <img
-                      src="./assets/instagram-04.jpeg"
-                      alt="Post do Instagram com crianças sentadas em roda: “Quando a criança começa a duvidar de si. A psicoterapia pode ser um espaço para que a criança reconheça suas capacidades, compreenda as suas inseguranças e desenvolva uma relação mais saudável consigo mesma.”"
-                    />
+                    <picture
+                      data-defer-avif="./assets/img/instagram-04-400.avif 400w, ./assets/img/instagram-04-800.avif 800w"
+                    >
+                      <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        data-defer-src="./assets/img/instagram-04-400.webp"
+                        data-defer-srcset="./assets/img/instagram-04-400.webp 400w, ./assets/img/instagram-04-800.webp 800w"
+                        sizes="(min-width: 640px) 384px, calc(100vw - 88px)"
+                        width="400"
+                        height="500"
+                        decoding="async"
+                        alt="Post do Instagram com crianças sentadas em roda: “Quando a criança começa a duvidar de si. A psicoterapia pode ser um espaço para que a criança reconheça suas capacidades, compreenda as suas inseguranças e desenvolva uma relação mais saudável consigo mesma.”"
+                      />
+                    </picture>
                   </div>
                   <div
                     class="instagram-slide"
@@ -185,10 +235,20 @@
                     data-instagram-slide="4"
                     aria-hidden="true"
                   >
-                    <img
-                      src="./assets/instagram-05.jpeg"
-                      alt="Post do Instagram com uma criança de costas segurando um ursinho: “Quando lidar com as emoções ainda é difícil. Frustração, medo, raiva, tristeza, insegurança… fazem parte do processo. Aprender a reconhecer, nomear e manejar o que se sente também.”"
-                    />
+                    <picture
+                      data-defer-avif="./assets/img/instagram-05-400.avif 400w, ./assets/img/instagram-05-800.avif 800w"
+                    >
+                      <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        data-defer-src="./assets/img/instagram-05-400.webp"
+                        data-defer-srcset="./assets/img/instagram-05-400.webp 400w, ./assets/img/instagram-05-800.webp 800w"
+                        sizes="(min-width: 640px) 384px, calc(100vw - 88px)"
+                        width="400"
+                        height="500"
+                        decoding="async"
+                        alt="Post do Instagram com uma criança de costas segurando um ursinho: “Quando lidar com as emoções ainda é difícil. Frustração, medo, raiva, tristeza, insegurança… fazem parte do processo. Aprender a reconhecer, nomear e manejar o que se sente também.”"
+                      />
+                    </picture>
                   </div>
                   <div
                     class="instagram-slide"
@@ -198,10 +258,20 @@
                     data-instagram-slide="5"
                     aria-hidden="true"
                   >
-                    <img
-                      src="./assets/instagram-06.jpeg"
-                      alt="Post do Instagram com crianças sorrindo sentadas no chão: “Quando as relações estão difíceis. Dificuldades para fazer amigos, conflitos frequentes, isolamento, bullying e desafios para se comunicar também podem ser trabalhados em psicoterapia, a fim de oferecer à criança recursos para lidar com a situação.”"
-                    />
+                    <picture
+                      data-defer-avif="./assets/img/instagram-06-400.avif 400w, ./assets/img/instagram-06-800.avif 800w"
+                    >
+                      <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        data-defer-src="./assets/img/instagram-06-400.webp"
+                        data-defer-srcset="./assets/img/instagram-06-400.webp 400w, ./assets/img/instagram-06-800.webp 800w"
+                        sizes="(min-width: 640px) 384px, calc(100vw - 88px)"
+                        width="400"
+                        height="500"
+                        decoding="async"
+                        alt="Post do Instagram com crianças sorrindo sentadas no chão: “Quando as relações estão difíceis. Dificuldades para fazer amigos, conflitos frequentes, isolamento, bullying e desafios para se comunicar também podem ser trabalhados em psicoterapia, a fim de oferecer à criança recursos para lidar com a situação.”"
+                      />
+                    </picture>
                   </div>
                   <div
                     class="instagram-slide"
@@ -211,10 +281,20 @@
                     data-instagram-slide="6"
                     aria-hidden="true"
                   >
-                    <img
-                      src="./assets/instagram-07.jpeg"
-                      alt="Post do Instagram com adultos conversando com uma criança: “Quando alguma coisa muda. Mudança de escola, separação dos pais, chegada de um irmão, mudança de casa, perdas e outras alterações significativas na rotina podem mobilizar a criança.”"
-                    />
+                    <picture
+                      data-defer-avif="./assets/img/instagram-07-400.avif 400w, ./assets/img/instagram-07-800.avif 800w"
+                    >
+                      <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        data-defer-src="./assets/img/instagram-07-400.webp"
+                        data-defer-srcset="./assets/img/instagram-07-400.webp 400w, ./assets/img/instagram-07-800.webp 800w"
+                        sizes="(min-width: 640px) 384px, calc(100vw - 88px)"
+                        width="400"
+                        height="500"
+                        decoding="async"
+                        alt="Post do Instagram com adultos conversando com uma criança: “Quando alguma coisa muda. Mudança de escola, separação dos pais, chegada de um irmão, mudança de casa, perdas e outras alterações significativas na rotina podem mobilizar a criança.”"
+                      />
+                    </picture>
                   </div>
                   <div
                     class="instagram-slide"
@@ -224,10 +304,20 @@
                     data-instagram-slide="7"
                     aria-hidden="true"
                   >
-                    <img
-                      src="./assets/instagram-08.jpeg"
-                      alt="Post do Instagram com uma criança dobrando barquinhos de papel: “Nem toda criança tem um diagnóstico! A psicoterapia também pode acompanhar momentos de mudança, dificuldades e situações que o público infantil ainda não consegue elaborar sozinho.”"
-                    />
+                    <picture
+                      data-defer-avif="./assets/img/instagram-08-400.avif 400w, ./assets/img/instagram-08-800.avif 800w"
+                    >
+                      <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        data-defer-src="./assets/img/instagram-08-400.webp"
+                        data-defer-srcset="./assets/img/instagram-08-400.webp 400w, ./assets/img/instagram-08-800.webp 800w"
+                        sizes="(min-width: 640px) 384px, calc(100vw - 88px)"
+                        width="400"
+                        height="500"
+                        decoding="async"
+                        alt="Post do Instagram com uma criança dobrando barquinhos de papel: “Nem toda criança tem um diagnóstico! A psicoterapia também pode acompanhar momentos de mudança, dificuldades e situações que o público infantil ainda não consegue elaborar sozinho.”"
+                      />
+                    </picture>
                   </div>
                   <div
                     class="instagram-slide"
@@ -237,10 +327,20 @@
                     data-instagram-slide="8"
                     aria-hidden="true"
                   >
-                    <img
-                      src="./assets/instagram-09.jpeg"
-                      alt="Post do Instagram com uma criança sorridente entre dinossauros de brinquedo: “Quando uma criança pode precisar de psicoterapia? Nem sempre existe um diagnóstico. Por vezes, o que existe é uma criança ou adolescente que precisa de suporte para elaborar o que está vivendo.”"
-                    />
+                    <picture
+                      data-defer-avif="./assets/img/instagram-09-400.avif 400w, ./assets/img/instagram-09-800.avif 800w"
+                    >
+                      <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        data-defer-src="./assets/img/instagram-09-400.webp"
+                        data-defer-srcset="./assets/img/instagram-09-400.webp 400w, ./assets/img/instagram-09-800.webp 800w"
+                        sizes="(min-width: 640px) 384px, calc(100vw - 88px)"
+                        width="400"
+                        height="500"
+                        decoding="async"
+                        alt="Post do Instagram com uma criança sorridente entre dinossauros de brinquedo: “Quando uma criança pode precisar de psicoterapia? Nem sempre existe um diagnóstico. Por vezes, o que existe é uma criança ou adolescente que precisa de suporte para elaborar o que está vivendo.”"
+                      />
+                    </picture>
                   </div>
                 </div>
                 <div class="instagram-actions">
@@ -424,18 +524,52 @@
               aria-label="Fotos de Guilherme Teixeira"
             >
               <div data-carousel-track aria-live="off">
-                <img
-                  src="./assets/guilherme-photo-01.jpeg"
-                  alt="Guilherme Teixeira no consultório infantil, segurando livros sobre emoções"
-                  class="is-active"
-                  data-portrait-slide="0"
-                />
-                <img
-                  src="./assets/guilherme-photo-02.jpeg"
-                  alt="Guilherme Teixeira sorrindo à mesa do consultório infantil, com livros e brinquedos ao redor"
-                  data-portrait-slide="1"
-                  aria-hidden="true"
-                />
+                <picture class="portrait-slide is-active" data-portrait-slide="0">
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ./assets/img/guilherme-photo-01-720.avif   720w,
+                      ./assets/img/guilherme-photo-01-1440.avif 1440w
+                    "
+                    sizes="(min-width: 1024px) 660px, calc(150vw - 72px)"
+                  />
+                  <img
+                    src="./assets/img/guilherme-photo-01-720.webp"
+                    srcset="
+                      ./assets/img/guilherme-photo-01-720.webp   720w,
+                      ./assets/img/guilherme-photo-01-1440.webp 1440w
+                    "
+                    sizes="(min-width: 1024px) 660px, calc(150vw - 72px)"
+                    width="720"
+                    height="480"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Guilherme Teixeira no consultório infantil, segurando livros sobre emoções"
+                  />
+                </picture>
+                <picture class="portrait-slide" data-portrait-slide="1" aria-hidden="true">
+                  <source
+                    type="image/avif"
+                    srcset="
+                      ./assets/img/guilherme-photo-02-480.avif 480w,
+                      ./assets/img/guilherme-photo-02-960.avif 960w
+                    "
+                    sizes="(min-width: 1024px) 440px, calc(100vw - 48px)"
+                  />
+                  <img
+                    src="./assets/img/guilherme-photo-02-480.webp"
+                    srcset="
+                      ./assets/img/guilherme-photo-02-480.webp 480w,
+                      ./assets/img/guilherme-photo-02-960.webp 960w
+                    "
+                    sizes="(min-width: 1024px) 440px, calc(100vw - 48px)"
+                    width="480"
+                    height="720"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Guilherme Teixeira sorrindo à mesa do consultório infantil, com livros e brinquedos ao redor"
+                  />
+                </picture>
               </div>
               <span class="portrait-carousel-label">Guilherme Teixeira</span>
               <button
@@ -486,7 +620,7 @@
           </div>
           <div class="about-tab-content">
             <div class="about-tab-art">
-              <img src="./assets/paper-boat-line.png" alt="" />
+              <img src="./assets/paper-boat-line.png" alt="" width="124" height="75" loading="lazy" decoding="async" />
             </div>
             <div>
               <span class="eyebrow">Um olhar para cada história</span>

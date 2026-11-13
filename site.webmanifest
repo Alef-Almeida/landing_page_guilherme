@@ -1,0 +1,13 @@
+{
+  "name": "Guilherme dos Santos Teixeira | Psicologia",
+  "short_name": "Guilherme Teixeira",
+  "lang": "pt-BR",
+  "start_url": "./",
+  "display": "browser",
+  "background_color": "#F8F5F1",
+  "theme_color": "#F8F5F1",
+  "icons": [
+    { "src": "./assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

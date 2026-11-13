@@ -115,12 +115,12 @@ test.describe('carrosséis (IMP-330 a IMP-335, IMP-616)', () => {
     await page.clock.install();
     await page.goto('/');
     const photos = page.getByRole('group', { name: 'Fotos de Guilherme Teixeira' });
-    await expect(photos.locator('img:not([aria-hidden="true"])')).toHaveCount(1);
+    await expect(photos.locator('[data-portrait-slide]:not([aria-hidden="true"])')).toHaveCount(1);
     await photos.getByRole('button', { name: 'Pausar rotação das fotos' }).click();
-    const visible = await photos.locator('img.is-active').getAttribute('src');
+    const visible = await photos.locator('.portrait-slide.is-active').getAttribute('data-portrait-slide');
     await page.mouse.move(0, 0);
     await page.clock.runFor(20000);
-    await expect(photos.locator('img.is-active')).toHaveAttribute('src', visible);
+    await expect(photos.locator('.portrait-slide.is-active')).toHaveAttribute('data-portrait-slide', visible);
   });
 });
 

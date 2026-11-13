@@ -269,6 +269,7 @@ main > section {
   opacity: 1;
 }
 
+.instagram-slide picture,
 .instagram-slide img {
   display: block;
   height: 100%;
@@ -561,20 +562,28 @@ main > section {
   background: linear-gradient(180deg, rgba(23, 50, 77, 0.02), transparent 55%, rgba(23, 50, 77, 0.15));
 }
 
-.portrait-carousel img {
+.portrait-slide {
   position: absolute;
   inset: 0;
+  opacity: 0;
+  transition: opacity var(--motion-slow) var(--ease-standard);
+}
+
+.portrait-slide.is-active {
+  opacity: 1;
+}
+
+/* IMP-408: na foto horizontal o assunto fica à direita; o recorte quadrado acompanha. */
+.portrait-slide[data-portrait-slide='0'] img {
+  object-position: 68% 50%;
+}
+
+.portrait-slide img {
   display: block;
   height: 100%;
   width: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: 0;
-  transition: opacity var(--motion-slow) var(--ease-standard);
-}
-
-.portrait-carousel img.is-active {
-  opacity: 1;
 }
 
 .portrait-carousel .portrait-carousel-label {

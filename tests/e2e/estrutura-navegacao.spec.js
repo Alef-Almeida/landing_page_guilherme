@@ -87,6 +87,8 @@ test.describe('navegação interna', () => {
   test('cliques repetidos não duplicam o histórico e Voltar retorna à seção anterior (IMP-306/IMP-611)', async ({
     page,
   }) => {
+    // Sem rolagem suave, o teste não depende da duração da animação quando a máquina está carregada.
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto('/');
     const nav = page.getByRole('navigation', { name: 'Navegação principal' });

@@ -129,6 +129,33 @@ sections.forEach((section) => observer.observe(section));
 // - com prefers-reduced-motion, a rotação começa pausada;
 // - aria-live fica "off" durante a rotação e "polite" quando pausado, como no padrão WAI-ARIA.
 // ---------------------------------------------------------------------------
+// Imagens adiadas (IMP-407): slides que não aparecem no primeiro carregamento só recebem a imagem real
+// depois que a página termina de carregar, ou antes, se o slide for exibido.
+const loadDeferredImage = (picture) => {
+  const img = picture?.querySelector('img[data-defer-src]');
+  if (!img) return;
+  if (picture.dataset.deferAvif) {
+    const source = document.createElement('source');
+    source.type = 'image/avif';
+    source.srcset = picture.dataset.deferAvif;
+    source.sizes = img.sizes;
+    picture.prepend(source);
+    delete picture.dataset.deferAvif;
+  }
+  img.srcset = img.dataset.deferSrcset;
+  img.src = img.dataset.deferSrc;
+  delete img.dataset.deferSrcset;
+  delete img.dataset.deferSrc;
+};
+const loadAllDeferredImages = () =>
+  document.querySelectorAll('picture img[data-defer-src]').forEach((img) => loadDeferredImage(img.parentElement));
+const scheduleDeferredImages = () => {
+  if ('requestIdleCallback' in window) window.requestIdleCallback(loadAllDeferredImages, { timeout: 3000 });
+  else window.setTimeout(loadAllDeferredImages, 1500);
+};
+if (document.readyState === 'complete') scheduleDeferredImages();
+else window.addEventListener('load', scheduleDeferredImages, { once: true });
+
 const setupCarousel = (root) => {
   const track = root.querySelector('[data-carousel-track]');
   const slides = [...track.children];
@@ -147,8 +174,10 @@ const setupCarousel = (root) => {
   let hovered = false;
   let focused = false;
 
-  const show = (index) => {
+  const show = (index, { preloadNext = true } = {}) => {
     active = (index + slides.length) % slides.length;
+    loadDeferredImage(slides[active].querySelector('picture'));
+    if (preloadNext) loadDeferredImage(slides[(active + 1) % slides.length].querySelector('picture'));
     slides.forEach((slide, i) => {
       slide.classList.toggle('is-active', i === active);
       if (i === active) slide.removeAttribute('aria-hidden');
@@ -200,7 +229,7 @@ const setupCarousel = (root) => {
     update();
   });
 
-  show(active);
+  show(active, { preloadNext: false }); // na inicialização, nada além do slide visível é baixado
   if (controls) controls.hidden = false;
   toggle.hidden = false;
   update();

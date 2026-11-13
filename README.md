@@ -20,19 +20,20 @@ Abra <http://127.0.0.1:8080/>. O comando `dev` recompila o CSS a cada alteraçã
 
 ## Comandos
 
-| Comando                 | O que faz                                                                                            |
-| ----------------------- | ---------------------------------------------------------------------------------------------------- |
-| `npm run dev`           | Servidor local em `127.0.0.1:8080` com recompilação automática do CSS                                |
-| `npm run build`         | Gera `styles.css` minificado a partir de `styles.source.css`                                         |
-| `npm run serve`         | Somente serve a página (use `npm run serve -- --port 3000` para outra porta)                         |
-| `npm run format`        | Formata os arquivos com Prettier                                                                     |
-| `npm run format:check`  | Verifica a formatação sem alterar arquivos                                                           |
-| `npm run check:js`      | Verifica a sintaxe de `site-config.js`, `tabs.js`, `contact.js` e `script.js`                        |
-| `npm run check:css`     | Confere se `styles.css` está atualizado e se não há CDN, `<style>` no HTML ou `!important`           |
-| `npm run test:unit`     | Testes unitários do contato e da agenda (`node:test`, sem dependências)                              |
-| `npm run test:e2e`      | Testes end-to-end no navegador (Playwright). Na primeira vez, rode `npx playwright install chromium` |
-| `npm test`              | Sintaxe, formatação, CSS e testes unitários (não inclui os end-to-end, que precisam de navegador)    |
-| `npm run check:release` | **Antes de publicar.** Falha enquanto número, domínio ou agenda estiverem pendentes ou inválidos     |
+| Comando                 | O que faz                                                                                                                                    |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run dev`           | Servidor local em `127.0.0.1:8080` com recompilação automática do CSS                                                                        |
+| `npm run build`         | Gera `styles.css` minificado a partir de `styles.source.css`                                                                                 |
+| `npm run images`        | Regenera as imagens otimizadas (AVIF/WebP em dois tamanhos), o favicon e os ícones a partir de `assets/source/` e `assets/icons/favicon.svg` |
+| `npm run serve`         | Somente serve a página (use `npm run serve -- --port 3000` para outra porta)                                                                 |
+| `npm run format`        | Formata os arquivos com Prettier                                                                                                             |
+| `npm run format:check`  | Verifica a formatação sem alterar arquivos                                                                                                   |
+| `npm run check:js`      | Verifica a sintaxe de `site-config.js`, `tabs.js`, `contact.js` e `script.js`                                                                |
+| `npm run check:css`     | Confere se `styles.css` está atualizado e se não há CDN, `<style>` no HTML ou `!important`                                                   |
+| `npm run test:unit`     | Testes unitários do contato e da agenda (`node:test`, sem dependências)                                                                      |
+| `npm run test:e2e`      | Testes end-to-end no navegador (Playwright). Na primeira vez, rode `npx playwright install chromium`                                         |
+| `npm test`              | Sintaxe, formatação, CSS e testes unitários (não inclui os end-to-end, que precisam de navegador)                                            |
+| `npm run check:release` | **Antes de publicar.** Falha enquanto número, domínio ou agenda estiverem pendentes ou inválidos                                             |
 
 ## Configuração do WhatsApp e da agenda
 
@@ -67,6 +68,13 @@ Os textos e as regras ficam em [`contact.js`](contact.js), coberto por `npm run 
 - Prefixos de navegador são gerados pelo autoprefixer conforme `browserslist` em `package.json` (padrão do mercado, mais Safari e iOS 15 ou superior).
 - A minificação (`postcss.build.config.js`) usa cssnano com as transformações de cor, gradiente, posição e unidades desligadas, para que o CSS final seja idêntico ao escrito.
 
+## Imagens
+
+- Os originais ficam em `assets/source/` e **não são publicados**. A página usa as versões de `assets/img/`, geradas por `npm run images` em AVIF e WebP, em dois tamanhos (1x e 2x da maior área em que a imagem aparece).
+- Para trocar ou acrescentar uma foto ou post: coloque o JPEG original em `assets/source/`, ajuste a lista `IMAGES` em `scripts/optimize-images.mjs` (larguras geradas), rode `npm run images` e atualize o `<picture>` correspondente em `index.html` (`srcset`, `sizes`, `width` e `height`).
+- Só o primeiro post do carrossel é baixado com a página; os demais recebem a imagem real depois do carregamento (atributos `data-defer-*`). As fotos usam `loading="lazy"`.
+- Favicon e ícones: edite `assets/icons/favicon.svg` e rode `npm run images`.
+
 ## Estrutura
 
 ```text
@@ -81,7 +89,11 @@ Os textos e as regras ficam em [`contact.js`](contact.js), coberto por `npm run 
 ├── postcss.config.js        Tailwind + autoprefixer
 ├── postcss.build.config.js  configuração de produção (inclui minificação)
 ├── scripts/                 servidor local, modo de desenvolvimento e verificação do CSS
-├── assets/                  imagens
+├── assets/source/           originais das imagens (não publicados)
+├── assets/img/              imagens otimizadas geradas por `npm run images`
+├── assets/icons/            favicon.svg (fonte) e ícones gerados
+├── assets/                  logotipo e arte decorativa
+├── favicon.ico, site.webmanifest  favicon e manifesto
 ├── tests/unit/              testes unitários (`npm run test:unit`)
 ├── tests/e2e/               testes end-to-end com Playwright (`npm run test:e2e`)
 ├── tests/tools/             ferramentas de verificação (comparação de estilo computado)
@@ -90,4 +102,4 @@ Os textos e as regras ficam em [`contact.js`](contact.js), coberto por `npm run 
 
 ## Publicação
 
-Ainda não definida (DEC-04 no plano). Os arquivos necessários para publicar são `index.html`, `site-config.js`, `tabs.js`, `contact.js`, `script.js`, `styles.css` e a pasta `assets/`. Antes de publicar, `npm run check:release` precisa passar.
+Ainda não definida (DEC-04 no plano). Os arquivos necessários para publicar são `index.html`, `site-config.js`, `tabs.js`, `contact.js`, `script.js`, `styles.css`, `favicon.ico`, `site.webmanifest` e a pasta `assets/`, exceto `assets/source/`. Antes de publicar, `npm run check:release` precisa passar.

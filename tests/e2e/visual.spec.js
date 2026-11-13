@@ -20,6 +20,10 @@ for (const width of [390, 1280]) {
       await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.goto('/');
       await page.waitForLoadState('networkidle');
+      // Imagens com loading="lazy" fora da tela só carregam com a rolagem; aqui são carregadas antes da captura.
+      await page.evaluate(() =>
+        document.querySelectorAll('img[loading="lazy"]').forEach((img) => (img.loading = 'eager')),
+      );
       await page.evaluate(() =>
         Promise.all([
           ...['400', '500', '600', '700'].flatMap((w) =>
