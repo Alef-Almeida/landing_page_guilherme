@@ -129,9 +129,11 @@ sections.forEach((section) => observer.observe(section));
 // ---------------------------------------------------------------------------
 // Carrosséis (IMP-330 a IMP-335)
 // - só o slide ativo fica exposto à tecnologia assistiva (aria-hidden nos demais);
-// - Anterior, Próximo e Pausar/Retomar; usar Anterior/Próximo interrompe a rotação;
-// - a rotação pausa com o ponteiro sobre o carrossel ou com o foco dentro dele;
-// - com prefers-reduced-motion, a rotação começa pausada;
+// - Anterior, Próximo e Pausar/Retomar; Anterior/Próximo reiniciam a contagem, e só Pausar para a rotação de vez;
+// - a rotação pausa enquanto o mouse está sobre o carrossel ou o foco de teclado está dentro dele
+//   (toque e clique não pausam: no celular o "mouse em cima" emulado não termina e travava o carrossel);
+// - a rotação também para fora da tela e com a aba em segundo plano, e volta sozinha;
+// - com prefers-reduced-motion ou com "Pausar animações" (painel de acessibilidade), começa pausada;
 // - aria-live fica "off" durante a rotação e "polite" quando pausado, como no padrão WAI-ARIA.
 // ---------------------------------------------------------------------------
 // Imagens adiadas (IMP-407): slides que não aparecem no primeiro carregamento só recebem a imagem real
@@ -161,6 +163,15 @@ const scheduleDeferredImages = () => {
 if (document.readyState === 'complete') scheduleDeferredImages();
 else window.addEventListener('load', scheduleDeferredImages, { once: true });
 
+const motionPaused = () => reducedMotion.matches || document.documentElement.classList.contains('a11y-pausar');
+const isKeyboardFocus = (element) => {
+  try {
+    return element.matches(':focus-visible');
+  } catch {
+    return true; // navegador sem :focus-visible: trata como teclado, que é o caso que exige a pausa
+  }
+};
+
 const setupCarousel = (root) => {
   const track = root.querySelector('[data-carousel-track]');
   const slides = [...track.children];
@@ -175,9 +186,10 @@ const setupCarousel = (root) => {
     0,
   );
   let timer = null;
-  let userPaused = reducedMotion.matches;
+  let userPaused = motionPaused();
   let hovered = false;
   let focused = false;
+  let onScreen = true;
 
   const show = (index, { preloadNext = true } = {}) => {
     active = (index + slides.length) % slides.length;
@@ -191,8 +203,9 @@ const setupCarousel = (root) => {
     indicators.forEach((dot, i) => dot.classList.toggle('is-active', i === active));
   };
 
+  // Recria o temporizador a cada mudança: depois de Anterior/Próximo, o próximo avanço leva um intervalo inteiro.
   const update = () => {
-    const running = !userPaused && !hovered && !focused;
+    const running = !userPaused && !hovered && !focused && onScreen && !document.hidden;
     clearInterval(timer);
     timer = running ? window.setInterval(() => show(active + 1), interval) : null;
     track.setAttribute('aria-live', running ? 'off' : 'polite');
@@ -201,7 +214,6 @@ const setupCarousel = (root) => {
   };
 
   const step = (delta) => {
-    userPaused = true;
     show(active + delta);
     update();
   };
@@ -212,16 +224,18 @@ const setupCarousel = (root) => {
     userPaused = !userPaused;
     update();
   });
-  root.addEventListener('mouseenter', () => {
+  root.addEventListener('pointerenter', (event) => {
+    if (event.pointerType !== 'mouse') return;
     hovered = true;
     update();
   });
-  root.addEventListener('mouseleave', () => {
+  root.addEventListener('pointerleave', (event) => {
+    if (event.pointerType !== 'mouse') return;
     hovered = false;
     update();
   });
-  root.addEventListener('focusin', () => {
-    focused = true;
+  root.addEventListener('focusin', (event) => {
+    focused = isKeyboardFocus(event.target);
     update();
   });
   root.addEventListener('focusout', (event) => {
@@ -229,9 +243,26 @@ const setupCarousel = (root) => {
     focused = false;
     update();
   });
-  reducedMotion.addEventListener('change', (event) => {
-    if (event.matches) userPaused = true;
+  // Um clique depois de navegar pelo teclado deixa de valer como foco de teclado.
+  root.addEventListener('pointerdown', () => {
+    if (!focused) return;
+    focused = false;
     update();
+  });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+      update();
+    }).observe(root);
+  }
+  document.addEventListener('visibilitychange', update);
+  const syncMotionPreference = () => {
+    userPaused = motionPaused();
+    update();
+  };
+  reducedMotion.addEventListener('change', syncMotionPreference);
+  document.addEventListener('a11y:change', (event) => {
+    if (event.detail?.changed === 'pausar') syncMotionPreference();
   });
 
   show(active, { preloadNext: false }); // na inicialização, nada além do slide visível é baixado

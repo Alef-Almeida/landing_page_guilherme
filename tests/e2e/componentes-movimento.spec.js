@@ -71,8 +71,8 @@ test.describe('agenda manual (IMP-324 a IMP-327, IMP-615, IMP-624)', () => {
   });
 });
 
-test.describe('carrosséis (IMP-330 a IMP-335, IMP-616)', () => {
-  test('só o slide ativo fica exposto e os botões navegam e pausam', async ({ page }) => {
+test.describe('carrosséis (IMP-330 a IMP-335, IMP-616, IMP-801)', () => {
+  test('só o slide ativo fica exposto; Anterior/Próximo não travam a rotação; Pausar para', async ({ page }) => {
     await page.clock.install();
     await page.goto('/');
     const carousel = page.getByRole('group', { name: 'Posts do Instagram' });
@@ -84,32 +84,69 @@ test.describe('carrosséis (IMP-330 a IMP-335, IMP-616)', () => {
     await expect(carousel.getByRole('group', { name: '2 de 9' })).toBeVisible();
     await expect(carousel.locator('[data-instagram-slide]:not([aria-hidden="true"])')).toHaveCount(1);
 
+    // Clique em Próximo: avança na hora e a rotação continua depois de um intervalo inteiro.
     await carousel.getByRole('button', { name: 'Próximo post' }).click();
     await expect(carousel.getByRole('group', { name: '3 de 9' })).toBeVisible();
+    await expect(carousel.getByRole('button', { name: 'Pausar rotação dos posts' })).toBeVisible();
+    await page.mouse.move(0, 0);
+    await page.clock.runFor(4000);
+    await expect(carousel.getByRole('group', { name: '3 de 9' })).toBeVisible();
+    await page.clock.runFor(1000);
+    await expect(carousel.getByRole('group', { name: '4 de 9' })).toBeVisible();
+
+    await carousel.getByRole('button', { name: 'Post anterior' }).click();
+    await expect(carousel.getByRole('group', { name: '3 de 9' })).toBeVisible();
+
+    // Só o botão Pausar interrompe a rotação de vez.
+    await carousel.getByRole('button', { name: 'Pausar rotação dos posts' }).click();
     await expect(carousel.getByRole('button', { name: 'Retomar rotação dos posts' })).toBeVisible();
+    await expect(carousel.locator('[data-carousel-track]')).toHaveAttribute('aria-live', 'polite');
     await page.mouse.move(0, 0);
     await page.clock.runFor(15000);
     await expect(carousel.getByRole('group', { name: '3 de 9' })).toBeVisible();
-
-    await carousel.getByRole('button', { name: 'Post anterior' }).click();
-    await expect(carousel.getByRole('group', { name: '2 de 9' })).toBeVisible();
     await carousel.getByRole('button', { name: 'Retomar rotação dos posts' }).click();
-    await expect(carousel.getByRole('button', { name: 'Pausar rotação dos posts' })).toBeVisible();
-    await expect(carousel.locator('[data-carousel-track]')).toHaveAttribute('aria-live', 'polite'); // foco no botão
+    await page.mouse.move(0, 0);
+    await page.clock.runFor(5000);
+    await expect(carousel.getByRole('group', { name: '4 de 9' })).toBeVisible();
+    await expect(carousel.locator('[data-carousel-track]')).toHaveAttribute('aria-live', 'off');
   });
 
-  test('pausa com o ponteiro sobre o carrossel ou com o foco dentro dele', async ({ page }) => {
+  test('pausa com o mouse sobre o carrossel e com o foco de teclado dentro dele', async ({ page }) => {
     await page.clock.install();
     await page.goto('/');
     const carousel = page.getByRole('group', { name: 'Posts do Instagram' });
+    const track = carousel.locator('[data-carousel-track]');
     await carousel.hover();
     await page.clock.runFor(10000);
     await expect(carousel.getByRole('group', { name: '1 de 9' })).toBeVisible();
-    await expect(carousel.locator('[data-carousel-track]')).toHaveAttribute('aria-live', 'polite');
+    await expect(track).toHaveAttribute('aria-live', 'polite');
     await page.mouse.move(0, 0);
     await page.clock.runFor(5000);
     await expect(carousel.getByRole('group', { name: '2 de 9' })).toBeVisible();
-    await expect(carousel.locator('[data-carousel-track]')).toHaveAttribute('aria-live', 'off');
+    await expect(track).toHaveAttribute('aria-live', 'off');
+
+    // Foco pelo teclado pausa; ao sair do carrossel, a rotação volta.
+    await carousel.getByRole('button', { name: 'Post anterior' }).focus();
+    await page.keyboard.press('Shift+Tab');
+    await page.keyboard.press('Tab');
+    await expect(carousel.getByRole('button', { name: 'Post anterior' })).toBeFocused();
+    await page.clock.runFor(10000);
+    await expect(carousel.getByRole('group', { name: '2 de 9' })).toBeVisible();
+    await expect(track).toHaveAttribute('aria-live', 'polite');
+    await page.locator('body').focus();
+    await page.evaluate(() => document.activeElement.blur());
+    await page.clock.runFor(5000);
+    await expect(carousel.getByRole('group', { name: '3 de 9' })).toBeVisible();
+  });
+
+  test('o foco deixado por um clique do mouse não trava a rotação', async ({ page }) => {
+    await page.clock.install();
+    await page.goto('/');
+    const carousel = page.getByRole('group', { name: 'Posts do Instagram' });
+    await carousel.getByRole('button', { name: 'Próximo post' }).click();
+    await page.mouse.move(0, 0);
+    await page.clock.runFor(5000);
+    await expect(carousel.getByRole('group', { name: '3 de 9' })).toBeVisible();
   });
 
   test('carrossel de fotos tem nome, oculta a foto inativa e pode ser pausado', async ({ page }) => {
@@ -122,6 +159,31 @@ test.describe('carrosséis (IMP-330 a IMP-335, IMP-616)', () => {
     await page.mouse.move(0, 0);
     await page.clock.runFor(20000);
     await expect(photos.locator('.portrait-slide.is-active')).toHaveAttribute('data-portrait-slide', visible);
+  });
+
+  test('carrossel de fotos gira quando aparece na tela', async ({ page }) => {
+    await page.clock.install();
+    await page.goto('/');
+    const photos = page.getByRole('group', { name: 'Fotos de Guilherme Teixeira' });
+    await photos.scrollIntoViewIfNeeded();
+    await page.mouse.move(0, 0);
+    await page.clock.runFor(6000);
+    await expect(photos.locator('.portrait-slide.is-active')).toHaveAttribute('data-portrait-slide', '1');
+  });
+});
+
+test.describe('carrossel em tela de toque (IMP-801)', () => {
+  test.use({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 844 } });
+
+  test('tocar em Próximo não deixa o carrossel travado', async ({ page, browserName }) => {
+    test.skip(browserName === 'firefox', 'O Firefox do Playwright não emula toque com isMobile.');
+    await page.clock.install();
+    await page.goto('/');
+    const carousel = page.getByRole('group', { name: 'Posts do Instagram' });
+    await carousel.getByRole('button', { name: 'Próximo post' }).tap();
+    await expect(carousel.getByRole('group', { name: '2 de 9' })).toBeVisible();
+    await page.clock.runFor(5000);
+    await expect(carousel.getByRole('group', { name: '3 de 9' })).toBeVisible();
   });
 });
 
