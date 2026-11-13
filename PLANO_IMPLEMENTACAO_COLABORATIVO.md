@@ -332,33 +332,33 @@ Como todas as tarefas desta fase alteram arquivos de edição exclusiva, a fase 
 
 ### Tarefas das abas
 
-- [ ] IMP-320 — Associar abas e painéis por ID e `aria-controls`.
-- [ ] IMP-321 — Implementar `tabindex` gerenciado.
-- [ ] IMP-322 — Implementar ArrowLeft, ArrowRight, Home e End.
-- [ ] IMP-323 — Garantir que conteúdo e foco mudem de forma previsível.
+- [x] IMP-320 — Associar abas e painéis por ID e `aria-controls`.
+- [x] IMP-321 — Implementar `tabindex` gerenciado.
+- [x] IMP-322 — Implementar ArrowLeft, ArrowRight, Home e End.
+- [x] IMP-323 — Garantir que conteúdo e foco mudem de forma previsível.
 
 ### Tarefas da agenda acessível
 
-- [ ] IMP-324 — Definir um padrão semântico para os seletores de dia, como botões pressionáveis, radio group ou abas completas.
-- [ ] IMP-325 — Expor programaticamente qual dia está selecionado por `aria-pressed`, `aria-checked` ou `aria-selected`, conforme o padrão escolhido.
-- [ ] IMP-326 — Associar os controles de dia ao painel de horários e anunciar atualizações relevantes sem duplicar conteúdo.
-- [ ] IMP-327 — Preservar foco e operação por teclado quando a agenda for renderizada novamente.
+- [x] IMP-324 — Definir um padrão semântico para os seletores de dia, como botões pressionáveis, radio group ou abas completas.
+- [x] IMP-325 — Expor programaticamente qual dia está selecionado por `aria-pressed`, `aria-checked` ou `aria-selected`, conforme o padrão escolhido.
+- [x] IMP-326 — Associar os controles de dia ao painel de horários e anunciar atualizações relevantes sem duplicar conteúdo.
+- [x] IMP-327 — Preservar foco e operação por teclado quando a agenda for renderizada novamente.
 
 ### Tarefas dos carrosséis
 
-- [ ] IMP-330 — Definir semântica acessível de carrossel.
-- [ ] IMP-331 — Expor somente o slide ativo à árvore de acessibilidade.
-- [ ] IMP-332 — Criar controles Anterior, Próximo e Pausar/Retomar.
-- [ ] IMP-333 — Pausar em hover, foco e interação do usuário.
-- [ ] IMP-334 — Respeitar `prefers-reduced-motion` nos carrosséis: sem troca automática e sem transição animada entre slides.
-- [ ] IMP-335 — Remover padrão ARIA parcial dos indicadores.
+- [x] IMP-330 — Definir semântica acessível de carrossel.
+- [x] IMP-331 — Expor somente o slide ativo à árvore de acessibilidade.
+- [x] IMP-332 — Criar controles Anterior, Próximo e Pausar/Retomar.
+- [x] IMP-333 — Pausar em hover, foco e interação do usuário.
+- [x] IMP-334 — Respeitar `prefers-reduced-motion` nos carrosséis: sem troca automática e sem transição animada entre slides.
+- [x] IMP-335 — Remover padrão ARIA parcial dos indicadores.
 
 ### Tarefas de movimento e transições
 
-- [ ] IMP-336 — Revisar a transição de tela cheia aplicada a toda âncora interna e remover o bloqueio visual de aproximadamente 620 ms.
+- [x] IMP-336 — Revisar a transição de tela cheia aplicada a toda âncora interna e remover o bloqueio visual de aproximadamente 620 ms.
 - IMP-337 — *Consolidada em IMP-306* (rolagem e foco sem depender do término de animação decorativa).
-- [ ] IMP-338 — Reduzir a combinação simultânea de carrossel automático, elementos flutuantes e transição de página na primeira dobra.
-- [ ] IMP-339 — Definir durações e curvas consistentes para as demais animações — transição de página, elementos flutuantes, entradas, hover e barco animado pelo scroll — e desativar as não essenciais quando `prefers-reduced-motion` estiver ativo.
+- [x] IMP-338 — Reduzir a combinação simultânea de carrossel automático, elementos flutuantes e transição de página na primeira dobra.
+- [x] IMP-339 — Definir durações e curvas consistentes para as demais animações — transição de página, elementos flutuantes, entradas, hover e barco animado pelo scroll — e desativar as não essenciais quando `prefers-reduced-motion` estiver ativo.
 
 ### Tarefas visuais de acessibilidade
 
@@ -485,9 +485,9 @@ Os testes de cada componente são escritos pela frente que o implementa, na mesm
 - [x] IMP-611 — Navegação desktop e mobile, incluindo Voltar/Avançar do navegador após uso das âncoras.
 - [x] IMP-612 — Abertura e fechamento do menu por teclado.
 - [ ] IMP-613 — FAQ.
-- [ ] IMP-614 — Navegação completa das abas.
-- [ ] IMP-615 — Agenda e mensagens geradas.
-- [ ] IMP-616 — Controles e pausa dos carrosséis.
+- [x] IMP-614 — Navegação completa das abas.
+- [x] IMP-615 — Agenda e mensagens geradas.
+- [x] IMP-616 — Controles e pausa dos carrosséis.
 - [ ] IMP-617 — Ausência de overflow em 320, 375, 390, 768, 1024, 1280 e 1440 px e com zoom de 200%, verificando os limites de cada elemento visível e não apenas o `scrollWidth` do documento (o baseline mostra corte no hero em 320 px sem overflow do documento).
 - [x] IMP-618 — Ordem de foco.
 - [ ] IMP-619 — Links internos e assets sem 404.
@@ -501,13 +501,13 @@ Os testes de cada componente são escritos pela frente que o implementa, na mesm
 
 ### Proteções complementares
 
-- [ ] IMP-624 — Automatizar a verificação do estado acessível da agenda após a troca de dia.
+- [x] IMP-624 — Automatizar a verificação do estado acessível da agenda após a troca de dia.
 - [ ] IMP-625 — Adicionar regressão visual do cabeçalho em 768 px e dos demais breakpoints de referência.
 - [ ] IMP-626 — Testar o estado seguro do CTA e da agenda com configuração inválida ou JavaScript indisponível.
 - [ ] IMP-627 — Criar regressão visual específica do hero em 320, 390 e 1440 px.
 - [ ] IMP-628 — Verificar automaticamente que o card do hero não excede seu contêiner e que o logotipo preserva a proporção natural.
-- [ ] IMP-629 — Testar navegação interna e carrosséis com `prefers-reduced-motion: reduce`.
-- [ ] IMP-630 — Verificar que a transição visual não bloqueia foco, rolagem ou acionamento repetido de links internos.
+- [x] IMP-629 — Testar navegação interna e carrosséis com `prefers-reduced-motion: reduce`.
+- [x] IMP-630 — Verificar que a transição visual não bloqueia foco, rolagem ou acionamento repetido de links internos.
 - [ ] IMP-631 — Executar a suíte end-to-end em Chromium, Firefox e WebKit.
 - [x] IMP-632 — Testar a página com JavaScript desabilitado: conteúdo essencial visível, caminho de contato seguro e nenhum controle sem função.
 - [ ] IMP-633 — Comparar as métricas finais com o baseline de IMP-007 e registrar a evolução.
@@ -625,7 +625,7 @@ Todas as demais tarefas podem ser executadas com as alternativas provisórias da
 | FR-01 | Build e organização de CSS | IMP-006, IMP-007 | `package.json`, Tailwind, CSS, `.gitignore` | Conversa de análise e revisão do plano | Concluída |
 | FR-02 | WhatsApp e agenda | FR-01; IMP-201 e IMP-205 aguardam decisões | `site-config.js`, `contact.js`, `script.js` | Conversa de análise e revisão do plano | Bloqueada — restam IMP-201 (DEC-01) e IMP-205 (DEC-02, DEC-03, DEC-10) |
 | FR-03A | Estrutura, conteúdo estático, navegação e menu | FR-02 | `index.html`, `script.js`, CSS | Conversa de análise e revisão do plano | Concluída |
-| FR-03B | Abas, agenda acessível, carrosséis e movimento | FR-03A | `index.html`, `script.js`, CSS | Não atribuído | Não iniciada |
+| FR-03B | Abas, agenda acessível, carrosséis e movimento | FR-03A | `index.html`, `script.js`, CSS | Conversa de análise e revisão do plano | Concluída |
 | FR-03C | Contraste, toque, foco, logotipo e responsividade | FR-03B | `index.html`, CSS | Não atribuído | Não iniciada |
 | FR-04 | Imagens e desempenho | Preparação: nenhuma; integração: FR-03C | `assets/`, HTML | Não atribuído | Não iniciada |
 | FR-05 | Conteúdo e SEO | Rascunho: nenhuma; integração: FR-03C e DEC-03 a DEC-09 | HTML, arquivos SEO | Não atribuído | Não iniciada — parcialmente bloqueada |
@@ -1036,6 +1036,31 @@ Antes de acrescentar:
 - Pendências ou riscos: teclado das abas e semântica dos carrosséis (IMP-320 a IMP-335) e revisão da transição (IMP-336) seguem na FR-03B; o rótulo `aria-label` sem papel no carrossel de fotos permanece para IMP-330; os botões do WhatsApp desativados não recebem foco, o que é coerente com o estado, mas a mensagem de status deve ser revista na FR-03C (IMP-342)
 - Arquivos ainda reservados: nenhum
 - Próxima ação recomendada: FR-03B (IMP-320 a IMP-339)
+- Estado final: Concluída
+
+### [2026-11-13 10:51 -03] Contribuição — FR-03B — Abas, agenda acessível, carrosséis e movimento
+
+- Responsável/conversa: conversa de análise e revisão do plano de implementação
+- Objetivo: tornar abas, seleção de dia e carrosséis operáveis por teclado e leitor de tela e conter o movimento
+- Tarefas relacionadas: IMP-320 a IMP-327, IMP-330 a IMP-336, IMP-338 e IMP-339 (concluídas; IMP-337 consolidada em IMP-306); testes IMP-614, IMP-615, IMP-616, IMP-624, IMP-629 e IMP-630 entregues
+- Branch: `fr-03b/componentes-movimento`, em worktree separado (§11.1)
+- Arquivos alterados: `index.html`, `script.js`, `contact.js`, `styles.source.css`, `styles.css`, `package.json`, `README.md`, `tests/e2e/estrutura-navegacao.spec.js`; criados `tabs.js` e `tests/e2e/componentes-movimento.spec.js`
+- Alterações realizadas:
+  - `tabs.js`: abas no padrão WAI-ARIA com ativação automática, setas, Home, End e `tabindex` gerenciado; carregado antes de `contact.js` e `script.js`;
+  - abas do "Sobre": `aria-controls`, `role="tabpanel"` e `aria-labelledby` nos painéis; um painel visível por vez (IMP-320 a IMP-323);
+  - agenda manual: padrão de abas escolhido para os dias (IMP-324); cada dia tem nome acessível com a data completa, `aria-selected` expõe a seleção (IMP-325), o painel `#schedule-panel` é rotulado pelo dia ativo (IMP-326) e só o conteúdo do painel é refeito na troca, mantendo o foco no dia (IMP-327);
+  - carrosséis: contêiner `role="group"` com `aria-roledescription="carrossel"` e nome; cada post é um slide com nome "N de 9"; slides inativos com `aria-hidden` desde o HTML (IMP-330, IMP-331); botões Anterior, Próximo e Pausar/Retomar com 44 × 44 px; usar Anterior/Próximo interrompe a rotação (IMP-332); pausa com ponteiro ou foco dentro do carrossel (IMP-333); `aria-live` "off" durante a rotação e "polite" quando pausado; os indicadores viraram elementos apenas visuais (`aria-hidden`), removendo o padrão de abas parcial e os alvos de 5 px (IMP-335). O carrossel de fotos ganhou botão de pausa no canto superior direito, pois o inferior fica sob o selo do CRP;
+  - IMP-336: a sobreposição de tela cheia foi removida (HTML, CSS e JS); a navegação usa apenas a rolagem nativa;
+  - IMP-338: os ícones flutuantes do hero deixaram de ter animação contínua; o zoom de 6 s das fotos foi removido; a transição de fundo das seções, que nunca mudava, saiu;
+  - IMP-339 e IMP-334: tokens `--motion-fast` (0,2 s), `--motion-base` (0,35 s), `--motion-slow` (0,6 s) e `--ease-standard` em todas as transições próprias; com `prefers-reduced-motion`, tokens zerados, sem animação de entrada nem do barco do contato, `scroll-behavior: auto`, `motion-reduce:transition-none` nos utilitários do HTML, carrosséis iniciando pausados e barco lateral sem animação de acompanhamento
+- Validações executadas: `npm test`; 22 testes end-to-end (9 novos: teclado das abas, dias da agenda como abas com foco preservado e mensagens com data, slides expostos, botões e pausa, pausa por ponteiro e por foco, carrossel de fotos, movimento reduzido, navegação sem sobreposição, ícones sem animação contínua); capturas do card do Instagram e do carrossel de fotos em 390 e 1280 px; axe em 390 e 1280 px
+- Resultado das validações: todos os testes passaram; axe sem violações além de `color-contrast` (8 nós em 390 px, 13 em 1280 px), que é IMP-340 (FR-03C)
+- Pendências ou riscos:
+  - o card do Instagram ficou cerca de 40 px mais alto por causa da linha de controles; os indicadores continuam parcialmente sob o selo "cada história", como antes;
+  - os ícones de curtir, comentar, compartilhar e salvar continuam cenográficos (IMP-516, DEC-08);
+  - as duas fotos têm o mesmo texto alternativo "Guilherme Teixeira em atendimento clínico"; confirmar com o responsável quem aparece em cada foto e descrevê-las com precisão (IMP-344, IMP-509)
+- Arquivos ainda reservados: nenhum
+- Próxima ação recomendada: FR-03C (IMP-340 a IMP-350)
 - Estado final: Concluída
 
 <!-- CONTRIBUICOES: ACRESCENTAR NOVAS ENTRADAS IMEDIATAMENTE ANTES DESTE MARCADOR. NAO REMOVER. -->
