@@ -13,9 +13,11 @@
     "serve": "node scripts/serve.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check:js": "node --check script.js",
+    "check:js": "node --check script.js && node --check contact.js && node --check site-config.js",
     "check:css": "node scripts/check-css.mjs",
-    "test": "npm run check:js && npm run format:check && npm run check:css"
+    "check:release": "node scripts/check-release.mjs",
+    "test:unit": "node --test \"tests/unit/**/*.test.js\"",
+    "test": "npm run check:js && npm run format:check && npm run check:css && npm run test:unit"
   },
   "browserslist": [
     "defaults",

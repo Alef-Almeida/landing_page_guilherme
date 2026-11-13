@@ -1,26 +1,14 @@
-// Troque pelo WhatsApp profissional real antes da publicação final.
-const whatsappNumber = '5500000000000';
-const whatsappMessage = 'Olá, Guilherme. Gostaria de saber mais sobre o acompanhamento psicológico.';
-document.getElementById('whatsapp-link').href =
-  `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-
-const scheduleData = [
-  { day: '10', week: 'terça', month: 'nov', slots: ['09:00', '10:30', '15:00'] },
-  { day: '11', week: 'quarta', month: 'nov', slots: ['08:30', '14:00', '16:30'] },
-  { day: '12', week: 'quinta', month: 'nov', slots: ['09:30', '11:00', '17:00'] },
-  { day: '13', week: 'sexta', month: 'nov', slots: ['10:00', '13:30'] },
-];
-const scheduleElement = document.getElementById('schedule');
-const createWhatsAppUrl = (time) =>
-  `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Olá, gostaria de solicitar informações sobre o horário de ${time} na agenda do Guilherme.`)}`;
-const renderSchedule = (selectedIndex) => {
-  const selectedDay = scheduleData[selectedIndex];
-  scheduleElement.innerHTML = `<div class="schedule-layout"><div class="schedule-days">${scheduleData.map((item, index) => `<button class="schedule-day ${index === selectedIndex ? 'is-active' : ''}" data-day-index="${index}"><span>${item.week}</span><strong>${item.day}</strong><small>${item.month}</small></button>`).join('')}</div><div class="schedule-panel"><div class="schedule-panel-head"><div><span class="eyebrow">Horários disponíveis</span><h3>${selectedDay.week}, ${selectedDay.day} de ${selectedDay.month} · 2026</h3></div><span class="schedule-status">online ou presencial</span></div><div class="schedule-slots">${selectedDay.slots.map((time) => `<a href="${createWhatsAppUrl(time)}" target="_blank" rel="noreferrer" class="schedule-slot"><span>${time}</span><span>Solicitar horário <b>↗</b></span></a>`).join('')}</div></div></div>`;
-  scheduleElement
-    .querySelectorAll('[data-day-index]')
-    .forEach((button) => button.addEventListener('click', () => renderSchedule(Number(button.dataset.dayIndex))));
-};
-renderSchedule(0);
+// Contato pelo WhatsApp e agenda: configuração em site-config.js, lógica em contact.js.
+// Em caso de falha, a página mantém o estado seguro do HTML (botões desativados, sem link externo).
+try {
+  window.ContactFlow.initContactFlow({
+    document,
+    config: window.SITE_CONFIG,
+    hostname: window.location.hostname,
+  });
+} catch (error) {
+  console.error('[contato] Não foi possível inicializar o contato pelo WhatsApp.', error);
+}
 
 const contactSection = document.getElementById('contato');
 if (contactSection)

@@ -145,7 +145,12 @@ for (const vp of VIEWPORTS) {
           })
           .catch(() => {});
         await el.scrollIntoViewIfNeeded();
-        await el.hover();
+        const hovered = await el
+          .hover({ timeout: 3000 })
+          .then(() => true)
+          .catch(() => false);
+        // Alvos que não recebem ponteiro (por exemplo, botões desativados) são ignorados neste estado.
+        if (!hovered) return 'skip';
         await p.evaluate(settleAnimations);
       },
     ]);

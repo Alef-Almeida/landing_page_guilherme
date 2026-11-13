@@ -362,14 +362,19 @@
               Conte um pouco sobre o que você está buscando. O contato inicial é acolhedor, cuidadoso e sem compromisso.
             </p>
           </div>
-          <a
-            id="whatsapp-link"
-            href="#"
-            target="_blank"
-            rel="noreferrer"
-            class="mt-8 inline-flex shrink-0 items-center justify-center rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white transition hover:-translate-y-1 hover:shadow-soft lg:mt-0"
-            >Falar pelo WhatsApp <span class="ml-2">↗</span></a
-          >
+          <div class="mt-8 shrink-0 lg:mt-0">
+            <a
+              id="whatsapp-link"
+              data-whatsapp-cta="general"
+              aria-disabled="true"
+              class="inline-flex items-center justify-center rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white transition hover:-translate-y-1 hover:shadow-soft"
+              >Falar pelo WhatsApp <span class="ml-2" aria-hidden="true">↗</span></a
+            >
+            <p class="whatsapp-status" data-whatsapp-status hidden></p>
+            <noscript
+              ><p class="whatsapp-status">Para conversar pelo WhatsApp, ative o JavaScript do navegador.</p></noscript
+            >
+          </div>
         </div>
       </section>
       <section id="agenda" class="agenda-section bg-sand px-6 py-20 lg:px-8 lg:py-28">
@@ -377,16 +382,42 @@
           <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <p class="eyebrow">Agenda de atendimento</p>
-              <h2 class="section-title">
-                Escolha um horário<br class="hidden sm:block" />
-                para começar a conversa.
+              <h2 class="section-title" data-schedule-title>
+                Consulte a disponibilidade<br class="hidden sm:block" />
+                e comece a conversa.
               </h2>
             </div>
             <div class="agenda-note">
-              <span class="agenda-dot"></span><span>Horários demonstrativos · confirmação pelo WhatsApp</span>
+              <span class="agenda-dot"></span
+              ><span data-schedule-note>Horários combinados pelo WhatsApp · sujeitos à confirmação</span>
             </div>
           </div>
-          <div id="schedule" class="mt-12"></div>
+          <div id="schedule" class="mt-12">
+            <div class="schedule-panel schedule-consult">
+              <div>
+                <span class="eyebrow">Disponibilidade</span>
+                <h3>Os horários são combinados diretamente pelo WhatsApp.</h3>
+                <p data-schedule-consult-text>
+                  Envie uma mensagem com os dias e períodos de sua preferência. A disponibilidade é informada na
+                  resposta.
+                </p>
+              </div>
+              <div class="schedule-consult-action">
+                <a data-whatsapp-cta="schedule" aria-disabled="true" class="schedule-consult-cta"
+                  >Consultar horários <span aria-hidden="true">↗</span></a
+                >
+                <p class="whatsapp-status" data-whatsapp-status hidden></p>
+                <noscript
+                  ><p class="whatsapp-status">
+                    Para conversar pelo WhatsApp, ative o JavaScript do navegador.
+                  </p></noscript
+                >
+              </div>
+              <p class="schedule-confirmation">
+                Enviar a mensagem não reserva um horário: a consulta só é marcada após a confirmação pelo WhatsApp.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -396,6 +427,8 @@
         ><span>CRP 03/36532 · Atendimento ético e individualizado</span>
       </div>
     </footer>
+    <script src="./site-config.js"></script>
+    <script src="./contact.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>

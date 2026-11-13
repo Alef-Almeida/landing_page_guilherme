@@ -906,6 +906,20 @@ details p {
   color: #17324d;
 }
 
+/* Estado do botão do WhatsApp quando o contato não pode ser iniciado (ver contact.js). */
+[data-whatsapp-cta][aria-disabled='true'] {
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.whatsapp-status {
+  margin-top: 0.75rem;
+  max-width: 22rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(23, 50, 77, 0.8);
+}
+
 @keyframes boat-float {
   0%,
   100% {
@@ -986,6 +1000,7 @@ details p {
 .schedule-days {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  align-content: start;
   gap: 0.7rem;
 }
 
@@ -1113,6 +1128,78 @@ details p {
 .schedule-slot b {
   margin-left: 0.4rem;
   font-size: 1rem;
+}
+
+/* Consulta de disponibilidade pelo WhatsApp (modo 'whatsapp-only' e agenda sem horários futuros) */
+.schedule-consult {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.schedule-consult p {
+  margin-top: 0.75rem;
+  max-width: 560px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.schedule-consult-action {
+  justify-self: start;
+}
+
+.schedule-consult-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  background: #f5b79c;
+  padding: 1rem 1.5rem;
+  color: #17324d;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+
+.schedule-consult-cta:hover {
+  transform: translateY(-2px);
+  background: #f8c6ae;
+}
+
+.schedule-panel .whatsapp-status {
+  margin-top: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.schedule-confirmation {
+  margin-top: 1.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  padding-top: 1.25rem;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.schedule-consult .schedule-confirmation {
+  margin-top: 0;
+  max-width: none;
+}
+
+@media (min-width: 768px) {
+  .schedule-consult {
+    grid-template-columns: 1fr auto;
+    padding: 2.5rem;
+  }
+
+  .schedule-consult-action {
+    justify-self: end;
+  }
+
+  .schedule-consult .schedule-confirmation {
+    grid-column: 1 / -1;
+  }
 }
 
 /* ==========================================================================

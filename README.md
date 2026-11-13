@@ -16,26 +16,51 @@ npm install
 npm run dev
 ```
 
-Abra <http://127.0.0.1:8080/>. O comando `dev` recompila o CSS a cada alteração em `styles.source.css`, `index.html` ou `script.js` e serve a página localmente.
+Abra <http://127.0.0.1:8080/>. O comando `dev` recompila o CSS a cada alteração em `styles.source.css`, `index.html`, `script.js` ou `contact.js` e serve a página localmente.
 
 ## Comandos
 
-| Comando                | O que faz                                                                                     |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| `npm run dev`          | Servidor local em `127.0.0.1:8080` com recompilação automática do CSS                         |
-| `npm run build`        | Gera `styles.css` minificado a partir de `styles.source.css`                                  |
-| `npm run serve`        | Somente serve a página (use `npm run serve -- --port 3000` para outra porta)                  |
-| `npm run format`       | Formata os arquivos com Prettier                                                              |
-| `npm run format:check` | Verifica a formatação sem alterar arquivos                                                    |
-| `npm run check:js`     | Verifica a sintaxe de `script.js`                                                             |
-| `npm run check:css`    | Confere se `styles.css` está atualizado e se não há CDN, `<style>` no HTML ou `!important`    |
-| `npm test`             | Executa todas as verificações acima (testes unitários e end-to-end entram na Fase 6 do plano) |
+| Comando                 | O que faz                                                                                        |
+| ----------------------- | ------------------------------------------------------------------------------------------------ |
+| `npm run dev`           | Servidor local em `127.0.0.1:8080` com recompilação automática do CSS                            |
+| `npm run build`         | Gera `styles.css` minificado a partir de `styles.source.css`                                     |
+| `npm run serve`         | Somente serve a página (use `npm run serve -- --port 3000` para outra porta)                     |
+| `npm run format`        | Formata os arquivos com Prettier                                                                 |
+| `npm run format:check`  | Verifica a formatação sem alterar arquivos                                                       |
+| `npm run check:js`      | Verifica a sintaxe de `site-config.js`, `contact.js` e `script.js`                               |
+| `npm run check:css`     | Confere se `styles.css` está atualizado e se não há CDN, `<style>` no HTML ou `!important`       |
+| `npm run test:unit`     | Testes unitários do contato e da agenda (`node:test`, sem dependências)                          |
+| `npm test`              | Executa todas as verificações acima (testes end-to-end entram na Fase 6 do plano)                |
+| `npm run check:release` | **Antes de publicar.** Falha enquanto número, domínio ou agenda estiverem pendentes ou inválidos |
+
+## Configuração do WhatsApp e da agenda
+
+Todos os dados operacionais ficam em [`site-config.js`](site-config.js). Não espalhe telefone, mensagens ou horários em outros arquivos.
+
+| Campo                  | Para que serve                                                                                        | Situação atual                        |
+| ---------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| `whatsapp.number`      | Número profissional com DDI 55 e DDD, por exemplo `5571912345678`                                     | Vazio até DEC-01                      |
+| `site.productionHosts` | Domínios em que o link do WhatsApp fica ativo, por exemplo `['www.dominio.com.br', 'dominio.com.br']` | Vazio até DEC-04                      |
+| `modalities`           | Modalidades confirmadas, por exemplo `['online', 'presencial']`                                       | Vazio até DEC-03                      |
+| `schedule.mode`        | `'whatsapp-only'` (consulta pelo WhatsApp) ou `'manual-schedule'` (horários publicados)               | `'whatsapp-only'` até DEC-02 e DEC-10 |
+| `schedule.days`        | Somente no modo manual: `[{ date: 'AAAA-MM-DD', times: ['HH:MM'] }]`                                  | Vazio                                 |
+| `schedule.timeZone`    | Fuso usado para esconder datas e horários que já passaram                                             | `America/Bahia`                       |
+
+Como a página se comporta:
+
+- **Sem número válido:** os botões do WhatsApp ficam desativados, com o aviso “O contato pelo WhatsApp está temporariamente indisponível.” Nenhum link externo é gerado.
+- **Com número válido, fora de `productionHosts`** (localhost, homologação, testes): os botões ficam desativados com um aviso de ambiente de teste, para que ninguém envie mensagens reais por engano. A URL que seria usada fica no atributo `data-whatsapp-preview` para conferência.
+- **Com número válido, em `productionHosts`:** os botões abrem o WhatsApp com a mensagem pronta.
+- **Sem JavaScript:** os botões continuam desativados e um aviso pede para ativar o JavaScript.
+- **Agenda manual:** datas e horários vencidos somem automaticamente; se não sobrar nenhum, a página mostra a consulta pelo WhatsApp. Cada solicitação informa dia da semana, data completa, ano, horário, modalidade (quando configurada) e que a vaga depende de confirmação.
+
+Os textos e as regras ficam em [`contact.js`](contact.js), coberto por `npm run test:unit`.
 
 ## Como o CSS funciona
 
 - **Edite somente `styles.source.css`.** O arquivo `styles.css` é gerado por `npm run build` e não deve ser editado à mão.
-- `styles.css` é versionado para que a página funcione em qualquer hospedagem estática sem etapa de build. Depois de alterar `styles.source.css`, `index.html` ou `script.js`, rode `npm run build` e inclua o `styles.css` atualizado no commit; `npm test` falha se ele estiver desatualizado.
-- O Tailwind CSS é compilado localmente (versão fixada em `3.4.17`, a mesma servida antes pelo CDN). As classes são lidas de `index.html` e `script.js` (ver `tailwind.config.js`).
+- `styles.css` é versionado para que a página funcione em qualquer hospedagem estática sem etapa de build. Depois de alterar `styles.source.css`, `index.html`, `script.js` ou `contact.js`, rode `npm run build` e inclua o `styles.css` atualizado no commit; `npm test` falha se ele estiver desatualizado.
+- O Tailwind CSS é compilado localmente (versão fixada em `3.4.17`, a mesma servida antes pelo CDN). As classes são lidas de `index.html`, `script.js` e `contact.js` (ver `tailwind.config.js`).
 - Ordem no arquivo final: base do Tailwind → componentes → estilos próprios → utilitários. Os utilitários ficam por último para vencerem os estilos próprios de mesma especificidade.
 - Não use `!important`: resolva conflitos pela especificidade do seletor ou ajustando as classes no HTML.
 - Prefixos de navegador são gerados pelo autoprefixer conforme `browserslist` em `package.json` (padrão do mercado, mais Safari e iOS 15 ou superior).
@@ -45,7 +70,9 @@ Abra <http://127.0.0.1:8080/>. O comando `dev` recompila o CSS a cada alteraçã
 
 ```text
 ├── index.html               página
-├── script.js                comportamento (WhatsApp, agenda, menu, abas, carrosséis)
+├── site-config.js           configuração operacional: WhatsApp, domínio, modalidades e agenda
+├── contact.js               contato e agenda: validação, mensagens, datas e estados dos botões
+├── script.js                demais comportamentos (menu, navegação, abas, carrosséis)
 ├── styles.source.css        fonte do CSS (edite este)
 ├── styles.css               CSS gerado e minificado (não edite)
 ├── tailwind.config.js       tema e arquivos lidos pelo Tailwind
@@ -53,9 +80,11 @@ Abra <http://127.0.0.1:8080/>. O comando `dev` recompila o CSS a cada alteraçã
 ├── postcss.build.config.js  configuração de produção (inclui minificação)
 ├── scripts/                 servidor local, modo de desenvolvimento e verificação do CSS
 ├── assets/                  imagens
+├── tests/unit/              testes unitários
+├── tests/tools/             ferramentas de verificação (comparação de estilo computado)
 └── tests/baseline/          medição de referência do commit-base (não sobrescrever)
 ```
 
 ## Publicação
 
-Ainda não definida (DEC-04 no plano). Os arquivos necessários para publicar são `index.html`, `script.js`, `styles.css` e a pasta `assets/`.
+Ainda não definida (DEC-04 no plano). Os arquivos necessários para publicar são `index.html`, `site-config.js`, `contact.js`, `script.js`, `styles.css` e a pasta `assets/`. Antes de publicar, `npm run check:release` precisa passar.
