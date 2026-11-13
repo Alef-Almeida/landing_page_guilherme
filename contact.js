@@ -215,45 +215,54 @@
     }
   }
 
-  function renderManualSchedule(scheduleElement, upcoming, config, state, selectedIndex) {
-    const selected = upcoming[selectedIndex];
-    const parts = getDateParts(selected.date);
+  // Dias como abas (IMP-324 a IMP-327): a lista de dias é montada uma vez e só o painel de horários
+  // é atualizado ao trocar de dia, preservando o foco e a operação por teclado.
+  function renderManualSchedule(scheduleElement, upcoming, config, state) {
     const modalities = describeModalities(config.modalities);
     scheduleElement.innerHTML = `<div class="schedule-layout"><div class="schedule-days">${upcoming
       .map((item, index) => {
         const p = getDateParts(item.date);
-        return `<button type="button" class="schedule-day ${index === selectedIndex ? 'is-active' : ''}" data-day-index="${index}"><span>${p.weekday}</span><strong>${p.day}</strong><small>${p.month}</small></button>`;
+        return `<button type="button" class="schedule-day" id="schedule-day-${index}" aria-controls="schedule-panel" aria-label="${escapeHtml(p.long)}"><span>${p.weekday}</span><strong>${p.day}</strong><small>${p.month}</small></button>`;
       })
       .join(
         '',
-      )}</div><div class="schedule-panel"><div class="schedule-panel-head"><div><span class="eyebrow">Horários publicados</span><h3>${escapeHtml(parts.long)}</h3></div>${
+      )}</div><div class="schedule-panel" id="schedule-panel" role="tabpanel"><div class="schedule-panel-head"><div><span class="eyebrow">Horários publicados</span><h3 data-schedule-day-title></h3></div>${
       modalities ? `<span class="schedule-status">${escapeHtml(modalities)}</span>` : ''
-    }</div><div class="schedule-slots">${selected.times
-      .map(
-        (time) =>
-          `<a class="schedule-slot" data-whatsapp-cta="slot" data-slot-time="${time}"><span>${time}</span><span>Solicitar horário <b aria-hidden="true">↗</b></span></a>`,
-      )
-      .join(
-        '',
-      )}</div><p class="whatsapp-status" data-whatsapp-status hidden></p><p class="schedule-confirmation">Enviar a solicitação não reserva o horário: a consulta só é marcada após a confirmação pelo WhatsApp.</p></div></div>`;
+    }</div><div class="schedule-slots" data-schedule-slots></div><p class="whatsapp-status" data-whatsapp-status hidden></p><p class="schedule-confirmation">Enviar a solicitação não reserva o horário: a consulta só é marcada após a confirmação pelo WhatsApp.</p></div></div>`;
 
-    scheduleElement.querySelectorAll('[data-slot-time]').forEach((link) => {
-      const message = buildScheduleMessage({
-        professionalName: config.professionalName,
-        date: selected.date,
-        time: link.dataset.slotTime,
-        modalities: config.modalities,
+    const panel = scheduleElement.querySelector('#schedule-panel');
+    const title = panel.querySelector('[data-schedule-day-title]');
+    const slots = panel.querySelector('[data-schedule-slots]');
+    const days = [...scheduleElement.querySelectorAll('.schedule-day')];
+
+    const showDay = (index) => {
+      const selected = upcoming[index];
+      title.textContent = getDateParts(selected.date).long;
+      panel.setAttribute('aria-labelledby', days[index].id);
+      slots.innerHTML = selected.times
+        .map(
+          (time) =>
+            `<a class="schedule-slot" data-whatsapp-cta="slot" data-slot-time="${time}"><span>${time}</span><span>Solicitar horário <b aria-hidden="true">↗</b></span></a>`,
+        )
+        .join('');
+      slots.querySelectorAll('[data-slot-time]').forEach((link) => {
+        const message = buildScheduleMessage({
+          professionalName: config.professionalName,
+          date: selected.date,
+          time: link.dataset.slotTime,
+          modalities: config.modalities,
+        });
+        applyCta(link, safeUrl(config, message), state);
       });
-      applyCta(link, safeUrl(config, message), state);
+    };
+
+    globalThis.Tabs.setupTabs({
+      tablist: scheduleElement.querySelector('.schedule-days'),
+      tabs: days,
+      label: 'Dias com horários publicados',
+      onSelect: showDay,
     });
-    showStatus(scheduleElement.querySelector('.schedule-panel'), state);
-    scheduleElement
-      .querySelectorAll('[data-day-index]')
-      .forEach((button) =>
-        button.addEventListener('click', () =>
-          renderManualSchedule(scheduleElement, upcoming, config, state, Number(button.dataset.dayIndex)),
-        ),
-      );
+    showStatus(panel, state);
   }
 
   function initContactFlow({ document, config, hostname, now = new Date() }) {
@@ -291,7 +300,7 @@
     if (title) title.innerHTML = 'Escolha um horário<br class="hidden sm:block" /> para começar a conversa.';
     const note = document.querySelector('[data-schedule-note]');
     if (note) note.textContent = 'Horários sujeitos à confirmação pelo WhatsApp';
-    renderManualSchedule(scheduleElement, upcoming, config, state, 0);
+    renderManualSchedule(scheduleElement, upcoming, config, state);
     return state;
   }
 

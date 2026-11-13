@@ -20,18 +20,19 @@ Abra <http://127.0.0.1:8080/>. O comando `dev` recompila o CSS a cada alteraçã
 
 ## Comandos
 
-| Comando                 | O que faz                                                                                        |
-| ----------------------- | ------------------------------------------------------------------------------------------------ |
-| `npm run dev`           | Servidor local em `127.0.0.1:8080` com recompilação automática do CSS                            |
-| `npm run build`         | Gera `styles.css` minificado a partir de `styles.source.css`                                     |
-| `npm run serve`         | Somente serve a página (use `npm run serve -- --port 3000` para outra porta)                     |
-| `npm run format`        | Formata os arquivos com Prettier                                                                 |
-| `npm run format:check`  | Verifica a formatação sem alterar arquivos                                                       |
-| `npm run check:js`      | Verifica a sintaxe de `site-config.js`, `contact.js` e `script.js`                               |
-| `npm run check:css`     | Confere se `styles.css` está atualizado e se não há CDN, `<style>` no HTML ou `!important`       |
-| `npm run test:unit`     | Testes unitários do contato e da agenda (`node:test`, sem dependências)                          |
-| `npm test`              | Executa todas as verificações acima (testes end-to-end entram na Fase 6 do plano)                |
-| `npm run check:release` | **Antes de publicar.** Falha enquanto número, domínio ou agenda estiverem pendentes ou inválidos |
+| Comando                 | O que faz                                                                                            |
+| ----------------------- | ---------------------------------------------------------------------------------------------------- |
+| `npm run dev`           | Servidor local em `127.0.0.1:8080` com recompilação automática do CSS                                |
+| `npm run build`         | Gera `styles.css` minificado a partir de `styles.source.css`                                         |
+| `npm run serve`         | Somente serve a página (use `npm run serve -- --port 3000` para outra porta)                         |
+| `npm run format`        | Formata os arquivos com Prettier                                                                     |
+| `npm run format:check`  | Verifica a formatação sem alterar arquivos                                                           |
+| `npm run check:js`      | Verifica a sintaxe de `site-config.js`, `tabs.js`, `contact.js` e `script.js`                        |
+| `npm run check:css`     | Confere se `styles.css` está atualizado e se não há CDN, `<style>` no HTML ou `!important`           |
+| `npm run test:unit`     | Testes unitários do contato e da agenda (`node:test`, sem dependências)                              |
+| `npm run test:e2e`      | Testes end-to-end no navegador (Playwright). Na primeira vez, rode `npx playwright install chromium` |
+| `npm test`              | Sintaxe, formatação, CSS e testes unitários (não inclui os end-to-end, que precisam de navegador)    |
+| `npm run check:release` | **Antes de publicar.** Falha enquanto número, domínio ou agenda estiverem pendentes ou inválidos     |
 
 ## Configuração do WhatsApp e da agenda
 
@@ -71,8 +72,9 @@ Os textos e as regras ficam em [`contact.js`](contact.js), coberto por `npm run 
 ```text
 ├── index.html               página
 ├── site-config.js           configuração operacional: WhatsApp, domínio, modalidades e agenda
+├── tabs.js                  abas acessíveis (padrão WAI-ARIA), usadas no "Sobre" e na agenda
 ├── contact.js               contato e agenda: validação, mensagens, datas e estados dos botões
-├── script.js                demais comportamentos (menu, navegação, abas, carrosséis)
+├── script.js                demais comportamentos (menu, seção ativa, abas do "Sobre", carrosséis)
 ├── styles.source.css        fonte do CSS (edite este)
 ├── styles.css               CSS gerado e minificado (não edite)
 ├── tailwind.config.js       tema e arquivos lidos pelo Tailwind
@@ -80,11 +82,12 @@ Os textos e as regras ficam em [`contact.js`](contact.js), coberto por `npm run 
 ├── postcss.build.config.js  configuração de produção (inclui minificação)
 ├── scripts/                 servidor local, modo de desenvolvimento e verificação do CSS
 ├── assets/                  imagens
-├── tests/unit/              testes unitários
+├── tests/unit/              testes unitários (`npm run test:unit`)
+├── tests/e2e/               testes end-to-end com Playwright (`npm run test:e2e`)
 ├── tests/tools/             ferramentas de verificação (comparação de estilo computado)
 └── tests/baseline/          medição de referência do commit-base (não sobrescrever)
 ```
 
 ## Publicação
 
-Ainda não definida (DEC-04 no plano). Os arquivos necessários para publicar são `index.html`, `site-config.js`, `contact.js`, `script.js`, `styles.css` e a pasta `assets/`. Antes de publicar, `npm run check:release` precisa passar.
+Ainda não definida (DEC-04 no plano). Os arquivos necessários para publicar são `index.html`, `site-config.js`, `tabs.js`, `contact.js`, `script.js`, `styles.css` e a pasta `assets/`. Antes de publicar, `npm run check:release` precisa passar.

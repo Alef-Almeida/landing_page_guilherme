@@ -158,8 +158,9 @@ test.describe('conteúdo estático (IMP-307/IMP-308)', () => {
     await expect(tabs).toBeVisible();
     await expect(page.locator('[data-about-panel]:visible')).toHaveCount(1);
     await tabs.getByRole('tab', { name: 'Cuidado em rede' }).click();
-    await expect(page.getByRole('tabpanel')).toContainText('Ninguém precisa cuidar sozinho.');
-    await expect(page.locator('[data-instagram-dots]')).toBeVisible();
+    await expect(page.locator('#about-panel-rede')).toBeVisible();
+    await expect(page.locator('#about-panel-rede')).toContainText('Ninguém precisa cuidar sozinho.');
+    await expect(page.locator('[data-carousel-controls]')).toBeVisible();
     await expect(page.locator('.contact-steps')).toContainText('Conte o que você busca');
   });
 
@@ -170,9 +171,12 @@ test.describe('conteúdo estático (IMP-307/IMP-308)', () => {
       await page.goto('/');
       await expect(page.locator('[data-about-panel]:visible')).toHaveCount(3);
       await expect(page.locator('[data-about-tablist]')).toBeHidden();
-      await expect(page.locator('[data-instagram-dots]')).toBeHidden();
+      await expect(page.locator('[data-carousel-controls]')).toBeHidden();
+      await expect(page.locator('[data-carousel-toggle]')).toHaveCount(2);
+      for (const toggle of await page.locator('[data-carousel-toggle]').all()) await expect(toggle).toBeHidden();
       await expect(page.locator('#menu-toggle')).toBeHidden();
       await expect(page.locator('[data-instagram-slide].is-active')).toBeVisible();
+      await expect(page.locator('[data-instagram-slide]:not([aria-hidden="true"])')).toHaveCount(1);
       await expect(page.locator('[data-portrait-slide].is-active')).toBeVisible();
       await expect(page.locator('.contact-steps')).toBeVisible();
       await expect(page.locator('a[href="#"]')).toHaveCount(0);

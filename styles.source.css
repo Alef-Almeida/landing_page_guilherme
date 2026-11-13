@@ -15,6 +15,11 @@
    ========================================================================== */
 
 :root {
+  /* Movimento (IMP-339): todas as transições usam estes tokens; com movimento reduzido, viram zero. */
+  --motion-fast: 0.2s;
+  --motion-base: 0.35s;
+  --motion-slow: 0.6s;
+  --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
   scroll-behavior: smooth;
   /* Compensa o cabeçalho fixo nas âncoras internas (IMP-304). */
   scroll-padding-top: 5.5rem;
@@ -31,7 +36,8 @@ main:focus {
 }
 
 /* O atributo hidden precisa vencer o display definido pelos componentes. */
-.instagram-dots[hidden],
+.carousel-controls[hidden],
+.carousel-button[hidden],
 .about-tab-list[hidden] {
   display: none;
 }
@@ -58,52 +64,6 @@ main > section {
   position: relative;
   isolation: isolate;
   background-clip: padding-box;
-  transition: background 0.5s ease;
-}
-
-/* ==========================================================================
-   Transição entre seções
-   ========================================================================== */
-
-.page-transition {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  pointer-events: none;
-  background: linear-gradient(
-    135deg,
-    rgba(248, 245, 241, 0.98) 0%,
-    rgba(221, 236, 245, 0.96) 52%,
-    rgba(245, 183, 156, 0.95) 100%
-  );
-  opacity: 0;
-  transform: scale(1.02);
-  transition:
-    opacity 0.34s ease,
-    transform 0.48s ease;
-}
-
-.page-transition.is-visible {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.page-transition::after {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  background: #17324d;
-  content: '';
-  opacity: 0.18;
-  transform: translate(-50%, -50%) scale(1);
-  transition: transform 0.5s ease;
-}
-
-.page-transition.is-visible::after {
-  transform: translate(-50%, -50%) scale(34);
 }
 
 /* ==========================================================================
@@ -177,7 +137,7 @@ main > section {
 
 .nav-link {
   color: #617486;
-  transition: color 0.2s;
+  transition: color var(--motion-fast) var(--ease-standard);
 }
 
 .nav-link:hover,
@@ -243,8 +203,8 @@ main > section {
   isolation: isolate;
   transform: rotate(2.2deg);
   transition:
-    transform 0.45s ease,
-    box-shadow 0.45s ease;
+    transform var(--motion-base) var(--ease-standard),
+    box-shadow var(--motion-base) var(--ease-standard);
 }
 
 .instagram-card:hover {
@@ -269,21 +229,22 @@ main > section {
   background: #eef7f8;
 }
 
-.instagram-post img {
+.instagram-slide {
   position: absolute;
   inset: 0;
+  opacity: 0;
+  transition: opacity var(--motion-slow) var(--ease-standard);
+}
+
+.instagram-slide.is-active {
+  opacity: 1;
+}
+
+.instagram-slide img {
   display: block;
   height: 100%;
   width: 100%;
   object-fit: cover;
-  opacity: 0;
-  transition:
-    opacity 0.4s ease,
-    transform 0.6s ease;
-}
-
-.instagram-post img.is-active {
-  opacity: 1;
 }
 
 .instagram-post::after {
@@ -322,19 +283,19 @@ main > section {
   gap: 0.25rem;
 }
 
-.instagram-dots button {
+/* Indicadores apenas visuais; a navegação acessível fica com os botões. */
+.instagram-dots span {
+  display: block;
   height: 0.3rem;
   width: 0.3rem;
-  border: 0;
   border-radius: 50%;
   background: #b6d3dd;
-  padding: 0;
   transition:
-    transform 0.2s,
-    background 0.2s;
+    transform var(--motion-fast) var(--ease-standard),
+    background var(--motion-fast) var(--ease-standard);
 }
 
-.instagram-dots button.is-active {
+.instagram-dots span.is-active {
   background: #17324d;
   transform: scale(1.3);
 }
@@ -351,7 +312,6 @@ main > section {
   background: rgba(255, 255, 255, 0.86);
   box-shadow: 0 12px 28px rgba(23, 50, 77, 0.12);
   color: #17324d;
-  animation: ig-float 4.5s ease-in-out infinite;
 }
 
 .ig-float svg {
@@ -373,26 +333,74 @@ main > section {
 .ig-float-two {
   left: -1.25rem;
   top: 43%;
-  animation-delay: -1.6s;
   color: #7fa9bb;
 }
 
 .ig-float-three {
   right: -0.9rem;
   bottom: 17%;
-  animation-delay: -3s;
   color: #17324d;
 }
 
-@keyframes ig-float {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.35rem 0.2rem 0;
+}
 
-  50% {
-    transform: translateY(-8px) rotate(5deg);
-  }
+.carousel-buttons {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.carousel-button {
+  display: grid;
+  height: 2.75rem;
+  width: 2.75rem;
+  place-items: center;
+  border-radius: 50%;
+  color: #17324d;
+  transition: background var(--motion-fast) var(--ease-standard);
+}
+
+.carousel-button:hover {
+  background: rgba(23, 50, 77, 0.07);
+}
+
+.carousel-button svg {
+  height: 1.15rem;
+  width: 1.15rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.carousel-button .icon-play,
+.carousel-button.is-paused .icon-pause {
+  display: none;
+}
+
+.carousel-button.is-paused .icon-play {
+  display: block;
+}
+
+/* No canto superior: o inferior direito fica sob o selo do CRP. */
+.portrait-carousel-toggle {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.75);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.portrait-carousel-toggle:hover {
+  background: #fff;
 }
 
 /* ==========================================================================
@@ -406,8 +414,8 @@ main > section {
   padding: 2rem;
   overflow: hidden;
   transition:
-    transform 0.3s,
-    box-shadow 0.3s;
+    transform var(--motion-base) var(--ease-standard),
+    box-shadow var(--motion-base) var(--ease-standard);
 }
 
 .service-card:hover {
@@ -436,7 +444,7 @@ main > section {
   background: url('./assets/paper-boat-line.png') right top/220px auto no-repeat;
   opacity: 0.78;
   mix-blend-mode: multiply;
-  transition: transform 0.35s;
+  transition: transform var(--motion-base) var(--ease-standard);
 }
 
 .child-card:hover .child-decor {
@@ -487,7 +495,7 @@ main > section {
 
 .adult-card:hover .adult-decor {
   transform: translate(-6px, 4px);
-  transition: transform 0.45s;
+  transition: transform var(--motion-base) var(--ease-standard);
 }
 
 .icon-disc {
@@ -532,15 +540,11 @@ main > section {
   object-fit: cover;
   object-position: center;
   opacity: 0;
-  transform: scale(1.025);
-  transition:
-    opacity 1.1s ease,
-    transform 6s ease;
+  transition: opacity var(--motion-slow) var(--ease-standard);
 }
 
 .portrait-carousel img.is-active {
   opacity: 1;
-  transform: scale(1);
 }
 
 .portrait-carousel .portrait-carousel-label {
@@ -598,9 +602,9 @@ main > section {
   font-size: 0.78rem;
   font-weight: 600;
   transition:
-    background 0.2s,
-    color 0.2s,
-    transform 0.2s;
+    background var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-standard);
 }
 
 .about-tab:hover {
@@ -665,8 +669,8 @@ main > section {
   border-radius: 1.25rem;
   padding: 1.5rem;
   transition:
-    background 0.2s,
-    transform 0.2s;
+    background var(--motion-fast) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-standard);
 }
 
 .content-card:hover {
@@ -925,9 +929,9 @@ details p {
   text-align: left;
   color: rgba(23, 50, 77, 0.6);
   transition:
-    transform 0.2s,
-    background 0.2s,
-    border-color 0.2s;
+    transform var(--motion-fast) var(--ease-standard),
+    background var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard);
 }
 
 .schedule-day:hover {
@@ -1014,8 +1018,8 @@ details p {
   padding: 1rem 1.1rem;
   color: #fff;
   transition:
-    background 0.2s,
-    transform 0.2s;
+    background var(--motion-fast) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-standard);
 }
 
 .schedule-slot:hover {
@@ -1067,8 +1071,8 @@ details p {
   font-size: 0.875rem;
   font-weight: 600;
   transition:
-    transform 0.2s,
-    background 0.2s;
+    transform var(--motion-fast) var(--ease-standard),
+    background var(--motion-fast) var(--ease-standard);
 }
 
 .schedule-consult-cta:hover {
@@ -1262,6 +1266,25 @@ details p {
 
   #atendimentos {
     background: linear-gradient(180deg, #f8f5f1 0, #fff 4rem, #fff 100%);
+  }
+}
+
+/* ==========================================================================
+   Movimento reduzido (IMP-334, IMP-339): sem animações decorativas, rolagem suave nem transições.
+   Os carrosséis começam pausados (script.js) e o barco lateral vai direto à posição.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0s;
+    --motion-base: 0s;
+    --motion-slow: 0s;
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  #contato > .contact-panel::before {
+    animation: none;
   }
 }
 

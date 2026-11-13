@@ -56,7 +56,7 @@
         </nav>
         <a
           href="#contato"
-          class="hidden rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-ink/90 md:inline-flex"
+          class="hidden rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition motion-reduce:transition-none hover:-translate-y-0.5 hover:bg-ink/90 md:inline-flex"
           >Vamos conversar</a
         >
         <button
@@ -77,7 +77,6 @@
       </nav>
     </header>
 
-    <div class="page-transition" aria-hidden="true"></div>
     <main id="inicio" tabindex="-1">
       <section class="relative overflow-hidden px-6 pb-20 pt-36 lg:px-8 lg:pb-28 lg:pt-48" aria-labelledby="hero-title">
         <div class="absolute -right-24 top-24 h-72 w-72 rounded-full bg-sky/70 blur-3xl"></div>
@@ -102,11 +101,11 @@
             <div class="mt-9 flex flex-col gap-3 sm:flex-row">
               <a
                 href="#atendimentos"
-                class="rounded-full bg-ink px-6 py-4 text-center text-sm font-semibold text-white transition hover:-translate-y-1 hover:shadow-soft"
+                class="rounded-full bg-ink px-6 py-4 text-center text-sm font-semibold text-white transition motion-reduce:transition-none hover:-translate-y-1 hover:shadow-soft"
                 >Encontrar meu atendimento <span class="ml-2">→</span></a
               ><a
                 href="#sobre"
-                class="rounded-full border border-ink/15 px-6 py-4 text-center text-sm font-semibold transition hover:bg-white"
+                class="rounded-full border border-ink/15 px-6 py-4 text-center text-sm font-semibold transition motion-reduce:transition-none hover:bg-white"
                 >Conhecer o trabalho</a
               >
             </div>
@@ -114,54 +113,104 @@
           </div>
           <div class="relative reveal delay-1">
             <div class="hero-card instagram-card relative mx-auto max-w-md rounded-[2rem] bg-white p-5 shadow-soft">
-              <div class="instagram-shell">
-                <div class="instagram-post">
-                  <img
-                    src="./assets/instagram-01.jpeg"
-                    alt="Post do Instagram de Guilherme Teixeira 1"
-                    class="is-active"
+              <div
+                class="instagram-shell"
+                data-carousel
+                data-carousel-interval="4800"
+                role="group"
+                aria-roledescription="carrossel"
+                aria-label="Posts do Instagram"
+              >
+                <div class="instagram-post" data-carousel-track aria-live="off">
+                  <div
+                    class="instagram-slide is-active"
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label="1 de 9"
                     data-instagram-slide="0"
-                  />
-                  <img
-                    src="./assets/instagram-02.jpeg"
-                    alt="Post do Instagram de Guilherme Teixeira 2"
+                  >
+                    <img src="./assets/instagram-01.jpeg" alt="Post do Instagram de Guilherme Teixeira 1" />
+                  </div>
+                  <div
+                    class="instagram-slide"
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label="2 de 9"
                     data-instagram-slide="1"
-                  />
-                  <img
-                    src="./assets/instagram-03.jpeg"
-                    alt="Post do Instagram de Guilherme Teixeira 3"
+                    aria-hidden="true"
+                  >
+                    <img src="./assets/instagram-02.jpeg" alt="Post do Instagram de Guilherme Teixeira 2" />
+                  </div>
+                  <div
+                    class="instagram-slide"
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label="3 de 9"
                     data-instagram-slide="2"
-                  />
-                  <img
-                    src="./assets/instagram-04.jpeg"
-                    alt="Post do Instagram de Guilherme Teixeira 4"
+                    aria-hidden="true"
+                  >
+                    <img src="./assets/instagram-03.jpeg" alt="Post do Instagram de Guilherme Teixeira 3" />
+                  </div>
+                  <div
+                    class="instagram-slide"
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label="4 de 9"
                     data-instagram-slide="3"
-                  />
-                  <img
-                    src="./assets/instagram-05.jpeg"
-                    alt="Post do Instagram de Guilherme Teixeira 5"
+                    aria-hidden="true"
+                  >
+                    <img src="./assets/instagram-04.jpeg" alt="Post do Instagram de Guilherme Teixeira 4" />
+                  </div>
+                  <div
+                    class="instagram-slide"
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label="5 de 9"
                     data-instagram-slide="4"
-                  />
-                  <img
-                    src="./assets/instagram-06.jpeg"
-                    alt="Post do Instagram de Guilherme Teixeira 6"
+                    aria-hidden="true"
+                  >
+                    <img src="./assets/instagram-05.jpeg" alt="Post do Instagram de Guilherme Teixeira 5" />
+                  </div>
+                  <div
+                    class="instagram-slide"
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label="6 de 9"
                     data-instagram-slide="5"
-                  />
-                  <img
-                    src="./assets/instagram-07.jpeg"
-                    alt="Post do Instagram de Guilherme Teixeira 7"
+                    aria-hidden="true"
+                  >
+                    <img src="./assets/instagram-06.jpeg" alt="Post do Instagram de Guilherme Teixeira 6" />
+                  </div>
+                  <div
+                    class="instagram-slide"
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label="7 de 9"
                     data-instagram-slide="6"
-                  />
-                  <img
-                    src="./assets/instagram-08.jpeg"
-                    alt="Post do Instagram de Guilherme Teixeira 8"
+                    aria-hidden="true"
+                  >
+                    <img src="./assets/instagram-07.jpeg" alt="Post do Instagram de Guilherme Teixeira 7" />
+                  </div>
+                  <div
+                    class="instagram-slide"
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label="8 de 9"
                     data-instagram-slide="7"
-                  />
-                  <img
-                    src="./assets/instagram-09.jpeg"
-                    alt="Post do Instagram de Guilherme Teixeira 9"
+                    aria-hidden="true"
+                  >
+                    <img src="./assets/instagram-08.jpeg" alt="Post do Instagram de Guilherme Teixeira 8" />
+                  </div>
+                  <div
+                    class="instagram-slide"
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label="9 de 9"
                     data-instagram-slide="8"
-                  />
+                    aria-hidden="true"
+                  >
+                    <img src="./assets/instagram-09.jpeg" alt="Post do Instagram de Guilherme Teixeira 9" />
+                  </div>
                 </div>
                 <div class="instagram-actions">
                   <div class="instagram-actions-left">
@@ -182,16 +231,32 @@
                     <path d="M5 4.5A1.5 1.5 0 0 1 6.5 3h11A1.5 1.5 0 0 1 19 4.5V21l-7-4-7 4V4.5Z"></path>
                   </svg>
                 </div>
-                <div class="instagram-dots" data-instagram-dots hidden>
-                  <button type="button" class="is-active" data-instagram-dot="0" aria-label="Ver post 1"></button>
-                  <button type="button" data-instagram-dot="1" aria-label="Ver post 2"></button>
-                  <button type="button" data-instagram-dot="2" aria-label="Ver post 3"></button>
-                  <button type="button" data-instagram-dot="3" aria-label="Ver post 4"></button>
-                  <button type="button" data-instagram-dot="4" aria-label="Ver post 5"></button>
-                  <button type="button" data-instagram-dot="5" aria-label="Ver post 6"></button>
-                  <button type="button" data-instagram-dot="6" aria-label="Ver post 7"></button>
-                  <button type="button" data-instagram-dot="7" aria-label="Ver post 8"></button>
-                  <button type="button" data-instagram-dot="8" aria-label="Ver post 9"></button>
+                <div class="carousel-controls" data-carousel-controls hidden>
+                  <div class="instagram-dots" aria-hidden="true">
+                    <span class="is-active"></span><span></span><span></span><span></span><span></span><span></span
+                    ><span></span><span></span><span></span>
+                  </div>
+                  <div class="carousel-buttons">
+                    <button type="button" class="carousel-button" data-carousel-prev aria-label="Post anterior">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"></path></svg>
+                    </button>
+                    <button
+                      type="button"
+                      class="carousel-button"
+                      data-carousel-toggle
+                      aria-label="Pausar rotação dos posts"
+                    >
+                      <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M9 6v12M15 6v12"></path>
+                      </svg>
+                      <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m9 6 9 6-9 6Z"></path>
+                      </svg>
+                    </button>
+                    <button type="button" class="carousel-button" data-carousel-next aria-label="Próximo post">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
+                    </button>
+                  </div>
                 </div>
                 <span class="ig-float ig-float-one" aria-hidden="true"
                   ><svg viewBox="0 0 24 24">
@@ -270,7 +335,8 @@
               </div>
               <div class="hidden items-start justify-between">
                 <span class="icon-disc bg-white">✦</span
-                ><span class="text-3xl text-ink/30 transition group-hover:translate-x-1 group-hover:-translate-y-1"
+                ><span
+                  class="text-3xl text-ink/30 transition motion-reduce:transition-none group-hover:translate-x-1 group-hover:-translate-y-1"
                   >↗</span
                 >
               </div>
@@ -284,7 +350,8 @@
                   emoções, comportamento e os contextos que fazem parte de cada história.
                 </p>
                 <a href="#contato" class="mt-8 inline-flex items-center text-sm font-semibold"
-                  >Quero saber mais <span class="ml-2 transition group-hover:ml-3">→</span></a
+                  >Quero saber mais
+                  <span class="ml-2 transition motion-reduce:transition-none group-hover:ml-3">→</span></a
                 >
               </div>
             </article>
@@ -292,7 +359,8 @@
               <div class="adult-decor" aria-hidden="true"><span></span><span></span><span></span></div>
               <div class="hidden items-start justify-between">
                 <span class="icon-disc bg-white/60">◌</span
-                ><span class="text-3xl text-ink/30 transition group-hover:translate-x-1 group-hover:-translate-y-1"
+                ><span
+                  class="text-3xl text-ink/30 transition motion-reduce:transition-none group-hover:translate-x-1 group-hover:-translate-y-1"
                   >↗</span
                 >
               </div>
@@ -304,7 +372,8 @@
                   e desenvolver recursos para os desafios da vida cotidiana.
                 </p>
                 <a href="#contato" class="mt-8 inline-flex items-center text-sm font-semibold"
-                  >Quero saber mais <span class="ml-2 transition group-hover:ml-3">→</span></a
+                  >Quero saber mais
+                  <span class="ml-2 transition motion-reduce:transition-none group-hover:ml-3">→</span></a
                 >
               </div>
             </article>
@@ -315,19 +384,39 @@
       <section id="sobre" class="px-6 py-20 lg:px-8 lg:py-28" aria-labelledby="sobre-title">
         <div class="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[.8fr_1.2fr]">
           <div class="relative">
-            <div class="portrait-carousel" aria-label="Fotos de Guilherme Teixeira">
-              <img
-                src="./assets/guilherme-photo-01.jpeg"
-                alt="Guilherme Teixeira em atendimento clínico"
-                class="is-active"
-                data-portrait-slide="0"
-              />
-              <img
-                src="./assets/guilherme-photo-02.jpeg"
-                alt="Guilherme Teixeira em atendimento clínico"
-                data-portrait-slide="1"
-              />
+            <div
+              class="portrait-carousel"
+              data-carousel
+              data-carousel-interval="5600"
+              role="group"
+              aria-roledescription="carrossel"
+              aria-label="Fotos de Guilherme Teixeira"
+            >
+              <div data-carousel-track aria-live="off">
+                <img
+                  src="./assets/guilherme-photo-01.jpeg"
+                  alt="Guilherme Teixeira em atendimento clínico"
+                  class="is-active"
+                  data-portrait-slide="0"
+                />
+                <img
+                  src="./assets/guilherme-photo-02.jpeg"
+                  alt="Guilherme Teixeira em atendimento clínico"
+                  data-portrait-slide="1"
+                  aria-hidden="true"
+                />
+              </div>
               <span class="portrait-carousel-label">Guilherme Teixeira</span>
+              <button
+                type="button"
+                class="carousel-button portrait-carousel-toggle"
+                data-carousel-toggle
+                aria-label="Pausar rotação das fotos"
+                hidden
+              >
+                <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12"></path></svg>
+                <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 9 6-9 6Z"></path></svg>
+              </button>
             </div>
             <div class="absolute -bottom-5 -right-3 rounded-2xl bg-white px-5 py-4 shadow-soft">
               <p class="text-xs uppercase tracking-[.16em] text-ink/50">CRP 03/36532</p>
@@ -533,7 +622,7 @@
               id="whatsapp-link"
               data-whatsapp-cta="general"
               aria-disabled="true"
-              class="inline-flex items-center justify-center rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white transition hover:-translate-y-1 hover:shadow-soft"
+              class="inline-flex items-center justify-center rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white transition motion-reduce:transition-none hover:-translate-y-1 hover:shadow-soft"
               >Falar pelo WhatsApp <span class="ml-2" aria-hidden="true">↗</span></a
             >
             <p class="whatsapp-status" data-whatsapp-status hidden></p>
@@ -565,6 +654,7 @@
       </div>
     </footer>
     <script src="./site-config.js"></script>
+    <script src="./tabs.js"></script>
     <script src="./contact.js"></script>
     <script src="./script.js"></script>
   </body>

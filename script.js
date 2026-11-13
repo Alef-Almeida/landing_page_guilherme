@@ -20,23 +20,16 @@ const aboutTabList = document.querySelector('[data-about-tablist]');
 if (aboutTabList) {
   const tabs = [...aboutTabList.querySelectorAll('[data-about-tab]')];
   const panels = tabs.map((tab) => document.querySelector(`[data-about-panel="${tab.dataset.aboutTab}"]`));
-  aboutTabList.setAttribute('role', 'tablist');
   tabs.forEach((tab, index) => {
-    tab.setAttribute('role', 'tab');
     tab.setAttribute('aria-controls', panels[index].id);
     panels[index].setAttribute('role', 'tabpanel');
     panels[index].setAttribute('aria-labelledby', tab.id);
   });
-  const selectTab = (selected) => {
-    tabs.forEach((tab, index) => {
-      const isSelected = tab === selected;
-      tab.classList.toggle('is-active', isSelected);
-      tab.setAttribute('aria-selected', String(isSelected));
-      panels[index].hidden = !isSelected;
-    });
-  };
-  tabs.forEach((tab) => tab.addEventListener('click', () => selectTab(tab)));
-  selectTab(tabs[0]);
+  window.Tabs.setupTabs({
+    tablist: aboutTabList,
+    tabs,
+    onSelect: (selected) => panels.forEach((panel, index) => (panel.hidden = index !== selected)),
+  });
   aboutTabList.hidden = false;
 }
 
@@ -63,9 +56,17 @@ const animateBoat = () => {
   else boatFrame = null;
 };
 
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
 const updateBoatPosition = () => {
   const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
   targetProgress = Math.min(window.scrollY / maxScroll, 1);
+  // Com movimento reduzido, o barco vai direto à posição, sem animação de acompanhamento.
+  if (reducedMotion.matches) {
+    currentProgress = targetProgress;
+    renderBoat(currentProgress);
+    return;
+  }
   if (!boatFrame) boatFrame = requestAnimationFrame(animateBoat);
 };
 window.addEventListener('scroll', updateBoatPosition, { passive: true });
@@ -116,62 +117,93 @@ const observer = new IntersectionObserver(
 sections.forEach((section) => observer.observe(section));
 
 // ---------------------------------------------------------------------------
-// Navegação interna
-// O navegador cuida da rolagem, do foco, do histórico e de Voltar/Avançar (âncoras nativas,
-// com compensação do cabeçalho via scroll-padding-top). A transição é só decorativa e não
-// bloqueia nem atrasa a navegação.
+// Navegação interna: âncoras nativas (rolagem, foco, histórico e Voltar/Avançar ficam com o
+// navegador; scroll-padding-top compensa o cabeçalho). Não há transição de tela cheia (IMP-336).
 // ---------------------------------------------------------------------------
-const pageTransition = document.querySelector('.page-transition');
-let transitionTimer;
-document.querySelectorAll('a[href^="#"]').forEach((link) =>
-  link.addEventListener('click', () => {
-    const selector = link.getAttribute('href');
-    if (selector.length < 2 || !document.querySelector(selector) || link.hasAttribute('data-no-transition')) return;
-    clearTimeout(transitionTimer);
-    pageTransition.classList.add('is-visible');
-    transitionTimer = window.setTimeout(() => pageTransition.classList.remove('is-visible'), 620);
-  }),
-);
 
 // ---------------------------------------------------------------------------
-// Carrossel de posts do Instagram
+// Carrosséis (IMP-330 a IMP-335)
+// - só o slide ativo fica exposto à tecnologia assistiva (aria-hidden nos demais);
+// - Anterior, Próximo e Pausar/Retomar; usar Anterior/Próximo interrompe a rotação;
+// - a rotação pausa com o ponteiro sobre o carrossel ou com o foco dentro dele;
+// - com prefers-reduced-motion, a rotação começa pausada;
+// - aria-live fica "off" durante a rotação e "polite" quando pausado, como no padrão WAI-ARIA.
 // ---------------------------------------------------------------------------
-const instagramCard = document.querySelector('.instagram-card');
-if (instagramCard) {
-  const slides = [...instagramCard.querySelectorAll('[data-instagram-slide]')];
-  const dotsContainer = instagramCard.querySelector('[data-instagram-dots]');
-  const dots = [...instagramCard.querySelectorAll('[data-instagram-dot]')];
-  let activePost = 0;
-  let postTimer;
-  const showPost = (index) => {
-    activePost = (index + slides.length) % slides.length;
-    slides.forEach((slide, slideIndex) => slide.classList.toggle('is-active', slideIndex === activePost));
-    dots.forEach((dot, dotIndex) => dot.classList.toggle('is-active', dotIndex === activePost));
-  };
-  const restartPostTimer = () => {
-    clearInterval(postTimer);
-    postTimer = window.setInterval(() => showPost(activePost + 1), 4800);
-  };
-  dots.forEach((dot) =>
-    dot.addEventListener('click', () => {
-      showPost(Number(dot.dataset.instagramDot));
-      restartPostTimer();
-    }),
+const setupCarousel = (root) => {
+  const track = root.querySelector('[data-carousel-track]');
+  const slides = [...track.children];
+  const indicators = [...root.querySelectorAll('.instagram-dots > span')];
+  const toggle = root.querySelector('[data-carousel-toggle]');
+  const controls = root.querySelector('[data-carousel-controls]');
+  const interval = Number(root.dataset.carouselInterval) || 5000;
+  const pauseLabel = toggle.getAttribute('aria-label');
+  const playLabel = pauseLabel.replace('Pausar', 'Retomar');
+  let active = Math.max(
+    slides.findIndex((slide) => slide.classList.contains('is-active')),
+    0,
   );
-  instagramCard.addEventListener('mouseenter', () => clearInterval(postTimer));
-  instagramCard.addEventListener('mouseleave', restartPostTimer);
-  if (dotsContainer) dotsContainer.hidden = false;
-  restartPostTimer();
-}
+  let timer = null;
+  let userPaused = reducedMotion.matches;
+  let hovered = false;
+  let focused = false;
 
-// ---------------------------------------------------------------------------
-// Carrossel de fotos
-// ---------------------------------------------------------------------------
-const portraitSlides = [...document.querySelectorAll('[data-portrait-slide]')];
-if (portraitSlides.length > 1) {
-  let portraitIndex = 0;
-  window.setInterval(() => {
-    portraitIndex = (portraitIndex + 1) % portraitSlides.length;
-    portraitSlides.forEach((slide, index) => slide.classList.toggle('is-active', index === portraitIndex));
-  }, 5600);
-}
+  const show = (index) => {
+    active = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('is-active', i === active);
+      if (i === active) slide.removeAttribute('aria-hidden');
+      else slide.setAttribute('aria-hidden', 'true');
+    });
+    indicators.forEach((dot, i) => dot.classList.toggle('is-active', i === active));
+  };
+
+  const update = () => {
+    const running = !userPaused && !hovered && !focused;
+    clearInterval(timer);
+    timer = running ? window.setInterval(() => show(active + 1), interval) : null;
+    track.setAttribute('aria-live', running ? 'off' : 'polite');
+    toggle.setAttribute('aria-label', userPaused ? playLabel : pauseLabel);
+    toggle.classList.toggle('is-paused', userPaused);
+  };
+
+  const step = (delta) => {
+    userPaused = true;
+    show(active + delta);
+    update();
+  };
+
+  root.querySelector('[data-carousel-prev]')?.addEventListener('click', () => step(-1));
+  root.querySelector('[data-carousel-next]')?.addEventListener('click', () => step(1));
+  toggle.addEventListener('click', () => {
+    userPaused = !userPaused;
+    update();
+  });
+  root.addEventListener('mouseenter', () => {
+    hovered = true;
+    update();
+  });
+  root.addEventListener('mouseleave', () => {
+    hovered = false;
+    update();
+  });
+  root.addEventListener('focusin', () => {
+    focused = true;
+    update();
+  });
+  root.addEventListener('focusout', (event) => {
+    if (root.contains(event.relatedTarget)) return;
+    focused = false;
+    update();
+  });
+  reducedMotion.addEventListener('change', (event) => {
+    if (event.matches) userPaused = true;
+    update();
+  });
+
+  show(active);
+  if (controls) controls.hidden = false;
+  toggle.hidden = false;
+  update();
+};
+
+document.querySelectorAll('[data-carousel]').forEach(setupCarousel);
