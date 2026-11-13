@@ -532,15 +532,15 @@ Detalhes, método e capturas em `tests/baseline/README.md`. Além das metas mín
 
 ### Tarefas
 
-- [ ] IMP-700 — Reescrever o README com objetivo, estrutura e comandos.
-- [ ] IMP-701 — Documentar configuração do WhatsApp.
-- [ ] IMP-702 — Documentar atualização ou integração da agenda.
-- [ ] IMP-703 — Documentar otimização e substituição de imagens.
-- [ ] IMP-704 — Documentar build e conteúdo de `dist`, se adotado.
-- [ ] IMP-705 — Documentar hospedagem, domínio, HTTPS e rollback.
-- [ ] IMP-706 — Criar checklist de homologação.
+- [x] IMP-700 — Reescrever o README com objetivo, estrutura e comandos.
+- [x] IMP-701 — Documentar configuração do WhatsApp.
+- [x] IMP-702 — Documentar atualização ou integração da agenda.
+- [x] IMP-703 — Documentar otimização e substituição de imagens.
+- [x] IMP-704 — Documentar build e conteúdo de `dist`, se adotado.
+- [x] IMP-705 — Documentar hospedagem, domínio, HTTPS e rollback.
+- [x] IMP-706 — Criar checklist de homologação.
 - [ ] IMP-707 — Executar regressão final em desktop e mobile, incluindo ao menos um dispositivo físico Android e um iOS.
-- [ ] IMP-708 — Registrar limitações aceitas e pendências pós-publicação.
+- [x] IMP-708 — Registrar limitações aceitas e pendências pós-publicação.
 - [ ] IMP-709 — Publicar somente após aprovação explícita do responsável.
 
 ### Critérios de aceite
@@ -621,7 +621,7 @@ Todas as demais tarefas podem ser executadas com as alternativas provisórias da
 
 | Frente | Escopo | Dependência | Arquivos principais | Responsável | Estado |
 | --- | --- | --- | --- | --- | --- |
-| FR-00 | Coordenação e decisões | Nenhuma | Este plano | Conversa principal | Em andamento |
+| FR-00 | Coordenação e decisões | Nenhuma | Este plano | Conversa principal | Em andamento — aguardando DEC-01 a DEC-10 |
 | FR-01 | Build e organização de CSS | IMP-006, IMP-007 | `package.json`, Tailwind, CSS, `.gitignore` | Conversa de análise e revisão do plano | Concluída |
 | FR-02 | WhatsApp e agenda | FR-01; IMP-201 e IMP-205 aguardam decisões | `site-config.js`, `contact.js`, `script.js` | Conversa de análise e revisão do plano | Bloqueada — restam IMP-201 (DEC-01) e IMP-205 (DEC-02, DEC-03, DEC-10) |
 | FR-03A | Estrutura, conteúdo estático, navegação e menu | FR-02 | `index.html`, `script.js`, CSS | Conversa de análise e revisão do plano | Concluída |
@@ -630,7 +630,7 @@ Todas as demais tarefas podem ser executadas com as alternativas provisórias da
 | FR-04 | Imagens e desempenho | Preparação: nenhuma; integração: FR-03C | `assets/`, HTML | Conversa de análise e revisão do plano | Concluída |
 | FR-05 | Conteúdo e SEO | Rascunho: nenhuma; integração: FR-03C e DEC-03 a DEC-09 | HTML, arquivos SEO | Conversa de análise e revisão do plano | Bloqueada — restam tarefas dependentes de DEC-03 a DEC-09 |
 | FR-06 | Testes e CI | FR-01 para dependências; componentes | `tests/`, CI | Conversa de análise e revisão do plano | Aceita com limitação — WebKit configurado, mas executado só no CI |
-| FR-07 | Documentação e release | Todas | README e deploy | Não atribuído | Não iniciada |
+| FR-07 | Documentação e release | Todas | README e deploy | Conversa de análise e revisão do plano | Aceita com limitação — publicação aguarda decisões e aprovação (IMP-709) |
 
 ## 10. Regras para outras conversas
 
@@ -732,44 +732,44 @@ Itens marcados como *Consolidada* não possuem caixa própria: são concluídos 
 
 - [ ] Número real validado.
 - [ ] Mensagem principal revisada.
-- [ ] Mensagem de agenda contém data e horário.
-- [ ] Disponibilidade não é simulada.
-- [ ] Estado sem horário funciona.
-- [ ] Nenhuma data demonstrativa ou vencida é exibida.
-- [ ] Testes e homologação não geram contato real indevido.
+- [x] Mensagem de agenda contém data e horário.
+- [x] Disponibilidade não é simulada.
+- [x] Estado sem horário funciona.
+- [x] Nenhuma data demonstrativa ou vencida é exibida.
+- [x] Testes e homologação não geram contato real indevido.
 
 ### Usabilidade e acessibilidade
 
-- [ ] Ordem visual e DOM equivalentes.
-- [ ] Conteúdo essencial disponível sem JavaScript.
-- [ ] Menu mobile acessível.
-- [ ] Abas acessíveis por teclado.
-- [ ] Agenda expõe o dia selecionado e a atualização do painel.
-- [ ] Carrosséis possuem pausa e redução de movimento.
-- [ ] Somente slides ativos são anunciados.
-- [ ] Contraste AA validado.
-- [ ] Alvos de toque adequados.
-- [ ] Foco visível e ordem de foco aprovados.
-- [ ] Cabeçalho aprovado em 320, 375, 390, 768, 1024, 1280 e 1440 px, sem compressão ou quebra indevida.
-- [ ] Hero, textos e CTAs não são cortados em 320 px ou com zoom aumentado.
-- [ ] Card do hero respeita a largura disponível em todos os breakpoints.
-- [ ] Transições e carrosséis não bloqueiam a navegação e respeitam redução de movimento.
+- [x] Ordem visual e DOM equivalentes.
+- [x] Conteúdo essencial disponível sem JavaScript.
+- [x] Menu mobile acessível.
+- [x] Abas acessíveis por teclado.
+- [x] Agenda expõe o dia selecionado e a atualização do painel.
+- [x] Carrosséis possuem pausa e redução de movimento.
+- [x] Somente slides ativos são anunciados.
+- [x] Contraste AA validado.
+- [x] Alvos de toque adequados.
+- [x] Foco visível e ordem de foco aprovados.
+- [x] Cabeçalho aprovado em 320, 375, 390, 768, 1024, 1280 e 1440 px, sem compressão ou quebra indevida.
+- [x] Hero, textos e CTAs não são cortados em 320 px ou com zoom aumentado.
+- [x] Card do hero respeita a largura disponível em todos os breakpoints.
+- [x] Transições e carrosséis não bloqueiam a navegação e respeitam redução de movimento.
 - [ ] Ritmo vertical aprovado, sem espaços vazios ou alturas mínimas desproporcionais.
 
 ### Desempenho e qualidade
 
-- [ ] Tailwind CDN removido.
-- [ ] Imagens otimizadas e responsivas.
-- [ ] Lazy loading aplicado.
-- [ ] Logotipo sem deformação.
-- [ ] Favicon sem 404.
-- [ ] CTA e agenda apresentam estado seguro quando a configuração ou o JavaScript falham.
-- [ ] Recursos de terceiros foram inventariados e reduzidos ao necessário.
+- [x] Tailwind CDN removido.
+- [x] Imagens otimizadas e responsivas.
+- [x] Lazy loading aplicado.
+- [x] Logotipo sem deformação.
+- [x] Favicon sem 404.
+- [x] CTA e agenda apresentam estado seguro quando a configuração ou o JavaScript falham.
+- [x] Recursos de terceiros foram inventariados e reduzidos ao necessário.
 - [ ] Cabeçalhos de segurança e privacidade foram validados na hospedagem.
-- [ ] Build reprodutível.
+- [x] Build reprodutível.
 - [ ] Testes e CI aprovados.
 - [ ] Suíte end-to-end aprovada em Chromium, Firefox e WebKit.
-- [ ] Métricas finais comparadas ao baseline.
+- [x] Métricas finais comparadas ao baseline.
 
 ### Conteúdo e publicação
 
@@ -778,12 +778,12 @@ Itens marcados como *Consolidada* não possuem caixa própria: são concluídos 
 - [ ] Privacidade e conteúdo profissional aprovados.
 - [ ] FAQ cobre as principais dúvidas operacionais com conteúdo confirmado.
 - [ ] Rodapé oferece informações e destinos reais suficientes para reforçar confiança.
-- [ ] Mockup do Instagram não apresenta controles sem ação ou destino incoerente.
-- [ ] Ano do rodapé correto sem manutenção manual.
-- [ ] Plano, relatórios e registros de homologação versionados.
-- [ ] README completo.
+- [x] Mockup do Instagram não apresenta controles sem ação ou destino incoerente.
+- [x] Ano do rodapé correto sem manutenção manual.
+- [x] Plano, relatórios e registros de homologação versionados.
+- [x] README completo.
 - [ ] Homologação registrada.
-- [ ] Rollback documentado.
+- [x] Rollback documentado.
 
 ## 14. Modelo de atribuição de uma frente
 
@@ -1174,5 +1174,43 @@ Antes de acrescentar:
 - Arquivos ainda reservados: nenhum
 - Próxima ação recomendada: FR-07 (documentação, homologação e publicação)
 - Estado final: Aceita com limitação
+
+### [2026-11-13 11:42 -03] Contribuição — FR-07 — Documentação, homologação e publicação
+
+- Responsável/conversa: conversa de análise e revisão do plano de implementação
+- Objetivo: permitir que outra pessoa mantenha e publique a página com segurança e registrar a homologação técnica
+- Tarefas relacionadas: IMP-700 a IMP-706 e IMP-708 (concluídas); IMP-707 aceita com limitação (sem dispositivos físicos); IMP-709 aguardando decisões e aprovação
+- Branch: `fr-07/documentacao-publicacao`, em worktree separado (§11.1)
+- Arquivos alterados: `README.md`, `scripts/serve.mjs`, `package.json`, `.gitignore`, `.prettierignore`, `tests/e2e/seguranca.spec.js`, `PLANO_IMPLEMENTACAO_COLABORATIVO.md`; criados `scripts/dist.mjs`, `docs/publicacao.md` e `docs/homologacao.md`
+- Alterações realizadas:
+  - IMP-704: `npm run dist` monta `dist/` com os 64 arquivos publicados (HTML, scripts, CSS, favicon, manifesto, `robots.txt` e `sitemap.xml` quando existirem, `assets/` sem `assets/source/`) e gera `_headers` (formato de Netlify e Cloudflare Pages) a partir de `security-headers.json`, com a CSP de produção, HSTS e cache: HTML, CSS e JS revalidados (`no-cache`, pois os nomes não têm hash), imagens e fontes por 7 dias. `npm run release` só monta o pacote se `check:release` passar. `scripts/serve.mjs --root dist` serve o pacote com os cabeçalhos;
+  - IMP-700 a IMP-703: README reescrito com objetivo, estado do projeto, início rápido, comandos agrupados por uso, configuração do WhatsApp, comportamento dos estados, atualização da agenda manual, CSS, imagens, testes, segurança e estrutura;
+  - IMP-705: `docs/publicacao.md` com preparação (decisões e `site-config.js`), geração e conferência do pacote, tabela de hospedagens (Netlify, Cloudflare Pages, Vercel, Nginx e Apache, além de GitHub Pages como não recomendado por não aceitar cabeçalhos), domínio canônico com redirecionamento 301, HTTPS e cuidados com HSTS, verificação pós-publicação, versões por tag e rollback pelo painel da hospedagem ou pela tag;
+  - IMP-706/IMP-708: `docs/homologacao.md` com a regressão final, o checklist de liberação item a item (verificado, parcial ou pendente, com a evidência), roteiro manual (dispositivos físicos, leitor de tela, WhatsApp real e revisão de conteúdo), etapa com dados reais e limitações aceitas;
+  - os testes de segurança passaram a funcionar contra qualquer endereço: a CSP é comparada pelo início (produção acrescenta `upgrade-insecure-requests`), o HSTS é exigido em HTTPS e "externo" é qualquer domínio diferente do testado;
+  - checklist de liberação (§13): marcados os itens com evidência automatizada; os que dependem de decisão, hospedagem ou aprovação ficaram em aberto, detalhados em `docs/homologacao.md`
+- Validações executadas (IMP-707): `npm test` (23 testes unitários); 87 testes end-to-end no Chromium; 64 no Firefox (23 exclusivos do Chromium pulados); os 87 testes do Chromium contra o pacote `dist/` servido com os cabeçalhos; `npm run lighthouse`; `npm audit`; `npm run check:release`; conferência de que `assets/source/` não é publicado
+- Resultado das validações:
+  - todos os testes passaram, inclusive contra o pacote de publicação;
+  - Lighthouse mobile (mediana de 3, throttling real): desempenho 97, acessibilidade 100, boas práticas 100, SEO 100; LCP 2,15 s; peso total 649 KB;
+  - `npm audit`: 0 vulnerabilidades;
+  - `check:release` bloqueia a publicação por DEC-01 e DEC-04, como esperado
+- Pendências ou riscos:
+  - IMP-707 sem dispositivos físicos nem leitor de tela real; roteiro na seção 3 de `docs/homologacao.md`;
+  - WebKit e o workflow de CI só rodam depois do push;
+  - publicação (IMP-709) aguarda DEC-01, DEC-04 e DEC-07, a revisão de conteúdo (IMP-510) e a aprovação explícita do responsável
+- Arquivos ainda reservados: nenhum
+- Próxima ação recomendada: o responsável responde às decisões de `docs/conteudo-para-aprovacao.md`; em seguida, preencher `site-config.js`, rodar `npm run seo` e seguir `docs/publicacao.md`
+- Estado final: Aceita com limitação
+
+### [2026-11-13 11:42 -03] Contribuição — FR-00 — Estado geral após a execução do plano
+
+- Responsável/conversa: conversa de análise e revisão do plano de implementação
+- Objetivo: consolidar o estado do plano depois da execução automática das frentes FR-01 a FR-07
+- Situação por frente: FR-01, FR-03A, FR-03B, FR-03C e FR-04 concluídas; FR-02 e FR-05 bloqueadas só nas tarefas que dependem de decisão; FR-06 e FR-07 aceitas com limitação (WebKit e CI só após o push; dispositivos físicos e publicação pendentes)
+- Tarefas que dependem do responsável: IMP-003 (DEC-01 a DEC-10), IMP-201, IMP-205, IMP-500 a IMP-502, IMP-504, IMP-506, IMP-508 a IMP-510, IMP-512 (validação na hospedagem), IMP-513, IMP-514, IMP-516, IMP-631 (WebKit), IMP-707 (dispositivos físicos) e IMP-709
+- Documento para o responsável: `docs/conteudo-para-aprovacao.md`
+- Integração: todas as frentes foram integradas localmente na `main` por fast-forward, sem push, conforme combinado com o responsável
+- Estado final: Em andamento — aguardando decisões
 
 <!-- CONTRIBUICOES: ACRESCENTAR NOVAS ENTRADAS IMEDIATAMENTE ANTES DESTE MARCADOR. NAO REMOVER. -->
