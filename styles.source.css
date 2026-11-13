@@ -210,7 +210,6 @@ main > section {
   display: block;
   height: 44px;
   width: auto;
-  mix-blend-mode: multiply;
 }
 
 .nav-link {
