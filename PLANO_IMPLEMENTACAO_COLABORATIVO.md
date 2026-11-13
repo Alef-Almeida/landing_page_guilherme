@@ -622,7 +622,7 @@ Todas as demais tarefas podem ser executadas com as alternativas provisórias da
 | Frente | Escopo | Dependência | Arquivos principais | Responsável | Estado |
 | --- | --- | --- | --- | --- | --- |
 | FR-00 | Coordenação e decisões | Nenhuma | Este plano | Conversa principal | Em andamento |
-| FR-01 | Build e organização de CSS | IMP-006, IMP-007 | `package.json`, Tailwind, CSS, `.gitignore` | Não atribuído | Não iniciada |
+| FR-01 | Build e organização de CSS | IMP-006, IMP-007 | `package.json`, Tailwind, CSS, `.gitignore` | Conversa de análise e revisão do plano | Em andamento |
 | FR-02 | WhatsApp e agenda | FR-01; IMP-201 e IMP-205 aguardam decisões | `site-config.js`, `script.js` | Não atribuído | Não iniciada — parcialmente bloqueada |
 | FR-03A | Estrutura, conteúdo estático, navegação e menu | FR-02 | `index.html`, `script.js`, CSS | Não atribuído | Não iniciada |
 | FR-03B | Abas, agenda acessível, carrosséis e movimento | FR-03A | `index.html`, `script.js`, CSS | Não atribuído | Não iniciada |
@@ -913,5 +913,16 @@ Antes de acrescentar:
 - Arquivos ainda reservados: nenhum
 - Próxima ação recomendada: integrar `fr-00/baseline` à `main`; em seguida atribuir e iniciar a FR-01, usando Tailwind 3.4.17 e comparando com estas capturas
 - Estado final: Concluída
+
+### [2026-11-12 22:05 -03] Reserva de frente — FR-01 — Build e organização de CSS
+
+- Responsável/conversa: conversa de análise e revisão do plano de implementação
+- Frente: FR-01
+- Tarefas: IMP-100 a IMP-109
+- Branch: `fr-01/build-tailwind`, em worktree separado (§11.1)
+- Arquivos reservados: `package.json`, `package-lock.json`, `tailwind.config.js`, `postcss.config.js`, `postcss.build.config.js`, `styles.source.css`, `styles.css`, `index.html` (somente `<head>`, remoção dos blocos `<style>` e ajustes de classes necessários para eliminar `!important`), `.gitignore`, configuração do Prettier, `README.md`
+- Estado inicial: Em andamento
+- Dependências: IMP-006 e IMP-007 concluídas
+- Observação: migração validada por comparação automática do estilo computado de todos os elementos e pseudo-elementos contra o site original com CDN, em 320, 390, 768, 1280 e 1440 px, incluindo hover e menu mobile aberto
 
 <!-- CONTRIBUICOES: ACRESCENTAR NOVAS ENTRADAS IMEDIATAMENTE ANTES DESTE MARCADOR. NAO REMOVER. -->
