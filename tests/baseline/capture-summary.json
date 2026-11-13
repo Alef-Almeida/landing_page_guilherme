@@ -1,0 +1,70 @@
+{
+  "baseUrl": "http://127.0.0.1:8765/",
+  "capturedAt": "2026-11-13T00:53:47.968Z",
+  "viewports": {
+    "320": {
+      "documentWidth": 320,
+      "viewportWidth": 320,
+      "documentHeight": 9385,
+      "horizontalOverflow": false,
+      "console": [
+        {
+          "type": "warning",
+          "text": "cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation"
+        },
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        }
+      ]
+    },
+    "390": {
+      "documentWidth": 390,
+      "viewportWidth": 390,
+      "documentHeight": 8711,
+      "horizontalOverflow": false,
+      "console": [
+        {
+          "type": "warning",
+          "text": "cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation"
+        }
+      ]
+    },
+    "768": {
+      "documentWidth": 768,
+      "viewportWidth": 768,
+      "documentHeight": 7294,
+      "horizontalOverflow": false,
+      "console": [
+        {
+          "type": "warning",
+          "text": "cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation"
+        }
+      ]
+    },
+    "1280": {
+      "documentWidth": 1280,
+      "viewportWidth": 1280,
+      "documentHeight": 5611,
+      "horizontalOverflow": false,
+      "console": [
+        {
+          "type": "warning",
+          "text": "cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation"
+        }
+      ]
+    },
+    "1440": {
+      "documentWidth": 1440,
+      "viewportWidth": 1440,
+      "documentHeight": 5886,
+      "horizontalOverflow": false,
+      "console": [
+        {
+          "type": "warning",
+          "text": "cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation"
+        }
+      ]
+    }
+  }
+}

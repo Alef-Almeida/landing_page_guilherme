@@ -1,0 +1,134 @@
+[
+  {
+    "url": "http://127.0.0.1:8765/",
+    "type": "document",
+    "status": 200,
+    "responseBodyBytes": 29037
+  },
+  {
+    "url": "http://127.0.0.1:8765/styles.css",
+    "type": "stylesheet",
+    "status": 200,
+    "responseBodyBytes": 10119
+  },
+  {
+    "url": "http://127.0.0.1:8765/assets/guilherme-teixeira-logo.png",
+    "type": "image",
+    "status": 200,
+    "responseBodyBytes": 12980
+  },
+  {
+    "url": "http://127.0.0.1:8765/script.js",
+    "type": "script",
+    "status": 200,
+    "responseBodyBytes": 12102
+  },
+  {
+    "url": "https://cdn.tailwindcss.com/",
+    "type": "script",
+    "status": 302,
+    "responseBodyBytes": 0
+  },
+  {
+    "url": "https://cdn.tailwindcss.com/3.4.17",
+    "type": "script",
+    "status": 200,
+    "responseBodyBytes": 126868
+  },
+  {
+    "url": "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap",
+    "type": "stylesheet",
+    "status": 200,
+    "responseBodyBytes": 1393
+  },
+  {
+    "url": "http://127.0.0.1:8765/assets/paper-boat-line.png",
+    "type": "image",
+    "status": 200,
+    "responseBodyBytes": 2681
+  },
+  {
+    "url": "http://127.0.0.1:8765/assets/instagram-04.jpeg",
+    "type": "image",
+    "status": 200,
+    "responseBodyBytes": 212217
+  },
+  {
+    "url": "http://127.0.0.1:8765/assets/instagram-01.jpeg",
+    "type": "image",
+    "status": 200,
+    "responseBodyBytes": 85240
+  },
+  {
+    "url": "http://127.0.0.1:8765/assets/instagram-06.jpeg",
+    "type": "image",
+    "status": 200,
+    "responseBodyBytes": 155430
+  },
+  {
+    "url": "http://127.0.0.1:8765/assets/instagram-02.jpeg",
+    "type": "image",
+    "status": 200,
+    "responseBodyBytes": 109761
+  },
+  {
+    "url": "http://127.0.0.1:8765/assets/instagram-05.jpeg",
+    "type": "image",
+    "status": 200,
+    "responseBodyBytes": 157340
+  },
+  {
+    "url": "http://127.0.0.1:8765/assets/instagram-03.jpeg",
+    "type": "image",
+    "status": 200,
+    "responseBodyBytes": 160719
+  },
+  {
+    "url": "http://127.0.0.1:8765/assets/instagram-08.jpeg",
+    "type": "image",
+    "status": 200,
+    "responseBodyBytes": 176281
+  },
+  {
+    "url": "http://127.0.0.1:8765/assets/instagram-09.jpeg",
+    "type": "image",
+    "status": 200,
+    "responseBodyBytes": 132555
+  },
+  {
+    "url": "http://127.0.0.1:8765/assets/guilherme-photo-02.jpeg",
+    "type": "image",
+    "status": 200,
+    "responseBodyBytes": 548000
+  },
+  {
+    "url": "http://127.0.0.1:8765/assets/instagram-07.jpeg",
+    "type": "image",
+    "status": 200,
+    "responseBodyBytes": 173956
+  },
+  {
+    "url": "http://127.0.0.1:8765/assets/guilherme-photo-01.jpeg",
+    "type": "image",
+    "status": 200,
+    "responseBodyBytes": 275923
+  },
+  {
+    "url": "https://fonts.gstatic.com/l/font?kit=rP2-p2ywxg089UriI5-g4vlH9VoD8CmcqZG40F9JadbnoEwAopwDRUUHvP-6oMc49xLtf0DPCg&skey=cd068b3e1b767e51&v=v17",
+    "type": "font",
+    "status": 200,
+    "responseBodyBytes": 25028
+  },
+  {
+    "url": "https://fonts.gstatic.com/l/font?kit=UcCB3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfU5NJeWUdIOjBeTGbXZdND2M&skey=c491285d6722e4fa&v=v20",
+    "type": "font",
+    "status": 200,
+    "responseBodyBytes": 37539
+  },
+  {
+    "url": "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap",
+    "type": "xhr",
+    "status": 200,
+    "responseBodyBytes": 949
+  }
+]

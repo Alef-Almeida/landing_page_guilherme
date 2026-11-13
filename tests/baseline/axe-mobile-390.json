@@ -1,0 +1,2828 @@
+{
+  "url": "http://127.0.0.1:8765/",
+  "timestamp": "2026-11-13T00:54:13.848Z",
+  "testEngine": {
+    "name": "axe-core",
+    "version": "4.14.0"
+  },
+  "violations": [
+    {
+      "id": "aria-required-children",
+      "impact": "critical",
+      "tags": [
+        "cat.aria",
+        "wcag2a",
+        "wcag131",
+        "EN-301-549",
+        "EN-9.1.3.1",
+        "RGAAv4",
+        "RGAA-9.3.1"
+      ],
+      "description": "Ensure elements with an ARIA role that require child roles contain them",
+      "help": "Certain ARIA roles must contain particular children",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-required-children?application=axeAPI",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "aria-required-children",
+              "data": {
+                "messageKey": "unallowed",
+                "values": "button[aria-label]"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button type=\"button\" class=\"is-active\" data-instagram-dot=\"0\" aria-label=\"Ver post 1\"></button>",
+                  "target": [
+                    "button[data-instagram-dot=\"0\"]"
+                  ]
+                },
+                {
+                  "html": "<button type=\"button\" class=\"\" data-instagram-dot=\"1\" aria-label=\"Ver post 2\"></button>",
+                  "target": [
+                    "button[data-instagram-dot=\"1\"]"
+                  ]
+                },
+                {
+                  "html": "<button type=\"button\" class=\"\" data-instagram-dot=\"2\" aria-label=\"Ver post 3\"></button>",
+                  "target": [
+                    "button[data-instagram-dot=\"2\"]"
+                  ]
+                },
+                {
+                  "html": "<button type=\"button\" class=\"\" data-instagram-dot=\"3\" aria-label=\"Ver post 4\"></button>",
+                  "target": [
+                    "button[data-instagram-dot=\"3\"]"
+                  ]
+                },
+                {
+                  "html": "<button type=\"button\" class=\"\" data-instagram-dot=\"4\" aria-label=\"Ver post 5\"></button>",
+                  "target": [
+                    "button[data-instagram-dot=\"4\"]"
+                  ]
+                },
+                {
+                  "html": "<button type=\"button\" class=\"\" data-instagram-dot=\"5\" aria-label=\"Ver post 6\"></button>",
+                  "target": [
+                    "button[data-instagram-dot=\"5\"]"
+                  ]
+                },
+                {
+                  "html": "<button type=\"button\" class=\"\" data-instagram-dot=\"6\" aria-label=\"Ver post 7\"></button>",
+                  "target": [
+                    "button[data-instagram-dot=\"6\"]"
+                  ]
+                },
+                {
+                  "html": "<button type=\"button\" class=\"\" data-instagram-dot=\"7\" aria-label=\"Ver post 8\"></button>",
+                  "target": [
+                    "button[data-instagram-dot=\"7\"]"
+                  ]
+                },
+                {
+                  "html": "<button type=\"button\" class=\"\" data-instagram-dot=\"8\" aria-label=\"Ver post 9\"></button>",
+                  "target": [
+                    "button[data-instagram-dot=\"8\"]"
+                  ]
+                }
+              ],
+              "impact": "critical",
+              "message": "Element has children which are not allowed: button[aria-label]"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "critical",
+          "html": "<div class=\"instagram-dots\" role=\"tablist\" aria-label=\"Posts do Instagram\">",
+          "target": [
+            ".instagram-dots"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has children which are not allowed: button[aria-label]"
+        }
+      ]
+    },
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT",
+        "RGAAv4",
+        "RGAA-3.2.1"
+      ],
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#667686",
+                "bgColor": "#f8f5f1",
+                "contrastRatio": 4.29,
+                "fontSize": "13.5pt (18px)",
+                "fontWeight": "normal",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<body class=\"bg-sand text-ink font-body antialiased\">",
+                  "target": [
+                    "body"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 4.29 (foreground color: #667686, background color: #f8f5f1, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"mt-7 max-w-xl text-lg leading-8 text-ink/65\">Psicologia clínica para crianças, adolescentes e adultos, com escuta, respeito às singularidades e cuidado construído em conjunto.</p>",
+          "target": [
+            ".mt-7"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.29 (foreground color: #667686, background color: #f8f5f1, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#88949f",
+                "bgColor": "#f8f5f1",
+                "contrastRatio": 2.84,
+                "fontSize": "9.0pt (12px)",
+                "fontWeight": "normal",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<body class=\"bg-sand text-ink font-body antialiased\">",
+                  "target": [
+                    "body"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 2.84 (foreground color: #88949f, background color: #f8f5f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"mt-6 text-xs text-ink/50\">Atendimento ético, individualizado e sem promessas prontas.</p>",
+          "target": [
+            ".mt-6.text-ink\\/50.text-xs"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.84 (foreground color: #88949f, background color: #f8f5f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#7f8e9d",
+                "bgColor": "#ffffff",
+                "contrastRatio": 3.35,
+                "fontSize": "9.0pt (12px)",
+                "fontWeight": "normal",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"absolute -bottom-6 -left-6 rounded-2xl border border-ink/5 bg-white px-5 py-4 shadow-soft\"><p class=\"font-display text-2xl font-semibold\">cada história</p><p class=\"text-xs text-ink/55\">tem seu próprio caminho</p></div>",
+                  "target": [
+                    ".-bottom-6"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 3.35 (foreground color: #7f8e9d, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"text-xs text-ink/55\">tem seu próprio caminho</p>",
+          "target": [
+            ".-bottom-6 > .text-ink\\/55.text-xs"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #7f8e9d, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#8b99a6",
+                "bgColor": "#ffffff",
+                "contrastRatio": 2.91,
+                "fontSize": "9.0pt (12px)",
+                "fontWeight": "normal",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"absolute -bottom-5 -right-3 rounded-2xl bg-white px-5 py-4 shadow-soft\"><p class=\"text-xs uppercase tracking-[.16em] text-ink/50\">CRP 03/36532</p><p class=\"mt-1 text-sm font-semibold\">Psicólogo clínico</p></div>",
+                  "target": [
+                    ".-bottom-5"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 2.91 (foreground color: #8b99a6, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"text-xs uppercase tracking-[.16em] text-ink/50\">CRP 03/36532</p>",
+          "target": [
+            ".tracking-\\[\\.16em\\]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.91 (foreground color: #8b99a6, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#6f8091",
+                "bgColor": "#ffffff",
+                "contrastRatio": 4.05,
+                "fontSize": "9.4pt (12.48px)",
+                "fontWeight": "normal",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button class=\"about-tab\" data-about-tab=\"processo\" role=\"tab\" aria-selected=\"false\">Como acontece</button>",
+                  "target": [
+                    "button[data-about-tab=\"processo\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 4.05 (foreground color: #6f8091, background color: #ffffff, font size: 9.4pt (12.48px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<button class=\"about-tab\" data-about-tab=\"processo\" role=\"tab\" aria-selected=\"false\">Como acontece</button>",
+          "target": [
+            "button[data-about-tab=\"processo\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.05 (foreground color: #6f8091, background color: #ffffff, font size: 9.4pt (12.48px), font weight: normal). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#6f8091",
+                "bgColor": "#ffffff",
+                "contrastRatio": 4.05,
+                "fontSize": "9.4pt (12.48px)",
+                "fontWeight": "normal",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button class=\"about-tab\" data-about-tab=\"rede\" role=\"tab\" aria-selected=\"false\">Cuidado em rede</button>",
+                  "target": [
+                    "button[data-about-tab=\"rede\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 4.05 (foreground color: #6f8091, background color: #ffffff, font size: 9.4pt (12.48px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<button class=\"about-tab\" data-about-tab=\"rede\" role=\"tab\" aria-selected=\"false\">Cuidado em rede</button>",
+          "target": [
+            "button[data-about-tab=\"rede\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.05 (foreground color: #6f8091, background color: #ffffff, font size: 9.4pt (12.48px), font weight: normal). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#88949f",
+                "bgColor": "#f8f5f1",
+                "contrastRatio": 2.84,
+                "fontSize": "9.0pt (12px)",
+                "fontWeight": "normal",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<body class=\"bg-sand text-ink font-body antialiased\">",
+                  "target": [
+                    "body"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 2.84 (foreground color: #88949f, background color: #f8f5f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span>© 2026 Guilherme dos Santos Teixeira · Psicologia</span>",
+          "target": [
+            ".sm\\:flex-row.text-ink\\/50.flex-col > span:nth-child(1)"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.84 (foreground color: #88949f, background color: #f8f5f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#88949f",
+                "bgColor": "#f8f5f1",
+                "contrastRatio": 2.84,
+                "fontSize": "9.0pt (12px)",
+                "fontWeight": "normal",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<body class=\"bg-sand text-ink font-body antialiased\">",
+                  "target": [
+                    "body"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 2.84 (foreground color: #88949f, background color: #f8f5f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span>CRP 03/36532 · Atendimento ético e individualizado</span>",
+          "target": [
+            ".sm\\:flex-row.text-ink\\/50.flex-col > span:nth-child(2)"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.84 (foreground color: #88949f, background color: #f8f5f1, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+        }
+      ]
+    }
+  ],
+  "incomplete": [
+    {
+      "id": "aria-prohibited-attr",
+      "impact": "serious",
+      "tags": [
+        "cat.aria",
+        "wcag2a",
+        "wcag412",
+        "EN-301-549",
+        "EN-9.4.1.2",
+        "RGAAv4",
+        "RGAA-7.1.1"
+      ],
+      "description": "Ensure ARIA attributes are not prohibited for an element's role",
+      "help": "Elements must only use permitted ARIA attributes",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-prohibited-attr?application=axeAPI",
+      "nodes": [
+        {
+          "any": [],
+          "all": [],
+          "none": [
+            {
+              "id": "aria-prohibited-attr",
+              "data": {
+                "role": null,
+                "nodeName": "div",
+                "messageKey": "noRoleSingular",
+                "prohibited": [
+                  "aria-label"
+                ]
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+            }
+          ],
+          "impact": "serious",
+          "html": "<div class=\"portrait-carousel\" aria-label=\"Fotos de Guilherme Teixeira\">",
+          "target": [
+            ".portrait-carousel"
+          ],
+          "failureSummary": "Fix all of the following:\n  aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+        }
+      ]
+    },
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT",
+        "RGAAv4",
+        "RGAA-3.2.1"
+      ],
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "messageKey": "nonBmp"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element content contains only non-text characters"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"ml-2\">→</span>",
+          "target": [
+            ".text-center.hover\\:-translate-y-1.hover\\:shadow-soft > .ml-2"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"atendimentos\" class=\"bg-white px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#atendimentos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"eyebrow\">Escolha seu caminho</p>",
+          "target": [
+            ".mb-12 > div > .eyebrow"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "26.4pt (35.2px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"atendimentos\" class=\"bg-white px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#atendimentos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h2 class=\"section-title\">Um cuidado que considera<br class=\"hidden sm:block\"> a pessoa inteira.</h2>",
+          "target": [
+            ".mb-12 > div > .section-title"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.5pt (14px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"atendimentos\" class=\"bg-white px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#atendimentos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"max-w-sm text-sm leading-6 text-ink/60\">Cada processo começa com uma conversa. A partir dela, entendemos juntos o que faz sentido para o momento atual.</p>",
+          "target": [
+            ".leading-6.max-w-sm.text-ink\\/60"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "9.0pt (12px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"mb-3 text-xs font-semibold uppercase tracking-[.18em] text-ink/55\">01 · Infância e adolescência</p>",
+          "target": [
+            ".child-card > .mt-20.max-w-md > .mb-3.tracking-\\[\\.18em\\].text-ink\\/55"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "22.5pt (30px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h3 class=\"font-display text-3xl font-semibold\">Para crescer com acolhimento, vínculo e respeito.</h3>",
+          "target": [
+            ".child-card > .mt-20.max-w-md > .text-3xl.font-display"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<article class=\"service-card child-card group bg-sky\">",
+                  "target": [
+                    ".child-card"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"mt-4 leading-7 text-ink/65\">Acompanhamento para crianças, adolescentes e famílias, considerando singularidades, neurodivergências, emoções, comportamento e os contextos que fazem parte de cada história.</p>",
+          "target": [
+            ".child-card > .mt-20.max-w-md > .mt-4.leading-7.text-ink\\/65"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.5pt (14px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<article class=\"service-card child-card group bg-sky\">",
+                  "target": [
+                    ".child-card"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<a href=\"#contato\" class=\"mt-8 inline-flex items-center text-sm font-semibold\">Quero saber mais <span class=\"ml-2 transition group-hover:ml-3\">→</span></a>",
+          "target": [
+            ".child-card > .mt-20.max-w-md > .inline-flex.mt-8[href$=\"#contato\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "messageKey": "nonBmp"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element content contains only non-text characters"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"ml-2 transition group-hover:ml-3\">→</span>",
+          "target": [
+            ".child-card > .mt-20.max-w-md > .inline-flex.mt-8[href$=\"#contato\"] > .group-hover\\:ml-3.ml-2.transition"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "9.0pt (12px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<article class=\"service-card adult-card group bg-peach\">",
+                  "target": [
+                    ".adult-card"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"mb-3 text-xs font-semibold uppercase tracking-[.18em] text-ink/55\">02 · Adultos</p>",
+          "target": [
+            ".adult-card > .mt-20.max-w-md > .mb-3.tracking-\\[\\.18em\\].text-ink\\/55"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "22.5pt (30px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h3 class=\"font-display text-3xl font-semibold\">Um lugar para compreender o que você vive.</h3>",
+          "target": [
+            ".adult-card > .mt-20.max-w-md > .text-3xl.font-display"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<article class=\"service-card adult-card group bg-peach\">",
+                  "target": [
+                    ".adult-card"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"mt-4 leading-7 text-ink/65\">Psicoterapia para adultos que desejam olhar para suas experiências, lidar com dificuldades emocionais e desenvolver recursos para os desafios da vida cotidiana.</p>",
+          "target": [
+            ".adult-card > .mt-20.max-w-md > .mt-4.leading-7.text-ink\\/65"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.5pt (14px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<article class=\"service-card adult-card group bg-peach\">",
+                  "target": [
+                    ".adult-card"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<a href=\"#contato\" class=\"mt-8 inline-flex items-center text-sm font-semibold\">Quero saber mais <span class=\"ml-2 transition group-hover:ml-3\">→</span></a>",
+          "target": [
+            ".adult-card > .mt-20.max-w-md > .inline-flex.mt-8[href$=\"#contato\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "messageKey": "nonBmp"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element content contains only non-text characters"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"ml-2 transition group-hover:ml-3\">→</span>",
+          "target": [
+            ".adult-card > .mt-20.max-w-md > .inline-flex.mt-8[href$=\"#contato\"] > .group-hover\\:ml-3.ml-2.transition"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "8.2pt (10.88px)",
+                "fontWeight": "bold",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"portrait-carousel\" aria-label=\"Fotos de Guilherme Teixeira\">",
+                  "target": [
+                    ".portrait-carousel"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"portrait-carousel-label\">Guilherme Teixeira</span>",
+          "target": [
+            ".portrait-carousel-label"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"sobre\" class=\"px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#sobre"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"eyebrow\">Sobre o profissional</p>",
+          "target": [
+            ".gap-14 > div:nth-child(2) > .eyebrow"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "26.4pt (35.2px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"sobre\" class=\"px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#sobre"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h2 class=\"section-title max-w-2xl\">Um trabalho guiado por escuta, ciência e humanidade.</h2>",
+          "target": [
+            ".section-title.max-w-2xl"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "13.5pt (18px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"sobre\" class=\"px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#sobre"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"mt-6 max-w-2xl text-lg leading-8 text-ink/65\">Sou Guilherme dos Santos Teixeira, psicólogo com atuação clínica orientada pela Terapia Cognitivo-Comportamental. Meu trabalho parte da compreensão de que cada pessoa tem uma história, necessidades e potencialidades próprias.</p>",
+          "target": [
+            ".mt-6.text-lg.leading-8"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"sobre\" class=\"px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#sobre"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"mt-5 max-w-2xl leading-7 text-ink/60\">Sou pós-graduando em Desenvolvimento Infantil e Análise do Comportamento Aplicada (ABA) e atuo em equipe multidisciplinar na área de educação inclusiva. Essa experiência amplia meu olhar para o desenvolvimento, a inclusão e o cuidado em rede.</p>",
+          "target": [
+            ".mt-5.text-ink\\/60.max-w-2xl"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "13.8pt (18.4px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"sobre\" class=\"px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#sobre"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<strong>TCC</strong>",
+          "target": [
+            ".stat:nth-child(1) > strong"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"sobre\" class=\"px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#sobre"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span>abordagem clínica</span>",
+          "target": [
+            ".stat:nth-child(1) > span"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "13.8pt (18.4px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"sobre\" class=\"px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#sobre"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<strong>Infância</strong>",
+          "target": [
+            ".stat:nth-child(2) > strong"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"sobre\" class=\"px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#sobre"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span>desenvolvimento</span>",
+          "target": [
+            ".stat:nth-child(2) > span"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "13.8pt (18.4px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"sobre\" class=\"px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#sobre"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<strong>Inclusão</strong>",
+          "target": [
+            ".stat:nth-child(3) > strong"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"sobre\" class=\"px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#sobre"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span>olhar em rede</span>",
+          "target": [
+            ".stat:nth-child(3) > span"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"about-tab-content\">",
+                  "target": [
+                    ".about-tab-content"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"eyebrow\">Um olhar para cada história</span>",
+          "target": [
+            ".about-tab-content > div:nth-child(2) > .eyebrow"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "16.2pt (21.6px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"about-tab-content\">",
+                  "target": [
+                    ".about-tab-content"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h3 id=\"about-tab-title\">A escuta começa antes das respostas.</h3>",
+          "target": [
+            "#about-tab-title"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"about-tab-content\">",
+                  "target": [
+                    ".about-tab-content"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p id=\"about-tab-text\">Acolher é observar o que cada pessoa traz, sem reduzir sua experiência a um diagnóstico ou a uma única explicação.</p>",
+          "target": [
+            "#about-tab-text"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"conteudos\" class=\"bg-ink px-6 py-20 text-white lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#conteudos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"eyebrow text-peach\">Conteúdos para você</p>",
+          "target": [
+            ".text-peach.eyebrow"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "26.4pt (35.2px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"conteudos\" class=\"bg-ink px-6 py-20 text-white lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#conteudos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h2 class=\"section-title text-white\">Informação também<br class=\"hidden sm:block\"> pode ser cuidado.</h2>",
+          "target": [
+            ".section-title.text-white"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.5pt (14px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"conteudos\" class=\"bg-ink px-6 py-20 text-white lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#conteudos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"max-w-sm text-sm leading-6 text-white/60\">Materiais para ajudar a pensar sobre emoções, relações e desenvolvimento com mais clareza e gentileza.</p>",
+          "target": [
+            ".text-white\\/60"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"conteudos\" class=\"bg-ink px-6 py-20 text-white lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#conteudos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"text-peach\">01</span>",
+          "target": [
+            ".content-card:nth-child(1) > .text-peach"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "16.8pt (22.4px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"conteudos\" class=\"bg-ink px-6 py-20 text-white lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#conteudos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h3>Neurodivergência e respeito às diferenças</h3>",
+          "target": [
+            ".content-card:nth-child(1) > h3"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.8pt (14.4px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"conteudos\" class=\"bg-ink px-6 py-20 text-white lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#conteudos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p>Um olhar para além dos diagnósticos, valorizando singularidades e potencialidades.</p>",
+          "target": [
+            ".content-card:nth-child(1) > p"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "9.6pt (12.8px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"conteudos\" class=\"bg-ink px-6 py-20 text-white lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#conteudos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<a href=\"#contato\">Em breve →</a>",
+          "target": [
+            ".content-card:nth-child(1) > a[href$=\"#contato\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"conteudos\" class=\"bg-ink px-6 py-20 text-white lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#conteudos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"text-peach\">02</span>",
+          "target": [
+            ".content-card:nth-child(2) > .text-peach"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "16.8pt (22.4px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"conteudos\" class=\"bg-ink px-6 py-20 text-white lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#conteudos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h3>Regulação emocional no dia a dia</h3>",
+          "target": [
+            ".content-card:nth-child(2) > h3"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.8pt (14.4px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"conteudos\" class=\"bg-ink px-6 py-20 text-white lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#conteudos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p>Como reconhecer emoções e construir recursos possíveis para atravessar momentos difíceis.</p>",
+          "target": [
+            ".content-card:nth-child(2) > p"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "9.6pt (12.8px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"conteudos\" class=\"bg-ink px-6 py-20 text-white lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#conteudos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<a href=\"#contato\">Em breve →</a>",
+          "target": [
+            ".content-card:nth-child(2) > a[href$=\"#contato\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"conteudos\" class=\"bg-ink px-6 py-20 text-white lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#conteudos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"text-peach\">03</span>",
+          "target": [
+            ".content-card:nth-child(3) > .text-peach"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "16.8pt (22.4px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"conteudos\" class=\"bg-ink px-6 py-20 text-white lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#conteudos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h3>Dúvidas sobre psicoterapia</h3>",
+          "target": [
+            ".content-card:nth-child(3) > h3"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.8pt (14.4px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"conteudos\" class=\"bg-ink px-6 py-20 text-white lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#conteudos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p>Respostas acessíveis para quem está pensando em iniciar um acompanhamento.</p>",
+          "target": [
+            ".content-card:nth-child(3) > p"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "9.6pt (12.8px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"conteudos\" class=\"bg-ink px-6 py-20 text-white lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#conteudos"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<a href=\"#faq\">Ver dúvidas →</a>",
+          "target": [
+            ".content-card:nth-child(3) > a[href$=\"#faq\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"faq\" class=\"bg-white px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#faq"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"eyebrow\">Primeiros passos</p>",
+          "target": [
+            ".gap-12 > div:nth-child(1) > .eyebrow"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "26.4pt (35.2px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"faq\" class=\"bg-white px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#faq"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h2 class=\"section-title\">Talvez sua dúvida já esteja aqui.</h2>",
+          "target": [
+            ".gap-12 > div:nth-child(1) > .section-title"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"faq\" class=\"bg-white px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#faq"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"mt-5 max-w-sm leading-7 text-ink/60\">Se não estiver, será um prazer conversar e explicar como funciona o atendimento.</p>",
+          "target": [
+            ".mt-5.max-w-sm.text-ink\\/60"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "13.8pt (18.4px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"faq\" class=\"bg-white px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#faq"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<summary>Como funciona o primeiro contato?</summary>",
+          "target": [
+            "details:nth-child(1) > summary"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "13.8pt (18.4px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"faq\" class=\"bg-white px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#faq"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<summary>O atendimento é online ou presencial?</summary>",
+          "target": [
+            "details:nth-child(2) > summary"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "13.8pt (18.4px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"faq\" class=\"bg-white px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#faq"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<summary>Como funciona o atendimento de crianças e adolescentes?</summary>",
+          "target": [
+            "details:nth-child(3) > summary"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "bold",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"contact-panel mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-sky px-7 py-12 sm:px-12 lg:flex lg:items-center lg:justify-between lg:px-16\">",
+                  "target": [
+                    ".contact-panel"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"eyebrow\">Vamos conversar</p>",
+          "target": [
+            ".contact-panel > div > .eyebrow"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "27.0pt (36px)",
+                "fontWeight": "normal",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"contact-panel mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-sky px-7 py-12 sm:px-12 lg:flex lg:items-center lg:justify-between lg:px-16\">",
+                  "target": [
+                    ".contact-panel"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h2 class=\"max-w-2xl font-display text-4xl font-semibold leading-tight tracking-[-.035em] sm:text-5xl\">O primeiro passo pode ser uma mensagem.</h2>",
+          "target": [
+            ".text-4xl"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"contact-panel mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-sky px-7 py-12 sm:px-12 lg:flex lg:items-center lg:justify-between lg:px-16\">",
+                  "target": [
+                    ".contact-panel"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"mt-5 max-w-xl leading-7 text-ink/65\">Conte um pouco sobre o que você está buscando. O contato inicial é acolhedor, cuidadoso e sem compromisso.</p>",
+          "target": [
+            ".mt-5.max-w-xl.leading-7"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "10.5pt (14px)",
+                "fontWeight": "normal",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"contact-panel mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-sky px-7 py-12 sm:px-12 lg:flex lg:items-center lg:justify-between lg:px-16\">",
+                  "target": [
+                    ".contact-panel"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<a id=\"whatsapp-link\" href=\"https://wa.me/550000...\" target=\"_blank\" rel=\"noreferrer\" class=\"mt-8 inline-flex shr...\">",
+          "target": [
+            "#whatsapp-link"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.2pt (10.88px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"contato\" class=\"px-6 pb-20 lg:px-8 lg:pb-28\">",
+                  "target": [
+                    "#contato"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span>01</span>",
+          "target": [
+            ".contact-steps > div:nth-child(1) > span"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"contato\" class=\"px-6 pb-20 lg:px-8 lg:pb-28\">",
+                  "target": [
+                    "#contato"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<strong>Conte o que você busca</strong>",
+          "target": [
+            ".contact-steps > div:nth-child(1) > strong"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "9.4pt (12.48px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"contato\" class=\"px-6 pb-20 lg:px-8 lg:pb-28\">",
+                  "target": [
+                    "#contato"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p>Uma mensagem simples já é um começo.</p>",
+          "target": [
+            ".contact-steps > div:nth-child(1) > p"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.2pt (10.88px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"contato\" class=\"px-6 pb-20 lg:px-8 lg:pb-28\">",
+                  "target": [
+                    "#contato"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span>02</span>",
+          "target": [
+            ".contact-steps > div:nth-child(2) > span"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"contato\" class=\"px-6 pb-20 lg:px-8 lg:pb-28\">",
+                  "target": [
+                    "#contato"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<strong>Tire suas dúvidas</strong>",
+          "target": [
+            ".contact-steps > div:nth-child(2) > strong"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "9.4pt (12.48px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"contato\" class=\"px-6 pb-20 lg:px-8 lg:pb-28\">",
+                  "target": [
+                    "#contato"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p>Converse sobre o processo com tranquilidade.</p>",
+          "target": [
+            ".contact-steps > div:nth-child(2) > p"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.2pt (10.88px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"contato\" class=\"px-6 pb-20 lg:px-8 lg:pb-28\">",
+                  "target": [
+                    "#contato"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span>03</span>",
+          "target": [
+            ".contact-steps > div:nth-child(3) > span"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"contato\" class=\"px-6 pb-20 lg:px-8 lg:pb-28\">",
+                  "target": [
+                    "#contato"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<strong>Encontre um horário</strong>",
+          "target": [
+            ".contact-steps > div:nth-child(3) > strong"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "9.4pt (12.48px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"contato\" class=\"px-6 pb-20 lg:px-8 lg:pb-28\">",
+                  "target": [
+                    "#contato"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p>A agenda é combinada pelo WhatsApp.</p>",
+          "target": [
+            ".contact-steps > div:nth-child(3) > p"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"agenda\" class=\"agenda-section bg-sand px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#agenda"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"eyebrow\">Agenda de atendimento</p>",
+          "target": [
+            ".gap-6 > div:nth-child(1) > .eyebrow"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "26.4pt (35.2px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"agenda\" class=\"agenda-section bg-sand px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#agenda"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h2 class=\"section-title\">Escolha um horário<br class=\"hidden sm:block\"> para começar a conversa.</h2>",
+          "target": [
+            ".gap-6 > div:nth-child(1) > .section-title"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "9.0pt (12px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section id=\"agenda\" class=\"agenda-section bg-sand px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#agenda"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span>Horários demonstrativos · confirmação pelo WhatsApp</span>",
+          "target": [
+            ".agenda-note > span:nth-child(2)"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.6pt (11.52px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button class=\"schedule-day \" data-day-index=\"1\"><span>quarta</span><strong>11</strong><small>nov</small></button>",
+                  "target": [
+                    "button[data-day-index=\"1\"]"
+                  ]
+                },
+                {
+                  "html": "<section id=\"agenda\" class=\"agenda-section bg-sand px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#agenda"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span>quarta</span>",
+          "target": [
+            "button[data-day-index=\"1\"] > span"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "20.4pt (27.2px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button class=\"schedule-day \" data-day-index=\"1\"><span>quarta</span><strong>11</strong><small>nov</small></button>",
+                  "target": [
+                    "button[data-day-index=\"1\"]"
+                  ]
+                },
+                {
+                  "html": "<section id=\"agenda\" class=\"agenda-section bg-sand px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#agenda"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<strong>11</strong>",
+          "target": [
+            "button[data-day-index=\"1\"] > strong"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "7.6pt (10.08px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button class=\"schedule-day \" data-day-index=\"1\"><span>quarta</span><strong>11</strong><small>nov</small></button>",
+                  "target": [
+                    "button[data-day-index=\"1\"]"
+                  ]
+                },
+                {
+                  "html": "<section id=\"agenda\" class=\"agenda-section bg-sand px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#agenda"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<small>nov</small>",
+          "target": [
+            "button[data-day-index=\"1\"] > small"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.6pt (11.52px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button class=\"schedule-day \" data-day-index=\"2\"><span>quinta</span><strong>12</strong><small>nov</small></button>",
+                  "target": [
+                    "button[data-day-index=\"2\"]"
+                  ]
+                },
+                {
+                  "html": "<section id=\"agenda\" class=\"agenda-section bg-sand px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#agenda"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span>quinta</span>",
+          "target": [
+            "button[data-day-index=\"2\"] > span"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "20.4pt (27.2px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button class=\"schedule-day \" data-day-index=\"2\"><span>quinta</span><strong>12</strong><small>nov</small></button>",
+                  "target": [
+                    "button[data-day-index=\"2\"]"
+                  ]
+                },
+                {
+                  "html": "<section id=\"agenda\" class=\"agenda-section bg-sand px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#agenda"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<strong>12</strong>",
+          "target": [
+            "button[data-day-index=\"2\"] > strong"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "7.6pt (10.08px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button class=\"schedule-day \" data-day-index=\"2\"><span>quinta</span><strong>12</strong><small>nov</small></button>",
+                  "target": [
+                    "button[data-day-index=\"2\"]"
+                  ]
+                },
+                {
+                  "html": "<section id=\"agenda\" class=\"agenda-section bg-sand px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#agenda"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<small>nov</small>",
+          "target": [
+            "button[data-day-index=\"2\"] > small"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.6pt (11.52px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button class=\"schedule-day \" data-day-index=\"3\"><span>sexta</span><strong>13</strong><small>nov</small></button>",
+                  "target": [
+                    "button[data-day-index=\"3\"]"
+                  ]
+                },
+                {
+                  "html": "<section id=\"agenda\" class=\"agenda-section bg-sand px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#agenda"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span>sexta</span>",
+          "target": [
+            "button[data-day-index=\"3\"] > span"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "20.4pt (27.2px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button class=\"schedule-day \" data-day-index=\"3\"><span>sexta</span><strong>13</strong><small>nov</small></button>",
+                  "target": [
+                    "button[data-day-index=\"3\"]"
+                  ]
+                },
+                {
+                  "html": "<section id=\"agenda\" class=\"agenda-section bg-sand px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#agenda"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<strong>13</strong>",
+          "target": [
+            "button[data-day-index=\"3\"] > strong"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "7.6pt (10.08px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button class=\"schedule-day \" data-day-index=\"3\"><span>sexta</span><strong>13</strong><small>nov</small></button>",
+                  "target": [
+                    "button[data-day-index=\"3\"]"
+                  ]
+                },
+                {
+                  "html": "<section id=\"agenda\" class=\"agenda-section bg-sand px-6 py-20 lg:px-8 lg:py-28\">",
+                  "target": [
+                    "#agenda"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<small>nov</small>",
+          "target": [
+            "button[data-day-index=\"3\"] > small"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        }
+      ]
+    }
+  ]
+}

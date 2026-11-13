@@ -217,7 +217,7 @@ As correções devem elevar o acabamento sem transformar a página em uma interf
 - IMP-004 — *Consolidada em DEC-02 (IMP-003).* A estratégia de agenda é a própria resposta de DEC-02; enquanto pendente, vale o modo provisório `whatsapp-only` (§6.3).
 - [x] IMP-005 — Definir quais tarefas podem ocorrer em paralelo (§8.1).
 - [x] IMP-006 — Versionar este plano e os dois relatórios em commit dedicado na `main`, antes de qualquer frente iniciar alterações.
-- [ ] IMP-007 — Registrar o baseline mensurável do commit-base em `tests/baseline/`: Lighthouse mobile e desktop, axe, peso total transferido, lista de requisições e capturas de tela das seções em 320, 390, 768, 1280 e 1440 px.
+- [x] IMP-007 — Registrar o baseline mensurável do commit-base em `tests/baseline/`: Lighthouse mobile e desktop, axe, peso total transferido, lista de requisições e capturas de tela das seções em 320, 390, 768, 1280 e 1440 px.
 
 ### Critérios de aceite
 
@@ -235,7 +235,7 @@ As correções devem elevar o acabamento sem transformar a página em uma interf
 ### Tarefas
 
 - [ ] IMP-100 — Criar `package.json` com scripts de desenvolvimento, build, formatação e testes.
-- [ ] IMP-101 — Fixar versões das dependências de desenvolvimento.
+- [ ] IMP-101 — Fixar versões das dependências de desenvolvimento. O CDN resolve hoje para Tailwind **3.4.17** (baseline IMP-007); usar essa versão para reproduzir o layout atual e tratar qualquer atualização de major como mudança separada.
 - [ ] IMP-102 — Criar `tailwind.config.js` apontando para HTML e JavaScript, inclusive para as classes hoje montadas em template strings de `script.js` (até IMP-307 movê-las para o HTML).
 - [ ] IMP-103 — Criar `styles.source.css` com diretivas Tailwind e estilos próprios.
 - [ ] IMP-104 — Mover os 14 blocos `<style>` do HTML para a fonte de CSS.
@@ -488,7 +488,7 @@ Os testes de cada componente são escritos pela frente que o implementa, na mesm
 - [ ] IMP-614 — Navegação completa das abas.
 - [ ] IMP-615 — Agenda e mensagens geradas.
 - [ ] IMP-616 — Controles e pausa dos carrosséis.
-- [ ] IMP-617 — Ausência de overflow em 320, 375, 390, 768, 1024, 1280 e 1440 px e com zoom de 200%.
+- [ ] IMP-617 — Ausência de overflow em 320, 375, 390, 768, 1024, 1280 e 1440 px e com zoom de 200%, verificando os limites de cada elemento visível e não apenas o `scrollWidth` do documento (o baseline mostra corte no hero em 320 px sem overflow do documento).
 - [ ] IMP-618 — Ordem de foco.
 - [ ] IMP-619 — Links internos e assets sem 404.
 
@@ -514,17 +514,17 @@ Os testes de cada componente são escritos pela frente que o implementa, na mesm
 
 ### Metas iniciais
 
-| Métrica | Meta mínima inicial |
-| --- | ---: |
-| Lighthouse Acessibilidade | 95 |
-| Lighthouse SEO | 90 |
-| Lighthouse Boas Práticas | 90 |
-| Lighthouse Desempenho mobile | 85 |
-| Violações axe críticas/sérias | 0 não justificadas |
-| Erros JavaScript nos fluxos | 0 |
-| Assets locais quebrados | 0 |
+| Métrica | Meta mínima inicial | Baseline (IMP-007) |
+| --- | ---: | ---: |
+| Lighthouse Acessibilidade | 95 | 90 |
+| Lighthouse SEO | 90 | 100 |
+| Lighthouse Boas Práticas | 90 | 96 |
+| Lighthouse Desempenho mobile | 85 | 73 (mediana; 68–76) |
+| Violações axe críticas/sérias | 0 não justificadas | 2 regras (1 crítica, 1 séria) |
+| Erros JavaScript nos fluxos | 0 | 0 de aplicação; 1 erro de recurso (favicon 404) |
+| Assets locais quebrados | 0 | 1 (`/favicon.ico`) |
 
-As metas poderão ser elevadas após a medição do baseline (IMP-007).
+Detalhes, método e capturas em `tests/baseline/README.md`. Além das metas mínimas, **nenhuma categoria pode ficar abaixo do baseline**: SEO e Boas Práticas já partem acima da meta e não podem regredir.
 
 ## Fase 7 — Documentação, homologação e publicação
 
@@ -897,6 +897,21 @@ Antes de acrescentar:
 - Pendências ou riscos: DEC-01 a DEC-10 continuam pendentes. IMP-006 foi concluída com autorização do responsável, no commit que versiona este plano e os dois relatórios
 - Arquivos ainda reservados: nenhum
 - Próxima ação recomendada: executar IMP-007; em seguida atribuir FR-01 e, na sequência, as tarefas independentes de decisão da FR-02
+- Estado final: Concluída
+
+### [2026-11-12 21:58 -03] Contribuição — FR-00 — Baseline do commit-base
+
+- Responsável/conversa: conversa de análise e revisão do plano de implementação
+- Objetivo: registrar a medição de referência antes de qualquer alteração de implementação
+- Tarefas relacionadas: IMP-007 (concluída); ajustes de texto em IMP-101 e IMP-617; tabela de metas da Fase 6
+- Branch: `fr-00/baseline`, em worktree separado, conforme §11.1
+- Arquivos alterados: `PLANO_IMPLEMENTACAO_COLABORATIVO.md`; criados `tests/baseline/README.md`, `tests/baseline/scripts/capture.mjs`, relatórios JSON de Lighthouse, axe, requisições e resumo, e 50 capturas PNG em `tests/baseline/screenshots/`
+- Alterações realizadas: Lighthouse mobile e desktop (3 execuções cada, mediana guardada); axe-core em 390 e 1280 px; inventário de requisições; capturas da página inteira e de 9 regiões em 320, 390, 768, 1280 e 1440 px; coluna de baseline na tabela de metas e regra de não regressão
+- Validações executadas: conferência visual de capturas do hero em 320 px e do cabeçalho em 768 px; confirmação dos alvos das violações axe; comparação dos resultados com QA-004, QA-007, QA-010, QA-012 e QA-013
+- Resultado das validações: Lighthouse mobile 73/90/96/100 (desempenho/acessibilidade/boas práticas/SEO), desktop 95/90/96/100; LCP mobile 7,2 s; 2,47 MB e 22 requisições, sendo 2,20 MB de 13 imagens; axe com `aria-required-children` crítico (`.instagram-dots`) e `color-contrast` sério (8 nós no mobile, 13 no desktop); capturas confirmam o corte do hero em 320 px e a quebra do CTA do cabeçalho em 768 px; CDN do Tailwind resolve para 3.4.17
+- Pendências ou riscos: o servidor de medição não usa compressão nem cache, então essas auditorias devem ser refeitas na hospedagem (DEC-04); o desempenho varia com a rede porque Tailwind e fontes vêm da internet; as ferramentas de medição ficaram fora do `package.json` até a FR-01 existir
+- Arquivos ainda reservados: nenhum
+- Próxima ação recomendada: integrar `fr-00/baseline` à `main`; em seguida atribuir e iniciar a FR-01, usando Tailwind 3.4.17 e comparando com estas capturas
 - Estado final: Concluída
 
 <!-- CONTRIBUICOES: ACRESCENTAR NOVAS ENTRADAS IMEDIATAMENTE ANTES DESTE MARCADOR. NAO REMOVER. -->
