@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body class="bg-sand text-ink font-body antialiased">
+    <a href="#inicio" class="skip-link">Pular para o conteúdo</a>
     <div class="brand-wave" aria-hidden="true">
       <svg viewBox="0 0 54 900" preserveAspectRatio="none">
         <defs>
@@ -58,19 +59,27 @@
           class="hidden rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-ink/90 md:inline-flex"
           >Vamos conversar</a
         >
-        <button id="menu-toggle" class="rounded-full border border-ink/10 p-2 md:hidden" aria-label="Abrir menu">
+        <button
+          id="menu-toggle"
+          type="button"
+          class="rounded-full border border-ink/10 p-2 md:hidden"
+          aria-label="Abrir menu"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          hidden
+        >
           <span class="block h-0.5 w-5 bg-ink"></span><span class="mt-1 block h-0.5 w-5 bg-ink"></span>
         </button>
       </div>
-      <div id="mobile-menu" class="hidden border-t border-ink/5 px-6 pb-5 pt-3 md:hidden">
+      <nav id="mobile-menu" class="border-t border-ink/5 px-6 pb-5 pt-3 md:hidden" aria-label="Menu" hidden>
         <a href="#atendimentos">Atendimentos</a><a href="#sobre">Sobre</a><a href="#conteudos">Conteúdos</a
         ><a href="#faq">Dúvidas</a><a href="#agenda">Agenda</a><a href="#contato">Contato</a>
-      </div>
+      </nav>
     </header>
 
     <div class="page-transition" aria-hidden="true"></div>
-    <main id="inicio">
-      <section class="relative overflow-hidden px-6 pb-20 pt-36 lg:px-8 lg:pb-28 lg:pt-48">
+    <main id="inicio" tabindex="-1">
+      <section class="relative overflow-hidden px-6 pb-20 pt-36 lg:px-8 lg:pb-28 lg:pt-48" aria-labelledby="hero-title">
         <div class="absolute -right-24 top-24 h-72 w-72 rounded-full bg-sky/70 blur-3xl"></div>
         <div class="absolute -left-32 bottom-0 h-80 w-80 rounded-full bg-peach/20 blur-3xl"></div>
         <div class="relative mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1.05fr_.95fr]">
@@ -81,6 +90,7 @@
               <span class="h-2 w-2 rounded-full bg-peach"></span> Um espaço para você
             </p>
             <h1
+              id="hero-title"
               class="max-w-2xl font-display text-5xl font-semibold leading-[1.03] tracking-[-.045em] sm:text-6xl lg:text-7xl"
             >
               Cuidar da mente é abrir espaço para novas possibilidades.
@@ -103,42 +113,101 @@
             <p class="mt-6 text-xs text-ink/50">Atendimento ético, individualizado e sem promessas prontas.</p>
           </div>
           <div class="relative reveal delay-1">
-            <div class="hero-card relative mx-auto max-w-md rounded-[2rem] bg-white p-5 shadow-soft">
-              <div class="rounded-[1.5rem] bg-mist p-8">
-                <div class="flex items-center justify-between">
-                  <span
-                    class="rounded-full bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-[.16em] text-ink/55"
-                    >presença</span
-                  ><span class="text-2xl text-peach">✦</span>
+            <div class="hero-card instagram-card relative mx-auto max-w-md rounded-[2rem] bg-white p-5 shadow-soft">
+              <div class="instagram-shell">
+                <div class="instagram-post">
+                  <img
+                    src="./assets/instagram-01.jpeg"
+                    alt="Post do Instagram de Guilherme Teixeira 1"
+                    class="is-active"
+                    data-instagram-slide="0"
+                  />
+                  <img
+                    src="./assets/instagram-02.jpeg"
+                    alt="Post do Instagram de Guilherme Teixeira 2"
+                    data-instagram-slide="1"
+                  />
+                  <img
+                    src="./assets/instagram-03.jpeg"
+                    alt="Post do Instagram de Guilherme Teixeira 3"
+                    data-instagram-slide="2"
+                  />
+                  <img
+                    src="./assets/instagram-04.jpeg"
+                    alt="Post do Instagram de Guilherme Teixeira 4"
+                    data-instagram-slide="3"
+                  />
+                  <img
+                    src="./assets/instagram-05.jpeg"
+                    alt="Post do Instagram de Guilherme Teixeira 5"
+                    data-instagram-slide="4"
+                  />
+                  <img
+                    src="./assets/instagram-06.jpeg"
+                    alt="Post do Instagram de Guilherme Teixeira 6"
+                    data-instagram-slide="5"
+                  />
+                  <img
+                    src="./assets/instagram-07.jpeg"
+                    alt="Post do Instagram de Guilherme Teixeira 7"
+                    data-instagram-slide="6"
+                  />
+                  <img
+                    src="./assets/instagram-08.jpeg"
+                    alt="Post do Instagram de Guilherme Teixeira 8"
+                    data-instagram-slide="7"
+                  />
+                  <img
+                    src="./assets/instagram-09.jpeg"
+                    alt="Post do Instagram de Guilherme Teixeira 9"
+                    data-instagram-slide="8"
+                  />
                 </div>
-                <div class="boat-scene mt-12">
-                  <div class="sun"></div>
-                  <svg class="hero-boat" viewBox="0 0 320 170" fill="none">
-                    <path d="m38 86 235-65-70 128-45-50L38 86Z" fill="#F5B79C" />
-                    <path
-                      d="m158 99 115-78-70 128"
-                      stroke="#17324D"
-                      stroke-width="5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path d="m38 86 120 13" stroke="#17324D" stroke-width="5" stroke-linecap="round" />
-                    <path
-                      d="M34 137c52-17 106-18 163-1 45 14 75 14 104-3"
-                      stroke="#7FAFC4"
-                      stroke-width="4"
-                      stroke-linecap="round"
-                    />
+                <div class="instagram-actions">
+                  <div class="instagram-actions-left">
+                    <svg class="instagram-action" viewBox="0 0 24 24" aria-label="Curtir">
+                      <path
+                        d="M20.8 8.8c0 5.4-8.8 10.2-8.8 10.2S3.2 14.2 3.2 8.8A4.8 4.8 0 0 1 12 6.1a4.8 4.8 0 0 1 8.8 2.7Z"
+                      ></path></svg
+                    ><svg class="instagram-action" viewBox="0 0 24 24" aria-label="Comentar">
+                      <path
+                        d="M20 11.2a7.8 7.8 0 0 1-8 7.5 8.8 8.8 0 0 1-3.1-.6L4 20l1.4-4.1A7.4 7.4 0 0 1 4 11.2a7.8 7.8 0 0 1 8-7.5 7.8 7.8 0 0 1 8 7.5Z"
+                      ></path></svg
+                    ><svg class="instagram-action" viewBox="0 0 24 24" aria-label="Compartilhar">
+                      <path d="m21 3-7.2 18-3.3-7.5L3 10.2 21 3Z"></path>
+                      <path d="m10.5 13.5 4.2-4.2"></path>
+                    </svg>
+                  </div>
+                  <svg class="instagram-action" viewBox="0 0 24 24" aria-label="Salvar">
+                    <path d="M5 4.5A1.5 1.5 0 0 1 6.5 3h11A1.5 1.5 0 0 1 19 4.5V21l-7-4-7 4V4.5Z"></path>
                   </svg>
                 </div>
-                <div class="mt-8 grid grid-cols-2 gap-3 text-xs text-ink/60">
-                  <div class="rounded-2xl bg-white p-4">
-                    <span class="mb-2 block text-xl">◌</span>Escuta<br />individualizada
-                  </div>
-                  <div class="rounded-2xl bg-white p-4">
-                    <span class="mb-2 block text-xl">↗</span>Construção<br />de possibilidades
-                  </div>
+                <div class="instagram-dots" data-instagram-dots hidden>
+                  <button type="button" class="is-active" data-instagram-dot="0" aria-label="Ver post 1"></button>
+                  <button type="button" data-instagram-dot="1" aria-label="Ver post 2"></button>
+                  <button type="button" data-instagram-dot="2" aria-label="Ver post 3"></button>
+                  <button type="button" data-instagram-dot="3" aria-label="Ver post 4"></button>
+                  <button type="button" data-instagram-dot="4" aria-label="Ver post 5"></button>
+                  <button type="button" data-instagram-dot="5" aria-label="Ver post 6"></button>
+                  <button type="button" data-instagram-dot="6" aria-label="Ver post 7"></button>
+                  <button type="button" data-instagram-dot="7" aria-label="Ver post 8"></button>
+                  <button type="button" data-instagram-dot="8" aria-label="Ver post 9"></button>
                 </div>
+                <span class="ig-float ig-float-one" aria-hidden="true"
+                  ><svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <circle cx="17.5" cy="6.5" r=".7" fill="currentColor" stroke="none"></circle></svg
+                ></span>
+                <span class="ig-float ig-float-two" aria-hidden="true"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M20.8 8.8c0 5.4-8.8 10.2-8.8 10.2S3.2 14.2 3.2 8.8A4.8 4.8 0 0 1 12 6.1a4.8 4.8 0 0 1 8.8 2.7Z"
+                    ></path></svg
+                ></span>
+                <span class="ig-float ig-float-three" aria-hidden="true"
+                  ><svg viewBox="0 0 24 24"><path d="m21 3-7.2 18-3.3-7.5L3 10.2 21 3Z"></path></svg
+                ></span>
               </div>
             </div>
             <div class="absolute -bottom-6 -left-6 rounded-2xl border border-ink/5 bg-white px-5 py-4 shadow-soft">
@@ -149,12 +218,12 @@
         </div>
       </section>
 
-      <section id="atendimentos" class="bg-white px-6 py-20 lg:px-8 lg:py-28">
+      <section id="atendimentos" class="bg-white px-6 py-20 lg:px-8 lg:py-28" aria-labelledby="atendimentos-title">
         <div class="mx-auto max-w-6xl">
           <div class="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div>
               <p class="eyebrow">Escolha seu caminho</p>
-              <h2 class="section-title">
+              <h2 id="atendimentos-title" class="section-title">
                 Um cuidado que considera<br class="hidden sm:block" />
                 a pessoa inteira.
               </h2>
@@ -243,12 +312,22 @@
         </div>
       </section>
 
-      <section id="sobre" class="px-6 py-20 lg:px-8 lg:py-28">
+      <section id="sobre" class="px-6 py-20 lg:px-8 lg:py-28" aria-labelledby="sobre-title">
         <div class="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[.8fr_1.2fr]">
           <div class="relative">
-            <div class="portrait-placeholder">
-              <span>G</span>
-              <div class="portrait-line"></div>
+            <div class="portrait-carousel" aria-label="Fotos de Guilherme Teixeira">
+              <img
+                src="./assets/guilherme-photo-01.jpeg"
+                alt="Guilherme Teixeira em atendimento clínico"
+                class="is-active"
+                data-portrait-slide="0"
+              />
+              <img
+                src="./assets/guilherme-photo-02.jpeg"
+                alt="Guilherme Teixeira em atendimento clínico"
+                data-portrait-slide="1"
+              />
+              <span class="portrait-carousel-label">Guilherme Teixeira</span>
             </div>
             <div class="absolute -bottom-5 -right-3 rounded-2xl bg-white px-5 py-4 shadow-soft">
               <p class="text-xs uppercase tracking-[.16em] text-ink/50">CRP 03/36532</p>
@@ -257,7 +336,9 @@
           </div>
           <div>
             <p class="eyebrow">Sobre o profissional</p>
-            <h2 class="section-title max-w-2xl">Um trabalho guiado por escuta, ciência e humanidade.</h2>
+            <h2 id="sobre-title" class="section-title max-w-2xl">
+              Um trabalho guiado por escuta, ciência e humanidade.
+            </h2>
             <p class="mt-6 max-w-2xl text-lg leading-8 text-ink/65">
               Sou Guilherme dos Santos Teixeira, psicólogo com atuação clínica orientada pela Terapia
               Cognitivo-Comportamental. Meu trabalho parte da compreensão de que cada pessoa tem uma história,
@@ -275,14 +356,52 @@
             </div>
           </div>
         </div>
+        <div class="about-interactive mx-auto mt-14 max-w-6xl">
+          <div class="about-tab-list" data-about-tablist aria-label="Conheça o jeito de trabalhar" hidden>
+            <button type="button" class="about-tab is-active" id="about-tab-escuta" data-about-tab="escuta">
+              Escuta que considera</button
+            ><button type="button" class="about-tab" id="about-tab-processo" data-about-tab="processo">
+              Como acontece</button
+            ><button type="button" class="about-tab" id="about-tab-rede" data-about-tab="rede">Cuidado em rede</button>
+          </div>
+          <div class="about-tab-content">
+            <div class="about-tab-art">
+              <img src="./assets/paper-boat-line.png" alt="Barquinho de papel em uma linha de ondas" />
+            </div>
+            <div>
+              <span class="eyebrow">Um olhar para cada história</span>
+              <div class="about-tab-panel" id="about-panel-escuta" data-about-panel="escuta">
+                <h3>A escuta começa antes das respostas.</h3>
+                <p>
+                  Acolher é observar o que cada pessoa traz, sem reduzir sua experiência a um diagnóstico ou a uma única
+                  explicação.
+                </p>
+              </div>
+              <div class="about-tab-panel" id="about-panel-processo" data-about-panel="processo">
+                <h3>O processo é construído em conjunto.</h3>
+                <p>
+                  O acompanhamento respeita o tempo, os objetivos e os recursos de cada pessoa, com clareza sobre os
+                  próximos passos.
+                </p>
+              </div>
+              <div class="about-tab-panel" id="about-panel-rede" data-about-panel="rede">
+                <h3>Ninguém precisa cuidar sozinho.</h3>
+                <p>
+                  Quando necessário, o trabalho conversa com família, escola e outros profissionais para ampliar as
+                  possibilidades de cuidado.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section id="conteudos" class="bg-ink px-6 py-20 text-white lg:px-8 lg:py-28">
+      <section id="conteudos" class="bg-ink px-6 py-20 text-white lg:px-8 lg:py-28" aria-labelledby="conteudos-title">
         <div class="mx-auto max-w-6xl">
           <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div>
               <p class="eyebrow text-peach">Conteúdos para você</p>
-              <h2 class="section-title text-white">
+              <h2 id="conteudos-title" class="section-title text-white">
                 Informação também<br class="hidden sm:block" />
                 pode ser cuidado.
               </h2>
@@ -314,11 +433,11 @@
         </div>
       </section>
 
-      <section id="faq" class="bg-white px-6 py-20 lg:px-8 lg:py-28">
+      <section id="faq" class="bg-white px-6 py-20 lg:px-8 lg:py-28" aria-labelledby="faq-title">
         <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[.8fr_1.2fr]">
           <div>
             <p class="eyebrow">Primeiros passos</p>
-            <h2 class="section-title">Talvez sua dúvida já esteja aqui.</h2>
+            <h2 id="faq-title" class="section-title">Talvez sua dúvida já esteja aqui.</h2>
             <p class="mt-5 max-w-sm leading-7 text-ink/60">
               Se não estiver, será um prazer conversar e explicar como funciona o atendimento.
             </p>
@@ -349,40 +468,12 @@
         </div>
       </section>
 
-      <section id="contato" class="px-6 pb-20 lg:px-8 lg:pb-28">
-        <div
-          class="contact-panel mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-sky px-7 py-12 sm:px-12 lg:flex lg:items-center lg:justify-between lg:px-16"
-        >
-          <div>
-            <p class="eyebrow">Vamos conversar</p>
-            <h2 class="max-w-2xl font-display text-4xl font-semibold leading-tight tracking-[-.035em] sm:text-5xl">
-              O primeiro passo pode ser uma mensagem.
-            </h2>
-            <p class="mt-5 max-w-xl leading-7 text-ink/65">
-              Conte um pouco sobre o que você está buscando. O contato inicial é acolhedor, cuidadoso e sem compromisso.
-            </p>
-          </div>
-          <div class="mt-8 shrink-0 lg:mt-0">
-            <a
-              id="whatsapp-link"
-              data-whatsapp-cta="general"
-              aria-disabled="true"
-              class="inline-flex items-center justify-center rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white transition hover:-translate-y-1 hover:shadow-soft"
-              >Falar pelo WhatsApp <span class="ml-2" aria-hidden="true">↗</span></a
-            >
-            <p class="whatsapp-status" data-whatsapp-status hidden></p>
-            <noscript
-              ><p class="whatsapp-status">Para conversar pelo WhatsApp, ative o JavaScript do navegador.</p></noscript
-            >
-          </div>
-        </div>
-      </section>
-      <section id="agenda" class="agenda-section bg-sand px-6 py-20 lg:px-8 lg:py-28">
+      <section id="agenda" class="bg-sand px-6 py-20 lg:px-8 lg:py-28" aria-labelledby="agenda-title">
         <div class="mx-auto max-w-6xl">
           <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <p class="eyebrow">Agenda de atendimento</p>
-              <h2 class="section-title" data-schedule-title>
+              <h2 id="agenda-title" class="section-title" data-schedule-title>
                 Consulte a disponibilidade<br class="hidden sm:block" />
                 e comece a conversa.
               </h2>
@@ -417,6 +508,52 @@
                 Enviar a mensagem não reserva um horário: a consulta só é marcada após a confirmação pelo WhatsApp.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contato" class="px-6 pb-20 lg:px-8 lg:pb-28" aria-labelledby="contato-title">
+        <div
+          class="contact-panel mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-sky px-7 py-12 sm:px-12 lg:flex lg:items-center lg:justify-between lg:px-16"
+        >
+          <div>
+            <p class="eyebrow">Vamos conversar</p>
+            <h2
+              id="contato-title"
+              class="max-w-2xl font-display text-4xl font-semibold leading-tight tracking-[-.035em] sm:text-5xl"
+            >
+              O primeiro passo pode ser uma mensagem.
+            </h2>
+            <p class="mt-5 max-w-xl leading-7 text-ink/65">
+              Conte um pouco sobre o que você está buscando. O contato inicial é acolhedor, cuidadoso e sem compromisso.
+            </p>
+          </div>
+          <div class="mt-8 shrink-0 lg:mt-0">
+            <a
+              id="whatsapp-link"
+              data-whatsapp-cta="general"
+              aria-disabled="true"
+              class="inline-flex items-center justify-center rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white transition hover:-translate-y-1 hover:shadow-soft"
+              >Falar pelo WhatsApp <span class="ml-2" aria-hidden="true">↗</span></a
+            >
+            <p class="whatsapp-status" data-whatsapp-status hidden></p>
+            <noscript
+              ><p class="whatsapp-status">Para conversar pelo WhatsApp, ative o JavaScript do navegador.</p></noscript
+            >
+          </div>
+        </div>
+        <div class="contact-steps mx-auto mt-8 grid max-w-6xl gap-3 sm:grid-cols-3">
+          <div>
+            <span>01</span><strong>Conte o que você busca</strong>
+            <p>Uma mensagem simples já é um começo.</p>
+          </div>
+          <div>
+            <span>02</span><strong>Tire suas dúvidas</strong>
+            <p>Converse sobre o processo com tranquilidade.</p>
+          </div>
+          <div>
+            <span>03</span><strong>Encontre um horário</strong>
+            <p>A agenda é combinada pelo WhatsApp.</p>
           </div>
         </div>
       </section>

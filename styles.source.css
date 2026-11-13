@@ -16,6 +16,8 @@
 
 :root {
   scroll-behavior: smooth;
+  /* Compensa o cabeçalho fixo nas âncoras internas (IMP-304). */
+  scroll-padding-top: 5.5rem;
 }
 
 html,
@@ -23,14 +25,33 @@ body {
   overflow-x: hidden;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
+/* Destino do link "Pular para o conteúdo": recebe foco por programa, sem contorno permanente. */
+main:focus {
+  outline: none;
 }
 
-/* Temporário: reordena Contato após Agenda. Será removido em IMP-300/IMP-301. */
-main > #contato {
-  order: 99;
+/* O atributo hidden precisa vencer o display definido pelos componentes. */
+.instagram-dots[hidden],
+.about-tab-list[hidden] {
+  display: none;
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 200;
+  border-radius: 999px;
+  background: #17324d;
+  padding: 0.75rem 1.25rem;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
 }
 
 main > section {
@@ -214,40 +235,8 @@ main > section {
 }
 
 /* ==========================================================================
-   Hero: card original (sem JavaScript) e mockup do Instagram (com JavaScript)
+   Hero: mockup do Instagram
    ========================================================================== */
-
-.hero-card {
-  transform: rotate(2deg);
-  transition: transform 0.5s;
-}
-
-.hero-card:hover {
-  transform: rotate(0) translateY(-4px);
-}
-
-.boat-scene {
-  position: relative;
-  height: 175px;
-}
-
-.sun {
-  position: absolute;
-  right: 20%;
-  top: -20px;
-  height: 70px;
-  width: 70px;
-  border-radius: 50%;
-  background: #f5b79c;
-  opacity: 0.75;
-}
-
-.hero-boat {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  width: 100%;
-}
 
 .instagram-card {
   position: relative;
@@ -303,45 +292,6 @@ main > section {
   pointer-events: none;
   content: '';
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 45%, rgba(23, 50, 77, 0.12));
-}
-
-.instagram-top {
-  position: absolute;
-  left: 1rem;
-  right: 1rem;
-  top: 0.9rem;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #fff;
-  text-shadow: 0 1px 8px rgba(23, 50, 77, 0.25);
-}
-
-.instagram-user {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-}
-
-.instagram-avatar {
-  display: grid;
-  height: 1.8rem;
-  width: 1.8rem;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.7);
-  color: #17324d;
-  font-size: 0.62rem;
-}
-
-.instagram-mark {
-  height: 1.3rem;
-  width: 1.3rem;
 }
 
 .instagram-actions {
@@ -552,55 +502,8 @@ main > section {
 }
 
 /* ==========================================================================
-   Sobre: retrato original (sem JavaScript), carrossel de fotos e abas
+   Sobre: carrossel de fotos e abas
    ========================================================================== */
-
-.portrait-placeholder {
-  position: relative;
-  display: grid;
-  min-height: 450px;
-  place-items: center;
-  overflow: hidden;
-  border-radius: 2rem;
-  background: linear-gradient(145deg, #ddecf5, #f5b79c);
-}
-
-.portrait-placeholder::before,
-.portrait-placeholder::after {
-  position: absolute;
-  content: '';
-  border: 1px solid rgba(23, 50, 77, 0.18);
-  border-radius: 50%;
-}
-
-.portrait-placeholder::before {
-  height: 330px;
-  width: 330px;
-}
-
-.portrait-placeholder::after {
-  height: 470px;
-  width: 470px;
-}
-
-.portrait-placeholder span {
-  position: relative;
-  z-index: 2;
-  font-family: 'DM Sans';
-  font-size: 10rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.portrait-line {
-  position: absolute;
-  bottom: 22%;
-  left: 10%;
-  height: 1px;
-  width: 80%;
-  background: rgba(23, 50, 77, 0.2);
-  transform: rotate(-8deg);
-}
 
 .portrait-carousel {
   position: relative;
@@ -732,6 +635,11 @@ main > section {
 .about-tab-art img {
   width: 150px;
   mix-blend-mode: multiply;
+}
+
+/* Sem JavaScript os três painéis ficam visíveis; com JavaScript só um é exibido. */
+.about-tab-panel:not([hidden]) ~ .about-tab-panel:not([hidden]) {
+  margin-top: 1.5rem;
 }
 
 .about-tab-content h3 {
@@ -1300,14 +1208,6 @@ details p {
 
   .adult-decor {
     right: -90px;
-  }
-
-  .portrait-placeholder {
-    min-height: 320px;
-  }
-
-  .portrait-placeholder span {
-    font-size: 7rem;
   }
 
   .portrait-carousel {
