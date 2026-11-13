@@ -235,7 +235,8 @@
     scheduleElement.innerHTML = `<div class="schedule-layout"><div class="schedule-days">${upcoming
       .map((item, index) => {
         const p = getDateParts(item.date);
-        return `<button type="button" class="schedule-day" id="schedule-day-${index}" aria-controls="schedule-panel" aria-label="${escapeHtml(p.long)}"><span>${p.weekday}</span><strong>${p.day}</strong><small>${p.month}</small></button>`;
+        // Nome acessível = texto visível + ano (WCAG 2.5.3, rótulo no nome): "sexta 20 nov de 2026".
+        return `<button type="button" class="schedule-day" id="schedule-day-${index}" aria-controls="schedule-panel"><span>${p.weekday}</span> <strong>${p.day}</strong> <small>${p.month}</small><span class="sr-only"> de ${item.date.slice(0, 4)}</span></button>`;
       })
       .join(
         '',

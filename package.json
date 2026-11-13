@@ -18,11 +18,14 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check:js": "node --check site-config.js && node --check tabs.js && node --check contact.js && node --check script.js",
+    "check:html": "html-validate index.html",
     "check:css": "node scripts/check-css.mjs",
     "check:release": "node scripts/check-release.mjs",
     "test:unit": "node --test \"tests/unit/**/*.test.js\" \"tests/unit/**/*.test.mjs\"",
-    "test:e2e": "playwright test",
-    "test": "npm run check:js && npm run format:check && npm run check:css && npm run test:unit"
+    "test:e2e": "playwright test --project=chromium",
+    "test:e2e:all": "playwright test",
+    "lighthouse": "node scripts/lighthouse.mjs",
+    "test": "npm run check:js && npm run check:html && npm run format:check && npm run check:css && npm run test:unit"
   },
   "browserslist": [
     "defaults",
@@ -36,6 +39,8 @@
     "@playwright/test": "1.65.0",
     "autoprefixer": "10.6.2",
     "cssnano": "7.1.9",
+    "html-validate": "11.21.1",
+    "lighthouse": "13.6.0",
     "pngjs": "7.0.0",
     "postcss": "8.5.32",
     "prettier": "3.10.1",

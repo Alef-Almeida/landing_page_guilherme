@@ -3,6 +3,9 @@
 // Para aceitar uma mudança visual intencional: npx playwright test tests/e2e/visual.spec.js --update-snapshots
 const { test, expect } = require('@playwright/test');
 
+// Capturas de referência e medições por pixel dependem do motor de renderização: rodam só no Chromium.
+test.skip(({ browserName }) => browserName !== 'chromium', 'Referências geradas no Chromium');
+
 const SECTIONS = {
   hero: 'main > section:first-of-type',
   atendimentos: '#atendimentos',

@@ -29,4 +29,13 @@ function collectErrors(page) {
   return errors;
 }
 
-module.exports = { useSiteConfig, freezeTime, collectErrors };
+// Espera as animações finitas (como a entrada do hero) terminarem antes de medir contraste ou capturar.
+async function waitForAnimations(page) {
+  await page.waitForFunction(() =>
+    document
+      .getAnimations()
+      .every((a) => a.playState !== 'running' || a.effect?.getComputedTiming().iterations === Infinity),
+  );
+}
+
+module.exports = { useSiteConfig, freezeTime, collectErrors, waitForAnimations };

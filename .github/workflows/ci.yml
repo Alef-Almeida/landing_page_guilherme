@@ -1,0 +1,70 @@
+# Integração contínua (IMP-623): verificações estáticas, testes unitários, end-to-end em três navegadores e Lighthouse.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verificacoes:
+    name: Sintaxe, HTML, formatação, CSS e testes unitários
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+
+  end-to-end:
+    name: End-to-end (Chromium, Firefox e WebKit)
+    needs: verificacoes
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm run test:e2e:all
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-playwright
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
+
+  lighthouse:
+    name: Lighthouse mobile
+    needs: verificacoes
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run lighthouse
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse
+          path: lighthouse-report/
+          retention-days: 14

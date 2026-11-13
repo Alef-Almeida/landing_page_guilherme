@@ -32,10 +32,13 @@ Abra <http://127.0.0.1:8080/>. O comando `dev` recompila o CSS a cada alteraçã
 | `npm run format`        | Formata os arquivos com Prettier                                                                                                             |
 | `npm run format:check`  | Verifica a formatação sem alterar arquivos                                                                                                   |
 | `npm run check:js`      | Verifica a sintaxe de `site-config.js`, `tabs.js`, `contact.js` e `script.js`                                                                |
+| `npm run check:html`    | Valida o `index.html` com html-validate                                                                                                      |
 | `npm run check:css`     | Confere se `styles.css` está atualizado e se não há CDN, `<style>` no HTML ou `!important`                                                   |
 | `npm run test:unit`     | Testes unitários do contato e da agenda (`node:test`, sem dependências)                                                                      |
-| `npm run test:e2e`      | Testes end-to-end no navegador (Playwright). Na primeira vez, rode `npx playwright install chromium`                                         |
-| `npm test`              | Sintaxe, formatação, CSS e testes unitários (não inclui os end-to-end, que precisam de navegador)                                            |
+| `npm run test:e2e`      | Testes end-to-end no Chromium (Playwright). Na primeira vez, rode `npx playwright install chromium`                                          |
+| `npm run test:e2e:all`  | Testes end-to-end no Chromium, Firefox e WebKit (no Linux, o WebKit exige `sudo npx playwright install-deps webkit`)                         |
+| `npm run lighthouse`    | Lighthouse mobile com throttling real (3 execuções); falha abaixo das metas do plano ou da referência inicial                                |
+| `npm test`              | Sintaxe, HTML, formatação, CSS e testes unitários (não inclui os end-to-end, que precisam de navegador)                                      |
 | `npm run check:release` | **Antes de publicar.** Falha enquanto número, domínio ou agenda estiverem pendentes ou inválidos                                             |
 
 ## Configuração do WhatsApp e da agenda
@@ -72,6 +75,14 @@ Os textos e as regras ficam em [`contact.js`](contact.js), coberto por `npm run 
 - Prefixos de navegador são gerados pelo autoprefixer conforme `browserslist` em `package.json` (padrão do mercado, mais Safari e iOS 15 ou superior).
 - A minificação (`postcss.build.config.js`) usa cssnano com as transformações de cor, gradiente, posição e unidades desligadas, para que o CSS final seja idêntico ao escrito.
 
+## Testes e integração contínua
+
+- `tests/unit/`: regras de contato, agenda, datas e geração de SEO (`node:test`).
+- `tests/e2e/`: navegação, teclado, menu, abas, agenda, carrosséis, movimento reduzido, estados seguros do contato, FAQ, contraste por pixel, layout em oito larguras, recursos, segurança (CSP), SEO e auditoria axe.
+- Capturas de referência em `tests/e2e/*-snapshots/` (geradas no Chromium/Linux). Para aceitar uma mudança visual intencional: `npx playwright test --project=chromium --update-snapshots` e revise as imagens alteradas antes do commit.
+- Para testar outro endereço (por exemplo, a homologação): `E2E_BASE_URL=https://homologacao.exemplo npx playwright test`.
+- O GitHub Actions (`.github/workflows/ci.yml`) roda `npm test`, os testes end-to-end nos três navegadores e o Lighthouse a cada push na `main` e em pull requests.
+
 ## Segurança e privacidade
 
 - A página não carrega nenhum recurso de terceiros: fontes, imagens e scripts são servidos pelo próprio site. O WhatsApp é apenas um link.
@@ -107,6 +118,7 @@ Os textos e as regras ficam em [`contact.js`](contact.js), coberto por `npm run 
 ├── tests/unit/              testes unitários (`npm run test:unit`)
 ├── tests/e2e/               testes end-to-end com Playwright (`npm run test:e2e`)
 ├── tests/tools/             ferramentas de verificação (comparação de estilo computado)
+├── .github/workflows/       integração contínua
 └── tests/baseline/          medição de referência do commit-base (não sobrescrever)
 ```
 

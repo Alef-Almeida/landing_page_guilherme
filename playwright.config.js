@@ -23,5 +23,11 @@ module.exports = defineConfig({
         url: `http://127.0.0.1:${PORT}/`,
         reuseExistingServer: !process.env.CI,
       },
-  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  // IMP-631: Chromium, Firefox e WebKit. Localmente, `npm run test:e2e` usa só o Chromium;
+  // `npm run test:e2e:all` roda os três (o WebKit no Linux exige `sudo npx playwright install-deps webkit`).
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
+    { name: 'webkit', use: { ...devices['Desktop Safari'] } },
+  ],
 });

@@ -3,6 +3,9 @@
 // do texto (com a opacidade dela) é combinada com os pixels de fundo sob o elemento e o pior caso é comparado
 // com o mínimo WCAG AA: 4,5:1 para texto normal e 3:1 para texto grande (≥ 24 px, ou ≥ 18,66 px em negrito).
 const { test, expect } = require('@playwright/test');
+
+// Capturas de referência e medições por pixel dependem do motor de renderização: rodam só no Chromium.
+test.skip(({ browserName }) => browserName !== 'chromium', 'Referências geradas no Chromium');
 const { PNG } = require('pngjs');
 
 // O teste injeta um <style> para tornar o texto transparente; a CSP do site (corretamente) bloquearia isso.

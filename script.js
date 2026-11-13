@@ -28,8 +28,10 @@ if (aboutTabList) {
     panels[index].setAttribute('role', 'tabpanel');
     panels[index].setAttribute('aria-labelledby', tab.id);
   });
+  // O nome da lista só é aplicado junto com role="tablist" (aria-label não vale num <div> sem papel).
   window.Tabs.setupTabs({
     tablist: aboutTabList,
+    label: 'Conheça o jeito de trabalhar',
     tabs,
     onSelect: (selected) => panels.forEach((panel, index) => (panel.hidden = index !== selected)),
   });

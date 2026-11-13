@@ -139,6 +139,7 @@ test('foco visível em fundo claro e escuro (IMP-342)', async ({ page }) => {
 });
 
 test.describe('regressão visual (IMP-625, IMP-627)', () => {
+  test.skip(({ browserName }) => browserName !== 'chromium', 'Referências geradas no Chromium');
   for (const width of [320, 390, 1440])
     test(`hero em ${width}px`, async ({ page }) => {
       await prepare(page, width);

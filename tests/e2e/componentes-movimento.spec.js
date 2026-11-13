@@ -47,16 +47,17 @@ test.describe('agenda manual (IMP-324 a IMP-327, IMP-615, IMP-624)', () => {
     await page.goto('/');
     const days = page.getByRole('tablist', { name: 'Dias com horários publicados' }).getByRole('tab');
     await expect(days).toHaveCount(3); // 18/11 já passou
-    await expect(days.first()).toHaveAccessibleName('sexta-feira, 20 de novembro de 2026');
+    await expect(days.first()).toHaveAccessibleName('sexta 20 nov de 2026');
     await expect(days.first()).toHaveAttribute('aria-selected', 'true');
-    const panel = page.getByRole('tabpanel', { name: 'sexta-feira, 20 de novembro de 2026' });
+    const panel = page.getByRole('tabpanel', { name: 'sexta 20 nov de 2026' });
+    await expect(panel).toContainText('sexta-feira, 20 de novembro de 2026');
     await expect(panel).toBeVisible();
 
     await days.first().focus();
     await page.keyboard.press('ArrowRight');
     await expect(days.nth(1)).toBeFocused();
     await expect(days.nth(1)).toHaveAttribute('aria-selected', 'true');
-    const nextPanel = page.getByRole('tabpanel', { name: 'terça-feira, 24 de novembro de 2026' });
+    const nextPanel = page.getByRole('tabpanel', { name: 'terça 24 nov de 2026' });
     await expect(nextPanel.getByRole('link')).toHaveCount(2);
     const href = await nextPanel.getByRole('link').first().getAttribute('href');
     const text = new URL(href).searchParams.get('text');
@@ -159,8 +160,8 @@ test.describe('transição de navegação (IMP-336 a IMP-338, IMP-630)', () => {
     await expect(page.locator('.page-transition')).toHaveCount(0);
     const nav = page.getByRole('navigation', { name: 'Navegação principal' });
     await nav.getByRole('link', { name: 'Agenda' }).click();
-    await page.waitForTimeout(100);
-    expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
+    // A rolagem começa logo, sem a espera de ~620 ms da antiga transição; 1 s de folga para máquinas carregadas.
+    await expect.poll(() => page.evaluate(() => window.scrollY), { timeout: 1000 }).toBeGreaterThan(0);
     await nav.getByRole('link', { name: 'Sobre' }).click();
     await expect(page).toHaveURL(/#sobre$/);
     await expect(page.locator('#sobre-title')).toBeInViewport();
