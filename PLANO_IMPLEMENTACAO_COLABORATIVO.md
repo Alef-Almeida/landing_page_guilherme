@@ -434,21 +434,21 @@ Como todas as tarefas desta fase alteram arquivos de edição exclusiva, a fase 
 - [ ] IMP-500 — Resolver o destino dos cards “Em breve”.
 - [ ] IMP-501 — Confirmar modalidades e remover afirmações não verificadas.
 - [ ] IMP-502 — Adicionar link oficial do Instagram, se aprovado.
-- [ ] IMP-503 — Revisar título e meta description finais.
+- [x] IMP-503 — Revisar título e meta description finais.
 - [ ] IMP-504 — Adicionar canonical após definição do domínio.
-- [ ] IMP-505 — Adicionar Open Graph e metadados de compartilhamento.
+- [x] IMP-505 — Adicionar Open Graph e metadados de compartilhamento.
 - [ ] IMP-506 — Criar `robots.txt` e `sitemap.xml` após definição do domínio.
-- [ ] IMP-507 — Avaliar dados estruturados apropriados sem promessas indevidas.
+- [x] IMP-507 — Avaliar dados estruturados apropriados sem promessas indevidas.
 - [ ] IMP-508 — Adicionar informações de privacidade aprovadas.
 - [ ] IMP-509 — Revisar autorização de uso das imagens.
 - [ ] IMP-510 — Submeter conteúdo à revisão profissional/regulatória responsável.
-- [ ] IMP-511 — Inventariar recursos de terceiros carregados no navegador, incluindo Google Fonts, e decidir quais devem ser removidos, compilados ou hospedados localmente, com fallback de fontes do sistema.
+- [x] IMP-511 — Inventariar recursos de terceiros carregados no navegador, incluindo Google Fonts, e decidir quais devem ser removidos, compilados ou hospedados localmente, com fallback de fontes do sistema.
 - [ ] IMP-512 — Definir com a hospedagem os cabeçalhos mínimos de segurança e privacidade, incluindo CSP, Referrer-Policy e Permissions-Policy compatíveis com o site.
 - [ ] IMP-513 — Ampliar o FAQ com as dúvidas operacionais aprovadas em DEC-09, priorizando primeira sessão, modalidades, duração/frequência, atendimento infantil e políticas de cancelamento.
 - [ ] IMP-514 — Reforçar o rodapé com informações confirmadas de contato, modalidades, localização, Instagram, privacidade e registro profissional, sem duplicação excessiva.
-- [ ] IMP-515 — Revisar a hierarquia e o texto dos CTAs “Encontrar meu atendimento”, “Conhecer o trabalho” e “Vamos conversar” para manter uma ação primária inequívoca.
+- [x] IMP-515 — Revisar a hierarquia e o texto dos CTAs “Encontrar meu atendimento”, “Conhecer o trabalho” e “Vamos conversar” para manter uma ação primária inequívoca.
 - [ ] IMP-516 — Tornar o mockup do Instagram coerente com DEC-08: fornecer destino real e acessível ou remover controles meramente cenográficos e sem ação.
-- [ ] IMP-517 — Eliminar a manutenção manual do ano no rodapé (hoje fixo em “© 2026”), atualizando-o no build ou por script com valor estático correto como fallback.
+- [x] IMP-517 — Eliminar a manutenção manual do ano no rodapé (hoje fixo em “© 2026”), atualizando-o no build ou por script com valor estático correto como fallback.
 
 ### Critérios de aceite
 
@@ -628,7 +628,7 @@ Todas as demais tarefas podem ser executadas com as alternativas provisórias da
 | FR-03B | Abas, agenda acessível, carrosséis e movimento | FR-03A | `index.html`, `script.js`, CSS | Conversa de análise e revisão do plano | Concluída |
 | FR-03C | Contraste, toque, foco, logotipo e responsividade | FR-03B | `index.html`, CSS | Conversa de análise e revisão do plano | Concluída |
 | FR-04 | Imagens e desempenho | Preparação: nenhuma; integração: FR-03C | `assets/`, HTML | Conversa de análise e revisão do plano | Concluída |
-| FR-05 | Conteúdo e SEO | Rascunho: nenhuma; integração: FR-03C e DEC-03 a DEC-09 | HTML, arquivos SEO | Não atribuído | Não iniciada — parcialmente bloqueada |
+| FR-05 | Conteúdo e SEO | Rascunho: nenhuma; integração: FR-03C e DEC-03 a DEC-09 | HTML, arquivos SEO | Conversa de análise e revisão do plano | Bloqueada — restam tarefas dependentes de DEC-03 a DEC-09 |
 | FR-06 | Testes e CI | FR-01 para dependências; componentes | `tests/`, CI | Conversa de análise e revisão do plano | Em andamento — infraestrutura end-to-end antecipada na FR-03A |
 | FR-07 | Documentação e release | Todas | README e deploy | Não atribuído | Não iniciada |
 
@@ -1120,5 +1120,32 @@ Antes de acrescentar:
 - Arquivos ainda reservados: nenhum
 - Próxima ação recomendada: FR-05 nas tarefas sem dependência de decisão (IMP-503, IMP-505, IMP-507, IMP-511, IMP-515, IMP-517) e preparação das demais
 - Estado final: Concluída
+
+### [2026-11-13 11:24 -03] Contribuição — FR-05 — Conteúdo, SEO, privacidade e confiança
+
+- Responsável/conversa: conversa de análise e revisão do plano de implementação
+- Objetivo: executar o que não depende de decisão, aplicar as alternativas provisórias da §4 e deixar pronto o que depende de domínio e conteúdo aprovado
+- Tarefas relacionadas: IMP-503, IMP-505, IMP-507, IMP-511, IMP-515 e IMP-517 (concluídas); IMP-500 e IMP-516 com alternativa provisória aplicada; IMP-504, IMP-506 e IMP-512 prontas para o domínio; IMP-501, IMP-502, IMP-508 a IMP-510, IMP-513 e IMP-514 preparadas e aguardando decisões
+- Branch: `fr-05/conteudo-seo`, em worktree separado (§11.1)
+- Arquivos alterados: `index.html`, `script.js`, `site-config.js`, `contact.js`, `styles.source.css`, `styles.css`, `scripts/serve.mjs`, `scripts/check-release.mjs`, `package.json`, `package-lock.json`, `README.md`, testes e capturas de referência do hero, atendimentos e agenda; criados `assets/fonts/` (2 fontes e licenças), `assets/og-image.jpg`, `security-headers.json`, `scripts/copy-fonts.mjs`, `scripts/seo.mjs`, `scripts/og-image.mjs`, `docs/conteudo-para-aprovacao.md`, `tests/e2e/seguranca.spec.js`, `tests/e2e/seo.spec.js` e `tests/unit/seo.test.mjs`
+- Alterações realizadas:
+  - IMP-511: inventário de terceiros: Tailwind CDN (removido na FR-01), Google Fonts (CSS e arquivos) e `wa.me` (apenas link). As fontes Inter e DM Sans passaram a ser servidas pelo site, em versão variável e subconjunto latino (85 KB no total, licença SIL OFL incluída), com `preload`. A página não carrega nenhum recurso de outro domínio;
+  - IMP-512: `security-headers.json` define CSP (`default-src 'self'`, `img-src 'self' data:`, `object-src 'none'`, `base-uri 'self'`, `form-action 'none'`, `frame-ancestors 'none'`), `Referrer-Policy: strict-origin-when-cross-origin`, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Permissions-Policy` e `Cross-Origin-Opener-Policy`; HSTS e `upgrade-insecure-requests` ficam marcados como exclusivos de produção. O servidor local aplica os cabeçalhos, então toda a suíte roda sob a CSP. Falta reproduzi-los e validá-los na hospedagem (DEC-04);
+  - IMP-503: título "Guilherme Teixeira | Psicólogo clínico – CRP 03/36532" (53 caracteres) e descrição de 143 caracteres, só com fatos da página;
+  - IMP-505: Open Graph e Twitter Card com título, descrição, idioma e nome do site; imagem de compartilhamento de 1200 × 630 (`npm run og-image`). `og:url`, `og:image` e `twitter:image` precisam de URL absoluta e são gerados por `npm run seo` quando `site.url` for definido;
+  - IMP-507: avaliados os tipos do schema.org; adotado `Person` com nome, cargo, áreas e o registro no Conselho Regional de Psicologia da 3ª Região, sem avaliações, preços ou promessas. `ProfessionalService`/`LocalBusiness` ficam para quando houver endereço (DEC-09);
+  - IMP-504/IMP-506: `site.url` em `site-config.js` e `npm run seo` gravam canonical, metadados absolutos, `robots.txt` e `sitemap.xml`; sem domínio, nada é gerado. `check:release` exige `site.url` com https, barra final e domínio em `productionHosts`, além dos arquivos atualizados; fluxo simulado com dados fictícios numa cópia temporária;
+  - IMP-515: hierarquia revisada. No hero, ação primária "Encontrar meu atendimento" (preenchida) e secundária "Conhecer o trabalho" (contorno); no cabeçalho, "Vamos conversar" como ação global; nos cards, "Quero saber mais", que levava ao contato, passou a "Conversar sobre este atendimento";
+  - IMP-500 (provisório, DEC-05): "Em breve" deixou de ser link para o contato e virou aviso;
+  - IMP-516 (provisório, DEC-08): o mockup perdeu a fileira de curtir, comentar, compartilhar e salvar e os balões de curtir e enviar; ficou o selo do Instagram e o carrossel editorial. Os ícones desenhados dentro da arte do primeiro post fazem parte da imagem publicada;
+  - IMP-517: o ano do rodapé é atualizado pelo script, com o ano da publicação como reserva;
+  - IMP-501: não há afirmação de modalidade na página; falta a confirmação (DEC-03);
+  - `docs/conteudo-para-aprovacao.md`: onde cada decisão entra e seu efeito, rascunho factual de aviso de privacidade (IMP-508), rascunhos de FAQ (IMP-513) e itens de rodapé (IMP-514) com lacunas a preencher, verificação de autorização das imagens, inclusive das fotos de crianças nos posts (IMP-509), lista de revisão profissional (IMP-510) e a ordem invertida dos posts
+- Validações executadas: `npm test` com 23 testes unitários; 76 testes end-to-end, incluindo cabeçalhos enviados, ausência de violações de CSP ao carregar, rolar e interagir, nenhuma requisição a outro domínio, metadados, JSON-LD válido e sem avaliações, ausência de canonical sem domínio, ano do rodapé, ausência de links "Em breve" e de ícones de ação no mockup; capturas de referência revisadas e atualizadas (hero, atendimentos e o deslocamento de subpixel da agenda); simulação de publicação com configuração fictícia (check:release falha sem `npm run seo` e passa depois)
+- Resultado das validações: todos os testes passaram, duas execuções seguidas da suíte end-to-end
+- Pendências ou riscos: tarefas restantes dependem de DEC-03 a DEC-09 e estão detalhadas no documento de aprovação; os cabeçalhos ainda precisam ser configurados e validados na hospedagem (DEC-04, FR-07)
+- Arquivos ainda reservados: nenhum
+- Próxima ação recomendada: FR-06 (IMP-620 a IMP-623 e IMP-631) e FR-07
+- Estado final: Bloqueada (restam tarefas dependentes de decisão); demais concluídas
 
 <!-- CONTRIBUICOES: ACRESCENTAR NOVAS ENTRADAS IMEDIATAMENTE ANTES DESTE MARCADOR. NAO REMOVER. -->
