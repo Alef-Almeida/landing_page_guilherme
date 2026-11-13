@@ -267,17 +267,17 @@ As correções devem elevar o acabamento sem transformar a página em uma interf
 
 ### Tarefas executáveis sem as decisões (alternativas provisórias da §4)
 
-- [ ] IMP-200 — Criar configuração central para WhatsApp e agenda.
-- [ ] IMP-202 — Bloquear build/publicação quando o número permanecer como placeholder e impedir que ambientes de desenvolvimento, homologação e testes automatizados enviem mensagens a um número real.
-- [ ] IMP-203 — Refatorar `createWhatsAppUrl` para receber data, horário e modalidade.
-- [ ] IMP-204 — Codificar a mensagem de forma segura com `encodeURIComponent`.
-- [ ] IMP-206 — Excluir automaticamente datas vencidas no modo manual.
-- [ ] IMP-207 — Criar estado vazio quando não houver horários.
-- [ ] IMP-208 — Informar claramente que a vaga depende de confirmação.
+- [x] IMP-200 — Criar configuração central para WhatsApp e agenda.
+- [x] IMP-202 — Bloquear build/publicação quando o número permanecer como placeholder e impedir que ambientes de desenvolvimento, homologação e testes automatizados enviem mensagens a um número real.
+- [x] IMP-203 — Refatorar `createWhatsAppUrl` para receber data, horário e modalidade.
+- [x] IMP-204 — Codificar a mensagem de forma segura com `encodeURIComponent`.
+- [x] IMP-206 — Excluir automaticamente datas vencidas no modo manual.
+- [x] IMP-207 — Criar estado vazio quando não houver horários.
+- [x] IMP-208 — Informar claramente que a vaga depende de confirmação.
 - IMP-209 — *Consolidada em IMP-600 a IMP-604*, que devem ser escritas e entregues durante esta fase pela frente FR-02.
-- [ ] IMP-210 — Garantir que o CTA principal não permaneça com `href="#"` quando JavaScript ou a configuração operacional falharem.
-- [ ] IMP-211 — Exibir estado indisponível seguro, sem gerar link externo inválido, quando telefone ou agenda não estiverem configurados.
-- [ ] IMP-212 — Ativar provisoriamente o modo `whatsapp-only`, retirando a grade demonstrativa de 10 a 13/11/2026 até DEC-02 e DEC-10 serem respondidas.
+- [x] IMP-210 — Garantir que o CTA principal não permaneça com `href="#"` quando JavaScript ou a configuração operacional falharem.
+- [x] IMP-211 — Exibir estado indisponível seguro, sem gerar link externo inválido, quando telefone ou agenda não estiverem configurados.
+- [x] IMP-212 — Ativar provisoriamente o modo `whatsapp-only`, retirando a grade demonstrativa de 10 a 13/11/2026 até DEC-02 e DEC-10 serem respondidas.
 
 ### Tarefas que dependem de decisão
 
@@ -473,11 +473,11 @@ Os testes de cada componente são escritos pela frente que o implementa, na mesm
 
 ### Testes unitários
 
-- [ ] IMP-600 — Testar geração de URL do WhatsApp.
-- [ ] IMP-601 — Testar formatação da mensagem.
-- [ ] IMP-602 — Testar filtragem de datas vencidas.
-- [ ] IMP-603 — Testar agenda vazia.
-- [ ] IMP-604 — Testar configuração inválida.
+- [x] IMP-600 — Testar geração de URL do WhatsApp.
+- [x] IMP-601 — Testar formatação da mensagem.
+- [x] IMP-602 — Testar filtragem de datas vencidas.
+- [x] IMP-603 — Testar agenda vazia.
+- [x] IMP-604 — Testar configuração inválida.
 
 ### Testes end-to-end
 
@@ -623,7 +623,7 @@ Todas as demais tarefas podem ser executadas com as alternativas provisórias da
 | --- | --- | --- | --- | --- | --- |
 | FR-00 | Coordenação e decisões | Nenhuma | Este plano | Conversa principal | Em andamento |
 | FR-01 | Build e organização de CSS | IMP-006, IMP-007 | `package.json`, Tailwind, CSS, `.gitignore` | Conversa de análise e revisão do plano | Concluída |
-| FR-02 | WhatsApp e agenda | FR-01; IMP-201 e IMP-205 aguardam decisões | `site-config.js`, `script.js` | Não atribuído | Não iniciada — parcialmente bloqueada |
+| FR-02 | WhatsApp e agenda | FR-01; IMP-201 e IMP-205 aguardam decisões | `site-config.js`, `contact.js`, `script.js` | Conversa de análise e revisão do plano | Bloqueada — restam IMP-201 (DEC-01) e IMP-205 (DEC-02, DEC-03, DEC-10) |
 | FR-03A | Estrutura, conteúdo estático, navegação e menu | FR-02 | `index.html`, `script.js`, CSS | Não atribuído | Não iniciada |
 | FR-03B | Abas, agenda acessível, carrosséis e movimento | FR-03A | `index.html`, `script.js`, CSS | Não atribuído | Não iniciada |
 | FR-03C | Contraste, toque, foco, logotipo e responsividade | FR-03B | `index.html`, CSS | Não atribuído | Não iniciada |
@@ -958,5 +958,56 @@ Antes de acrescentar:
 - Arquivos ainda reservados: nenhum; reserva da FR-01 liberada
 - Próxima ação recomendada: integrar `fr-01/build-tailwind` à `main`; iniciar a FR-02 pelas tarefas independentes de decisão (IMP-200, IMP-202 a IMP-204, IMP-206 a IMP-208, IMP-210 a IMP-212)
 - Estado final: Concluída
+
+### [2026-11-12 23:08 -03] Reserva de frente — FR-02 — WhatsApp e agenda
+
+- Responsável/conversa: conversa de análise e revisão do plano de implementação
+- Frente: FR-02
+- Tarefas: IMP-200, IMP-202 a IMP-204, IMP-206 a IMP-208, IMP-210 a IMP-212 e IMP-600 a IMP-604 (IMP-201 e IMP-205 aguardam decisões)
+- Branch: `fr-02/whatsapp-agenda`, em worktree separado (§11.1)
+- Arquivos reservados: `site-config.js`, `contact.js`, `script.js`, `index.html` (seções Contato e Agenda e carregamento de scripts), `styles.source.css`, `styles.css`, `package.json`, `tailwind.config.js`, `README.md`, `tests/unit/`
+- Estado inicial: Em andamento
+- Dependências: FR-01 concluída
+- Observação: decisões pendentes tratadas com as alternativas provisórias da §4: número vazio, `whatsapp-only` e nenhuma modalidade afirmada
+
+### [2026-11-12 23:18 -03] Contribuição — FR-02 — WhatsApp e agenda
+
+- Responsável/conversa: conversa de análise e revisão do plano de implementação
+- Objetivo: corrigir QA-001 a QA-003 no que não depende de decisão, deixando os pontos de configuração prontos para as respostas
+- Tarefas relacionadas: IMP-200, IMP-202, IMP-203, IMP-204, IMP-206, IMP-207, IMP-208, IMP-210, IMP-211, IMP-212 e IMP-600 a IMP-604 (concluídas); IMP-201 e IMP-205 continuam bloqueadas
+- Branch: `fr-02/whatsapp-agenda`, em worktree separado (§11.1)
+- Arquivos alterados: `index.html`, `script.js`, `styles.source.css`, `styles.css`, `package.json`, `tailwind.config.js`, `.prettierignore`, `README.md`, `tests/tools/compare-computed-styles.mjs`, `PLANO_IMPLEMENTACAO_COLABORATIVO.md`; criados `site-config.js`, `contact.js`, `scripts/check-release.mjs`, `tests/unit/contact.test.js`
+- Alterações realizadas:
+  - estrutura: além de `site-config.js` (§6.2), foi criado `contact.js` com as funções puras e a inicialização do contato. Ambos são scripts clássicos que também exportam para o Node, o que permite testes unitários sem dependências e mantém a página funcionando aberta direto do disco;
+  - `site-config.js` concentra número, domínios de produção (`site.productionHosts`), modalidades e agenda; o número fictício `5500000000000` foi removido e o campo fica vazio até DEC-01;
+  - validação de número brasileiro (DDI 55, DDD sem zero, celular com 9 dígitos ou fixo com 8; rejeita dígitos repetidos); URLs com `encodeURIComponent`; mensagem de horário com dia da semana, data completa, ano, horário, modalidade quando configurada e aviso de que a vaga depende de confirmação;
+  - agenda `manual-schedule` com datas ISO, remoção de datas e horários vencidos no fuso `America/Bahia`, ordenação e remoção de repetidos; sem horários futuros, a página mostra a consulta pelo WhatsApp com texto de estado vazio;
+  - modo `whatsapp-only` ativo: a agenda demonstrativa de 10 a 13/11/2026 saiu da página e foi substituída por um painel estático “Consulte a disponibilidade”, com aviso de que enviar a mensagem não reserva horário; o título e a nota da seção mudam conforme o modo;
+  - estados do botão: sem número válido, “temporariamente indisponível”; número válido fora de `productionHosts`, “ambiente de teste”, com a URL em `data-whatsapp-preview` para QA; em produção, link com `noopener noreferrer`. O HTML nasce desativado (`aria-disabled`, sem `href`) e tem `<noscript>`; não há mais `href="#"`;
+  - `npm run check:release` falha enquanto faltarem número válido ou domínio de produção e alerta se não houver modalidade; não faz parte de `npm test`, para não bloquear o desenvolvimento. Ligá-lo ao processo de publicação fica para a FR-07;
+  - `script.js` formatado com Prettier em commit separado, sem mudança de comportamento, e removido do `.prettierignore`;
+  - na grade da agenda manual, `align-content: start` impede que os botões de dia estiquem até a altura do painel quando há menos de quatro dias;
+  - `tests/tools/compare-computed-styles.mjs` passou a ignorar, em vez de travar, alvos de hover que não recebem ponteiro, como os botões desativados
+- Validações executadas:
+  - `npm run test:unit`: 20 testes em 5 grupos (IMP-600 a IMP-604);
+  - `npm test` (sintaxe, formatação, CSS atualizado e testes unitários);
+  - `npm run check:release` com a configuração versionada: falha esperada por DEC-01 e DEC-04;
+  - navegador, com `site-config.js` substituído por interceptação de rede e relógio fixo em 2026-11-20 09:00 (Bahia): configuração atual, número em ambiente de teste, produção, agenda manual com datas passadas e futuras, agenda manual só com datas vencidas, `site-config.js` ausente (404) e JavaScript desativado;
+  - capturas de Contato e Agenda em 390 e 1280 px nos estados acima;
+  - comparação de estilo computado com a `main` (após a FR-01) em 320, 390, 768, 1280 e 1440 px
+- Resultado das validações:
+  - todos os testes passaram; `check:release` falhou como esperado;
+  - em nenhum estado sem número, fora de produção ou sem JavaScript há link para `wa.me` ou `href="#"`; em produção, os dois botões geram as URLs esperadas;
+  - na agenda manual, o dia vencido (18/11) e o horário já encerrado (08:00 de 20/11) foram removidos, os dias foram ordenados, e a mensagem de cada horário trouxe a data completa e a modalidade; a troca de dia atualizou as mensagens;
+  - fora de Contato e Agenda, as únicas diferenças de estilo computado são a altura total da página e variações de até 0,11 px na largura de textos, que mudaram de viewport entre execuções; é a instabilidade de carregamento das fontes do Google Fonts já observada no teste de controle da FR-01
+- Pendências ou riscos:
+  - IMP-201 aguarda DEC-01; com o número, também é preciso preencher `site.productionHosts` (DEC-04) para o link funcionar;
+  - IMP-205 aguarda DEC-02, DEC-03 e, se manual, DEC-10; o código dos dois modos está pronto e testado;
+  - semântica acessível dos botões de dia e preservação de foco ao trocar de dia continuam em IMP-324 a IMP-327 (FR-03B), assim como a revisão do botão desativado (`<a>` sem `href` com `aria-disabled`);
+  - a ferramenta de comparação precisa esperar o carregamento das fontes específicas para eliminar o ruído de subpixel (FR-06);
+  - testes end-to-end equivalentes às verificações no navegador ficam para IMP-615 e IMP-626 (FR-06)
+- Arquivos ainda reservados: nenhum; reserva da FR-02 liberada até as decisões
+- Próxima ação recomendada: integrar `fr-02/whatsapp-agenda` à `main`; iniciar a FR-03A (IMP-307, IMP-308, IMP-300 a IMP-313); obter DEC-01 a DEC-04
+- Estado final: Bloqueada (restam IMP-201 e IMP-205, dependentes de decisão); demais tarefas concluídas
 
 <!-- CONTRIBUICOES: ACRESCENTAR NOVAS ENTRADAS IMEDIATAMENTE ANTES DESTE MARCADOR. NAO REMOVER. -->
