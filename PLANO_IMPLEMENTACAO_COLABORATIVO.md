@@ -551,6 +551,33 @@ Detalhes, método e capturas em `tests/baseline/README.md`. Além das metas mín
 - todos os bloqueadores e itens de severidade alta estão resolvidos ou formalmente aceitos;
 - a homologação final está registrada na seção de contribuições.
 
+## Fase 8 — Acessibilidade ampliada e Libras
+
+**Objetivo:** atender pessoas surdas (Libras), com baixa visão, dislexia e sensibilidade a movimento além do mínimo da WCAG AA, por pedido do responsável em 2026-11-13, sem perder desempenho, privacidade nem a política de segurança.
+
+### Tarefas
+
+- [x] IMP-801 — Corrigir o carrossel que ficava parado: Anterior/Próximo, cliques do mouse e toques não podem interromper a rotação de vez; só o botão Pausar.
+- [x] IMP-802 — Criar o painel de acessibilidade no cabeçalho (padrão disclosure), com as escolhas salvas só no navegador e aplicadas antes da primeira pintura.
+- [x] IMP-803 — Tamanho do texto de 100% a 200% sem perda de conteúdo nem rolagem horizontal (WCAG 1.4.4 e 1.4.10).
+- [x] IMP-804 — Alto contraste no padrão gov.br (fundo preto, texto branco, links amarelos).
+- [x] IMP-805 — Fontes de leitura hospedadas no site: Atkinson Hyperlegible (baixa visão) e OpenDyslexic (dislexia), baixadas só quando escolhidas.
+- [x] IMP-806 — Mais espaçamento de texto (WCAG 1.4.12), destaque de links e botões, guia de leitura e pausa de animações.
+- [x] IMP-807 — Respeitar "aumentar contraste" do sistema (`prefers-contrast: more`).
+- [x] IMP-808 — Respeitar as cores forçadas do Windows (`forced-colors`) e o tamanho de texto do sistema (`<meta name="text-scale">`, tamanhos em rem).
+- [x] IMP-809 — Garantir que o título do hero conte como maior elemento (LCP) desde a primeira pintura.
+- [x] IMP-810 — Integrar o VLibras (Governo Federal) carregado sob demanda, com a CSP liberando apenas os endereços oficiais.
+- [x] IMP-811 — Testes unitários e end-to-end do painel, dos modos, do VLibras (simulado) e das preferências do sistema.
+- [x] IMP-812 — Atualizar documentação, aviso de privacidade e homologação.
+
+### Critérios de aceite
+
+- nenhuma requisição ao VLibras antes de a pessoa pedir a tradução; com falha de rede, aviso visível e nova tentativa;
+- sem rolagem horizontal de 320 a 1280 px com texto em 200%, fontes de leitura, espaçamento ou alto contraste;
+- axe sem violações graves no alto contraste e com texto em 200%;
+- `!important` só no bloco de preferências escolhidas pela pessoa (verificado por `check:css`);
+- Lighthouse mobile acima das metas da Fase 6.
+
 ## 8. Ordem e dependências
 
 Ordem recomendada:
@@ -631,6 +658,7 @@ Todas as demais tarefas podem ser executadas com as alternativas provisórias da
 | FR-05 | Conteúdo e SEO | Rascunho: nenhuma; integração: FR-03C e DEC-03 a DEC-09 | HTML, arquivos SEO | Conversa de análise e revisão do plano | Bloqueada — restam tarefas dependentes de DEC-03 a DEC-09 |
 | FR-06 | Testes e CI | FR-01 para dependências; componentes | `tests/`, CI | Conversa de análise e revisão do plano | Aceita com limitação — WebKit configurado, mas executado só no CI |
 | FR-07 | Documentação e release | Todas | README e deploy | Conversa de análise e revisão do plano | Aceita com limitação — publicação aguarda decisões e aprovação (IMP-709) |
+| FR-08 | Acessibilidade ampliada, Libras e carrossel | FR-03B, FR-03C, FR-06 | `accessibility.js`, `index.html`, `script.js`, CSS, `security-headers.json`, `tests/` | Conversa de análise e revisão do plano | Concluída |
 
 ## 10. Regras para outras conversas
 
@@ -755,6 +783,9 @@ Itens marcados como *Consolidada* não possuem caixa própria: são concluídos 
 - [x] Card do hero respeita a largura disponível em todos os breakpoints.
 - [x] Transições e carrosséis não bloqueiam a navegação e respeitam redução de movimento.
 - [ ] Ritmo vertical aprovado, sem espaços vazios ou alturas mínimas desproporcionais.
+- [x] Painel de acessibilidade (texto até 200%, alto contraste, fontes de leitura, espaçamento, destaque de links, guia de leitura e pausa de animações) testado em 320 a 1280 px.
+- [x] Tradução em Libras (VLibras) disponível, carregada só quando a pessoa pede.
+- [x] Preferências do sistema respeitadas: movimento reduzido, mais contraste, cores forçadas e tamanho de texto.
 
 ### Desempenho e qualidade
 
@@ -1212,5 +1243,32 @@ Antes de acrescentar:
 - Documento para o responsável: `docs/conteudo-para-aprovacao.md`
 - Integração: todas as frentes foram integradas localmente na `main` por fast-forward, sem push, conforme combinado com o responsável
 - Estado final: Em andamento — aguardando decisões
+
+### [2026-11-13 16:40 -03] Contribuição — FR-08 — Acessibilidade ampliada, Libras e carrossel
+
+- Responsável/conversa: conversa de análise e revisão do plano de implementação
+- Objetivo: atender aos pedidos do responsável de 2026-11-13: VLibras, acessibilidade para baixa visão, dislexia e outras necessidades, e carrossel que não fique parado
+- Tarefas relacionadas: IMP-801 a IMP-812 (concluídas)
+- Branch: `fr-08/acessibilidade-ampliada`
+- Arquivos alterados: `index.html`, `script.js`, `styles.source.css`, `styles.css`, `security-headers.json`, `scripts/check-css.mjs`, `scripts/copy-fonts.mjs`, `package.json`, `package-lock.json`, `tests/e2e/componentes-movimento.spec.js`, `tests/e2e/estrutura-navegacao.spec.js`, `tests/e2e/seguranca.spec.js`, capturas de `tests/e2e/layout.spec.js-snapshots/`, `README.md`, `docs/conteudo-para-aprovacao.md`, `docs/homologacao.md`, `docs/publicacao.md`, `PLANO_IMPLEMENTACAO_COLABORATIVO.md`; criados `accessibility.js`, `tests/unit/accessibility.test.js`, `tests/e2e/preferencias-acessibilidade.spec.js`, `assets/icons/vlibras.svg` e as fontes Atkinson Hyperlegible e OpenDyslexic (400 e 700, subconjunto latino, SIL OFL) em `assets/fonts/`
+- Alterações realizadas:
+  - IMP-801: a causa do carrossel "travado" eram três pausas permanentes: Anterior/Próximo pausavam de vez, o foco deixado por um clique do mouse mantinha a pausa e, no celular, o toque emulava "mouse em cima" sem nunca terminar. Agora só o botão Pausar para a rotação; Anterior/Próximo reiniciam a contagem; a pausa por ponteiro vale só para mouse real e a pausa por foco só para foco de teclado (`:focus-visible`); a rotação também para fora da tela e com a aba em segundo plano;
+  - IMP-802 a IMP-806: botão "Acessibilidade" no cabeçalho (nome visível a partir de 1280 px, ícone com nome acessível abaixo disso) abre um painel não modal (Esc devolve o foco, clique fora fecha) com tamanho do texto (100% a 200%), fonte (padrão, Atkinson Hyperlegible, OpenDyslexic), alto contraste, mais espaçamento, destaque de links e botões, guia de leitura e pausa de animações. As escolhas ficam em `localStorage` e são aplicadas por `accessibility.js` no `<head>`, antes da primeira pintura; sem armazenamento, o painel funciona e avisa que não vai salvar. Com texto ampliado, a navegação vai para o menu, os botões do cabeçalho mantêm 44 px e o painel de contato empilha;
+  - IMP-807/IMP-808: textos secundários passaram a usar variáveis (`--ink-70/75/80`, mesmos valores) que viram tinta sólida com `prefers-contrast: more`; em cores forçadas, botões ganham borda do sistema e o logotipo, os indicadores do carrossel e as linhas do menu continuam visíveis; tamanhos de 11 px passaram a rem e a página declara `<meta name="text-scale" content="scale">`;
+  - IMP-809: a animação de entrada do texto do hero deixou de começar com opacidade 0. Com ela, o Chrome às vezes não contava o título como LCP e passava a esperar a imagem do carrossel (LCP de 2,2 s para 7,9 s no Lighthouse, oscilando entre execuções, inclusive na `main`); agora o título só desliza;
+  - IMP-810: botão flutuante com o ícone oficial do VLibras (LGPL, hospedado no site) e botão no painel. O script oficial (`https://vlibras.gov.br/app/vlibras-plugin.js`) só é baixado no clique; depois o botão oficial assume o lugar. Quem deixou o VLibras aberto o encontra aberto na visita seguinte. A CSP passou a liberar `vlibras.gov.br`, `*.vlibras.gov.br` e só o caminho do projeto oficial no jsDelivr (`cdn.jsdelivr.net/gh/spbgovbr-vlibras/`) para scripts, imagens, fontes, conexões e iframe, além de estilos inline (exigência do VLibras); scripts inline e `eval` continuam proibidos. Verificado com o VLibras real: abre e traduz, sem nenhuma violação de CSP;
+  - IMP-811: 10 testes unitários novos e 19 end-to-end (painel, degraus e limites do texto, persistência, cada opção, aplicação antes da primeira pintura, armazenamento bloqueado, pausa, guia de leitura, ausência de rolagem horizontal em 320/768/1024/1280 px com quatro combinações, menu com texto ampliado, axe nos modos, mais contraste, cores forçadas, VLibras sem requisição antes do clique, falha de rede com nova tentativa e sessão anterior); novos testes de carrossel (clique, foco de mouse, toque, rotação ao aparecer na tela) e teste de restrição da CSP;
+  - IMP-812: README, aviso de privacidade, homologação e guia de publicação atualizados
+- Validações executadas: `npm test` (33 testes unitários, HTML, formatação e CSS); suíte end-to-end completa no Chromium e no Firefox; VLibras real com a CSP nova; `npm run lighthouse`; revisão visual do painel, do alto contraste e do texto em 200%
+- Resultado das validações:
+  - todos os testes passaram (Firefox pula os testes de captura, toque e cores forçadas, exclusivos do Chromium);
+  - Lighthouse mobile (mediana de 3): desempenho 95, acessibilidade 100, boas práticas 100, SEO 100; LCP 2,29 s; peso total 694 KB (o painel e o script no `<head>` custam cerca de 2 pontos)
+- Pendências ou riscos:
+  - o VLibras é um serviço externo do Governo Federal: ao abri-lo, o texto da página é enviado a ele; o aviso de privacidade (DEC-07) foi atualizado para dizer isso;
+  - o iframe do VLibras registra no console avisos de "accelerometer" que vêm do próprio serviço e não afetam o uso;
+  - o painel deve entrar no roteiro manual com leitor de tela e dispositivos físicos (IMP-707)
+- Arquivos ainda reservados: nenhum
+- Próxima ação recomendada: incluir o painel e o VLibras na homologação manual
+- Estado final: Concluída
 
 <!-- CONTRIBUICOES: ACRESCENTAR NOVAS ENTRADAS IMEDIATAMENTE ANTES DESTE MARCADOR. NAO REMOVER. -->

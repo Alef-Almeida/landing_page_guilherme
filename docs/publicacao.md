@@ -27,7 +27,7 @@ npm run release          # check:release + dist/
 
 `npm run release` falha se faltar qualquer dado obrigatório. O resultado fica em `dist/`:
 
-- `index.html`, `site-config.js`, `tabs.js`, `contact.js`, `script.js`, `styles.css`;
+- `index.html`, `site-config.js`, `accessibility.js`, `tabs.js`, `contact.js`, `script.js`, `styles.css`;
 - `favicon.ico`, `site.webmanifest`, `robots.txt`, `sitemap.xml`;
 - `assets/` sem `assets/source/` (os originais não são publicados);
 - `_headers` com os cabeçalhos de segurança e de cache.
@@ -72,8 +72,9 @@ Cache (já em `_headers`): HTML, CSS e JS com `Cache-Control: no-cache`, pois os
    Os demais testes alteram `site-config.js` durante a execução ou esperam o contato desativado e só fazem sentido localmente.
 
 4. Lighthouse no endereço público: `npx lighthouse https://www.dominio.com.br/ --throttling-method=devtools --only-categories=performance,accessibility,best-practices,seo --view`.
-5. Valide o compartilhamento (título, texto e imagem) com o depurador de compartilhamento das redes sociais usadas.
-6. Registre a publicação na seção de contribuições do plano e no checklist de [`homologacao.md`](homologacao.md).
+5. Toque no botão do VLibras (à direita, no meio da tela) e confirme que o tradutor abre. Se não abrir, a hospedagem não está aplicando a CSP de `security-headers.json` ou alterou-a.
+6. Valide o compartilhamento (título, texto e imagem) com o depurador de compartilhamento das redes sociais usadas.
+7. Registre a publicação na seção de contribuições do plano e no checklist de [`homologacao.md`](homologacao.md).
 
 ## 6. Versões e rollback
 

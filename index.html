@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="text-scale" content="scale" />
     <meta
       name="description"
       content="Psicologia clínica para crianças, adolescentes e adultos, com abordagem cognitivo-comportamental. Guilherme dos Santos Teixeira, CRP 03/36532."
@@ -46,6 +47,8 @@
     <link rel="preload" href="./assets/fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="./assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="./styles.css" />
+    <!-- Aplica as preferências de acessibilidade salvas antes da primeira pintura (IMP-802). -->
+    <script src="./accessibility.js"></script>
     <link rel="icon" href="./favicon.ico" sizes="48x48" />
     <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" />
@@ -92,24 +95,112 @@
           ><a class="nav-link" href="#conteudos">Conteúdos</a><a class="nav-link" href="#faq">Dúvidas</a
           ><a class="nav-link" href="#agenda">Agenda</a><a class="nav-link" href="#contato">Contato</a>
         </nav>
-        <a
-          href="#contato"
-          class="hidden whitespace-nowrap rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition motion-reduce:transition-none hover:-translate-y-0.5 hover:bg-ink/90 md:inline-flex"
-          >Vamos conversar</a
-        >
-        <button
-          id="menu-toggle"
-          type="button"
-          class="grid h-11 w-11 place-items-center rounded-full border border-ink/10 lg:hidden"
-          aria-label="Abrir menu"
-          aria-controls="mobile-menu"
-          aria-expanded="false"
-          hidden
-        >
-          <span aria-hidden="true"
-            ><span class="block h-0.5 w-5 bg-ink"></span><span class="mt-1 block h-0.5 w-5 bg-ink"></span
-          ></span>
-        </button>
+        <div class="relative flex items-center gap-2 sm:gap-3">
+          <a
+            href="#contato"
+            class="hidden whitespace-nowrap rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition motion-reduce:transition-none hover:-translate-y-0.5 hover:bg-ink/90 md:inline-flex"
+            >Vamos conversar</a
+          >
+          <button
+            id="a11y-toggle"
+            type="button"
+            class="a11y-toggle"
+            aria-controls="a11y-panel"
+            aria-expanded="false"
+            hidden
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="7.2" r="1.4"></circle>
+              <path d="M7.5 10.2 12 11l4.5-.8M12 11v3.2m0 0-2.4 4.3M12 14.2l2.4 4.3"></path>
+            </svg>
+            <span class="a11y-toggle-text">Acessibilidade</span>
+          </button>
+          <section id="a11y-panel" class="a11y-panel" aria-labelledby="a11y-panel-title" hidden>
+            <div class="a11y-panel-head">
+              <h2 id="a11y-panel-title">Acessibilidade</h2>
+              <button type="button" class="a11y-close" data-a11y-fechar aria-label="Fechar acessibilidade">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+              </button>
+            </div>
+            <p class="a11y-hint">Ajuste a página do seu jeito. As escolhas ficam salvas só neste navegador.</p>
+            <p class="a11y-hint a11y-warning" data-a11y-armazenamento hidden>
+              Este navegador não permite salvar as escolhas; elas valem até fechar a página.
+            </p>
+
+            <div class="a11y-group">
+              <h3 id="a11y-texto-titulo">Tamanho do texto</h3>
+              <div class="a11y-stepper" role="group" aria-labelledby="a11y-texto-titulo">
+                <button type="button" data-a11y-texto="-1"><span aria-hidden="true">A−</span> Diminuir</button>
+                <output data-a11y-texto-valor aria-live="polite">100%</output>
+                <button type="button" data-a11y-texto="1"><span aria-hidden="true">A+</span> Aumentar</button>
+              </div>
+            </div>
+
+            <fieldset class="a11y-group">
+              <legend>Fonte do texto</legend>
+              <label class="a11y-choice">
+                <input type="radio" name="a11y-fonte" value="padrao" checked />
+                <span>Padrão do site</span>
+              </label>
+              <label class="a11y-choice">
+                <input type="radio" name="a11y-fonte" value="legivel" />
+                <span>Alta legibilidade <small>Atkinson Hyperlegible, para baixa visão</small></span>
+              </label>
+              <label class="a11y-choice">
+                <input type="radio" name="a11y-fonte" value="dislexia" />
+                <span>Para dislexia <small>OpenDyslexic</small></span>
+              </label>
+            </fieldset>
+
+            <fieldset class="a11y-group">
+              <legend>Leitura e visão</legend>
+              <label class="a11y-choice">
+                <input type="checkbox" role="switch" data-a11y-opcao="contraste" />
+                <span>Alto contraste <small>Fundo preto, texto branco e links em amarelo</small></span>
+              </label>
+              <label class="a11y-choice">
+                <input type="checkbox" role="switch" data-a11y-opcao="espacamento" />
+                <span>Mais espaçamento <small>Entre letras, palavras, linhas e parágrafos</small></span>
+              </label>
+              <label class="a11y-choice">
+                <input type="checkbox" role="switch" data-a11y-opcao="links" />
+                <span>Destacar links e botões <small>Links sublinhados e botões com contorno</small></span>
+              </label>
+              <label class="a11y-choice">
+                <input type="checkbox" role="switch" data-a11y-opcao="guia" />
+                <span>Guia de leitura <small>Faixa que acompanha o mouse para não perder a linha</small></span>
+              </label>
+              <label class="a11y-choice">
+                <input type="checkbox" role="switch" data-a11y-opcao="pausar" />
+                <span>Pausar animações <small>Para os carrosséis e os movimentos da página</small></span>
+              </label>
+            </fieldset>
+
+            <div class="a11y-group">
+              <h3>Libras</h3>
+              <button type="button" class="a11y-action" data-vlibras-abrir hidden>Traduzir a página para Libras</button>
+              <p class="a11y-hint">
+                Usa o VLibras, tradutor do Governo Federal. Ao abrir, o texto da página é enviado ao serviço VLibras.
+              </p>
+            </div>
+
+            <button type="button" class="a11y-action a11y-reset" data-a11y-restaurar>Restaurar o padrão</button>
+          </section>
+          <button
+            id="menu-toggle"
+            type="button"
+            class="grid h-11 w-11 place-items-center rounded-full border border-ink/10 lg:hidden"
+            aria-label="Abrir menu"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            hidden
+          >
+            <span aria-hidden="true"
+              ><span class="block h-0.5 w-5 bg-ink"></span><span class="mt-1 block h-0.5 w-5 bg-ink"></span
+            ></span>
+          </button>
+        </div>
       </div>
       <nav id="mobile-menu" class="border-t border-ink/5 px-6 pb-5 pt-3 lg:hidden" aria-label="Menu" hidden>
         <a href="#atendimentos">Atendimentos</a><a href="#sobre">Sobre</a><a href="#conteudos">Conteúdos</a
@@ -821,6 +912,18 @@
         ><span>CRP 03/36532 · Atendimento ético e individualizado</span>
       </div>
     </footer>
+    <button
+      id="vlibras-launcher"
+      type="button"
+      class="vlibras-launcher"
+      data-vlibras-abrir
+      aria-label="Traduzir a página para Libras com o VLibras"
+      hidden
+    >
+      <img src="./assets/icons/vlibras.svg" width="40" height="40" alt="" />
+    </button>
+    <p id="vlibras-status" class="vlibras-status" role="status" hidden></p>
+
     <script src="./site-config.js"></script>
     <script src="./tabs.js"></script>
     <script src="./contact.js"></script>

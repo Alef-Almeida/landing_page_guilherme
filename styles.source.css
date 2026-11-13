@@ -32,6 +32,39 @@
     U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/* Fontes de leitura do painel de acessibilidade (IMP-805). Só são baixadas quando a pessoa escolhe uma delas. */
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/fonts/atkinson-hyperlegible-latin-700-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/opendyslexic-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/fonts/opendyslexic-latin-700-normal.woff2') format('woff2');
+}
+
 @tailwind components;
 
 /* ==========================================================================
@@ -44,6 +77,10 @@
   --motion-base: 0.35s;
   --motion-slow: 0.6s;
   --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
+  /* Texto secundário: a tinta (#17324d) com transparência. Com "mais contraste" no sistema, vira tinta sólida. */
+  --ink-70: rgba(23, 50, 77, 0.7);
+  --ink-75: rgba(23, 50, 77, 0.75);
+  --ink-80: rgba(23, 50, 77, 0.8);
   scroll-behavior: smooth;
   /* Compensa o cabeçalho fixo nas âncoras internas (IMP-304). */
   scroll-padding-top: 5.5rem;
@@ -73,6 +110,9 @@ main:focus {
 
 /* O atributo hidden precisa vencer o display definido pelos componentes. */
 #menu-toggle[hidden],
+.a11y-toggle[hidden],
+.a11y-action[hidden],
+.vlibras-launcher[hidden],
 .carousel-controls[hidden],
 .carousel-button[hidden],
 .about-tab-list[hidden] {
@@ -185,7 +225,7 @@ main > section {
   display: block;
   padding: 0.7rem 0;
   font-size: 0.9rem;
-  color: rgba(23, 50, 77, 0.75);
+  color: var(--ink-75);
 }
 
 #mobile-menu a[aria-current] {
@@ -207,11 +247,11 @@ main > section {
    ========================================================================== */
 
 .eyebrow {
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(23, 50, 77, 0.75);
+  color: var(--ink-75);
 }
 
 .section-title {
@@ -227,12 +267,28 @@ main > section {
   animation: rise 0.8s both;
 }
 
+/* O texto do hero só desliza, sem começar invisível: com opacidade 0 na primeira pintura, o navegador
+   pode não contar o título como maior elemento (LCP) e passa a esperar a imagem do carrossel. */
+.reveal:not(.delay-1) {
+  animation-name: rise-text;
+}
+
 .reveal > p:first-child {
   display: none;
 }
 
 .delay-1 {
   animation-delay: 0.15s;
+}
+
+@keyframes rise-text {
+  from {
+    transform: translateY(18px);
+  }
+
+  to {
+    transform: none;
+  }
 }
 
 @keyframes rise {
@@ -606,8 +662,8 @@ main > section {
 .stat span {
   display: block;
   margin-top: 3px;
-  font-size: 11px;
-  color: rgba(23, 50, 77, 0.75);
+  font-size: 0.6875rem;
+  color: var(--ink-75);
 }
 
 .about-interactive {
@@ -627,7 +683,7 @@ main > section {
   border-radius: 999px;
   background: #fff;
   padding: 0.7rem 1rem;
-  color: rgba(23, 50, 77, 0.75);
+  color: var(--ink-75);
   font-size: 0.78rem;
   font-weight: 600;
   transition:
@@ -686,7 +742,7 @@ main > section {
   margin-top: 0.6rem;
   max-width: 620px;
   line-height: 1.7;
-  color: rgba(23, 50, 77, 0.75);
+  color: var(--ink-75);
 }
 
 /* ==========================================================================
@@ -708,7 +764,7 @@ main > section {
 }
 
 .content-card > span:first-child {
-  font-size: 11px;
+  font-size: 0.6875rem;
   letter-spacing: 0.15em;
 }
 
@@ -778,7 +834,7 @@ summary::after {
   content: '+';
   font-size: 1.5rem;
   font-weight: 400;
-  color: rgba(23, 50, 77, 0.7);
+  color: var(--ink-70);
 }
 
 details[open] summary::after {
@@ -790,7 +846,7 @@ details p {
   padding-top: 1rem;
   font-size: 0.95rem;
   line-height: 1.7;
-  color: rgba(23, 50, 77, 0.75);
+  color: var(--ink-75);
 }
 
 /* ==========================================================================
@@ -872,7 +928,7 @@ details p {
   max-width: 22rem;
   font-size: 0.8rem;
   line-height: 1.5;
-  color: rgba(23, 50, 77, 0.8);
+  color: var(--ink-80);
 }
 
 @keyframes boat-float {
@@ -922,7 +978,7 @@ details p {
   margin-top: 0.25rem;
   font-size: 0.78rem;
   line-height: 1.5;
-  color: rgba(23, 50, 77, 0.75);
+  color: var(--ink-75);
 }
 
 /* ==========================================================================
@@ -934,7 +990,7 @@ details p {
   align-items: center;
   gap: 9px;
   font-size: 0.75rem;
-  color: rgba(23, 50, 77, 0.75);
+  color: var(--ink-75);
 }
 
 .agenda-dot {
@@ -970,7 +1026,7 @@ details p {
   background: rgba(255, 255, 255, 0.56);
   padding: 1.15rem;
   text-align: left;
-  color: rgba(23, 50, 77, 0.75);
+  color: var(--ink-75);
   transition:
     transform var(--motion-fast) var(--ease-standard),
     background var(--motion-fast) var(--ease-standard),
@@ -1289,6 +1345,291 @@ details p {
 }
 
 /* ==========================================================================
+   Acessibilidade: botão, painel de preferências, VLibras e guia de leitura (IMP-802 a IMP-810)
+   ========================================================================== */
+
+.a11y-toggle {
+  display: inline-flex;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(23, 50, 77, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0 0.6rem;
+  color: #17324d;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.a11y-toggle svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.a11y-toggle svg circle:nth-of-type(2) {
+  fill: currentColor;
+  stroke: none;
+}
+
+.a11y-toggle[aria-expanded='true'] {
+  background: #17324d;
+  color: #fff;
+}
+
+/* O nome "Acessibilidade" fica sempre no botão; visível em telas largas e só para leitores de tela nas demais. */
+.a11y-toggle-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (min-width: 1280px) {
+  .a11y-toggle {
+    padding: 0 1rem 0 0.7rem;
+  }
+
+  .a11y-toggle-text {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+  }
+}
+
+.a11y-panel {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  right: 0;
+  z-index: 60;
+  width: min(24rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 6.5rem);
+  max-height: calc(100dvh - 6.5rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid rgba(23, 50, 77, 0.2);
+  border-radius: 1.25rem;
+  background: #fff;
+  padding: 1.25rem;
+  color: #17324d;
+  text-align: left;
+  box-shadow: 0 24px 60px rgba(23, 50, 77, 0.2);
+}
+
+.a11y-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.a11y-panel h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.a11y-close {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid rgba(23, 50, 77, 0.35);
+  border-radius: 999px;
+}
+
+.a11y-close svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.a11y-hint {
+  margin-top: 0.5rem;
+  color: var(--ink-80);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.a11y-warning {
+  border-left: 3px solid #9c4f2e;
+  padding-left: 0.6rem;
+  color: #17324d;
+}
+
+.a11y-group {
+  margin: 1rem 0 0;
+  border: 0;
+  border-top: 1px solid rgba(23, 50, 77, 0.15);
+  padding: 1rem 0 0;
+  min-width: 0;
+}
+
+.a11y-group h3,
+.a11y-group legend {
+  float: left;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.a11y-group legend + * {
+  clear: both;
+}
+
+.a11y-stepper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  clear: both;
+}
+
+.a11y-stepper button,
+.a11y-action {
+  min-height: 2.75rem;
+  border: 1px solid #17324d;
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.a11y-stepper button:disabled {
+  border-color: rgba(23, 50, 77, 0.3);
+  color: var(--ink-70);
+  cursor: not-allowed;
+}
+
+.a11y-stepper output {
+  min-width: 3.5rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.a11y-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+.a11y-choice input {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  accent-color: #17324d;
+}
+
+.a11y-choice small {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--ink-80);
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.a11y-action {
+  display: block;
+  width: 100%;
+  background: #17324d;
+  color: #fff;
+  clear: both;
+}
+
+.a11y-reset {
+  margin-top: 1.25rem;
+  background: transparent;
+  color: #17324d;
+}
+
+/* Botão do VLibras: mesmo lugar e tamanho do botão oficial, que o substitui depois de carregado. */
+.vlibras-launcher {
+  position: fixed;
+  top: calc(50vh - 1.375rem);
+  right: 8px;
+  /* Abaixo do cabeçalho (z-index 50), onde fica o painel de acessibilidade. */
+  z-index: 45;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.vlibras-launcher img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.vlibras-launcher[aria-busy='true'] img {
+  opacity: 0.6;
+}
+
+.vlibras-status {
+  position: fixed;
+  top: calc(50vh - 1.375rem);
+  right: 4.25rem;
+  z-index: 45;
+  max-width: min(18rem, calc(100vw - 5.5rem));
+  border-radius: 0.75rem;
+  background: #17324d;
+  padding: 0.6rem 0.8rem;
+  color: #fff;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.vlibras-status[hidden] {
+  display: none;
+}
+
+/* Guia de leitura: faixa que acompanha o mouse. Só aparece com a opção ativa e em telas com mouse. */
+.a11y-guia-faixa {
+  position: fixed;
+  top: -1.6em;
+  left: 0;
+  right: 0;
+  z-index: 70;
+  display: none;
+  height: 3.2em;
+  border-block: 2px solid #17324d;
+  background: rgba(255, 214, 10, 0.18);
+  pointer-events: none;
+  transform: translateY(-200px);
+}
+
+/* ==========================================================================
    Movimento reduzido (IMP-334, IMP-339): sem animações decorativas, rolagem suave nem transições.
    Os carrosséis começam pausados (script.js) e o barco lateral vai direto à posição.
    ========================================================================== */
@@ -1302,9 +1643,307 @@ details p {
   }
 
   .reveal,
+  .reveal:not(.delay-1),
   #contato > .contact-panel::before {
     animation: none;
   }
 }
 
 @tailwind utilities;
+
+/* ==========================================================================
+   Preferências do sistema: mais contraste e cores forçadas (IMP-807, IMP-808)
+   ========================================================================== */
+
+/* "Aumentar contraste" (macOS, iOS, Android): texto secundário e bordas viram tinta sólida. */
+@media (prefers-contrast: more) {
+  :root {
+    --ink-70: #17324d;
+    --ink-75: #17324d;
+    --ink-80: #17324d;
+  }
+
+  html:not(.a11y-contraste) [class*='text-ink/'],
+  html:not(.a11y-contraste) .nav-link {
+    color: #17324d;
+  }
+
+  html:not(.a11y-contraste) [class*='border-ink/'] {
+    border-color: rgba(23, 50, 77, 0.7);
+  }
+}
+
+/* Cores forçadas (alto contraste do Windows): o navegador troca as cores, então formas e estados
+   que dependiam de fundo ou sombra ganham borda ou cor do sistema. */
+@media (forced-colors: active) {
+  .a11y-toggle,
+  .a11y-close,
+  .carousel-button,
+  .a11y-stepper button,
+  .a11y-action,
+  #menu-toggle {
+    border: 1px solid ButtonText;
+  }
+
+  #menu-toggle span span,
+  .instagram-dots > span {
+    forced-color-adjust: none;
+    background: GrayText;
+  }
+
+  #menu-toggle span span,
+  .instagram-dots > span.is-active {
+    background: ButtonText;
+  }
+
+  .brand-logo {
+    forced-color-adjust: none;
+    mix-blend-mode: normal;
+    border-radius: 0.5rem;
+    background: #fff;
+  }
+
+  .a11y-guia-faixa {
+    forced-color-adjust: none;
+    border-color: Highlight;
+    background: transparent;
+  }
+
+  :focus-visible {
+    outline-color: Highlight;
+  }
+}
+
+/* ==========================================================================
+   Preferências de acessibilidade escolhidas no painel (IMP-802 a IMP-809)
+   accessibility.js marca o <html> com classes a11y-* e atributos data-a11y-*.
+   Estas regras representam a escolha explícita da pessoa e precisam vencer qualquer estilo da página,
+   inclusive os utilitários; por isso, e só neste bloco, usam a marcação de importância (verificado em check:css).
+   ========================================================================== */
+/* preferencias:inicio */
+
+/* Tamanho do texto: tudo é medido em rem, então a página inteira acompanha. */
+html[data-a11y-texto='125'] {
+  font-size: 125%;
+}
+
+html[data-a11y-texto='150'] {
+  font-size: 150%;
+}
+
+html[data-a11y-texto='175'] {
+  font-size: 175%;
+}
+
+html[data-a11y-texto='200'] {
+  font-size: 200%;
+}
+
+/* Com texto ampliado, a navegação vai para o menu (que já existe no celular) para não estourar a largura. */
+html[data-a11y-texto] header nav[aria-label='Navegação principal'],
+html[data-a11y-texto] header a[href='#contato'].md\:inline-flex {
+  display: none !important;
+}
+
+html[data-a11y-texto] #menu-toggle:not([hidden]) {
+  display: grid !important;
+}
+
+html[data-a11y-texto] #mobile-menu:not([hidden]) {
+  display: block !important;
+}
+
+/* Os botões do cabeçalho mantêm 44 px (área de toque) para caber ao lado do logotipo em telas estreitas. */
+html[data-a11y-texto] header > div:first-child {
+  padding-inline: 16px !important;
+}
+
+html[data-a11y-texto] header :is(#menu-toggle, .a11y-toggle) {
+  min-width: 44px !important;
+  height: 44px !important;
+  min-height: 44px !important;
+}
+
+html[data-a11y-texto] #menu-toggle {
+  width: 44px !important;
+}
+
+html[data-a11y-texto] .a11y-toggle svg {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+html[data-a11y-texto] #menu-toggle span span {
+  width: 20px !important;
+  height: 2px !important;
+  margin-top: 4px !important;
+}
+
+html[data-a11y-texto] #menu-toggle span span:first-child {
+  margin-top: 0 !important;
+}
+
+/* O painel de contato empilha texto e botão em vez de mantê-los lado a lado. */
+html[data-a11y-texto] .contact-panel {
+  display: block !important;
+}
+
+html[data-a11y-texto] .contact-panel > div + div {
+  margin-top: 2rem !important;
+}
+
+html[data-a11y-texto] :is(h1, h2, h3, p, li, a, span, strong, button, label, summary) {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Fonte de leitura */
+html[data-a11y-fonte='legivel'] body,
+html[data-a11y-fonte='legivel'] body * {
+  font-family: 'Atkinson Hyperlegible', 'Inter', system-ui, sans-serif !important;
+}
+
+html[data-a11y-fonte='dislexia'] body,
+html[data-a11y-fonte='dislexia'] body * {
+  font-family: 'OpenDyslexic', 'Inter', system-ui, sans-serif !important;
+}
+
+/* Mais espaçamento: valores do critério 1.4.12 (Espaçamento de texto) da WCAG, com folga. */
+html.a11y-espacamento body * {
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+  line-height: 1.7 !important;
+}
+
+html.a11y-espacamento body :is(h1, h2, h3) {
+  line-height: 1.3 !important;
+}
+
+html.a11y-espacamento main p {
+  margin-bottom: 1em !important;
+}
+
+/* Destacar links e botões */
+html.a11y-links a {
+  text-decoration-line: underline !important;
+  text-decoration-thickness: 2px !important;
+  text-underline-offset: 0.2em !important;
+}
+
+html.a11y-links :is(a, button, summary, [role='tab']):not(.skip-link) {
+  box-shadow: 0 0 0 2px currentColor !important;
+}
+
+/* Guia de leitura (só com mouse) */
+@media (hover: hover) and (pointer: fine) {
+  html.a11y-guia .a11y-guia-faixa {
+    display: block;
+  }
+}
+
+/* Pausar animações: o mesmo que "reduzir movimento" do sistema, por escolha no site. */
+html.a11y-pausar {
+  --motion-fast: 0s;
+  --motion-base: 0s;
+  --motion-slow: 0s;
+  scroll-behavior: auto !important;
+}
+
+html.a11y-pausar *,
+html.a11y-pausar *::before,
+html.a11y-pausar *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Alto contraste: fundo preto, texto branco, links amarelos (padrão dos sites gov.br). */
+html.a11y-contraste {
+  color-scheme: dark;
+  background: #000 !important;
+}
+
+html.a11y-contraste body,
+html.a11y-contraste body *:not(svg, svg *, img, picture, source) {
+  background-color: #000 !important;
+  background-image: none !important;
+  border-color: #fff !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+html.a11y-contraste body *::before,
+html.a11y-contraste body *::after {
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* Formas sem texto (pontos, linhas do ícone de menu, indicadores) ficam brancas; o ativo, amarelo. */
+html.a11y-contraste body span:empty {
+  background-color: #fff !important;
+}
+
+html.a11y-contraste .instagram-dots > span:not(.is-active) {
+  background-color: #000 !important;
+  outline: 1px solid #fff;
+}
+
+html.a11y-contraste .instagram-dots > span.is-active {
+  background-color: #ff0 !important;
+}
+
+html.a11y-contraste body a,
+html.a11y-contraste body a * {
+  color: #ff0 !important;
+}
+
+html.a11y-contraste body a {
+  text-decoration-line: underline !important;
+}
+
+html.a11y-contraste body :is(button, a[class*='rounded'], [role='tab'], summary) {
+  border: 2px solid currentColor !important;
+}
+
+html.a11y-contraste body [aria-disabled='true'] {
+  color: #fff !important;
+  border-style: dashed !important;
+}
+
+html.a11y-contraste body :is([aria-expanded='true'], [aria-selected='true'], .is-active[role]) {
+  background-color: #ff0 !important;
+  color: #000 !important;
+}
+
+html.a11y-contraste body :is([aria-expanded='true'], [aria-selected='true']) * {
+  color: #000 !important;
+}
+
+html.a11y-contraste body svg :is(path, circle, line, polyline, rect)[stroke='currentColor'],
+html.a11y-contraste body button svg {
+  stroke: currentColor;
+}
+
+html.a11y-contraste .brand-logo {
+  mix-blend-mode: normal;
+  border-radius: 0.5rem;
+  background-color: #fff !important;
+  padding: 0.15rem 0.35rem;
+}
+
+html.a11y-contraste body :focus-visible {
+  outline: 3px solid #ff0 !important;
+  outline-offset: 3px !important;
+}
+
+html.a11y-contraste body input {
+  accent-color: #ff0;
+}
+
+html.a11y-contraste .a11y-guia-faixa {
+  border-color: #ff0 !important;
+  background-color: rgba(255, 255, 0, 0.15) !important;
+}
+
+/* preferencias:fim */

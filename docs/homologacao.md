@@ -49,24 +49,27 @@ O commit-base foi medido com o throttling simulado padrão do Lighthouse; as med
 
 ### Usabilidade e acessibilidade
 
-| Item                                                      | Estado | Evidência ou pendência                                                                            |
-| --------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------- |
-| Ordem visual e DOM equivalentes                           | ✓      | `tests/e2e/estrutura-navegacao.spec.js`                                                           |
-| Conteúdo essencial disponível sem JavaScript              | ✓      | Testes sem JavaScript em `estrutura-navegacao` e `contato`                                        |
-| Menu mobile acessível                                     | ✓      | Testes de teclado, Escape e foco                                                                  |
-| Abas acessíveis por teclado                               | ✓      | `componentes-movimento.spec.js`                                                                   |
-| Agenda expõe o dia selecionado e a atualização do painel  | ✓      | `componentes-movimento.spec.js`, `acessibilidade.spec.js`                                         |
-| Carrosséis com pausa e redução de movimento               | ✓      | `componentes-movimento.spec.js`                                                                   |
-| Só slides ativos são anunciados                           | ✓      | `componentes-movimento.spec.js`                                                                   |
-| Contraste AA                                              | ✓      | `contraste.spec.js` (pixels reais) e axe                                                          |
-| Alvos de toque adequados                                  | ✓      | `layout.spec.js`                                                                                  |
-| Foco visível e ordem de foco                              | ✓      | `layout.spec.js`, `estrutura-navegacao.spec.js`                                                   |
-| Cabeçalho em 320 a 1440 px sem compressão ou quebra       | ✓      | `layout.spec.js` e capturas de referência                                                         |
-| Hero, textos e CTAs sem corte em 320 px e com zoom        | ✓      | `layout.spec.js` (inclui 640 px = 200% de zoom)                                                   |
-| Card do hero dentro do contêiner                          | ✓      | `layout.spec.js`                                                                                  |
-| Transições não bloqueiam e respeitam redução de movimento | ✓      | `componentes-movimento.spec.js`                                                                   |
-| Ritmo vertical aprovado                                   | ◐      | Alturas mínimas artificiais removidas e capturas revisadas; falta aprovação visual do responsável |
-| Leitor de tela real e dispositivos físicos                | ○      | Roteiro na seção 3                                                                                |
+| Item                                                                                          | Estado | Evidência ou pendência                                                                            |
+| --------------------------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------- |
+| Ordem visual e DOM equivalentes                                                               | ✓      | `tests/e2e/estrutura-navegacao.spec.js`                                                           |
+| Conteúdo essencial disponível sem JavaScript                                                  | ✓      | Testes sem JavaScript em `estrutura-navegacao` e `contato`                                        |
+| Menu mobile acessível                                                                         | ✓      | Testes de teclado, Escape e foco                                                                  |
+| Abas acessíveis por teclado                                                                   | ✓      | `componentes-movimento.spec.js`                                                                   |
+| Agenda expõe o dia selecionado e a atualização do painel                                      | ✓      | `componentes-movimento.spec.js`, `acessibilidade.spec.js`                                         |
+| Carrosséis com pausa e redução de movimento                                                   | ✓      | `componentes-movimento.spec.js`                                                                   |
+| Só slides ativos são anunciados                                                               | ✓      | `componentes-movimento.spec.js`                                                                   |
+| Contraste AA                                                                                  | ✓      | `contraste.spec.js` (pixels reais) e axe                                                          |
+| Alvos de toque adequados                                                                      | ✓      | `layout.spec.js`                                                                                  |
+| Foco visível e ordem de foco                                                                  | ✓      | `layout.spec.js`, `estrutura-navegacao.spec.js`                                                   |
+| Cabeçalho em 320 a 1440 px sem compressão ou quebra                                           | ✓      | `layout.spec.js` e capturas de referência                                                         |
+| Hero, textos e CTAs sem corte em 320 px e com zoom                                            | ✓      | `layout.spec.js` (inclui 640 px = 200% de zoom)                                                   |
+| Card do hero dentro do contêiner                                                              | ✓      | `layout.spec.js`                                                                                  |
+| Transições não bloqueiam e respeitam redução de movimento                                     | ✓      | `componentes-movimento.spec.js`                                                                   |
+| Ritmo vertical aprovado                                                                       | ◐      | Alturas mínimas artificiais removidas e capturas revisadas; falta aprovação visual do responsável |
+| Painel de acessibilidade (texto até 200%, contraste, fontes, espaçamento, links, guia, pausa) | ✓      | `preferencias-acessibilidade.spec.js` (320 a 1280 px, axe nos modos)                              |
+| Tradução em Libras (VLibras) sob demanda                                                      | ✓      | `preferencias-acessibilidade.spec.js` (simulado) e verificação manual com o VLibras real          |
+| Mais contraste, cores forçadas e tamanho de texto do sistema                                  | ✓      | `preferencias-acessibilidade.spec.js`                                                             |
+| Leitor de tela real e dispositivos físicos                                                    | ○      | Roteiro na seção 3                                                                                |
 
 ### Desempenho e qualidade
 
@@ -106,9 +109,10 @@ O commit-base foi medido com o throttling simulado padrão do Lighthouse; as med
 Itens que os testes automáticos não substituem:
 
 1. **Dispositivos físicos:** abrir a página num iPhone (Safari) e num Android (Chrome); conferir hero, menu, carrosséis, agenda e botões em retrato e paisagem.
-2. **Leitor de tela:** VoiceOver (iOS ou macOS) e NVDA ou TalkBack; percorrer a página por títulos e landmarks, usar o menu, as abas, o carrossel e os botões do WhatsApp.
-3. **WhatsApp real:** no domínio de produção, tocar nos botões e confirmar que o WhatsApp abre com a mensagem correta e o número do profissional, sem precisar enviar.
-4. **Revisão de conteúdo** pelo responsável: textos, fotos, posts e dados profissionais (IMP-510).
+2. **Leitor de tela:** VoiceOver (iOS ou macOS) e NVDA ou TalkBack; percorrer a página por títulos e landmarks, usar o menu, as abas, o carrossel, o painel de acessibilidade e os botões do WhatsApp.
+3. **Acessibilidade ampliada:** no celular, ativar cada opção do painel e conferir a leitura; abrir o VLibras e conferir que o avatar traduz um trecho selecionado.
+4. **WhatsApp real:** no domínio de produção, tocar nos botões e confirmar que o WhatsApp abre com a mensagem correta e o número do profissional, sem precisar enviar.
+5. **Revisão de conteúdo** pelo responsável: textos, fotos, posts e dados profissionais (IMP-510).
 
 ## 4. Homologação com dados reais
 

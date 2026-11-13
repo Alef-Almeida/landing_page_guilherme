@@ -99,7 +99,7 @@ Se a agenda passar a vir de um serviço externo, isso exige uma integração nov
 - **Edite somente `styles.source.css`.** `styles.css` é gerado por `npm run build` e versionado, para que a página funcione em qualquer hospedagem estática. `npm test` falha se ele estiver desatualizado.
 - Tailwind CSS compilado localmente, versão `3.4.17`. As classes são lidas de `index.html`, `script.js` e `contact.js`.
 - Ordem no arquivo final: base do Tailwind → componentes → estilos próprios → utilitários.
-- Não use `!important`: resolva pela especificidade do seletor ou pelas classes do HTML.
+- Não use `!important`: resolva pela especificidade do seletor ou pelas classes do HTML. A única exceção é o bloco entre `/* preferencias:inicio */` e `/* preferencias:fim */`, com as escolhas do painel de acessibilidade, que precisam vencer qualquer estilo (verificado por `check:css`).
 - Movimento: as transições usam os tokens `--motion-fast`, `--motion-base` e `--motion-slow`, que viram zero com `prefers-reduced-motion`.
 - Prefixos pelo autoprefixer (`browserslist` em `package.json`); minificação por cssnano sem transformações que alterem cores ou gradientes.
 
@@ -109,6 +109,14 @@ Se a agenda passar a vir de um serviço externo, isso exige uma integração nov
 - Para trocar ou acrescentar uma foto ou post: coloque o JPEG em `assets/source/`, ajuste a lista `IMAGES` em `scripts/optimize-images.mjs`, rode `npm run images` e atualize o `<picture>` em `index.html` (`srcset`, `sizes`, `width` e `height`).
 - Só o primeiro post do carrossel é baixado com a página; os demais recebem a imagem real depois do carregamento (atributos `data-defer-*`). As fotos usam `loading="lazy"`.
 - Favicon e ícones: edite `assets/icons/favicon.svg` e rode `npm run images`.
+
+## Acessibilidade e Libras
+
+- **Painel "Acessibilidade"** (botão no cabeçalho): tamanho do texto de 100% a 200%, alto contraste (fundo preto, texto branco e links amarelos), fonte de alta legibilidade (Atkinson Hyperlegible) ou para dislexia (OpenDyslexic), mais espaçamento de texto, destaque de links e botões, guia de leitura e pausa de animações. As escolhas ficam em `localStorage` (chave `acessibilidade`) e `accessibility.js`, carregado no `<head>`, as aplica antes da primeira pintura marcando o `<html>` com classes `a11y-*` e atributos `data-a11y-*`.
+- **VLibras:** o botão flutuante à direita e o botão do painel carregam o tradutor oficial do Governo Federal (`https://vlibras.gov.br/app/vlibras-plugin.js`) só quando a pessoa pede. Nenhuma requisição ao VLibras acontece antes disso.
+- **Preferências do sistema** respeitadas sem o painel: movimento reduzido, mais contraste (`prefers-contrast: more`), cores forçadas do Windows (`forced-colors`) e tamanho de texto do sistema (`<meta name="text-scale">`, tamanhos em rem).
+- Fontes de leitura: `npm run fonts` copia as de `@fontsource/atkinson-hyperlegible` e `@fontsource/opendyslexic` (licença SIL OFL); o navegador só as baixa quando escolhidas.
+- Testes: `tests/unit/accessibility.test.js` e `tests/e2e/preferencias-acessibilidade.spec.js` (VLibras simulado, sem rede).
 
 ## Testes e integração contínua
 
@@ -120,15 +128,16 @@ Se a agenda passar a vir de um serviço externo, isso exige uma integração nov
 
 ## Segurança e privacidade
 
-- Nenhum recurso de terceiros é carregado: fontes, imagens e scripts são servidos pelo próprio site. O WhatsApp é apenas um link.
+- Nenhum recurso de terceiros é carregado com a página: fontes, imagens e scripts são servidos pelo próprio site. O WhatsApp é apenas um link. A única exceção é o VLibras, que só carrega quando a pessoa pede a tradução em Libras; a CSP libera apenas os endereços oficiais dele (`vlibras.gov.br`, `*.vlibras.gov.br` e `cdn.jsdelivr.net/gh/spbgovbr-vlibras/`) e estilos inline, que ele exige.
 - Os cabeçalhos de segurança (CSP, Referrer-Policy, Permissions-Policy e outros) ficam em `security-headers.json`. O servidor local os aplica, `npm run dist` os grava em `_headers` e os testes falham se houver violação de CSP.
-- Não use scripts ou estilos inline: a CSP bloqueia. Dados estruturados em `<script type="application/ld+json">` são permitidos, pois não são executados.
+- Não use scripts inline: a CSP bloqueia. Estilos inline são aceitos só por exigência do VLibras; não os use no código do site. Dados estruturados em `<script type="application/ld+json">` são permitidos, pois não são executados.
 
 ## Estrutura
 
 ```text
 ├── index.html                    página
 ├── site-config.js                configuração operacional: WhatsApp, domínio, modalidades e agenda
+├── accessibility.js              painel de acessibilidade, preferências salvas e VLibras sob demanda
 ├── tabs.js                       abas acessíveis (padrão WAI-ARIA), usadas no "Sobre" e na agenda
 ├── contact.js                    contato e agenda: validação, mensagens, datas e estados dos botões
 ├── script.js                     demais comportamentos (menu, seção ativa, carrosséis, ano do rodapé)

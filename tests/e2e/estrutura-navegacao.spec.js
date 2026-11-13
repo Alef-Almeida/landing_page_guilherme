@@ -51,12 +51,14 @@ test.describe('estrutura', () => {
         if (!el || el === document.body) return 'fim';
         if (el.closest('header') || el.classList.contains('skip-link')) return 'cabeçalho';
         if (el.closest('footer')) return 'rodapé';
+        if (el.id === 'vlibras-launcher') return 'libras';
         return el.closest('main > section')?.id || 'hero';
       });
       if (section === 'fim') break;
       if (visited.at(-1) !== section) visited.push(section);
     }
-    expect(visited).toEqual(['cabeçalho', 'hero', ...SECTION_ORDER]);
+    // O botão do VLibras fica no fim do documento, depois do conteúdo (IMP-810).
+    expect(visited).toEqual(['cabeçalho', 'hero', ...SECTION_ORDER, 'libras']);
   });
 });
 

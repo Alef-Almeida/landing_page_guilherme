@@ -50,3 +50,24 @@ test('nenhum recurso é carregado de outro domínio (IMP-511)', async ({ page, b
   await page.waitForLoadState('networkidle');
   expect(external).toEqual([]);
 });
+
+test('a CSP só abre exceção para o VLibras, sem eval nem curingas genéricos (IMP-810)', () => {
+  const csp = config.headers['Content-Security-Policy'];
+  const allowed = new Set([
+    "'self'",
+    "'none'",
+    "'unsafe-inline'",
+    'data:',
+    'blob:',
+    'https://vlibras.gov.br',
+    'https://*.vlibras.gov.br',
+    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+  ]);
+  for (const directive of csp.split(';').map((d) => d.trim())) {
+    const [name, ...sources] = directive.split(/\s+/);
+    for (const source of sources) expect(allowed.has(source), `${name} ${source}`).toBe(true);
+    // Estilos inline são exigência do VLibras; scripts inline continuam proibidos.
+    if (name === 'script-src') expect(sources).not.toContain("'unsafe-inline'");
+  }
+  expect(csp).not.toMatch(/unsafe-eval/);
+});

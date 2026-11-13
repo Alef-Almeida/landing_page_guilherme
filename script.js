@@ -66,8 +66,8 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const updateBoatPosition = () => {
   const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
   targetProgress = Math.min(window.scrollY / maxScroll, 1);
-  // Com movimento reduzido, o barco vai direto à posição, sem animação de acompanhamento.
-  if (reducedMotion.matches) {
+  // Com movimento reduzido (sistema ou painel de acessibilidade), o barco vai direto à posição, sem animação.
+  if (reducedMotion.matches || document.documentElement.classList.contains('a11y-pausar')) {
     currentProgress = targetProgress;
     renderBoat(currentProgress);
     return;

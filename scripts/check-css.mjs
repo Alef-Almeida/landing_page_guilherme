@@ -25,8 +25,14 @@ try {
   if (html.includes('cdn.tailwindcss.com')) errors.push('index.html ainda carrega o Tailwind via CDN.');
   if (/<style[\s>]/i.test(html))
     errors.push('index.html contém blocos <style>; mova os estilos para styles.source.css.');
-  if (/!important/.test(readFileSync('styles.source.css', 'utf8')))
-    errors.push('styles.source.css contém !important; resolva pela especificidade ou pelas classes do HTML.');
+  // !important só é aceito no bloco de preferências de acessibilidade escolhidas pela pessoa (IMP-802),
+  // que precisa vencer qualquer estilo da página.
+  const source = readFileSync('styles.source.css', 'utf8');
+  const outsidePreferences = source.replace(/\/\* preferencias:inicio \*\/[\s\S]*?\/\* preferencias:fim \*\//, '');
+  if (/!important/.test(outsidePreferences))
+    errors.push(
+      'styles.source.css contém !important fora do bloco de preferências; resolva pela especificidade ou pelas classes do HTML.',
+    );
 } finally {
   rmSync(dir, { recursive: true, force: true });
 }
@@ -35,4 +41,4 @@ if (errors.length) {
   for (const e of errors) console.error(`✗ ${e}`);
   process.exit(1);
 }
-console.log('✓ CSS gerado atualizado, sem CDN, sem <style> no HTML e sem !important');
+console.log('✓ CSS gerado atualizado, sem CDN, sem <style> no HTML e sem !important fora das preferências');

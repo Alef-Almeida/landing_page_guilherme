@@ -21,9 +21,9 @@ Este documento reúne o que a página precisa do responsável pelo projeto antes
 
 Os fatos abaixo foram verificados no código atual; o texto precisa de revisão do responsável e, se necessário, de orientação jurídica.
 
-> **Privacidade.** Esta página não usa cookies, ferramentas de análise de visitas, anúncios nem formulários, e não coleta dados pessoais. Fontes e imagens são servidas pelo próprio site. Ao tocar em um botão do WhatsApp, você é levado ao aplicativo do WhatsApp, que tem política de privacidade própria; a mensagem só é enviada se você confirmar o envio. As informações compartilhadas na conversa são tratadas com sigilo profissional, conforme o Código de Ética Profissional do Psicólogo.
+> **Privacidade.** Esta página não usa cookies, ferramentas de análise de visitas, anúncios nem formulários, e não coleta dados pessoais. Fontes e imagens são servidas pelo próprio site. As escolhas do painel de acessibilidade (tamanho do texto, contraste, fonte e outras) ficam guardadas só no seu navegador. Se você ativar a tradução em Libras, a página carrega o VLibras, serviço do Governo Federal, e envia a ele o texto a ser traduzido. Ao tocar em um botão do WhatsApp, você é levado ao aplicativo do WhatsApp, que tem política de privacidade própria; a mensagem só é enviada se você confirmar o envio. As informações compartilhadas na conversa são tratadas com sigilo profissional, conforme o Código de Ética Profissional do Psicólogo.
 
-Fatos que precisam continuar verdadeiros para o texto valer: nenhuma ferramenta de análise ou script de terceiros for adicionada; o contato continuar sendo só pelo WhatsApp.
+Fatos que precisam continuar verdadeiros para o texto valer: nenhuma ferramenta de análise ou outro script de terceiros for adicionado (o VLibras é a única exceção e só carrega quando a pessoa pede); o contato continuar sendo só pelo WhatsApp.
 
 ## 3. Rascunhos para o FAQ (DEC-03, DEC-07, DEC-09, IMP-513)
 
@@ -65,5 +65,5 @@ Itens para o responsável conferir; este documento não substitui avaliação ju
 
 ## 7. Pontos de conteúdo encontrados na implementação
 
-- **Ordem dos posts do carrossel:** os 9 posts formam uma série numerada que o carrossel exibe na ordem inversa (o primeiro slide é o 9/9; o segundo, o 8/9). Para seguir a série, a ordem seria 9, 8, 7, …, 1. Decidir junto com DEC-08.
+- **Ordem dos posts do carrossel:** os 9 posts formam uma série numerada que o carrossel exibe na ordem inversa (o primeiro slide é o 9/9; o segundo, o 8/9; o último, o 1/9, "Quando uma criança pode precisar de psicoterapia?"). Para seguir a série, a ordem seria 1, 2, 3, …, 9. Decidir junto com DEC-08.
 - **Cards "Em breve":** dois dos três cards de conteúdos anunciam materiais que ainda não existem (DEC-05).
