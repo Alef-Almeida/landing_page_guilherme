@@ -8,6 +8,30 @@
  */
 
 @tailwind base;
+
+/* Fontes hospedadas no próprio site (IMP-511): variáveis, subconjunto latino, licença SIL OFL (assets/fonts/). */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('./assets/fonts/inter-latin-wght-normal.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url('./assets/fonts/dm-sans-latin-wght-normal.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 @tailwind components;
 
 /* ==========================================================================
@@ -285,29 +309,6 @@ main > section {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 45%, rgba(23, 50, 77, 0.12));
 }
 
-.instagram-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.7rem 0.2rem 0.15rem;
-  color: #17324d;
-}
-
-.instagram-actions-left {
-  display: flex;
-  gap: 0.75rem;
-}
-
-.instagram-action {
-  height: 1.15rem;
-  width: 1.15rem;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.8;
-}
-
 .instagram-dots {
   display: flex;
   min-width: 0;
@@ -359,18 +360,6 @@ main > section {
   right: -1.1rem;
   top: 13%;
   color: #d99174;
-}
-
-.ig-float-two {
-  left: -1.25rem;
-  top: 43%;
-  color: #7fa9bb;
-}
-
-.ig-float-three {
-  right: -0.9rem;
-  bottom: 17%;
-  color: #17324d;
 }
 
 .carousel-controls {
@@ -718,7 +707,7 @@ main > section {
   transform: translateY(-4px);
 }
 
-.content-card span {
+.content-card > span:first-child {
   font-size: 11px;
   letter-spacing: 0.15em;
 }
@@ -735,6 +724,17 @@ main > section {
   font-size: 0.9rem;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.6);
+}
+
+/* Conteúdo ainda não publicado: aviso, não link (DEC-05, alternativa provisória). */
+.content-card-soon {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .content-card a {
@@ -1225,14 +1225,6 @@ details p {
 
   .ig-float-one {
     right: -0.6rem;
-  }
-
-  .ig-float-two {
-    left: -0.65rem;
-  }
-
-  .ig-float-three {
-    right: -0.55rem;
   }
 
   .adult-decor {

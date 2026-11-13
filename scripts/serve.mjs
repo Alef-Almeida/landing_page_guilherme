@@ -5,6 +5,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+// Mesmos cabeçalhos de segurança da publicação (sem os exclusivos de HTTPS), para que a CSP seja testada localmente.
+const { headers: SECURITY_HEADERS } = JSON.parse(await readFile(path.join(ROOT, 'security-headers.json'), 'utf8'));
 const portArg = process.argv.indexOf('--port');
 const PORT = Number(portArg > -1 ? process.argv[portArg + 1] : process.env.PORT || 8080);
 const TYPES = {
@@ -20,6 +22,7 @@ const TYPES = {
   '.webp': 'image/webp',
   '.avif': 'image/avif',
   '.ico': 'image/x-icon',
+  '.woff2': 'font/woff2',
   '.txt': 'text/plain; charset=utf-8',
   '.xml': 'application/xml; charset=utf-8',
   '.webmanifest': 'application/manifest+json; charset=utf-8',
@@ -33,11 +36,14 @@ export const startServer = (port = PORT) =>
       if (!file.startsWith(ROOT + path.sep) && file !== ROOT) throw Object.assign(new Error(), { code: 'EACCES' });
       if ((await stat(file)).isDirectory()) file = path.join(file, 'index.html');
       const body = await readFile(file);
-      res.writeHead(200, { 'Content-Type': TYPES[path.extname(file).toLowerCase()] || 'application/octet-stream' });
+      res.writeHead(200, {
+        ...SECURITY_HEADERS,
+        'Content-Type': TYPES[path.extname(file).toLowerCase()] || 'application/octet-stream',
+      });
       res.end(body);
     } catch (error) {
       const status = error.code === 'EACCES' ? 403 : 404;
-      res.writeHead(status, { 'Content-Type': 'text/plain; charset=utf-8' });
+      res.writeHead(status, { ...SECURITY_HEADERS, 'Content-Type': 'text/plain; charset=utf-8' });
       res.end(status === 403 ? 'Acesso negado' : 'Não encontrado');
     }
   }).listen(port, '127.0.0.1', () => console.log(`Servindo em http://127.0.0.1:${port}/`));

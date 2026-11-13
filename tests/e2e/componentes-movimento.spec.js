@@ -169,6 +169,7 @@ test.describe('transição de navegação (IMP-336 a IMP-338, IMP-630)', () => {
   test('ícones flutuantes do hero não têm animação contínua', async ({ page }) => {
     await page.goto('/');
     const names = await page.$$eval('.ig-float', (els) => els.map((el) => getComputedStyle(el).animationName));
-    expect(names).toEqual(['none', 'none', 'none']);
+    expect(names.length).toBeGreaterThan(0);
+    expect(names.every((name) => name === 'none')).toBe(true);
   });
 });

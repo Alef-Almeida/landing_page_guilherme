@@ -56,12 +56,22 @@ test.describe('carregamento das imagens no mobile', () => {
   }) => {
     const requested = [];
     page.on('request', (request) => requested.push(request.url()));
+    // Segura a primeira imagem por 1,5 s: o evento load só ocorre depois dela, o que dá um ponto de
+    // observação estável para verificar que os demais posts ainda não foram pedidos.
+    let releaseFirst;
+    const firstHeld = new Promise((resolve) => (releaseFirst = resolve));
+    await page.route(/instagram-01-400\.(avif|webp)/, async (route) => {
+      await firstHeld;
+      await route.continue();
+    });
     await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.waitForTimeout(500);
     const early = requested.filter((url) => /\/assets\/img\/instagram/.test(url));
     expect(early.some((url) => /instagram-01-400\.(avif|webp)/.test(url))).toBe(true);
     expect(early.filter((url) => /instagram-0[2-9]/.test(url))).toEqual([]);
     await expect(page.locator('.instagram-slide.is-active img')).toHaveAttribute('fetchpriority', 'high');
 
+    releaseFirst();
     await page.waitForLoadState('networkidle');
     await expect.poll(() => page.locator('[data-defer-src]').count(), { timeout: 5000 }).toBe(0);
   });

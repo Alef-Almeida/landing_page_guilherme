@@ -5,6 +5,9 @@
 const { test, expect } = require('@playwright/test');
 const { PNG } = require('pngjs');
 
+// O teste injeta um <style> para tornar o texto transparente; a CSP do site (corretamente) bloquearia isso.
+test.use({ bypassCSP: true });
+
 const luminance = ([r, g, b]) => {
   const lin = (c) => ((c /= 255) <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
   return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);

@@ -13,6 +13,9 @@ try {
   console.error('[contato] Não foi possível inicializar o contato pelo WhatsApp.', error);
 }
 
+// Ano do rodapé (IMP-517); o HTML traz o ano da última publicação como reserva.
+document.querySelectorAll('[data-current-year]').forEach((el) => (el.textContent = String(new Date().getFullYear())));
+
 // ---------------------------------------------------------------------------
 // Abas da seção "Sobre"
 // ---------------------------------------------------------------------------
