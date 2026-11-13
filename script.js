@@ -132,6 +132,8 @@ sections.forEach((section) => observer.observe(section));
 // - Anterior, Próximo e Pausar/Retomar; Anterior/Próximo reiniciam a contagem, e só Pausar para a rotação de vez;
 // - a rotação pausa enquanto o mouse está sobre o carrossel ou o foco de teclado está dentro dele
 //   (toque e clique não pausam: no celular o "mouse em cima" emulado não termina e travava o carrossel);
+// - Retomar vale na hora, mesmo com o mouse ou o foco ainda no carrossel (pedido explícito, como no
+//   padrão WAI-ARIA); a pausa por mouse ou foco só volta depois que eles saem e entram de novo;
 // - a rotação também para fora da tela e com a aba em segundo plano, e volta sozinha;
 // - com prefers-reduced-motion ou com "Pausar animações" (painel de acessibilidade), começa pausada;
 // - aria-live fica "off" durante a rotação e "polite" quando pausado, como no padrão WAI-ARIA.
@@ -190,6 +192,7 @@ const setupCarousel = (root) => {
   let hovered = false;
   let focused = false;
   let onScreen = true;
+  let resumed = false; // Retomar acionado com o mouse ou o foco ainda dentro do carrossel
 
   const show = (index, { preloadNext = true } = {}) => {
     active = (index + slides.length) % slides.length;
@@ -205,7 +208,7 @@ const setupCarousel = (root) => {
 
   // Recria o temporizador a cada mudança: depois de Anterior/Próximo, o próximo avanço leva um intervalo inteiro.
   const update = () => {
-    const running = !userPaused && !hovered && !focused && onScreen && !document.hidden;
+    const running = !userPaused && (resumed || (!hovered && !focused)) && onScreen && !document.hidden;
     clearInterval(timer);
     timer = running ? window.setInterval(() => show(active + 1), interval) : null;
     track.setAttribute('aria-live', running ? 'off' : 'polite');
@@ -222,6 +225,7 @@ const setupCarousel = (root) => {
   root.querySelector('[data-carousel-next]')?.addEventListener('click', () => step(1));
   toggle.addEventListener('click', () => {
     userPaused = !userPaused;
+    resumed = !userPaused;
     update();
   });
   root.addEventListener('pointerenter', (event) => {
@@ -232,6 +236,7 @@ const setupCarousel = (root) => {
   root.addEventListener('pointerleave', (event) => {
     if (event.pointerType !== 'mouse') return;
     hovered = false;
+    if (!focused) resumed = false;
     update();
   });
   root.addEventListener('focusin', (event) => {
@@ -241,6 +246,7 @@ const setupCarousel = (root) => {
   root.addEventListener('focusout', (event) => {
     if (root.contains(event.relatedTarget)) return;
     focused = false;
+    if (!hovered) resumed = false;
     update();
   });
   // Um clique depois de navegar pelo teclado deixa de valer como foco de teclado.
@@ -258,6 +264,7 @@ const setupCarousel = (root) => {
   document.addEventListener('visibilitychange', update);
   const syncMotionPreference = () => {
     userPaused = motionPaused();
+    resumed = false;
     update();
   };
   reducedMotion.addEventListener('change', syncMotionPreference);

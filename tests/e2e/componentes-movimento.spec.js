@@ -139,6 +139,45 @@ test.describe('carrosséis (IMP-330 a IMP-335, IMP-616, IMP-801)', () => {
     await expect(carousel.getByRole('group', { name: '3 de 9' })).toBeVisible();
   });
 
+  test('Retomar volta a girar na hora, com o mouse ainda sobre o carrossel', async ({ page }) => {
+    await page.clock.install();
+    await page.goto('/');
+    const carousel = page.getByRole('group', { name: 'Posts do Instagram' });
+    const track = carousel.locator('[data-carousel-track]');
+    await carousel.getByRole('button', { name: 'Pausar rotação dos posts' }).click();
+    await page.clock.runFor(10000);
+    await expect(carousel.getByRole('group', { name: '1 de 9' })).toBeVisible();
+
+    // O mouse fica parado sobre o botão: a rotação volta depois de um intervalo, sem precisar sair.
+    await carousel.getByRole('button', { name: 'Retomar rotação dos posts' }).click();
+    await expect(track).toHaveAttribute('aria-live', 'off');
+    await page.clock.runFor(5000);
+    await expect(carousel.getByRole('group', { name: '2 de 9' })).toBeVisible();
+
+    // Ao sair e voltar com o mouse, a pausa por "mouse em cima" volta a valer.
+    await page.mouse.move(0, 0);
+    await carousel.hover();
+    await page.clock.runFor(10000);
+    await expect(carousel.getByRole('group', { name: '2 de 9' })).toBeVisible();
+  });
+
+  test('Retomar pelo teclado volta a girar com o foco ainda no botão', async ({ page }) => {
+    await page.clock.install();
+    await page.goto('/');
+    const carousel = page.getByRole('group', { name: 'Posts do Instagram' });
+    const toggle = carousel.locator('[data-carousel-toggle]');
+    await carousel.getByRole('button', { name: 'Post anterior' }).focus();
+    await page.keyboard.press('Tab');
+    await expect(toggle).toBeFocused();
+    await page.keyboard.press('Enter'); // pausa
+    await expect(toggle).toHaveAccessibleName('Retomar rotação dos posts');
+    await page.keyboard.press('Enter'); // retoma
+    await expect(toggle).toHaveAccessibleName('Pausar rotação dos posts');
+    await expect(toggle).toBeFocused();
+    await page.clock.runFor(5000);
+    await expect(carousel.getByRole('group', { name: '2 de 9' })).toBeVisible();
+  });
+
   test('o foco deixado por um clique do mouse não trava a rotação', async ({ page }) => {
     await page.clock.install();
     await page.goto('/');
