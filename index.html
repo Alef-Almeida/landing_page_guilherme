@@ -492,17 +492,18 @@
                     </button>
                   </div>
                 </div>
-                <span class="ig-float ig-float-one" aria-hidden="true"
-                  ><svg viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-                    <circle cx="12" cy="12" r="4"></circle>
-                    <circle cx="17.5" cy="6.5" r=".7" fill="currentColor" stroke="none"></circle></svg
-                ></span>
               </div>
-            </div>
-            <div class="absolute -bottom-6 -left-6 rounded-2xl border border-ink/5 bg-white px-5 py-4 shadow-soft">
-              <p class="font-display text-2xl font-semibold">cada história</p>
-              <p class="text-xs text-ink/75">tem seu próprio caminho</p>
+              <a
+                class="ig-float ig-float-one"
+                href="https://www.instagram.com/guilhermes_tx/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Abrir perfil @guilhermes_tx no Instagram"
+                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <circle cx="17.5" cy="6.5" r=".7" fill="currentColor" stroke="none"></circle></svg
+              ></a>
             </div>
           </div>
         </div>
@@ -574,6 +575,12 @@
                   Acompanhamento para crianças, adolescentes e famílias, considerando singularidades, neurodivergências,
                   emoções, comportamento e os contextos que fazem parte de cada história.
                 </p>
+                <ul class="service-tags" aria-label="Focos do atendimento infantil e adolescente">
+                  <li>Regulação emocional</li>
+                  <li>Neurodivergências e inclusão</li>
+                  <li>Rotina, escola e socialização</li>
+                  <li>Orientação a famílias</li>
+                </ul>
                 <a href="#contato" class="mt-6 inline-flex min-h-11 items-center text-sm font-semibold"
                   >Conversar sobre este atendimento
                   <span class="ml-2 transition motion-reduce:transition-none group-hover:ml-3">→</span></a
@@ -596,6 +603,12 @@
                   Psicoterapia para adultos que desejam olhar para suas experiências, lidar com dificuldades emocionais
                   e desenvolver recursos para os desafios da vida cotidiana.
                 </p>
+                <ul class="service-tags" aria-label="Focos do atendimento para adultos">
+                  <li>Ansiedade e sobrecarga</li>
+                  <li>Autoconhecimento</li>
+                  <li>Relações e limites</li>
+                  <li>Transições de vida</li>
+                </ul>
                 <a href="#contato" class="mt-6 inline-flex min-h-11 items-center text-sm font-semibold"
                   >Conversar sobre este atendimento
                   <span class="ml-2 transition motion-reduce:transition-none group-hover:ml-3">→</span></a
@@ -760,21 +773,45 @@
           </div>
           <div class="mt-12 grid gap-4 md:grid-cols-3">
             <article class="content-card">
-              <span class="text-peach">01</span>
+              <span class="text-peach">01 · DESENVOLVIMENTO E INCLUSÃO</span>
               <h3>Neurodivergência e respeito às diferenças</h3>
-              <p>Um olhar para além dos diagnósticos, valorizando singularidades e potencialidades.</p>
-              <span class="content-card-soon">Em breve</span>
+              <p>
+                Um olhar para além dos diagnósticos: cada criança ou adolescente tem formas próprias de aprender, sentir
+                e se relacionar com o mundo.
+              </p>
+              <ul class="content-points">
+                <li>Escuta das singularidades e potencialidades</li>
+                <li>Estratégias possíveis para casa e escola</li>
+                <li>Diálogo com família e equipe multidisciplinar</li>
+              </ul>
+              <a href="#atendimentos">Conhecer o atendimento →</a>
             </article>
             <article class="content-card">
-              <span class="text-peach">02</span>
+              <span class="text-peach">02 · EMOÇÕES E COTIDIANO</span>
               <h3>Regulação emocional no dia a dia</h3>
-              <p>Como reconhecer emoções e construir recursos possíveis para atravessar momentos difíceis.</p>
-              <span class="content-card-soon">Em breve</span>
+              <p>
+                Frustração, ansiedade, medo e sobrecarga fazem parte da vida. A psicoterapia ajuda a reconhecer o que se
+                sente e construir recursos possíveis.
+              </p>
+              <ul class="content-points">
+                <li>Reconhecimento e nomeação das emoções</li>
+                <li>Manejo de momentos difíceis e sobrecarga</li>
+                <li>Recursos práticos da abordagem TCC</li>
+              </ul>
+              <a href="#sobre">Conhecer a abordagem →</a>
             </article>
             <article class="content-card">
-              <span class="text-peach">03</span>
+              <span class="text-peach">03 · PRIMEIROS PASSOS</span>
               <h3>Dúvidas sobre psicoterapia</h3>
-              <p>Respostas acessíveis para quem está pensando em iniciar um acompanhamento.</p>
+              <p>
+                A terapia não precisa ser o último recurso. Entenda quando procurar acompanhamento e como funcionam as
+                primeiras conversas.
+              </p>
+              <ul class="content-points">
+                <li>Mudanças de rotina, escola ou comportamento</li>
+                <li>Acolhimento ético e sem fórmulas prontas</li>
+                <li>Processo construído no ritmo de cada pessoa</li>
+              </ul>
               <a href="#faq">Ver dúvidas →</a>
             </article>
           </div>
@@ -792,24 +829,28 @@
           </div>
           <div class="space-y-3">
             <details>
-              <summary>Como funciona o primeiro contato?</summary>
+              <summary>Como funciona o primeiro contato e a estrutura das sessões?</summary>
               <p>
-                O primeiro contato é um momento para você apresentar sua demanda, tirar dúvidas sobre o atendimento e
-                entender se o processo faz sentido para o seu momento.
+                O primeiro contato pelo WhatsApp é um espaço para você contar brevemente o que está buscando e tirar
+                dúvidas práticas. A partir da primeira sessão (com duração média de 50 minutos e frequência semanal),
+                compreendemos sua demanda com calma e alinhamos objetivos de forma ética e individualizada.
               </p>
             </details>
             <details>
-              <summary>O atendimento é online ou presencial?</summary>
+              <summary>O atendimento é online ou presencial? Há recibo para reembolso?</summary>
               <p>
-                Entre em contato pelo WhatsApp para consultar os formatos disponíveis, horários e demais informações
-                práticas.
+                Os atendimentos seguem as diretrizes do Conselho Federal de Psicologia (CFP), com sigilo e escuta
+                qualificada. Pelo WhatsApp você confere a disponibilidade atual para as modalidades presencial e online,
+                além de informações sobre valores e emissão de recibo para solicitação de reembolso no plano de saúde.
               </p>
             </details>
             <details>
               <summary>Como funciona o atendimento de crianças e adolescentes?</summary>
               <p>
-                O processo é construído de forma individualizada, com atenção ao vínculo, ao desenvolvimento e à
-                participação dos responsáveis quando pertinente.
+                O acompanhamento começa com uma conversa inicial com os pais ou responsáveis para conhecer a história e
+                o contexto familiar e escolar. As sessões utilizam recursos lúdicos e clínicos adequados à faixa etária,
+                com devolutivas periódicas à família e diálogo com a escola e equipe multiprofissional quando
+                pertinente.
               </p>
             </details>
           </div>
@@ -820,7 +861,7 @@
         <div class="mx-auto max-w-6xl">
           <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <p class="eyebrow">Agenda de atendimento</p>
+              <p class="eyebrow">Agenda e primeiro contato</p>
               <h2 id="agenda-title" class="section-title" data-schedule-title>
                 Consulte a disponibilidade<br class="hidden sm:block" />
                 e comece a conversa.
@@ -861,6 +902,20 @@
       </section>
 
       <section id="contato" class="px-6 pb-20 lg:px-8 lg:pb-28" aria-labelledby="contato-title">
+        <div class="contact-steps mx-auto mt-8 grid max-w-6xl gap-4 sm:grid-cols-3">
+          <div>
+            <span>PASSO 01</span><strong>Conte o que você busca</strong>
+            <p>Uma mensagem simples contando sua necessidade ou dúvida inicial já é um começo.</p>
+          </div>
+          <div>
+            <span>PASSO 02</span><strong>Tire suas dúvidas</strong>
+            <p>Entenda como funciona o processo terapêutico, modalidades e valores com tranquilidade.</p>
+          </div>
+          <div>
+            <span>PASSO 03</span><strong>Encontre um horário</strong>
+            <p>Escolhemos juntos o melhor dia e horário disponível na agenda pelo WhatsApp.</p>
+          </div>
+        </div>
         <div
           class="contact-panel mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-sky px-7 py-12 sm:px-12 lg:flex lg:items-center lg:justify-between lg:px-16"
         >
@@ -890,26 +945,26 @@
             >
           </div>
         </div>
-        <div class="contact-steps mx-auto mt-8 grid max-w-6xl gap-3 sm:grid-cols-3">
-          <div>
-            <span>01</span><strong>Conte o que você busca</strong>
-            <p>Uma mensagem simples já é um começo.</p>
-          </div>
-          <div>
-            <span>02</span><strong>Tire suas dúvidas</strong>
-            <p>Converse sobre o processo com tranquilidade.</p>
-          </div>
-          <div>
-            <span>03</span><strong>Encontre um horário</strong>
-            <p>A agenda é combinada pelo WhatsApp.</p>
-          </div>
-        </div>
       </section>
     </main>
-    <footer class="border-t border-ink/10 px-6 py-8 lg:px-8">
-      <div class="mx-auto flex max-w-6xl flex-col justify-between gap-3 text-xs text-ink/75 sm:flex-row">
-        <span>© <span data-current-year>2026</span> Guilherme dos Santos Teixeira · Psicologia</span
-        ><span>CRP 03/36532 · Atendimento ético e individualizado</span>
+    <footer class="site-footer border-t border-ink/10 px-6 py-8 lg:px-8">
+      <div class="mx-auto max-w-6xl">
+        <div class="footer-grid">
+          <div>
+            <strong class="footer-brand">Guilherme dos Santos Teixeira</strong>
+            <p class="footer-meta">Psicólogo clínico · CRP 03/36532 · Instagram @guilhermes_tx</p>
+            <p class="footer-meta">
+              Terapia Cognitivo-Comportamental (TCC), Desenvolvimento Infantil, ABA e Educação Inclusiva.
+            </p>
+          </div>
+          <div class="footer-right">
+            <span>© <span data-current-year>2026</span> Guilherme dos Santos Teixeira · Psicologia</span>
+            <span>Atendimento ético, sigiloso e individualizado (CFP)</span>
+            <span class="footer-crisis"
+              >Em caso de emergência emocional aguda, ligue 188 (CVV — atendimento gratuito 24h).</span
+            >
+          </div>
+        </div>
       </div>
     </footer>
     <button

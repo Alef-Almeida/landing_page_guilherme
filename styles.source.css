@@ -391,14 +391,22 @@ main > section {
   position: absolute;
   z-index: 4;
   display: grid;
-  height: 2.6rem;
-  width: 2.6rem;
+  height: 2.75rem;
+  width: 2.75rem;
   place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.86);
-  box-shadow: 0 12px 28px rgba(23, 50, 77, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 28px rgba(23, 50, 77, 0.14);
   color: #17324d;
+  transition:
+    transform var(--motion-fast) var(--ease-standard),
+    background var(--motion-fast) var(--ease-standard);
+}
+
+.ig-float:hover {
+  background: #fff;
+  transform: scale(1.06);
 }
 
 .ig-float svg {
@@ -484,17 +492,50 @@ main > section {
 
 .service-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(23, 50, 77, 0.06);
   border-radius: 2rem;
   padding: 2rem;
   overflow: hidden;
+  box-shadow: 0 18px 50px rgba(23, 50, 77, 0.06);
   transition:
     transform var(--motion-base) var(--ease-standard),
     box-shadow var(--motion-base) var(--ease-standard);
 }
 
+.service-card > div:last-child {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1.25rem;
+}
+
+.service-tags li {
+  border: 1px solid rgba(23, 50, 77, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.62);
+  padding: 0.35rem 0.8rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #17324d;
+}
+
+.service-card a {
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
 .service-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 70px rgba(23, 50, 77, 0.1);
+  box-shadow: 0 24px 70px rgba(23, 50, 77, 0.12);
 }
 
 .service-card a:hover {
@@ -596,6 +637,7 @@ main > section {
   overflow: hidden;
   border-radius: 2rem;
   background: linear-gradient(145deg, #ddecf5, #f5b79c);
+  box-shadow: 0 22px 60px rgba(23, 50, 77, 0.12);
 }
 
 .portrait-carousel::after {
@@ -648,8 +690,11 @@ main > section {
 }
 
 .stat {
-  border-left: 2px solid #f5b79c;
-  padding-left: 12px;
+  border: 1px solid rgba(23, 50, 77, 0.08);
+  border-left: 3px solid #f5b79c;
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.78);
+  padding: 0.85rem 1rem;
 }
 
 .stat strong {
@@ -666,8 +711,8 @@ main > section {
 }
 
 .about-interactive {
-  border-top: 1px solid rgba(23, 50, 77, 0.12);
-  padding-top: 1.6rem;
+  border-top: 1px solid rgba(23, 50, 77, 0.1);
+  padding-top: 2rem;
 }
 
 .about-tab-list {
@@ -706,10 +751,12 @@ main > section {
   grid-template-columns: 180px 1fr;
   align-items: center;
   gap: 2rem;
-  margin-top: 1rem;
+  margin-top: 1.15rem;
+  border: 1px solid rgba(23, 50, 77, 0.08);
   border-radius: 1.5rem;
-  background: linear-gradient(135deg, #f8f5f1, #fff);
-  padding: 1.25rem 1.5rem;
+  background: #fff;
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 18px 50px rgba(23, 50, 77, 0.06);
 }
 
 .about-tab-art {
@@ -748,17 +795,29 @@ main > section {
    Conteúdos
    ========================================================================== */
 
+#conteudos > .mx-auto {
+  border-radius: 2.25rem;
+  background: #17324d;
+  padding: 3.5rem;
+  box-shadow: 0 24px 70px rgba(23, 50, 77, 0.14);
+}
+
 .content-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 1.25rem;
-  padding: 1.5rem;
+  border-radius: 1.35rem;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 1.65rem;
   transition:
     background var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
     transform var(--motion-fast) var(--ease-standard);
 }
 
 .content-card:hover {
   background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-4px);
 }
 
@@ -768,17 +827,44 @@ main > section {
 }
 
 .content-card h3 {
-  margin-top: 3rem;
+  margin-top: 1.75rem;
   font-family: 'DM Sans';
   font-size: 1.4rem;
   line-height: 1.15;
 }
 
 .content-card p {
-  margin-top: 1rem;
+  margin-top: 0.85rem;
   font-size: 0.9rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.content-points {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 1rem;
+}
+
+.content-points li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.content-points li::before {
+  position: absolute;
+  left: 0;
+  top: 0.52em;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background: #f5b79c;
+  content: '';
 }
 
 /* Conteúdo ainda não publicado: aviso, não link (DEC-05, alternativa provisória). */
@@ -786,7 +872,8 @@ main > section {
   display: inline-flex;
   min-height: 2.75rem;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
   font-size: 0.8rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.72);
@@ -796,7 +883,8 @@ main > section {
   display: inline-flex;
   min-height: 2.75rem;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
   font-size: 0.8rem;
   font-weight: 600;
   color: #f6af83;
@@ -807,8 +895,24 @@ main > section {
    ========================================================================== */
 
 details {
-  border-bottom: 1px solid rgba(23, 50, 77, 0.12);
-  padding: 0.75rem 0;
+  border: 1px solid rgba(23, 50, 77, 0.1);
+  border-radius: 1.25rem;
+  background: #f8f5f1;
+  padding: 0.85rem 1.35rem;
+  transition:
+    background var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
+    box-shadow var(--motion-fast) var(--ease-standard);
+}
+
+details:hover {
+  border-color: rgba(23, 50, 77, 0.2);
+}
+
+details[open] {
+  background: #fff;
+  border-color: rgba(23, 50, 77, 0.18);
+  box-shadow: 0 14px 36px rgba(23, 50, 77, 0.06);
 }
 
 summary {
@@ -829,7 +933,8 @@ summary::-webkit-details-marker {
 summary::after {
   position: absolute;
   right: 0;
-  top: 0.25rem;
+  top: 50%;
+  transform: translateY(-50%);
   content: '+';
   font-size: 1.5rem;
   font-weight: 400;
@@ -842,7 +947,10 @@ details[open] summary::after {
 
 details p {
   max-width: 600px;
-  padding-top: 1rem;
+  border-top: 1px solid rgba(23, 50, 77, 0.08);
+  margin-top: 0.5rem;
+  padding-top: 0.85rem;
+  padding-bottom: 0.25rem;
   font-size: 0.95rem;
   line-height: 1.7;
   color: var(--ink-75);
@@ -852,15 +960,19 @@ details p {
    Contato
    ========================================================================== */
 
+#agenda {
+  padding-bottom: 1.75rem;
+}
+
 #contato {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 2rem;
-  padding-top: 7rem;
-  padding-bottom: 7rem;
-  border-bottom: 1px solid rgba(23, 50, 77, 0.1);
+  margin-top: 0;
+  padding-top: 1.75rem;
+  padding-bottom: 5rem;
+  border-bottom: 0;
   overflow: hidden;
 }
 
@@ -949,12 +1061,17 @@ details p {
 #contato > .contact-steps {
   flex: none;
   width: 100%;
-  margin-top: 2rem;
+  margin-top: 0;
+  margin-bottom: 1.75rem;
 }
 
 .contact-steps > div {
-  border-top: 1px solid rgba(23, 50, 77, 0.16);
-  padding: 1rem 0.2rem 0.2rem;
+  border: 1px solid rgba(23, 50, 77, 0.08);
+  border-top: 3px solid #f5b79c;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1.25rem 1.35rem;
+  box-shadow: 0 12px 32px rgba(23, 50, 77, 0.05);
 }
 
 .contact-steps span {
@@ -1069,6 +1186,7 @@ details p {
   background: #17324d;
   padding: 2rem;
   color: #fff;
+  box-shadow: 0 24px 70px rgba(23, 50, 77, 0.14);
 }
 
 .schedule-panel-head {
@@ -1210,50 +1328,239 @@ details p {
   .schedule-consult .schedule-confirmation {
     grid-column: 1 / -1;
   }
+
+  .footer-grid {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .footer-right {
+    text-align: right;
+  }
+}
+
+.footer-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.footer-brand {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #17324d;
+}
+
+.footer-meta {
+  margin-top: 0.25rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink-75);
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-75);
+}
+
+.footer-crisis {
+  font-weight: 500;
+  color: #17324d;
 }
 
 /* ==========================================================================
-   Fundos das seções, com transição suave entre seções claras e escuras
+   Escala e aproveitamento de tela em desktops e monitores largos
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  header > .max-w-6xl,
+  main > section > .max-w-6xl,
+  #contato.max-w-6xl,
+  #contato > .max-w-6xl,
+  footer > .max-w-6xl {
+    max-width: min(86rem, calc(100vw - 7rem));
+  }
+
+  main > section[class*='py-'] {
+    padding-top: 4.75rem;
+    padding-bottom: 4.75rem;
+  }
+
+  main > section#agenda[class*='py-'] {
+    padding-bottom: 1.75rem;
+  }
+
+  main > section#contato {
+    padding-top: 1.75rem;
+    padding-bottom: 5rem;
+  }
+
+  main > section:first-of-type {
+    padding-top: 8.5rem;
+    padding-bottom: 4.75rem;
+  }
+
+  main > section:first-of-type > .max-w-6xl {
+    gap: 3.5rem;
+    grid-template-columns: 1.08fr 0.92fr;
+  }
+
+  main .instagram-card {
+    max-width: min(100%, 31rem);
+  }
+
+  #atendimentos .mb-12 > p,
+  #conteudos > .mx-auto > div:first-child > p {
+    max-width: 30rem;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .service-card {
+    padding: 2.5rem 2.75rem;
+  }
+
+  .service-card > div:last-child {
+    margin-top: 4rem;
+    max-width: 38rem;
+  }
+
+  .service-card h3 {
+    font-size: clamp(1.85rem, 2.1vw, 2.25rem);
+    line-height: 1.14;
+  }
+
+  .service-card p:not(:first-child) {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+
+  .service-card a {
+    font-size: 0.95rem;
+  }
+
+  #sobre > .max-w-6xl:first-child {
+    gap: 4rem;
+    grid-template-columns: 0.86fr 1.14fr;
+  }
+
+  #sobre p {
+    max-width: 42rem;
+  }
+
+  #sobre .grid.sm\:grid-cols-3 {
+    max-width: 40rem;
+    gap: 1rem;
+  }
+
+  .stat strong {
+    font-size: 1.25rem;
+  }
+
+  .stat span {
+    font-size: 0.78rem;
+  }
+
+  .about-tab {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  .about-tab-content {
+    grid-template-columns: 200px 1fr;
+    padding: 1.75rem 2.25rem;
+  }
+
+  .about-tab-content p {
+    max-width: 48rem;
+    font-size: 1.02rem;
+  }
+
+  .content-card {
+    padding: 2rem;
+  }
+
+  .content-card h3 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .content-card p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .content-card a,
+  .content-card-soon {
+    font-size: 0.9rem;
+  }
+
+  #faq > .max-w-6xl > div:first-child > p:last-child {
+    max-width: 28rem;
+    font-size: 1.05rem;
+  }
+
+  details {
+    padding: 1.05rem 1.5rem;
+  }
+
+  summary {
+    font-size: 1.22rem;
+  }
+
+  details p {
+    max-width: 48rem;
+    font-size: 1rem;
+  }
+
+  .contact-steps strong {
+    font-size: 1.1rem;
+  }
+
+  .contact-steps p {
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 1281px) {
+  html:not([data-a11y-texto]) {
+    font-size: clamp(16px, 0.95vw + 3.5px, 19.5px);
+  }
+}
+
+/* ==========================================================================
+   Fundos das seções, com transição contínua e orgânica na ordem real do DOM
    ========================================================================== */
 
 #atendimentos {
-  background: linear-gradient(180deg, #f8f5f1 0, #fff 5.5rem, #fff 100%);
+  background: linear-gradient(180deg, #f8f5f1 0%, #fff 10rem, #fff 100%);
 }
 
 #sobre {
-  background: linear-gradient(180deg, #fff 0, #fff 3rem, #f8f5f1 8rem, #f8f5f1 100%);
+  background: linear-gradient(180deg, #fff 0%, #f8f5f1 10rem, #f8f5f1 100%);
 }
 
 #conteudos {
-  background: linear-gradient(
-    180deg,
-    #f8f5f1 0,
-    #f8f5f1 0.7rem,
-    #eaf5f7 1.35rem,
-    #a9ced8 2rem,
-    #17324d 2.8rem,
-    #17324d 100%
-  );
+  background: linear-gradient(180deg, #f8f5f1 0%, #fff 100%);
 }
 
 #faq {
-  background: linear-gradient(
-    180deg,
-    #17324d 0,
-    #17324d 0.7rem,
-    #a9ced8 1.45rem,
-    #eaf5f7 2.1rem,
-    #fff 2.8rem,
-    #fff 100%
-  );
-}
-
-#contato {
-  background: linear-gradient(180deg, #fff 0, #f8f5f1 1.2rem, #eaf7fa 2rem, #dff5fb 2.8rem, #dff5fb 100%);
+  background: linear-gradient(180deg, #fff 0%, #fff 65%, #f8f5f1 100%);
 }
 
 #agenda {
-  background: linear-gradient(180deg, #dff5fb 0, #eaf7fa 1rem, #f8f5f1 1.8rem, #fff 2.8rem, #fff 100%);
+  background: linear-gradient(180deg, #f8f5f1 0%, #f4f8fa 50%, #fff 100%);
+}
+
+#contato {
+  background: linear-gradient(180deg, #fff 0%, #eef7fa 48%, #f8f5f1 100%);
 }
 
 /* ==========================================================================
@@ -1273,11 +1580,6 @@ details p {
     padding: 0.55rem;
   }
 
-  .ig-float {
-    height: 2.15rem;
-    width: 2.15rem;
-  }
-
   .ig-float-one {
     right: -0.6rem;
   }
@@ -1294,10 +1596,19 @@ details p {
     min-height: 95px;
   }
 
+  #conteudos > .mx-auto {
+    border-radius: 1.75rem;
+    padding: 2rem 1.25rem;
+  }
+
+  #agenda {
+    padding-bottom: 1.25rem;
+  }
+
   #contato {
-    margin-top: 1rem;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    margin-top: 0;
+    padding-top: 1.25rem;
+    padding-bottom: 4.5rem;
   }
 
   #contato > .contact-panel::before {
@@ -1332,7 +1643,7 @@ details p {
   }
 
   #atendimentos {
-    background: linear-gradient(180deg, #f8f5f1 0, #fff 4rem, #fff 100%);
+    background: linear-gradient(180deg, #f8f5f1 0%, #fff 6rem, #fff 100%);
   }
 }
 
