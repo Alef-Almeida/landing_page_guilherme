@@ -51,6 +51,20 @@ for (const width of WIDTHS) {
   });
 }
 
+test('menu móvel permite rolar até o último link em tela baixa com texto ampliado', async ({ page }) => {
+  await prepare(page, 740, 320);
+  await page.locator('html').evaluate((html) => (html.dataset.a11yTexto = '200'));
+  await page.getByRole('button', { name: 'Abrir menu' }).click();
+  const menu = page.getByRole('navigation', { name: 'Menu', exact: true });
+  const lastLink = menu.getByRole('link', { name: 'Contato' });
+  await menu.evaluate((nav) => (nav.scrollTop = nav.scrollHeight));
+
+  expect(await menu.evaluate((nav) => nav.scrollTop)).toBeGreaterThan(0);
+  await expect(lastLink).toBeInViewport({ ratio: 1 });
+  await lastLink.click();
+  await expect(page).toHaveURL(/#contato$/);
+});
+
 test('logotipo mantém a proporção natural em todas as larguras (IMP-343, IMP-628)', async ({ page }) => {
   for (const width of WIDTHS) {
     await prepare(page, width);

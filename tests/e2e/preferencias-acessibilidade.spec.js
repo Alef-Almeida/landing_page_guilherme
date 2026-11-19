@@ -157,6 +157,25 @@ test.describe('painel de acessibilidade', () => {
     await expect(carousel.getByRole('group', { name: '2 de 9' })).toBeVisible();
   });
 
+  test('desligar "Pausar animações" preserva a pausa manual do carrossel', async ({ page }) => {
+    await page.clock.install();
+    await page.goto('/');
+    const carousel = page.getByRole('group', { name: 'Posts do Instagram' });
+    await carousel.getByRole('button', { name: 'Pausar rotação dos posts' }).click();
+    const slide = await carousel.locator('.instagram-slide.is-active').getAttribute('data-instagram-slide');
+
+    await page.getByRole('button', { name: 'Acessibilidade', exact: true }).click();
+    const pause = page.getByRole('switch', { name: /^Pausar animações/ });
+    await pause.check();
+    await pause.uncheck();
+    await page.keyboard.press('Escape');
+    await page.mouse.move(0, 0);
+    await page.clock.runFor(5000);
+
+    await expect(carousel.getByRole('button', { name: 'Retomar rotação dos posts' })).toBeVisible();
+    await expect(carousel.locator('.instagram-slide.is-active')).toHaveAttribute('data-instagram-slide', slide);
+  });
+
   test('guia de leitura acompanha o mouse', async ({ page }) => {
     await withPrefs(page, { guia: true });
     await page.goto('/');

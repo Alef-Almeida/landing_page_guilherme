@@ -98,6 +98,10 @@ document.addEventListener('click', (event) => {
   if (!mobileMenu.hidden && !mobileMenu.contains(event.target) && !menuToggle.contains(event.target))
     setMenuOpen(false);
 });
+// A partir de 1024px (lg) o menu mobile some pelo CSS; fecha-o para não reaparecer aberto ao voltar à tela estreita.
+window.matchMedia('(min-width: 1024px)').addEventListener('change', (event) => {
+  if (event.matches && !mobileMenu.hidden) setMenuOpen(false);
+});
 menuToggle.hidden = false;
 
 // ---------------------------------------------------------------------------
@@ -188,7 +192,8 @@ const setupCarousel = (root) => {
     0,
   );
   let timer = null;
-  let userPaused = motionPaused();
+  let manuallyPaused = false;
+  let preferencePaused = motionPaused();
   let hovered = false;
   let focused = false;
   let onScreen = true;
@@ -208,6 +213,7 @@ const setupCarousel = (root) => {
 
   // Recria o temporizador a cada mudança: depois de Anterior/Próximo, o próximo avanço leva um intervalo inteiro.
   const update = () => {
+    const userPaused = manuallyPaused || preferencePaused;
     const running = !userPaused && (resumed || (!hovered && !focused)) && onScreen && !document.hidden;
     clearInterval(timer);
     timer = running ? window.setInterval(() => show(active + 1), interval) : null;
@@ -224,8 +230,14 @@ const setupCarousel = (root) => {
   root.querySelector('[data-carousel-prev]')?.addEventListener('click', () => step(-1));
   root.querySelector('[data-carousel-next]')?.addEventListener('click', () => step(1));
   toggle.addEventListener('click', () => {
-    userPaused = !userPaused;
-    resumed = !userPaused;
+    if (manuallyPaused || preferencePaused) {
+      manuallyPaused = false;
+      preferencePaused = false;
+      resumed = true;
+    } else {
+      manuallyPaused = true;
+      resumed = false;
+    }
     update();
   });
   root.addEventListener('pointerenter', (event) => {
@@ -263,7 +275,7 @@ const setupCarousel = (root) => {
   }
   document.addEventListener('visibilitychange', update);
   const syncMotionPreference = () => {
-    userPaused = motionPaused();
+    preferencePaused = motionPaused();
     resumed = false;
     update();
   };

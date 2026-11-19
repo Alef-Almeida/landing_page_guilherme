@@ -236,6 +236,18 @@ main > section {
   transition: transform var(--motion-fast) var(--ease-standard);
 }
 
+.site-header {
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
+  max-height: 100dvh;
+}
+
+#mobile-menu {
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+
 #mobile-menu a {
   display: block;
   padding: 0.7rem 0;
@@ -1201,23 +1213,6 @@ details p {
 /* ==========================================================================
    Agenda
    ========================================================================== */
-
-.agenda-note {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 0.75rem;
-  color: var(--ink-75);
-}
-
-.agenda-dot {
-  display: block;
-  height: 8px;
-  width: 8px;
-  border-radius: 50%;
-  background: #f5b79c;
-  box-shadow: 0 0 0 5px rgba(245, 183, 156, 0.18);
-}
 
 .schedule-layout {
   display: grid;

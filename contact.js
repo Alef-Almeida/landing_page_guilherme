@@ -80,22 +80,49 @@
     };
   }
 
+  function normalizeModalities(modalities) {
+    return (Array.isArray(modalities) ? modalities : [])
+      .filter((m) => m !== null && m !== undefined)
+      .map((m) => String(m).trim())
+      .filter(Boolean);
+  }
+
   function describeModalities(modalities) {
-    const list = (Array.isArray(modalities) ? modalities : []).map((m) => String(m).trim()).filter(Boolean);
+    const list = normalizeModalities(modalities);
     if (list.length <= 1) return list[0] || '';
     return `${list.slice(0, -1).join(', ')} ou ${list[list.length - 1]}`;
   }
 
   function buildScheduleMessage({ professionalName = 'Guilherme', date, time, modalities = [] }) {
     if (!isValidTime(time)) throw new Error(`Horário inválido: ${time}`);
-    const list = (Array.isArray(modalities) ? modalities : []).filter(Boolean);
+    const list = normalizeModalities(modalities);
     let modalityText = '';
     if (list.length === 1) modalityText = ` Modalidade: ${list[0]}.`;
     else if (list.length > 1) modalityText = ` Gostaria de combinar a modalidade (${describeModalities(list)}).`;
+    const name = String(professionalName ?? '').trim();
     return (
-      `Olá, ${professionalName}. Gostaria de solicitar o horário de ${formatLongDate(date)}, às ${time}.` +
+      `Olá${name ? `, ${name}` : ''}. Gostaria de solicitar o horário de ${formatLongDate(date)}, às ${time}.` +
       `${modalityText} Sei que o horário ainda depende da sua confirmação.`
     );
+  }
+
+  // Domínios comparados como o navegador os expõe em location.hostname: minúsculos e sem ponto final.
+  function normalizeHost(value) {
+    return String(value ?? '')
+      .trim()
+      .toLowerCase()
+      .replace(/\.$/, '');
+  }
+
+  const HOSTNAME = /^(?=.{1,253}$)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)*[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/;
+
+  function isValidHostname(value) {
+    return typeof value === 'string' && HOSTNAME.test(normalizeHost(value));
+  }
+
+  // Um horário já passou se a data é anterior a hoje, ou se é hoje e a hora não é posterior à atual.
+  function isSlotPast(date, time, current) {
+    return date < current.date || (date === current.date && time <= current.time);
   }
 
   function getNowInTimeZone(timeZone, now = new Date()) {
@@ -113,17 +140,26 @@
   }
 
   // Mantém somente datas e horários válidos e futuros no fuso informado, em ordem e sem repetição.
+  // A mesma data informada mais de uma vez vira um único dia, com os horários somados.
+  // Fuso inválido (já acusado por validateConfig) resulta em agenda vazia, sem exceção.
   function getUpcomingSchedule(days, { timeZone = 'America/Bahia', now = new Date() } = {}) {
-    const current = getNowInTimeZone(timeZone, now);
-    return (Array.isArray(days) ? days : [])
-      .filter((day) => day && parseIsoDate(day.date) && day.date >= current.date)
-      .map((day) => ({
-        date: day.date,
-        times: [...new Set((Array.isArray(day.times) ? day.times : []).filter(isValidTime))]
-          .sort()
-          .filter((time) => day.date > current.date || time > current.time),
-      }))
-      .filter((day) => day.times.length > 0)
+    let current;
+    try {
+      current = getNowInTimeZone(timeZone, now);
+    } catch {
+      return [];
+    }
+    const byDate = new Map();
+    for (const day of Array.isArray(days) ? days : []) {
+      if (!day || !parseIsoDate(day.date) || day.date < current.date) continue;
+      const times = byDate.get(day.date) ?? new Set();
+      for (const time of Array.isArray(day.times) ? day.times : [])
+        if (isValidTime(time) && !isSlotPast(day.date, time, current)) times.add(time);
+      byDate.set(day.date, times);
+    }
+    return [...byDate]
+      .filter(([, times]) => times.size > 0)
+      .map(([date, times]) => ({ date, times: [...times].sort() }))
       .sort((a, b) => a.date.localeCompare(b.date));
   }
 
@@ -145,9 +181,15 @@
     } catch {
       errors.push(`schedule.timeZone inválido: ${schedule.timeZone}.`);
     }
+    const hosts = config.site?.productionHosts;
+    if (hosts !== undefined && !Array.isArray(hosts))
+      errors.push("site.productionHosts deve ser uma lista, por exemplo ['www.dominio.com.br', 'dominio.com.br'].");
+
     if (schedule.mode === 'manual-schedule') {
       for (const day of Array.isArray(schedule.days) ? schedule.days : []) {
         if (!parseIsoDate(day?.date)) errors.push(`schedule.days: data inválida ${JSON.stringify(day?.date)}.`);
+        if (!Array.isArray(day?.times))
+          errors.push(`schedule.days: em ${day?.date}, times deve ser uma lista, por exemplo ['09:00', '14:30'].`);
         for (const time of Array.isArray(day?.times) ? day.times : [])
           if (!isValidTime(time))
             errors.push(`schedule.days: horário inválido ${JSON.stringify(time)} em ${day?.date}.`);
@@ -157,9 +199,13 @@
     }
 
     if (release) {
-      const hosts = config.site?.productionHosts;
       if (!Array.isArray(hosts) || !hosts.length)
         errors.push('site.productionHosts: informe o domínio oficial (DEC-04); sem ele o link fica desativado.');
+      for (const host of Array.isArray(hosts) ? hosts : [])
+        if (!isValidHostname(host))
+          errors.push(
+            `site.productionHosts: ${JSON.stringify(host)} não é um domínio; use só o nome, sem https://, barra ou porta.`,
+          );
       const siteUrl = String(config.site?.url ?? '');
       let parsed = null;
       try {
@@ -171,7 +217,11 @@
         errors.push(
           "site.url: informe o endereço público com https e barra final, por exemplo 'https://www.dominio.com.br/' (DEC-04).",
         );
-      else if (Array.isArray(hosts) && hosts.length && !hosts.includes(parsed.hostname))
+      else if (parsed.href !== siteUrl)
+        errors.push(
+          `site.url: use a forma normalizada '${parsed.href}' (minúsculas, caracteres especiais codificados).`,
+        );
+      else if (Array.isArray(hosts) && hosts.length && !hosts.map(normalizeHost).includes(parsed.hostname))
         errors.push(`site.url: o domínio ${parsed.hostname} precisa constar em site.productionHosts.`);
       if (!Array.isArray(config.modalities) || !config.modalities.length)
         warnings.push('modalities está vazio: a página não informará a modalidade de atendimento (DEC-03).');
@@ -182,8 +232,9 @@
   // 'enabled' | 'unconfigured' | 'test-environment'
   function resolveContactState(config, hostname) {
     if (validateConfig(config).errors.length) return 'unconfigured';
-    const hosts = config.site?.productionHosts ?? [];
-    return hosts.includes(hostname) ? 'enabled' : 'test-environment';
+    const hosts = Array.isArray(config.site?.productionHosts) ? config.site.productionHosts.map(normalizeHost) : [];
+    const current = normalizeHost(hostname);
+    return current && hosts.includes(current) ? 'enabled' : 'test-environment';
   }
 
   function escapeHtml(value) {
@@ -230,7 +281,9 @@
 
   // Dias como abas (IMP-324 a IMP-327): a lista de dias é montada uma vez e só o painel de horários
   // é atualizado ao trocar de dia, preservando o foco e a operação por teclado.
-  function renderManualSchedule(scheduleElement, upcoming, config, state) {
+  // Horários que passam com a página aberta deixam de ser oferecidos: são retirados a cada meio minuto
+  // e, se clicados antes disso, o clique é cancelado.
+  function renderManualSchedule(scheduleElement, upcoming, config, state, clock) {
     const modalities = describeModalities(config.modalities);
     scheduleElement.innerHTML = `<div class="schedule-layout"><div class="schedule-days">${upcoming
       .map((item, index) => {
@@ -248,12 +301,37 @@
     const title = panel.querySelector('[data-schedule-day-title]');
     const slots = panel.querySelector('[data-schedule-slots]');
     const days = [...scheduleElement.querySelectorAll('.schedule-day')];
+    const timeZone = config.schedule?.timeZone;
+    const currentTime = () => getNowInTimeZone(timeZone, clock());
+    let currentIndex = 0;
+
+    const showNoSlots = () => {
+      slots.innerHTML =
+        '<p class="whatsapp-status">Os horários deste dia já passaram. Escolha outro dia ou envie uma mensagem para consultar a disponibilidade.</p>';
+    };
+
+    const removeExpired = () => {
+      const { date } = upcoming[currentIndex];
+      const current = currentTime();
+      let lostFocus = false;
+      slots.querySelectorAll('[data-slot-time]').forEach((link) => {
+        if (!isSlotPast(date, link.dataset.slotTime, current)) return;
+        lostFocus ||= link.contains(link.ownerDocument.activeElement);
+        link.remove();
+      });
+      if (!slots.querySelector('[data-slot-time]')) showNoSlots();
+      if (lostFocus) days[currentIndex].focus();
+    };
 
     const showDay = (index) => {
+      currentIndex = index;
       const selected = upcoming[index];
       title.textContent = getDateParts(selected.date).long;
       panel.setAttribute('aria-labelledby', days[index].id);
-      slots.innerHTML = selected.times
+      const current = currentTime();
+      const times = selected.times.filter((time) => !isSlotPast(selected.date, time, current));
+      if (!times.length) return showNoSlots();
+      slots.innerHTML = times
         .map(
           (time) =>
             `<a class="schedule-slot" data-whatsapp-cta="slot" data-slot-time="${time}"><span>${time}</span><span>Solicitar horário <b aria-hidden="true">↗</b></span></a>`,
@@ -277,9 +355,17 @@
       onSelect: showDay,
     });
     showStatus(panel, state);
+
+    slots.addEventListener('click', (event) => {
+      const link = event.target.closest?.('[data-slot-time]');
+      if (!link || !isSlotPast(upcoming[currentIndex].date, link.dataset.slotTime, currentTime())) return;
+      event.preventDefault();
+      removeExpired();
+    });
+    scheduleElement.ownerDocument.defaultView?.setInterval(removeExpired, 30 * 1000);
   }
 
-  function initContactFlow({ document, config, hostname, now = new Date() }) {
+  function initContactFlow({ document, config, hostname, now = new Date(), clock = () => new Date() }) {
     const { errors, warnings } = validateConfig(config);
     const state = resolveContactState(config, hostname);
     if (errors.length) console.warn(`[contato] Configuração incompleta:\n- ${errors.join('\n- ')}`);
@@ -312,9 +398,7 @@
 
     const title = document.querySelector('[data-schedule-title]');
     if (title) title.innerHTML = 'Escolha um horário<br class="hidden sm:block" /> para começar a conversa.';
-    const note = document.querySelector('[data-schedule-note]');
-    if (note) note.textContent = 'Horários sujeitos à confirmação pelo WhatsApp';
-    renderManualSchedule(scheduleElement, upcoming, config, state);
+    renderManualSchedule(scheduleElement, upcoming, config, state, clock);
     return state;
   }
 

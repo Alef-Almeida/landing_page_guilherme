@@ -12,10 +12,21 @@ const require = createRequire(import.meta.url);
 const START = /(<!-- seo:dominio:inicio[^>]*-->)[\s\S]*?(\s*<!-- seo:dominio:fim -->)/;
 const OG_IMAGE = { path: 'assets/og-image.jpg', width: 1200, height: 630 };
 
+// Escapa valores para atributos HTML e texto XML (a URL vem de site-config.js e pode ter & ou aspas).
+const escape = (value) =>
+  String(value).replace(
+    /[&<>"']/g,
+    (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c],
+  );
+
+// Substituição por função: o texto inserido nunca é lido como padrão especial de String.replace ($&, $', $1…).
+const fill = (html, tags) => html.replace(START, (_, start, end) => `${start}${tags}${end}`);
+
 export function buildSeo(config, html, today = new Date().toISOString().slice(0, 10)) {
-  const url = String(config.site?.url ?? '');
-  if (!url) return { html: html.replace(START, '$1$2'), files: { 'robots.txt': null, 'sitemap.xml': null } };
-  const image = new URL(OG_IMAGE.path, url).href;
+  const rawUrl = String(config.site?.url ?? '');
+  if (!rawUrl) return { html: fill(html, ''), files: { 'robots.txt': null, 'sitemap.xml': null } };
+  const url = escape(rawUrl);
+  const image = escape(new URL(OG_IMAGE.path, rawUrl).href);
   const tags = [
     `<link rel="canonical" href="${url}" />`,
     `<meta property="og:url" content="${url}" />`,
@@ -28,9 +39,9 @@ export function buildSeo(config, html, today = new Date().toISOString().slice(0,
     .map((tag) => `\n    ${tag}`)
     .join('');
   return {
-    html: html.replace(START, `$1${tags}$2`),
+    html: fill(html, tags),
     files: {
-      'robots.txt': `User-agent: *\nAllow: /\n\nSitemap: ${new URL('sitemap.xml', url).href}\n`,
+      'robots.txt': `User-agent: *\nAllow: /\n\nSitemap: ${new URL('sitemap.xml', rawUrl).href}\n`,
       'sitemap.xml': `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>${url}</loc>\n    <lastmod>${today}</lastmod>\n  </url>\n</urlset>\n`,
     },
   };
