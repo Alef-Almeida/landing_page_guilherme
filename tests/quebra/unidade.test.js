@@ -163,7 +163,8 @@ describe('gerador de SEO: URL com caracteres especiais', () => {
     const { buildSeo } = await load();
     for (const url of ['https://exemplo.com.br/$&/', "https://exemplo.com.br/$'/"]) {
       const out = buildSeo(withUrl(url), html, '2030-01-01').html;
-      assert.ok(out.includes(`<link rel="canonical" href="${url.replace("'", '&#39;')}" />`), out);
+      assert.ok(out.includes(`<link rel="canonical" href="${C.escapeHtml(url)}" />`), out);
+      assert.ok(!out.includes('seo:dominio:inicio — x -->/'), 'o marcador foi duplicado dentro da URL');
     }
   });
 
