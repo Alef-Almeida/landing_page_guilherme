@@ -43,12 +43,13 @@ if (aboutTabList) {
 // ---------------------------------------------------------------------------
 const scrollBoat = document.getElementById('scroll-boat');
 const wavePath = document.getElementById('brand-wave-path');
+const waveLength = wavePath.getTotalLength();
 let targetProgress = 0;
 let currentProgress = 0;
 let boatFrame = null;
 
 const renderBoat = (progress) => {
-  const point = wavePath.getPointAtLength(progress * wavePath.getTotalLength());
+  const point = wavePath.getPointAtLength(progress * waveLength);
   scrollBoat.setAttribute('transform', `translate(${point.x - 14} ${point.y - 10})`);
   scrollBoat.classList.toggle('boat-orange', progress <= 0.5);
   scrollBoat.classList.toggle('boat-blue', progress > 0.5);
@@ -142,8 +143,7 @@ sections.forEach((section) => observer.observe(section));
 // - com prefers-reduced-motion ou com "Pausar animações" (painel de acessibilidade), começa pausada;
 // - aria-live fica "off" durante a rotação e "polite" quando pausado, como no padrão WAI-ARIA.
 // ---------------------------------------------------------------------------
-// Imagens adiadas (IMP-407): slides que não aparecem no primeiro carregamento só recebem a imagem real
-// depois que a página termina de carregar, ou antes, se o slide for exibido.
+// Carrega a imagem do slide solicitado e antecipa apenas a próxima.
 const loadDeferredImage = (picture) => {
   const img = picture?.querySelector('img[data-defer-src]');
   if (!img) return;
@@ -160,14 +160,6 @@ const loadDeferredImage = (picture) => {
   delete img.dataset.deferSrcset;
   delete img.dataset.deferSrc;
 };
-const loadAllDeferredImages = () =>
-  document.querySelectorAll('picture img[data-defer-src]').forEach((img) => loadDeferredImage(img.parentElement));
-const scheduleDeferredImages = () => {
-  if ('requestIdleCallback' in window) window.requestIdleCallback(loadAllDeferredImages, { timeout: 3000 });
-  else window.setTimeout(loadAllDeferredImages, 1500);
-};
-if (document.readyState === 'complete') scheduleDeferredImages();
-else window.addEventListener('load', scheduleDeferredImages, { once: true });
 
 const motionPaused = () => reducedMotion.matches || document.documentElement.classList.contains('a11y-pausar');
 const isKeyboardFocus = (element) => {
@@ -199,10 +191,12 @@ const setupCarousel = (root) => {
   let onScreen = true;
   let resumed = false; // Retomar acionado com o mouse ou o foco ainda dentro do carrossel
 
+  const preloadNextSlide = () => loadDeferredImage(slides[(active + 1) % slides.length].querySelector('picture'));
+
   const show = (index, { preloadNext = true } = {}) => {
     active = (index + slides.length) % slides.length;
     loadDeferredImage(slides[active].querySelector('picture'));
-    if (preloadNext) loadDeferredImage(slides[(active + 1) % slides.length].querySelector('picture'));
+    if (preloadNext) preloadNextSlide();
     slides.forEach((slide, i) => {
       slide.classList.toggle('is-active', i === active);
       if (i === active) slide.removeAttribute('aria-hidden');
@@ -217,6 +211,7 @@ const setupCarousel = (root) => {
     const running = !userPaused && (resumed || (!hovered && !focused)) && onScreen && !document.hidden;
     clearInterval(timer);
     timer = running ? window.setInterval(() => show(active + 1), interval) : null;
+    if (running && document.readyState === 'complete') preloadNextSlide();
     track.setAttribute('aria-live', running ? 'off' : 'polite');
     toggle.setAttribute('aria-label', userPaused ? playLabel : pauseLabel);
     toggle.classList.toggle('is-paused', userPaused);
@@ -274,6 +269,13 @@ const setupCarousel = (root) => {
     }).observe(root);
   }
   document.addEventListener('visibilitychange', update);
+  window.addEventListener(
+    'load',
+    () => {
+      if (timer !== null) preloadNextSlide();
+    },
+    { once: true },
+  );
   const syncMotionPreference = () => {
     preferencePaused = motionPaused();
     resumed = false;

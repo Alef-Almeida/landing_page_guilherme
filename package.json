@@ -19,7 +19,7 @@
     "release": "npm run check:release && npm run dist",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check:js": "node --check site-config.js && node --check accessibility.js && node --check tabs.js && node --check contact.js && node --check script.js",
+    "check:js": "node --check site-config.js && node --check accessibility-preferences.js && node --check accessibility.js && node --check tabs.js && node --check contact.js && node --check script.js",
     "check:html": "html-validate index.html",
     "check:css": "node scripts/check-css.mjs",
     "check:release": "node scripts/check-release.mjs",

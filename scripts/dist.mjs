@@ -10,6 +10,7 @@ const DIST = path.join(ROOT, 'dist');
 const FILES = [
   'index.html',
   'site-config.js',
+  'accessibility-preferences.js',
   'accessibility.js',
   'tabs.js',
   'contact.js',

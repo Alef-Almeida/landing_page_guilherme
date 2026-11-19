@@ -49,11 +49,9 @@ test('toda imagem declara largura e altura (IMP-404)', async ({ page }) => {
 });
 
 test.describe('carregamento das imagens no mobile', () => {
-  test.use({ viewport: { width: 390, height: 844 } });
+  test.use({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
 
-  test('só o primeiro post é baixado de início; os demais esperam o carregamento da página (IMP-406, IMP-407)', async ({
-    page,
-  }) => {
+  test('com a rotação pausada, apenas o primeiro post é baixado (IMP-406, IMP-407)', async ({ page }) => {
     const requested = [];
     page.on('request', (request) => requested.push(request.url()));
     // Segura a primeira imagem por 1,5 s: o evento load só ocorre depois dela, o que dá um ponto de
@@ -73,7 +71,8 @@ test.describe('carregamento das imagens no mobile', () => {
 
     releaseFirst();
     await page.waitForLoadState('networkidle');
-    await expect.poll(() => page.locator('[data-defer-src]').count(), { timeout: 5000 }).toBe(0);
+    await expect(page.locator('[data-defer-src]')).toHaveCount(8);
+    expect(requested.filter((url) => /instagram-0[2-9]/.test(url))).toEqual([]);
   });
 
   test('imagens fora da primeira dobra usam carregamento tardio (IMP-405)', async ({ page }) => {
@@ -84,14 +83,13 @@ test.describe('carregamento das imagens no mobile', () => {
       await expect(img).toHaveAttribute('loading', 'lazy');
   });
 
-  test('ao avançar o carrossel antes do carregamento adiado, o slide recebe a imagem na hora', async ({ page }) => {
-    await page.addInitScript(() => {
-      window.requestIdleCallback = () => 0; // impede o carregamento adiado automático
-    });
+  test('ao avançar o carrossel, carrega o slide ativo e antecipa apenas o próximo', async ({ page }) => {
     await page.goto('/');
     await page.getByRole('button', { name: 'Próximo post' }).click();
     const slide = page.getByRole('group', { name: '2 de 9' });
     await expect(slide.locator('img')).not.toHaveAttribute('data-defer-src', /.+/);
+    await expect(page.locator('[data-instagram-slide="2"] img')).not.toHaveAttribute('data-defer-src', /.+/);
+    await expect(page.locator('[data-defer-src]')).toHaveCount(6);
     await expect
       .poll(() => slide.locator('img').evaluate((img) => img.complete && img.naturalWidth))
       .toBeGreaterThan(1);

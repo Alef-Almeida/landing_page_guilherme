@@ -1,9 +1,8 @@
 /*
  * Preferências de acessibilidade (IMP-802 a IMP-809) e tradutor de Libras VLibras (IMP-810).
  *
- * Carregado no <head>, de forma síncrona, para aplicar as preferências salvas antes da primeira
- * pintura (sem "piscar" o visual padrão). O painel e o botão do VLibras são ligados depois que o
- * HTML termina de carregar. As funções puras são testadas em tests/unit.
+ * A aplicação inicial das preferências fica em accessibility-preferences.js. Este script
+ * inicializa o painel, a guia de leitura e o botão do VLibras depois de ler o HTML.
  *
  * As preferências ficam só neste navegador (localStorage) e nunca saem dele. O VLibras é um
  * serviço do Governo Federal: o script dele só é baixado quando a pessoa pede a tradução.
@@ -11,89 +10,31 @@
  * Carregado como script clássico (window.Acessibilidade) e exportado para o Node.
  */
 (function (root, factory) {
-  const api = factory();
-  if (typeof module === 'object' && module.exports) module.exports = api;
+  if (typeof module === 'object' && module.exports) module.exports = factory(require('./accessibility-preferences.js'));
   else {
-    root.Acessibilidade = api;
-    api.boot(root);
+    root.Acessibilidade = factory(root.AccessibilityPreferences);
+    root.Acessibilidade.boot(root);
   }
-})(typeof self !== 'undefined' ? self : this, function () {
+})(typeof self !== 'undefined' ? self : this, function (preferences) {
   'use strict';
 
-  const STORAGE_KEY = 'acessibilidade';
-  const TEXT_STEPS = [100, 125, 150, 175, 200];
-  const FONTS = ['padrao', 'legivel', 'dislexia'];
-  const SWITCHES = ['contraste', 'espacamento', 'links', 'pausar', 'guia'];
-  const DEFAULTS = Object.freeze({
-    texto: 100,
-    fonte: 'padrao',
-    contraste: false,
-    espacamento: false,
-    links: false,
-    pausar: false,
-    guia: false,
-  });
+  const {
+    STORAGE_KEY,
+    TEXT_STEPS,
+    FONTS,
+    SWITCHES,
+    DEFAULTS,
+    normalizePrefs,
+    isDefault,
+    readPrefs,
+    savePrefs,
+    stepText,
+    applyPrefs,
+    getStorage,
+  } = preferences;
 
   const VLIBRAS_SRC = 'https://vlibras.gov.br/app/vlibras-plugin.js';
   const VLIBRAS_STORAGE_KEY = '@vlibras-widget';
-
-  // Aceita só valores conhecidos; qualquer outra coisa volta ao padrão.
-  function normalizePrefs(raw) {
-    const prefs = { ...DEFAULTS };
-    if (!raw || typeof raw !== 'object') return prefs;
-    if (TEXT_STEPS.includes(raw.texto)) prefs.texto = raw.texto;
-    if (FONTS.includes(raw.fonte)) prefs.fonte = raw.fonte;
-    for (const key of SWITCHES) if (typeof raw[key] === 'boolean') prefs[key] = raw[key];
-    return prefs;
-  }
-
-  function isDefault(prefs) {
-    return Object.keys(DEFAULTS).every((key) => prefs[key] === DEFAULTS[key]);
-  }
-
-  // O armazenamento pode não existir ou lançar erro (navegação privada, cookies bloqueados).
-  function readPrefs(storage) {
-    try {
-      const saved = storage && storage.getItem(STORAGE_KEY);
-      return normalizePrefs(saved ? JSON.parse(saved) : null);
-    } catch {
-      return { ...DEFAULTS };
-    }
-  }
-
-  function savePrefs(storage, prefs) {
-    try {
-      if (!storage) return false;
-      if (isDefault(prefs)) storage.removeItem(STORAGE_KEY);
-      else storage.setItem(STORAGE_KEY, JSON.stringify(normalizePrefs(prefs)));
-      return true;
-    } catch {
-      return false;
-    }
-  }
-
-  function stepText(current, delta) {
-    const index = TEXT_STEPS.indexOf(current);
-    const next = Math.min(Math.max((index < 0 ? 0 : index) + delta, 0), TEXT_STEPS.length - 1);
-    return TEXT_STEPS[next];
-  }
-
-  // Classes e atributos lidos pelo CSS (styles.source.css, bloco "Preferências de acessibilidade").
-  function applyPrefs(html, prefs) {
-    for (const key of SWITCHES) html.classList.toggle(`a11y-${key}`, prefs[key]);
-    if (prefs.texto === DEFAULTS.texto) html.removeAttribute('data-a11y-texto');
-    else html.setAttribute('data-a11y-texto', String(prefs.texto));
-    if (prefs.fonte === DEFAULTS.fonte) html.removeAttribute('data-a11y-fonte');
-    else html.setAttribute('data-a11y-fonte', prefs.fonte);
-  }
-
-  function getStorage(win) {
-    try {
-      return win.localStorage;
-    } catch {
-      return null;
-    }
-  }
 
   // -------------------------------------------------------------------------
   // Painel de preferências (padrão disclosure, como o menu)
