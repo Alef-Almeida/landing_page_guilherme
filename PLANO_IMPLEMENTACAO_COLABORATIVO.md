@@ -1271,4 +1271,36 @@ Antes de acrescentar:
 - Próxima ação recomendada: incluir o painel e o VLibras na homologação manual
 - Estado final: Concluída
 
+### [2026-11-19] Reserva de frente — FR-09 — Melhorias estéticas e UI/UX
+
+- Responsável/conversa: conversa de implementação das melhorias estéticas
+- Objetivo: aplicar os 10 refinamentos definidos em `PLANO_MELHORIAS_ESTETICAS.md`, preservando acessibilidade, responsividade e o comportamento existente
+- Branch: `feat/melhorias-esteticas-ui`
+- Arquivos reservados: `index.html`, `styles.source.css`, `styles.css`, capturas de regressão em `tests/e2e/layout.spec.js-snapshots/` e `tests/e2e/visual.spec.js-snapshots/`, `PLANO_IMPLEMENTACAO_COLABORATIVO.md`
+- Estado inicial: Em andamento
+- Validação prevista: build e checagem de CSS, testes unitários, contraste, layout responsivo e suíte E2E completa no Chromium
+
+### [2026-11-19] Contribuição — FR-09 — Melhorias estéticas e UI/UX
+
+- Responsável/conversa: conversa de implementação das melhorias estéticas
+- Objetivo: concluir os 10 refinamentos definidos em `PLANO_MELHORIAS_ESTETICAS.md` sem regredir acessibilidade, responsividade ou comportamento
+- Branch: `feat/melhorias-esteticas-ui`
+- Arquivos alterados: `index.html`, `styles.source.css`, `styles.css`, `PLANO_IMPLEMENTACAO_COLABORATIVO.md`, 5 capturas em `tests/e2e/layout.spec.js-snapshots/` e 14 capturas em `tests/e2e/visual.spec.js-snapshots/`
+- Alterações realizadas:
+  - escala tipográfica, largura dos contêineres e margens laterais de desktop recalibradas;
+  - VLibras movido para o canto inferior direito, com superfície translúcida e status alinhado;
+  - logotipo, botão de acessibilidade e indicador ativo da navegação refinados;
+  - eyebrow do hero restaurado, título e CTA secundário equilibrados, indicadores do carrossel ampliados e atalho do Instagram preservado no mobile sem colidir com o VLibras;
+  - cards de atendimento compactados, com gradientes mais suaves, rótulos e CTAs em pílula;
+  - selos da foto e pilares da seção Sobre reorganizados no mobile, com bordas internas uniformes;
+  - painel de Conteúdos recebeu gradiente, proximidade tipográfica e paddings mobile mais eficientes;
+  - FAQ ganhou cards brancos, sombras e controles circulares de expansão;
+  - etapas do contato passaram a usar barras internas e rótulos em pílula, e os CTAs desabilitados mantêm cores legíveis nos painéis claro e escuro;
+  - ordem da cascata do rodapé corrigida para restaurar a disposição horizontal a partir de 768 px.
+- Validações executadas: `npm run build`; `npm run check:js`; `npm run check:html`; formatação de todos os arquivos rastreados; `npm run check:css`; `npm run test:unit`; teste de contraste por pixel em 320, 390, 768 e 1280 px; teste de layout em 320, 375, 390, 640, 768, 1024, 1280 e 1440 px; atualização e inspeção das 19 capturas; suíte E2E completa no Chromium
+- Resultado das validações: 3 arquivos de testes unitários aprovados; 4/4 testes de contraste aprovados; 22/22 testes de layout aprovados; 14/14 testes visuais aprovados; 112/112 testes E2E aprovados; HTML, JavaScript, CSS gerado, formatação rastreada e whitespace aprovados
+- Observação: o `npm test` agregado encontra o arquivo de entrada não rastreado `PLANO_MELHORIAS_ESTETICAS.md` e interrompe no Prettier; as mesmas etapas foram executadas separadamente sobre os arquivos que compõem a branch, preservando a especificação original fora do commit
+- Arquivos ainda reservados: nenhum
+- Estado final: Concluída
+
 <!-- CONTRIBUICOES: ACRESCENTAR NOVAS ENTRADAS IMEDIATAMENTE ANTES DESTE MARCADOR. NAO REMOVER. -->
