@@ -16,8 +16,8 @@
   'use strict';
 
   const SCHEDULE_MODES = ['whatsapp-only', 'manual-schedule'];
-  // DDI 55 + DDD (dois dígitos, sem zero) + celular (9 + 8 dígitos) ou fixo (8 dígitos iniciados em 2–5).
-  const BR_WHATSAPP = /^55[1-9]{2}(?:9\d{8}|[2-5]\d{7})$/;
+  // DDI 55 + DDD (dois dígitos, sem zero) + celular (9 + 7 ou 8 dígitos, padrão WhatsApp) ou fixo (8 dígitos iniciados em 2–5).
+  const BR_WHATSAPP = /^55[1-9]{2}(?:9\d{7,8}|[2-5]\d{7})$/;
   const ISO_DATE = /^(\d{4})-(\d{2})-(\d{2})$/;
   const TIME = /^(?:[01]\d|2[0-3]):[0-5]\d$/;
 
@@ -377,11 +377,37 @@
       showStatus(general.parentElement, state);
     }
 
-    const consult = document.querySelector('[data-whatsapp-cta="schedule"]');
-    if (consult) {
-      applyCta(consult, safeUrl(config, config?.whatsapp?.scheduleMessage), state);
-      showStatus(consult.parentElement, state);
-    }
+    const shiftButtons = [...document.querySelectorAll('[data-schedule-shift]')];
+    const applyConsultShift = (selectedShift) => {
+      shiftButtons.forEach((btn) => {
+        const isSelected = btn.dataset?.scheduleShift === selectedShift;
+        btn.classList.toggle('is-selected', isSelected);
+        btn.setAttribute('aria-pressed', String(isSelected));
+      });
+      const consultLinks = document.querySelectorAll('[data-whatsapp-cta="schedule"]');
+      consultLinks.forEach((consult) => {
+        if (selectedShift) consult.dataset.whatsappShift = selectedShift;
+        const shift = consult.dataset?.whatsappShift;
+        const label = consult.querySelector?.('[data-schedule-cta-label]');
+        if (label) {
+          label.textContent =
+            shift === 'afternoon' ? 'Consultar horários da tarde' : 'Consultar horários da manhã';
+        }
+        const message =
+          shift === 'morning'
+            ? config?.whatsapp?.morningScheduleMessage || config?.whatsapp?.scheduleMessage
+            : shift === 'afternoon'
+              ? config?.whatsapp?.afternoonScheduleMessage || config?.whatsapp?.scheduleMessage
+              : config?.whatsapp?.scheduleMessage;
+        applyCta(consult, safeUrl(config, message), state);
+        showStatus(consult.closest('.schedule-panel') || consult.parentElement, state);
+      });
+    };
+
+    applyConsultShift(shiftButtons.find((btn) => btn.classList.contains('is-selected'))?.dataset?.scheduleShift);
+    shiftButtons.forEach((btn) => {
+      btn.addEventListener('click', () => applyConsultShift(btn.dataset?.scheduleShift));
+    });
 
     const scheduleElement = document.getElementById('schedule');
     const schedule = config?.schedule ?? {};

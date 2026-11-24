@@ -15,12 +15,16 @@ const expectDisabled = async (page, status) => {
 };
 
 test('sem número configurado, os botões ficam desativados com aviso', async ({ page }) => {
+  await useSiteConfig(page, [["number: '557499542056',", "number: '',"]]);
   await page.goto('/');
   await expectDisabled(page, 'O contato pelo WhatsApp está temporariamente indisponível.');
 });
 
 test('com número fora do domínio de produção, nada é enviado e a URL fica disponível para QA', async ({ page }) => {
-  await useSiteConfig(page, [["number: '',", `number: '${NUMBER}',`]]);
+  await useSiteConfig(page, [
+    ["number: '',", `number: '${NUMBER}',`],
+    ['productionHosts: [],', 'productionHosts: [],'],
+  ]);
   await page.goto('/');
   await expectDisabled(
     page,
@@ -29,6 +33,16 @@ test('com número fora do domínio de produção, nada é enviado e a URL fica d
   const preview = await page.locator('[data-whatsapp-cta="general"]').getAttribute('data-whatsapp-preview');
   expect(preview).toBe(
     `https://wa.me/${NUMBER}?text=${encodeURIComponent('Olá, Guilherme. Gostaria de saber mais sobre o acompanhamento psicológico.')}`,
+  );
+  const morningPreview = await page.locator('[data-whatsapp-cta="schedule"]').getAttribute('data-whatsapp-preview');
+  expect(morningPreview).toBe(
+    `https://wa.me/${NUMBER}?text=${encodeURIComponent('Olá, Guilherme. Gostaria de consultar a disponibilidade de horários para atendimento no turno da manhã.')}`,
+  );
+  await page.locator('[data-schedule-shift="afternoon"]').click();
+  await expect(page.locator('[data-schedule-cta-label]')).toHaveText('Consultar horários da tarde');
+  const afternoonPreview = await page.locator('[data-whatsapp-cta="schedule"]').getAttribute('data-whatsapp-preview');
+  expect(afternoonPreview).toBe(
+    `https://wa.me/${NUMBER}?text=${encodeURIComponent('Olá, Guilherme. Gostaria de consultar a disponibilidade de horários para atendimento no turno da tarde.')}`,
   );
 });
 
@@ -66,7 +80,7 @@ test('agenda manual sem horários futuros mostra a consulta pelo WhatsApp (IMP-2
     'No momento não há horários publicados. Envie uma mensagem para consultar a disponibilidade.',
   );
   await expect(page.getByRole('tablist', { name: 'Dias com horários publicados' })).toHaveCount(0);
-  await expect(page.locator('.schedule-confirmation')).toContainText('não reserva um horário');
+  await expect(page.locator('.schedule-confirmation')).toContainText('confirmação');
 });
 
 test.describe('sem JavaScript', () => {

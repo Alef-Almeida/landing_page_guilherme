@@ -7,9 +7,14 @@ const baseConfig = fs.readFileSync(path.join(__dirname, '../../site-config.js'),
 // Substitui site-config.js durante o teste. `replacements` é uma lista de pares [trecho original, novo trecho].
 async function useSiteConfig(page, replacements = []) {
   let source = baseConfig;
+  const fallbacks = {
+    "number: '',": "number: '557499542056',",
+    'productionHosts: [],': "productionHosts: ['localhost', '127.0.0.1'],",
+  };
   for (const [from, to] of replacements) {
-    if (!source.includes(from)) throw new Error(`Trecho não encontrado em site-config.js: ${from}`);
-    source = source.replace(from, to);
+    const target = source.includes(from) ? from : fallbacks[from] && source.includes(fallbacks[from]) ? fallbacks[from] : null;
+    if (!target) throw new Error(`Trecho não encontrado em site-config.js: ${from}`);
+    source = source.replace(target, to);
   }
   await page.route('**/site-config.js', (route) => route.fulfill({ contentType: 'text/javascript', body: source }));
 }

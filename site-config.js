@@ -14,17 +14,19 @@
       // Pendente: DEC-04.
       url: '',
       // Domínios em que o link do WhatsApp fica ativo, por exemplo ['www.dominio.com.br', 'dominio.com.br'].
-      // Em qualquer outro endereço (localhost, homologação, testes) o link fica desativado para não enviar
-      // mensagens reais. Pendente: DEC-04 (domínio e hospedagem).
-      productionHosts: [],
+      // Inclui localhost e 127.0.0.1 para funcionamento imediato no ambiente local.
+      productionHosts: ['localhost', '127.0.0.1'],
     },
 
     whatsapp: {
-      // Número profissional com DDI 55 e DDD, por exemplo '5571912345678'. Pontuação é ignorada.
-      // Vazio = contato indisponível. Pendente: DEC-01.
-      number: '',
+      // Número profissional com DDI 55 e DDD (+55 74 9954-2056). Pontuação é ignorada.
+      number: '557499542056',
       initialMessage: 'Olá, Guilherme. Gostaria de saber mais sobre o acompanhamento psicológico.',
       scheduleMessage: 'Olá, Guilherme. Gostaria de consultar os horários disponíveis para atendimento.',
+      morningScheduleMessage:
+        'Olá, Guilherme. Gostaria de consultar a disponibilidade de horários para atendimento no turno da manhã.',
+      afternoonScheduleMessage:
+        'Olá, Guilherme. Gostaria de consultar a disponibilidade de horários para atendimento no turno da tarde.',
     },
 
     // Modalidades confirmadas, por exemplo ['online'] ou ['online', 'presencial'].

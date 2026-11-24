@@ -19,6 +19,8 @@ const validConfig = (overrides = {}) => ({
 describe('IMP-600 — URL do WhatsApp', () => {
   test('aceita celular e fixo brasileiros, inclusive com pontuação', () => {
     assert.equal(contact.isValidWhatsAppNumber(MOBILE), true);
+    assert.equal(contact.isValidWhatsAppNumber('557499542056'), true);
+    assert.equal(contact.isValidWhatsAppNumber('+55 74 9954-2056'), true);
     assert.equal(contact.isValidWhatsAppNumber(LANDLINE), true);
     assert.equal(contact.isValidWhatsAppNumber('+55 (71) 99123-4567'), true);
   });
@@ -151,9 +153,14 @@ describe('IMP-603 — agenda vazia', () => {
 });
 
 describe('IMP-604 — configuração inválida', () => {
-  test('a configuração versionada não ativa contato real enquanto DEC-01 e DEC-04 estiverem pendentes', () => {
-    assert.equal(contact.resolveContactState(siteConfig, 'www.exemplo.com.br'), 'unconfigured');
+  test('a configuração versionada traz o número real configurado e mensagens por turno', () => {
+    assert.equal(contact.isValidWhatsAppNumber(siteConfig.whatsapp.number), true);
+    assert.equal(contact.resolveContactState(siteConfig, 'localhost'), 'enabled');
+    assert.equal(contact.resolveContactState(siteConfig, '127.0.0.1'), 'enabled');
+    assert.equal(contact.resolveContactState(siteConfig, 'www.exemplo.com.br'), 'test-environment');
     assert.equal(siteConfig.schedule.mode, 'whatsapp-only');
+    assert.match(siteConfig.whatsapp.morningScheduleMessage, /turno da manhã/);
+    assert.match(siteConfig.whatsapp.afternoonScheduleMessage, /turno da tarde/);
     assert.ok(!JSON.stringify(siteConfig).includes('5500000000000'));
   });
 
