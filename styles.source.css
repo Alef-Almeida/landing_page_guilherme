@@ -2919,8 +2919,9 @@ html.nav-condensed .scroll-nav {
   box-shadow: none;
 }
 .cinematic-page #agenda .schedule-panel {
+  --schedule-surface: #fff;
   border-radius: 8px;
-  background: #f5b79c;
+  background: var(--schedule-surface);
   color: #17324d;
   box-shadow: none;
 }
@@ -3022,7 +3023,7 @@ html.nav-condensed .scroll-nav {
   transform: translate3d(0, 12px, 0);
 }
 .sea-mask {
-  fill: #f5b79c;
+  fill: var(--schedule-surface, #fff);
 }
 .sea-scribble {
   stroke-width: 1.4;
