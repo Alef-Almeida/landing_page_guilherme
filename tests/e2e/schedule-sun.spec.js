@@ -15,11 +15,20 @@ test('sol fora dos botões amanhece e se põe com o ponteiro', async ({ page }) 
   await morning.hover();
   await expect(scene).toHaveAttribute('data-sun-phase', 'morning');
   await expect.poll(translateY).toBeLessThan(-15);
+  await expect.poll(() => orbit.evaluate((el) => el.getAnimations().length)).toBe(0);
+  const sunriseTransform = await orbit.evaluate((el) => getComputedStyle(el).transform);
+  const sceneHeight = await scene.evaluate((el) => el.getBoundingClientRect().height);
+  await page.mouse.move(0, 0);
+  await expect(scene).toHaveAttribute('data-sun-phase', 'idle');
+  await expect(orbit).toHaveCSS('transform', sunriseTransform);
   await afternoon.hover();
   await expect(scene).toHaveAttribute('data-sun-phase', 'afternoon');
   await expect.poll(translateY).toBeGreaterThan(69);
   await page.mouse.move(0, 0);
   await expect(scene).toHaveAttribute('data-sun-phase', 'idle');
+  await expect.poll(translateY).toBeGreaterThan(69);
+  expect(await scene.evaluate((el) => el.getBoundingClientRect().height)).toBe(sceneHeight);
+  await expect(scene).toHaveCSS('overflow', 'hidden');
   expect(await page.locator('#agenda [data-whatsapp-shift]').evaluateAll((els) => els.map((el) => el.href))).toEqual(
     links,
   );
@@ -38,6 +47,7 @@ test('sol responde ao foco e respeita movimento reduzido', async ({ page }) => {
   await afternoon.focus();
   await expect(scene).toHaveAttribute('data-sun-phase', 'afternoon');
   await expect(scene.locator('.schedule-sun-orbit')).toHaveCSS('transition-duration', '0s');
+  expect(await scene.locator('.schedule-sun-orbit').evaluate((el) => el.getAnimations().length)).toBe(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
   await page.locator('#whatsapp-link').focus();
   await expect(scene).toHaveAttribute('data-sun-phase', 'idle');
@@ -48,4 +58,5 @@ test('pausa local remove a transição do sol', async ({ page }) => {
   await page.locator('html').evaluate((el) => el.classList.add('a11y-pausar'));
   await page.locator('#agenda [data-whatsapp-shift="morning"]').focus();
   await expect(page.locator('.schedule-sun-orbit')).toHaveCSS('transition-duration', '0s');
+  expect(await page.locator('.schedule-sun-orbit').evaluate((el) => el.getAnimations().length)).toBe(0);
 });

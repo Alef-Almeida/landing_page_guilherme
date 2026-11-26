@@ -2932,23 +2932,19 @@ html.nav-condensed .scroll-nav {
 }
 .schedule-sun-scene {
   width: min(100%, 26rem);
-  margin: -8px auto -12px;
+  aspect-ratio: 4 / 1;
+  margin: 0 auto;
+  overflow: hidden;
+  contain: paint;
   pointer-events: none;
 }
 .schedule-sun-scene svg {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 .schedule-sun-orbit {
-  transform: translate3d(0, 28px, 0);
-  transition: transform 1.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.schedule-sun-scene[data-sun-phase='morning'] .schedule-sun-orbit {
-  transform: translate3d(-62px, -16px, 0);
-}
-.schedule-sun-scene[data-sun-phase='afternoon'] .schedule-sun-orbit {
-  transform: translate3d(62px, 70px, 0);
+  transform: translate3d(-109.2px, 48.612px, 0);
 }
 .schedule-sun-disc {
   fill: #f8f5f1;
