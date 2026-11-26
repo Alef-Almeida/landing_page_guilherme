@@ -2939,6 +2939,14 @@ html.nav-condensed .scroll-nav {
   border-color: rgba(23, 50, 77, 0.22);
   background: rgba(248, 245, 241, 0.8);
 }
+.cinematic-page #agenda .schedule-consult-cta {
+  background: #17324d;
+  color: #f8f5f1;
+}
+.cinematic-page #agenda .schedule-consult-cta:not([aria-disabled='true']):hover {
+  background: #17324d;
+  box-shadow: 0 6px 18px rgba(23, 50, 77, 0.16);
+}
 .cinematic-page #agenda .schedule-panel :is(.schedule-slot, .schedule-status, .schedule-slot > span:last-child) {
   color: #17324d;
   border-color: rgba(23, 50, 77, 0.2);
