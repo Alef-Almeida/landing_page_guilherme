@@ -1,0 +1,234 @@
+/* Motion is an enhancement: native navigation, content and contact work without it. */
+(() => {
+  'use strict';
+  const root = document.documentElement;
+  const preference = matchMedia('(prefers-reduced-motion: reduce)');
+  const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
+  const header = document.querySelector('.site-header');
+  const hero = document.querySelector('.hero-vessel');
+  const path = document.getElementById('journey-path');
+  const progressPath = document.getElementById('journey-progress');
+  const boat = document.getElementById('journey-boat');
+  const journey = document.querySelector('.journey-section');
+  const manifesto = document.querySelector('[data-manifesto]');
+  const words = manifesto ? [...manifesto.querySelectorAll('[data-word]')] : [];
+  const abort = new AbortController();
+  const signal = abort.signal;
+  let frame = 0;
+  let scrollTarget = null;
+  let inertiaPosition = 0;
+  let lastTime = 0;
+  let geometry = {};
+  let maxScroll = 1;
+  let pathLength = path?.getTotalLength() || 0;
+  const clamp = (value) => Math.max(0, Math.min(1, value));
+  const paused = () => preference.matches || root.classList.contains('a11y-pausar');
+
+  function measure() {
+    maxScroll = Math.max(1, root.scrollHeight - innerHeight);
+    geometry = {};
+    for (const [name, element] of [
+      ['journey', journey],
+      ['manifesto', manifesto],
+    ]) {
+      if (!element) continue;
+      const rect = element.getBoundingClientRect();
+      geometry[name] = { top: rect.top + scrollY, height: rect.height };
+    }
+    pathLength = path?.getTotalLength() || 0;
+    if (progressPath) {
+      progressPath.style.strokeDasharray = String(pathLength);
+    }
+    schedule();
+  }
+
+  function paint(time) {
+    frame = 0;
+    if (scrollTarget !== null && !paused()) {
+      const dt = Math.min(time - (lastTime || time - 16), 48);
+      const next = inertiaPosition + (scrollTarget - inertiaPosition) * (1 - Math.exp(-dt / 115));
+      inertiaPosition = next;
+      if (Math.abs(scrollTarget - next) < 0.5) {
+        window.scrollTo({ top: scrollTarget, behavior: 'instant' });
+        scrollTarget = null;
+      } else {
+        window.scrollTo({ top: next, behavior: 'instant' });
+      }
+    }
+    lastTime = time;
+    header?.classList.toggle('is-scrolled', scrollY > 40);
+    header?.style.setProperty('--reading-progress', String(clamp(scrollY / maxScroll)));
+    hero?.style.setProperty('--scroll-depth', paused() ? '0px' : `${Math.min(scrollY, innerHeight) * -0.06}px`);
+    if (geometry.journey && path && boat) {
+      const g = geometry.journey;
+      const p = paused() ? 1 : clamp((scrollY + innerHeight * 0.7 - g.top) / (g.height * 0.85));
+      const point = path.getPointAtLength(p * pathLength);
+      const ahead = path.getPointAtLength(Math.min(pathLength, p * pathLength + 1));
+      const angle = (Math.atan2(ahead.y - point.y, ahead.x - point.x) * 180) / Math.PI;
+      boat.setAttribute('transform', `translate(${point.x} ${point.y}) rotate(${Math.max(-12, Math.min(12, angle))})`);
+      if (progressPath) progressPath.style.strokeDashoffset = String(pathLength * (1 - p));
+    }
+    if (geometry.manifesto && words.length) {
+      const g = geometry.manifesto;
+      const p = paused() ? 1 : clamp((scrollY + innerHeight * 0.85 - g.top) / (innerHeight * 0.65 + g.height * 0.4));
+      words.forEach((word, i) => {
+        word.style.opacity = p * (words.length + 3) >= i ? '1' : '0.65';
+      });
+    }
+    if (scrollTarget !== null) schedule();
+  }
+
+  function schedule() {
+    if (!frame && !document.hidden) frame = requestAnimationFrame(paint);
+  }
+
+  function cancelInertia() {
+    scrollTarget = null;
+  }
+
+  function syncPreference() {
+    cancelInertia();
+    root.classList.toggle('cinema-motion', !paused());
+    if (paused()) {
+      document.querySelectorAll('.cinema-reveal').forEach((el) => el.classList.add('is-visible'));
+      hero?.style.removeProperty('--pointer-x');
+      hero?.style.removeProperty('--pointer-y');
+      document.querySelectorAll('[data-magnetic]').forEach((el) => el.style.removeProperty('transform'));
+    }
+    schedule();
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(({ target, isIntersecting }) => {
+        if (!isIntersecting) return;
+        target.classList.add('is-visible');
+        observer.unobserve(target);
+      });
+    },
+    { threshold: 0.08 },
+  );
+  document
+    .querySelectorAll(
+      '.cinema-reveal, .service-card, .journey-step, main > section > div > .section-title, .content-card, .about-interactive',
+    )
+    .forEach((el, i) => {
+      el.classList.add('cinema-reveal');
+      el.style.setProperty('--reveal-delay', `${(i % 3) * 90}ms`);
+      observer.observe(el);
+    });
+
+  window.addEventListener('scroll', schedule, { passive: true, signal });
+  window.addEventListener('resize', measure, { passive: true, signal });
+  window.addEventListener(
+    'wheel',
+    (event) => {
+      if (
+        paused() ||
+        !finePointer.matches ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.shiftKey ||
+        Math.abs(event.deltaX) > Math.abs(event.deltaY)
+      )
+        return;
+      // Let independently scrollable regions and browser zoom keep their native behavior.
+      let element = event.target instanceof Element ? event.target : null;
+      while (element && element !== document.body) {
+        if (
+          element.matches('input, textarea, select, [role="dialog"], .a11y-panel') ||
+          (element.scrollHeight > element.clientHeight + 1 && /auto|scroll/.test(getComputedStyle(element).overflowY))
+        )
+          return;
+        element = element.parentElement;
+      }
+      const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
+      if (!delta) return;
+      const target = Math.max(0, Math.min(maxScroll, (scrollTarget ?? scrollY) + delta));
+      if (target === scrollY && scrollTarget === null) return;
+      event.preventDefault();
+      if (scrollTarget === null) inertiaPosition = scrollY;
+      scrollTarget = target;
+      schedule();
+    },
+    { passive: false, signal },
+  );
+  window.addEventListener('keydown', cancelInertia, { signal });
+  window.addEventListener('pointerdown', cancelInertia, { passive: true, signal });
+  window.addEventListener('hashchange', cancelInertia, { signal });
+  document.addEventListener(
+    'visibilitychange',
+    () => {
+      cancelInertia();
+      if (document.hidden) {
+        cancelAnimationFrame(frame);
+        frame = 0;
+      } else measure();
+    },
+    { signal },
+  );
+
+  document.querySelectorAll('.service-card, [data-magnetic], .hero-section').forEach((el) => {
+    let rect;
+    el.addEventListener(
+      'pointerenter',
+      () => {
+        rect = el.getBoundingClientRect();
+      },
+      { passive: true, signal },
+    );
+    el.addEventListener(
+      'pointermove',
+      (event) => {
+        if (paused() || !finePointer.matches || !rect) return;
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        if (el.matches('.service-card')) {
+          el.style.setProperty('--spot-x', `${x}px`);
+          el.style.setProperty('--spot-y', `${y}px`);
+        } else if (el.hasAttribute('data-magnetic')) {
+          el.style.transform = `translate(${(x / rect.width - 0.5) * 8}px, ${(y / rect.height - 0.5) * 8}px)`;
+        } else {
+          hero?.style.setProperty('--pointer-x', `${(x / rect.width - 0.5) * 16}px`);
+          hero?.style.setProperty('--pointer-y', `${(y / rect.height - 0.5) * 12}px`);
+        }
+      },
+      { passive: true, signal },
+    );
+    el.addEventListener(
+      'pointerleave',
+      () => {
+        rect = null;
+        if (el.hasAttribute('data-magnetic')) el.style.removeProperty('transform');
+        hero?.style.setProperty('--pointer-x', '0px');
+        hero?.style.setProperty('--pointer-y', '0px');
+      },
+      { passive: true, signal },
+    );
+  });
+
+  let wasPaused = paused();
+  const pauseObserver = new MutationObserver(() => {
+    if (wasPaused === paused()) return;
+    wasPaused = paused();
+    syncPreference();
+  });
+  pauseObserver.observe(root, { attributes: true, attributeFilter: ['class'] });
+  preference.addEventListener('change', syncPreference, { signal });
+  const resizeObserver = new ResizeObserver(measure);
+  resizeObserver.observe(document.body);
+  syncPreference();
+  measure();
+  document.fonts.ready.then(measure);
+  // pagehide also runs for the back-forward cache: pageshow restores a fresh setup by reload-free measurements.
+  window.addEventListener(
+    'pagehide',
+    () => {
+      cancelInertia();
+      cancelAnimationFrame(frame);
+      frame = 0;
+    },
+    { signal },
+  );
+  window.addEventListener('pageshow', measure, { signal });
+})();

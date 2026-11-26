@@ -15,6 +15,7 @@ const FILES = [
   'tabs.js',
   'contact.js',
   'script.js',
+  'cinematic.js',
   'styles.css',
   'favicon.ico',
   'site.webmanifest',
