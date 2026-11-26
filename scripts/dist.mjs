@@ -23,7 +23,12 @@ const FILES = [
   'sitemap.xml',
 ];
 const DIRS = ['assets/img', 'assets/icons', 'assets/fonts'];
-const ASSET_FILES = ['assets/guilherme-teixeira-logo.png', 'assets/paper-boat-line.png', 'assets/og-image.jpg'];
+const ASSET_FILES = [
+  'assets/guilherme-teixeira-logo.png',
+  'assets/paper-boat.svg',
+  'assets/paper-boat-line.png',
+  'assets/og-image.jpg',
+];
 
 const exists = (file) =>
   stat(path.join(ROOT, file)).then(

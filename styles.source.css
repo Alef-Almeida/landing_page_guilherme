@@ -700,7 +700,7 @@ main > section {
   top: 1.25rem;
   width: 170px;
   height: 104px;
-  background: url('./assets/paper-boat-line.png') right top/170px auto no-repeat;
+  background: url('./assets/paper-boat.svg') right top/170px auto no-repeat;
   opacity: 0.78;
   mix-blend-mode: multiply;
   transition: transform var(--motion-base) var(--ease-standard);
@@ -942,7 +942,7 @@ main > section {
   min-height: 110px;
   place-items: center;
   border-radius: 1rem;
-  background: #e9f8fc;
+  background: transparent;
 }
 
 .about-tab-art img {
@@ -1215,7 +1215,7 @@ details p {
   bottom: 8%;
   width: 260px;
   height: 125px;
-  background: url('./assets/paper-boat-line.png') center/contain no-repeat;
+  background: url('./assets/paper-boat.svg') center/contain no-repeat;
   content: '';
   opacity: 0.3;
   mix-blend-mode: multiply;
