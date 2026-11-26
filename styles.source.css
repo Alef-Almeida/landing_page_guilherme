@@ -2877,21 +2877,40 @@ html.nav-condensed .scroll-nav {
 }
 .cinematic-page #conteudos > .mx-auto {
   border-radius: 8px;
-  background: #17324d;
+  background: #ddecf5;
   padding: 64px 48px;
   box-shadow: none;
-  color: #f8f5f1;
+  color: #17324d;
 }
-.cinematic-page #conteudos .section-title {
-  color: #f8f5f1;
+.cinematic-page #conteudos :is(.section-title, .eyebrow, .content-card > span:first-child, .content-card a) {
+  color: #17324d;
+}
+.cinematic-page #conteudos :is(.content-card p, .content-points li) {
+  color: rgba(23, 50, 77, 0.85);
 }
 .cinematic-page #conteudos .content-card {
   border-radius: 4px;
-  background: transparent;
+  border-color: rgba(23, 50, 77, 0.13);
+  background: rgba(248, 245, 241, 0.5);
   box-shadow: none;
 }
 .cinematic-page #conteudos .content-card:hover {
-  background: rgba(221, 236, 245, 0.06);
+  border-color: rgba(23, 50, 77, 0.22);
+  background: rgba(248, 245, 241, 0.8);
+}
+.cinematic-page #conteudos .content-points {
+  border-color: rgba(23, 50, 77, 0.13);
+}
+.cinematic-page #conteudos .content-card a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.cinematic-page #conteudos :focus-visible {
+  outline-color: #17324d;
+}
+.cinematic-page #conteudos ::selection {
+  color: #f8f5f1;
+  background: #17324d;
 }
 .cinematic-page #faq details {
   border-radius: 4px;
