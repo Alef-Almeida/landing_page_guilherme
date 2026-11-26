@@ -2931,8 +2931,8 @@ html.nav-condensed .scroll-nav {
   color: rgba(23, 50, 77, 0.85);
 }
 .schedule-sun-scene {
-  width: min(100%, 26rem);
-  aspect-ratio: 4 / 1;
+  width: min(100%, 34rem);
+  aspect-ratio: 32 / 9;
   margin: 0 auto;
   overflow: hidden;
   contain: paint;
@@ -2942,9 +2942,6 @@ html.nav-condensed .scroll-nav {
   display: block;
   width: 100%;
   height: 100%;
-}
-.schedule-sun-orbit {
-  transform: translate3d(-109.2px, 48.612px, 0);
 }
 .schedule-sun-disc {
   fill: #f8f5f1;
@@ -2956,30 +2953,170 @@ html.nav-condensed .scroll-nav {
   opacity: 0.18;
 }
 .schedule-sun-rays {
-  transform-origin: 240px 54px;
-  transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.schedule-sun-rays path {
   stroke: #17324d;
   stroke-width: 1.8;
   stroke-linecap: round;
 }
-.schedule-sun-scene[data-sun-phase='morning'] .schedule-sun-rays {
-  transform: rotate(18deg);
+.schedule-weather-cloud,
+.schedule-bird,
+.schedule-evening-tree,
+.schedule-evening-sea {
+  opacity: 0;
+  transition:
+    opacity 0.65s ease,
+    transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.schedule-sun-scene[data-sun-phase='afternoon'] .schedule-sun-rays {
-  transform: rotate(-18deg);
+.schedule-weather-cloud {
+  transform: translate3d(-16px, -4px, 0);
 }
-.schedule-sun-horizon {
+.cloud-right {
+  transform: translate3d(16px, -4px, 0);
+}
+.schedule-weather-cloud path {
+  stroke: rgba(23, 50, 77, 0.4);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  transition: opacity 0.85s ease;
+}
+.cloud-day {
+  fill: #ddecf5;
+}
+.cloud-evening {
+  fill: #f8c6ae;
+  opacity: 0;
+}
+.schedule-sun-scene[data-sun-phase='morning'] .schedule-weather-cloud,
+.schedule-sun-scene[data-sun-phase='afternoon'] .schedule-weather-cloud {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.schedule-sun-scene[data-sun-phase='afternoon'] .cloud-left {
+  transform: translate3d(12px, 10px, 0);
+}
+.schedule-sun-scene[data-sun-phase='afternoon'] .cloud-right {
+  transform: translate3d(-12px, 8px, 0);
+}
+.schedule-sun-scene[data-sun-phase='afternoon'] .cloud-day {
+  opacity: 0;
+}
+.schedule-sun-scene[data-sun-phase='afternoon'] .cloud-evening {
+  opacity: 1;
+}
+.schedule-evening-tree {
+  transform: translate3d(0, 10px, 0);
+}
+.tree-crown {
+  fill: rgba(248, 245, 241, 0.6);
+  stroke: rgba(23, 50, 77, 0.4);
+  stroke-width: 1.6;
+}
+.tree-branches,
+.sea-scribble {
   stroke: #17324d;
-  stroke-width: 1.4;
+  stroke-width: 1.6;
   stroke-linecap: round;
-  opacity: 0.32;
+  stroke-linejoin: round;
+  opacity: 0.65;
+}
+.schedule-evening-sea {
+  transform: translate3d(0, 12px, 0);
+}
+.sea-mask {
+  fill: #f5b79c;
+}
+.sea-scribble {
+  stroke-width: 1.4;
+}
+.schedule-sun-scene[data-sun-phase='afternoon'] :is(.schedule-evening-tree, .schedule-evening-sea) {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.schedule-bird {
+  stroke: #17324d;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.bird-one {
+  transform: translate3d(225px, 20px, 0);
+}
+.bird-two {
+  transform: translate3d(432px, 74px, 0);
+}
+.bird-flight,
+.bird-perched {
+  transition: opacity 0.45s ease;
+}
+.bird-perched {
+  opacity: 0;
+  fill: #f8f5f1;
+}
+.schedule-sun-scene[data-sun-phase='morning'] .bird-one {
+  opacity: 1;
+  transform: translate3d(241px, 29px, 0);
+}
+.schedule-sun-scene[data-sun-phase='morning'] .bird-two {
+  opacity: 1;
+  transform: translate3d(420px, 85px, 0);
+}
+.schedule-sun-scene[data-sun-phase='afternoon'] .bird-one {
+  opacity: 1;
+  transform: translate3d(503px, 94px, 0);
+}
+.schedule-sun-scene[data-sun-phase='afternoon'] .bird-two {
+  opacity: 1;
+  transform: translate3d(548px, 105px, 0);
+}
+.schedule-sun-scene[data-sun-phase='afternoon'] .bird-flight {
+  opacity: 0;
+  transition-delay: 0.7s;
+}
+.schedule-sun-scene[data-sun-phase='afternoon'] .bird-perched {
+  opacity: 1;
+  transition-delay: 0.9s;
+}
+.bird-wing-left,
+.bird-wing-right {
+  transform-origin: 0 0;
+}
+.schedule-sun-scene[data-sun-phase='morning'] .bird-wing-left {
+  animation: morning-wing-left 0.65s ease-in-out 4 alternate;
+}
+.schedule-sun-scene[data-sun-phase='morning'] .bird-wing-right {
+  animation: morning-wing-right 0.65s ease-in-out 4 alternate;
+}
+@keyframes morning-wing-left {
+  from {
+    transform: rotate(-10deg);
+  }
+  to {
+    transform: rotate(14deg);
+  }
+}
+@keyframes morning-wing-right {
+  from {
+    transform: rotate(10deg);
+  }
+  to {
+    transform: rotate(-14deg);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  .schedule-sun-orbit,
-  .schedule-sun-rays {
+  .schedule-sun-scene[data-sun-phase]
+    :is(
+      .schedule-weather-cloud,
+      .schedule-bird,
+      .schedule-evening-tree,
+      .schedule-evening-sea,
+      .cloud-day,
+      .cloud-evening,
+      .bird-flight,
+      .bird-perched,
+      .bird-wing-left,
+      .bird-wing-right
+    ) {
     transition: none;
+    animation: none;
   }
 }
 .cinematic-page #agenda .schedule-shift-card {

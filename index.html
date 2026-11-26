@@ -937,24 +937,76 @@
                 </p>
               </div>
               <div class="schedule-sun-scene" data-sun-phase="idle" aria-hidden="true">
-                <svg viewBox="0 0 480 120" width="480" height="120" fill="none">
-                  <defs>
-                    <clipPath id="schedule-sun-sky">
-                      <rect width="480" height="92" />
-                    </clipPath>
-                  </defs>
-                  <g clip-path="url(#schedule-sun-sky)">
-                    <g class="schedule-sun-orbit">
-                      <circle class="schedule-sun-glow" cx="240" cy="54" r="34" />
-                      <circle class="schedule-sun-disc" cx="240" cy="54" r="18" />
-                      <g class="schedule-sun-rays">
-                        <path
-                          d="M240 22v6M240 80v6M208 54h6M266 54h6M217.4 31.4l4.3 4.3M258.3 72.3l4.3 4.3M217.4 76.6l4.3-4.3M258.3 35.7l4.3-4.3"
-                        />
-                      </g>
+                <svg viewBox="0 0 640 180" width="640" height="180" fill="none">
+                  <g transform="translate(163 63)">
+                    <g class="schedule-weather-cloud cloud-left">
+                      <path
+                        class="cloud-day"
+                        d="M-39 9h72c18 0 19-24 2-25-4-20-34-21-41-4-14-13-37-1-34 13-16-2-18 16 1 16Z"
+                      />
+                      <path
+                        class="cloud-evening"
+                        d="M-39 9h72c18 0 19-24 2-25-4-20-34-21-41-4-14-13-37-1-34 13-16-2-18 16 1 16Z"
+                      />
                     </g>
                   </g>
-                  <path class="schedule-sun-horizon" d="M60 92Q240 88 420 92M175 105Q240 102 305 105" />
+                  <g transform="translate(427 47)">
+                    <g class="schedule-weather-cloud cloud-right">
+                      <path
+                        class="cloud-day"
+                        d="M-29 10h53c15 0 18-20 4-23-4-17-27-18-34-4-11-8-28-1-28 11-15-2-17 16 5 16Z"
+                      />
+                      <path
+                        class="cloud-evening"
+                        d="M-29 10h53c15 0 18-20 4-23-4-17-27-18-34-4-11-8-28-1-28 11-15-2-17 16 5 16Z"
+                      />
+                    </g>
+                  </g>
+                  <g class="schedule-sun-fixed">
+                    <circle class="schedule-sun-glow" cx="320" cy="76" r="39" />
+                    <circle class="schedule-sun-disc" cx="320" cy="76" r="22" />
+                    <path
+                      class="schedule-sun-rays"
+                      d="M320 41v6M320 105v6M285 76h6M349 76h6M295 51l5 5M340 96l5 5M295 101l5-5M340 56l5-5"
+                    />
+                  </g>
+                  <g class="schedule-evening-sea">
+                    <path class="sea-mask" d="M223 91c15-4 28 4 43 0s25 3 40 0 24 4 39 0 26 4 42 0 25 3 33 1v42H223Z" />
+                    <path
+                      class="sea-scribble"
+                      d="M221 91c15-4 28 4 43 0s25 3 40 0 24 4 39 0 26 4 42 0 25 3 36 1M243 103c20 4 31-4 51 0s32-4 54 0 31-3 49 0M276 115c12-3 23 3 36 0s24 3 38 0"
+                    />
+                  </g>
+                  <g class="schedule-evening-tree">
+                    <path
+                      class="tree-crown"
+                      d="M508 107c-22-1-26-25-10-34-1-22 28-30 40-12 24-8 39 18 24 32 5 20-21 31-35 17-5 3-12 2-19-3Z"
+                    />
+                    <path
+                      class="tree-branches"
+                      d="M528 151c-4-19-3-35 0-59M527 125l-24-20M526 136l24-20M528 107l14-12M491 152q39-7 79 0"
+                    />
+                  </g>
+                  <g class="schedule-bird bird-one">
+                    <g class="bird-flight">
+                      <path class="bird-wing-left" d="M-12 0Q-5-11 0 0" />
+                      <path class="bird-wing-right" d="M0 0Q5-11 12 0" />
+                    </g>
+                    <g class="bird-perched">
+                      <path d="M2-2c-6-6-15 3-10 7 6 5 15 0 13-5l5-2-5-2M-5 8v3M0 8v3M-8 3l-7-1 7 6" />
+                      <circle cx="2" cy="-3" r="3.5" />
+                    </g>
+                  </g>
+                  <g class="schedule-bird bird-two">
+                    <g class="bird-flight">
+                      <path class="bird-wing-left" d="M-10 0Q-4-9 0 0" />
+                      <path class="bird-wing-right" d="M0 0Q4-9 10 0" />
+                    </g>
+                    <g class="bird-perched">
+                      <path d="M2-2c-6-6-15 3-10 7 6 5 15 0 13-5l5-2-5-2M-5 8v3M0 8v3M-8 3l-7-1 7 6" />
+                      <circle cx="2" cy="-3" r="3.5" />
+                    </g>
+                  </g>
                 </svg>
               </div>
               <div class="schedule-shifts">

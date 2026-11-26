@@ -43,79 +43,28 @@
   const words = manifesto ? [...manifesto.querySelectorAll('[data-word]')] : [];
   const abort = new AbortController();
   const signal = abort.signal;
-  // One shared sun sits above the shift cards; links keep their native behavior.
+  // A stationary sun, with decorative scenery controlled by hover or keyboard focus.
   const sunScene = document.querySelector('.schedule-sun-scene');
   if (sunScene) {
     let pointerPhase = null;
     let focusPhase = null;
-    const orbit = sunScene.querySelector('.schedule-sun-orbit');
-    let sunProgress = 0.08;
-    let sunAnimation = null;
-    let sunFrom = sunProgress;
-    let sunTo = sunProgress;
-    const sunTransform = (progress) => {
-      const x = 110 + 260 * progress;
-      const y = 124 - 86 * Math.sin(Math.PI * progress);
-      return `translate3d(${x - 240}px, ${y - 54}px, 0)`;
-    };
-    const stopSun = () => {
-      if (!sunAnimation) return;
-      const progress = sunAnimation.effect.getComputedTiming().progress ?? 0;
-      sunProgress = sunFrom + (sunTo - sunFrom) * progress;
-      orbit.style.transform = sunTransform(sunProgress);
-      sunAnimation.cancel();
-      sunAnimation = null;
-    };
-    const moveSun = (target) => {
-      if (!orbit || (target === sunTo && (sunAnimation || Math.abs(sunProgress - target) < 0.0001))) return;
-      stopSun();
-      sunFrom = sunProgress;
-      sunTo = target;
-      if (preference.matches || root.classList.contains('a11y-pausar')) {
-        sunProgress = target;
-        orbit.style.transform = sunTransform(target);
-        return;
-      }
-      const frames = Array.from({ length: 33 }, (_, index) => ({
-        transform: sunTransform(sunFrom + ((target - sunFrom) * index) / 32),
-      }));
-      sunAnimation = orbit.animate(frames, {
-        duration: 1600,
-        easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-        fill: 'both',
-      });
-      sunAnimation.onfinish = () => {
-        sunProgress = target;
-        orbit.style.transform = sunTransform(target);
-        sunAnimation?.cancel();
-        sunAnimation = null;
-      };
-    };
-    if (orbit) orbit.style.transform = sunTransform(sunProgress);
     const renderSun = () => {
       const phase = pointerPhase ?? focusPhase ?? 'idle';
       sunScene.dataset.sunPhase = phase;
-      // Leaving a button keeps the last position instead of throwing the sun back down.
-      if (phase === 'morning') moveSun(0.5);
-      else if (phase === 'afternoon') moveSun(1);
     };
-    const pauseSun = () => {
-      if (!preference.matches && !root.classList.contains('a11y-pausar')) return;
-      stopSun();
-      sunProgress = sunTo;
-      if (orbit) orbit.style.transform = sunTransform(sunProgress);
+    const resetScenery = () => {
+      pointerPhase = null;
+      focusPhase = null;
+      renderSun();
     };
-    preference.addEventListener('change', pauseSun, { signal });
-    const sunPreferences = new MutationObserver(pauseSun);
-    sunPreferences.observe(root, { attributes: true, attributeFilter: ['class'] });
     document.addEventListener(
       'visibilitychange',
       () => {
-        if (document.hidden) stopSun();
+        if (document.hidden) resetScenery();
       },
       { signal },
     );
-    window.addEventListener('pagehide', stopSun, { signal });
+    window.addEventListener('pagehide', resetScenery, { signal });
     document.querySelectorAll('#agenda [data-whatsapp-shift]').forEach((button) => {
       const phase = button.dataset.whatsappShift;
       button.addEventListener(
@@ -138,7 +87,7 @@
       button.addEventListener(
         'focus',
         () => {
-          focusPhase = phase;
+          focusPhase = button.matches(':focus-visible') ? phase : null;
           renderSun();
         },
         { signal },
