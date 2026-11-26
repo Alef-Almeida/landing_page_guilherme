@@ -238,11 +238,15 @@ test.describe('movimento reduzido (IMP-334, IMP-339, IMP-629)', () => {
     await expect(carousel.getByRole('group', { name: '1 de 9' })).toBeVisible();
     const styles = await page.evaluate(() => ({
       scroll: getComputedStyle(document.documentElement).scrollBehavior,
-      reveal: getComputedStyle(document.querySelector('.reveal')).animationName,
+      reveal: getComputedStyle(document.querySelector('.hero-line-inner')).animationName,
       slide: getComputedStyle(document.querySelector('.instagram-slide')).transitionDuration,
       card: getComputedStyle(document.querySelector('.service-card')).transitionDuration,
     }));
-    expect(styles).toEqual({ scroll: 'auto', reveal: 'none', slide: '0s', card: '0s, 0s' });
+    expect(styles.scroll).toBe('auto');
+    expect(styles.reveal).toBe('none');
+    for (const durations of [styles.slide, styles.card]) {
+      expect(durations.split(',').every((duration) => parseFloat(duration) === 0)).toBe(true);
+    }
   });
 
   test('navegação interna continua funcionando', async ({ page }) => {

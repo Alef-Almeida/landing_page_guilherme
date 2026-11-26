@@ -3,6 +3,7 @@ const { test, expect } = require('@playwright/test');
 const { collectErrors, useSiteConfig } = require('./helpers');
 
 const SECTION_ORDER = ['atendimentos', 'sobre', 'conteudos', 'faq', 'agenda', 'contato'];
+const CONTENT_ORDER = ['manifesto', ...SECTION_ORDER];
 
 test.describe('estrutura', () => {
   test('carrega sem erros de JavaScript', async ({ page }) => {
@@ -17,7 +18,7 @@ test.describe('estrutura', () => {
     const sections = await page.$$eval('main > section[id]', (els) =>
       els.map((el) => ({ id: el.id, top: el.getBoundingClientRect().top + window.scrollY })),
     );
-    expect(sections.map((s) => s.id)).toEqual(SECTION_ORDER);
+    expect(sections.map((s) => s.id)).toEqual(CONTENT_ORDER);
     const tops = sections.map((s) => s.top);
     expect([...tops].sort((a, b) => a - b)).toEqual(tops);
   });
@@ -25,7 +26,7 @@ test.describe('estrutura', () => {
   test('seções e landmarks têm nome e há um único h1 (IMP-303)', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('h1')).toHaveCount(1);
-    for (const id of SECTION_ORDER) {
+    for (const id of CONTENT_ORDER) {
       const labelledBy = await page.locator(`#${id}`).getAttribute('aria-labelledby');
       await expect(page.locator(`#${labelledBy}`)).toHaveCount(1);
       await expect(page.getByRole('region', { name: await page.locator(`#${labelledBy}`).innerText() })).toHaveCount(1);
