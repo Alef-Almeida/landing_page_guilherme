@@ -2964,21 +2964,21 @@ html.nav-condensed .scroll-nav {
   box-shadow: none;
 }
 .cinematic-page .site-footer {
-  background: #ddecf5;
-  color: #17324d;
+  background: #17324d;
+  color: #f8f5f1;
   border: 0;
   padding-top: 64px;
   padding-bottom: 40px;
 }
 .cinematic-page .site-footer :is(.footer-brand, .footer-meta, .footer-right, .footer-crisis) {
-  color: #17324d;
+  color: #f8f5f1;
 }
 .cinematic-page .footer-horizon {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 24px;
-  border-bottom: 1px solid rgba(23, 50, 77, 0.13);
+  border-bottom: 1px solid rgba(221, 236, 245, 0.25);
   padding-bottom: 48px;
   margin-bottom: 40px;
 }
