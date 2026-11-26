@@ -2772,7 +2772,8 @@ html.nav-condensed .scroll-nav {
   z-index: 1;
   margin-top: 100px;
 }
-.cinematic-page .service-card::after {
+.cinematic-page .service-card::after,
+.cinematic-page #agenda [data-spotlight]::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -2786,7 +2787,8 @@ html.nav-condensed .scroll-nav {
   opacity: 0;
   transition: opacity 0.35s ease;
 }
-.cinematic-page .service-card:is(:hover, :focus-within)::after {
+.cinematic-page .service-card:is(:hover, :focus-within)::after,
+.cinematic-page #agenda [data-spotlight]:is(:hover, :focus-within)::after {
   opacity: 1;
 }
 .cinematic-page .service-card .child-decor path:first-child {
@@ -2919,11 +2921,15 @@ html.nav-condensed .scroll-nav {
   box-shadow: none;
 }
 .cinematic-page #agenda .schedule-panel {
-  --schedule-surface: #fff;
+  --schedule-surface: #ddecf5;
   border-radius: 8px;
   background: var(--schedule-surface);
   color: #17324d;
   box-shadow: none;
+}
+.cinematic-page #agenda [data-spotlight] {
+  position: relative;
+  isolation: isolate;
 }
 .cinematic-page #agenda .schedule-panel :is(.eyebrow, .schedule-shift-title, .schedule-shift-card) {
   color: #17324d;
@@ -3023,12 +3029,17 @@ html.nav-condensed .scroll-nav {
   transform: translate3d(0, 12px, 0);
 }
 .sea-mask {
-  fill: var(--schedule-surface, #fff);
+  fill: #000;
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+  transition:
+    opacity 0.65s ease,
+    transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .sea-scribble {
   stroke-width: 1.4;
 }
-.schedule-sun-scene[data-sun-phase='afternoon'] :is(.schedule-evening-tree, .schedule-evening-sea) {
+.schedule-sun-scene[data-sun-phase='afternoon'] :is(.schedule-evening-tree, .schedule-evening-sea, .sea-mask) {
   opacity: 1;
   transform: translate3d(0, 0, 0);
 }
@@ -3109,6 +3120,7 @@ html.nav-condensed .scroll-nav {
       .schedule-bird,
       .schedule-evening-tree,
       .schedule-evening-sea,
+      .sea-mask,
       .cloud-day,
       .cloud-evening,
       .bird-flight,
@@ -3481,7 +3493,8 @@ html.a11y-pausar .cinematic-page :is(.service-card, .site-header) {
   .cinematic-page .footer-horizon svg {
     display: none;
   }
-  .cinematic-page .service-card::after {
+  .cinematic-page .service-card::after,
+  .cinematic-page #agenda [data-spotlight]::after {
     display: none;
   }
   .cinematic-page #journey-path,

@@ -927,7 +927,7 @@
             </h2>
           </div>
           <div id="schedule" class="mt-12">
-            <div class="schedule-panel schedule-consult">
+            <div class="schedule-panel schedule-consult" data-spotlight>
               <div class="schedule-consult-intro">
                 <span class="eyebrow">Disponibilidade por período</span>
                 <h3>Escolha o turno de sua preferência para consultar os horários.</h3>
@@ -938,6 +938,22 @@
               </div>
               <div class="schedule-sun-scene" data-sun-phase="idle" aria-hidden="true">
                 <svg viewBox="0 0 640 180" width="640" height="180" fill="none">
+                  <defs>
+                    <mask
+                      id="schedule-sun-evening-mask"
+                      maskUnits="userSpaceOnUse"
+                      x="0"
+                      y="0"
+                      width="640"
+                      height="180"
+                    >
+                      <rect width="640" height="180" fill="white" />
+                      <path
+                        class="sea-mask"
+                        d="M223 91c15-4 28 4 43 0s25 3 40 0 24 4 39 0 26 4 42 0 25 3 33 1v42H223Z"
+                      />
+                    </mask>
+                  </defs>
                   <g transform="translate(163 63)">
                     <g class="schedule-weather-cloud cloud-left">
                       <path
@@ -962,7 +978,7 @@
                       />
                     </g>
                   </g>
-                  <g class="schedule-sun-fixed">
+                  <g class="schedule-sun-fixed" mask="url(#schedule-sun-evening-mask)">
                     <circle class="schedule-sun-glow" cx="320" cy="76" r="39" />
                     <circle class="schedule-sun-disc" cx="320" cy="76" r="22" />
                     <path
@@ -971,7 +987,6 @@
                     />
                   </g>
                   <g class="schedule-evening-sea">
-                    <path class="sea-mask" d="M223 91c15-4 28 4 43 0s25 3 40 0 24 4 39 0 26 4 42 0 25 3 33 1v42H223Z" />
                     <path
                       class="sea-scribble"
                       d="M221 91c15-4 28 4 43 0s25 3 40 0 24 4 39 0 26 4 42 0 25 3 36 1M243 103c20 4 31-4 51 0s32-4 54 0 31-3 49 0M276 115c12-3 23 3 36 0s24 3 38 0"
@@ -1010,7 +1025,7 @@
                 </svg>
               </div>
               <div class="schedule-shifts">
-                <article class="schedule-shift-card">
+                <article class="schedule-shift-card" data-spotlight>
                   <div>
                     <span class="schedule-shift-kicker">01 · PERÍODO MATUTINO</span>
                     <strong class="schedule-shift-title">Turno da manhã</strong>
@@ -1028,7 +1043,7 @@
                     >
                   </div>
                 </article>
-                <article class="schedule-shift-card">
+                <article class="schedule-shift-card" data-spotlight>
                   <div>
                     <span class="schedule-shift-kicker">02 · PERÍODO VESPERTINO</span>
                     <strong class="schedule-shift-title">Turno da tarde</strong>

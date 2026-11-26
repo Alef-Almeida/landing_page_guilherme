@@ -284,7 +284,7 @@
     { signal },
   );
 
-  document.querySelectorAll('.service-card, [data-magnetic], .hero-section').forEach((el) => {
+  document.querySelectorAll('.service-card, [data-spotlight], [data-magnetic], .hero-section').forEach((el) => {
     let rect;
     el.addEventListener(
       'pointerenter',
@@ -299,7 +299,7 @@
         if (paused() || !finePointer.matches || !rect) return;
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
-        if (el.matches('.service-card')) {
+        if (el.matches('.service-card, [data-spotlight]')) {
           el.style.setProperty('--spot-x', `${x}px`);
           el.style.setProperty('--spot-y', `${y}px`);
         } else if (el.hasAttribute('data-magnetic')) {
