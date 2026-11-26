@@ -2773,7 +2773,7 @@ html.nav-condensed .scroll-nav {
   margin-top: 100px;
 }
 .cinematic-page .service-card::after,
-.cinematic-page #agenda [data-spotlight]::after {
+.cinematic-page :is(#agenda, #conteudos, #sobre) [data-spotlight]::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -2788,7 +2788,7 @@ html.nav-condensed .scroll-nav {
   transition: opacity 0.35s ease;
 }
 .cinematic-page .service-card:is(:hover, :focus-within)::after,
-.cinematic-page #agenda [data-spotlight]:is(:hover, :focus-within)::after {
+.cinematic-page :is(#agenda, #conteudos, #sobre) [data-spotlight]:is(:hover, :focus-within)::after {
   opacity: 1;
 }
 .cinematic-page .service-card .child-decor path:first-child {
@@ -2927,7 +2927,7 @@ html.nav-condensed .scroll-nav {
   color: #17324d;
   box-shadow: none;
 }
-.cinematic-page #agenda [data-spotlight] {
+.cinematic-page :is(#agenda, #conteudos, #sobre) [data-spotlight] {
   position: relative;
   isolation: isolate;
 }
@@ -3245,6 +3245,82 @@ html.cinema-motion .cinematic-page .cinema-reveal.is-visible {
   transform: none;
   animation: none;
 }
+html.cinema-motion .cinematic-page .cinema-reveal.is-settled {
+  transition-delay: 0s;
+}
+html.cinema-motion .cinematic-page .editorial-heading {
+  clip-path: inset(0 0 100% 0);
+  transition:
+    opacity 0.9s ease,
+    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    clip-path 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+html.cinema-motion .cinematic-page .editorial-heading.is-visible {
+  clip-path: inset(0);
+}
+html.cinema-motion .cinematic-page .editorial-surface:not(.is-visible) {
+  transform: translateY(24px) scale(0.985);
+}
+html.cinema-motion .cinematic-page .editorial-card :is(.service-tags, .content-points) li {
+  opacity: 0;
+  transform: translateY(7px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--reveal-delay, 0ms) + 280ms + var(--item-index, 0) * 65ms);
+}
+html.cinema-motion .cinematic-page .editorial-card.is-visible :is(.service-tags, .content-points) li {
+  opacity: 1;
+  transform: none;
+}
+html.cinema-motion .cinematic-page .cinema-reveal:focus-within {
+  opacity: 1;
+  transform: none;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html.cinema-motion .cinematic-page .editorial-card.cinema-reveal.is-visible:is(:hover, :focus-within) {
+    transform: translateY(-6px);
+    transition-delay: 0s;
+  }
+  .cinematic-page #conteudos .content-card:is(:hover, :focus-within) {
+    box-shadow: 0 18px 42px rgba(23, 50, 77, 0.08);
+  }
+  .cinematic-page .child-card:is(:hover, :focus-within) .child-decor {
+    transform: translateY(-7px) rotate(-3deg);
+  }
+  .cinematic-page .adult-card:is(:hover, :focus-within) .adult-decor {
+    transform: translate(-5px, -4px) rotate(5deg);
+  }
+}
+.tab-motion-ready {
+  position: relative;
+  isolation: isolate;
+}
+.about-tab-indicator {
+  position: absolute;
+  z-index: 0;
+  border-radius: 999px;
+  background: #17324d;
+  box-shadow: 0 8px 20px rgba(23, 50, 77, 0.12);
+  transform-origin: left top;
+  pointer-events: none;
+}
+.cinematic-page .tab-motion-ready .about-tab {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+.cinematic-page .tab-motion-ready .about-tab.is-active {
+  border-color: transparent;
+  box-shadow: none;
+}
+.cinematic-page .tab-motion-ready .about-tab:hover {
+  transform: none;
+}
+.cinematic-page .about-tab-panel:not([hidden]) {
+  animation: none;
+}
 
 @media (min-width: 1024px) {
   .cinematic-page .hero-layout {
@@ -3468,6 +3544,10 @@ html.a11y-pausar .cinematic-page [data-word] {
 html.a11y-pausar .cinematic-page :is(.service-card, .site-header) {
   transition: none;
 }
+html.a11y-pausar .cinematic-page .editorial-card:is(:hover, :focus-within),
+html.a11y-pausar .cinematic-page .editorial-card :is(.child-decor, .adult-decor) {
+  transform: none;
+}
 
 @media (prefers-reduced-motion: reduce) {
   html.cinema-motion .cinematic-page :is(.cinema-reveal, .hero-line-inner),
@@ -3486,15 +3566,30 @@ html.a11y-pausar .cinematic-page :is(.service-card, .site-header) {
   .cinematic-page [data-word] {
     opacity: 1;
   }
+  html.cinema-motion .cinematic-page .editorial-heading {
+    clip-path: none;
+  }
+  .cinematic-page .editorial-card:is(:hover, :focus-within),
+  .cinematic-page .editorial-card :is(.child-decor, .adult-decor) {
+    transform: none;
+  }
 }
 
 @media (forced-colors: active) {
+  .about-tab-indicator {
+    display: none;
+  }
+  .cinematic-page .tab-motion-ready .about-tab.is-active {
+    background: Highlight;
+    color: HighlightText;
+    border-color: Highlight;
+  }
   .cinematic-page .hero-vessel,
   .cinematic-page .footer-horizon svg {
     display: none;
   }
   .cinematic-page .service-card::after,
-  .cinematic-page #agenda [data-spotlight]::after {
+  .cinematic-page :is(#agenda, #conteudos, #sobre) [data-spotlight]::after {
     display: none;
   }
   .cinematic-page #journey-path,

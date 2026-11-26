@@ -111,6 +111,14 @@
   let pathLength = path?.getTotalLength() || 0;
   const clamp = (value) => Math.max(0, Math.min(1, value));
   const paused = () => preference.matches || root.classList.contains('a11y-pausar');
+  const editorialAnimations = new Set();
+  const animateEditorial = (element, frames, options) => {
+    if (!element || paused()) return null;
+    const animation = element.animate(frames, options);
+    editorialAnimations.add(animation);
+    animation.onfinish = animation.oncancel = () => editorialAnimations.delete(animation);
+    return animation;
+  };
 
   function measure() {
     maxScroll = Math.max(1, root.scrollHeight - innerHeight);
@@ -179,7 +187,8 @@
     cancelInertia();
     root.classList.toggle('cinema-motion', !paused());
     if (paused()) {
-      document.querySelectorAll('.cinema-reveal').forEach((el) => el.classList.add('is-visible'));
+      document.querySelectorAll('.cinema-reveal').forEach((el) => el.classList.add('is-visible', 'is-settled'));
+      editorialAnimations.forEach((animation) => animation.cancel());
       hero?.style.removeProperty('--pointer-x');
       hero?.style.removeProperty('--pointer-y');
       document.querySelectorAll('[data-magnetic]').forEach((el) => el.style.removeProperty('transform'));
@@ -187,25 +196,54 @@
     schedule();
   }
 
+  const revealTargets = new WeakMap();
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach(({ target, isIntersecting }) => {
         if (!isIntersecting) return;
-        target.classList.add('is-visible');
+        (revealTargets.get(target) ?? [target]).forEach((element) => element.classList.add('is-visible'));
         observer.unobserve(target);
       });
     },
     { threshold: 0.08 },
   );
+  document.querySelectorAll('#atendimentos-title, #conteudos-title').forEach((el) => {
+    el.classList.add('cinema-reveal', 'editorial-heading');
+    el.style.setProperty('--reveal-delay', '70ms');
+  });
+  const contentSurface = document.querySelector('#conteudos > .mx-auto');
+  contentSurface?.classList.add('cinema-reveal', 'editorial-surface');
+  contentSurface?.style.setProperty('--reveal-delay', '0ms');
+  document.querySelectorAll('.service-card, .content-card').forEach((card) => {
+    card.classList.add('editorial-card');
+    const siblings = [...card.parentElement.children].filter((el) => el.matches('.service-card, .content-card'));
+    card.style.setProperty('--reveal-delay', `${siblings.indexOf(card) * 150 + 100}ms`);
+    card.querySelectorAll('li').forEach((item, index) => item.style.setProperty('--item-index', String(index)));
+  });
+  document.querySelectorAll('.content-card, .about-tab-content').forEach((el) => el.setAttribute('data-spotlight', ''));
   document
     .querySelectorAll(
-      '.cinema-reveal, .service-card, .journey-step, main > section > div > .section-title, .content-card, .about-interactive',
+      '.cinema-reveal, .service-card, .journey-step, main > section > div > .section-title, .content-card, .about-tab-list, .about-tab-content',
     )
     .forEach((el, i) => {
       el.classList.add('cinema-reveal');
-      el.style.setProperty('--reveal-delay', `${(i % 3) * 90}ms`);
-      observer.observe(el);
+      if (!el.style.getPropertyValue('--reveal-delay')) el.style.setProperty('--reveal-delay', `${(i % 3) * 90}ms`);
+      // A fully masked heading has no intersection area; observe its unmasked wrapper.
+      const trigger = el.classList.contains('editorial-heading') ? el.parentElement : el;
+      const targets = revealTargets.get(trigger) ?? [];
+      targets.push(el);
+      revealTargets.set(trigger, targets);
+      observer.observe(trigger);
     });
+  document.addEventListener(
+    'transitionend',
+    (event) => {
+      if (event.propertyName === 'opacity' && event.target.matches('.cinema-reveal.is-visible')) {
+        event.target.classList.add('is-settled');
+      }
+    },
+    { signal },
+  );
 
   window.addEventListener('scroll', schedule, { passive: true, signal });
   if (compactNav) {
@@ -323,6 +361,80 @@
     );
   });
 
+  // A single moving pill follows the active tab, including wrapped rows on mobile.
+  const tabList = document.querySelector('[data-about-tablist]');
+  if (tabList) {
+    const indicator = document.createElement('span');
+    indicator.className = 'about-tab-indicator';
+    indicator.setAttribute('aria-hidden', 'true');
+    tabList.prepend(indicator);
+    tabList.classList.add('tab-motion-ready');
+    let activeTab = null;
+    let tabAnimations = [];
+    const updateTabMotion = (allowAnimation = true) => {
+      const next = tabList.querySelector('[aria-selected="true"]');
+      if (!next) return;
+      const oldBox = activeTab ? indicator.getBoundingClientRect() : null;
+      tabAnimations.forEach((animation) => animation?.cancel());
+      tabAnimations = [];
+      const nextBox = next.getBoundingClientRect();
+      const listBox = tabList.getBoundingClientRect();
+      Object.assign(indicator.style, {
+        left: `${nextBox.left - listBox.left}px`,
+        top: `${nextBox.top - listBox.top}px`,
+        width: `${nextBox.width}px`,
+        height: `${nextBox.height}px`,
+      });
+      if (oldBox && activeTab !== next && allowAnimation) {
+        tabAnimations.push(
+          animateEditorial(
+            indicator,
+            [
+              {
+                transform: `translate(${oldBox.left - nextBox.left}px, ${oldBox.top - nextBox.top}px) scale(${oldBox.width / nextBox.width}, ${oldBox.height / nextBox.height})`,
+              },
+              { transform: 'none' },
+            ],
+            { duration: 550, easing: 'cubic-bezier(.22, 1, .36, 1)' },
+          ),
+        );
+        const panel = document.getElementById(next.getAttribute('aria-controls'));
+        panel?.querySelectorAll('h3, p').forEach((element, index) => {
+          tabAnimations.push(
+            animateEditorial(
+              element,
+              [
+                { opacity: 0, transform: 'translateY(12px)' },
+                { opacity: 1, transform: 'none' },
+              ],
+              { duration: 650, delay: index * 80, easing: 'cubic-bezier(.22, 1, .36, 1)' },
+            ),
+          );
+        });
+        tabAnimations.push(
+          animateEditorial(
+            document.querySelector('.about-tab-art img'),
+            [
+              { transform: 'translateY(4px) rotate(-4deg)' },
+              { transform: 'translateY(-3px) rotate(2deg)', offset: 0.55 },
+              { transform: 'none' },
+            ],
+            { duration: 900, easing: 'cubic-bezier(.22, 1, .36, 1)' },
+          ),
+        );
+      }
+      activeTab = next;
+    };
+    new MutationObserver(() => updateTabMotion()).observe(tabList, {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['aria-selected'],
+    });
+    new ResizeObserver(() => updateTabMotion(false)).observe(tabList);
+    document.fonts.ready.then(() => updateTabMotion(false));
+    updateTabMotion(false);
+  }
+
   let wasPaused = paused();
   const pauseObserver = new MutationObserver(() => {
     if (wasPaused === paused()) return;
@@ -343,6 +455,7 @@
       cancelInertia();
       cancelAnimationFrame(frame);
       frame = 0;
+      editorialAnimations.forEach((animation) => animation.cancel());
     },
     { signal },
   );
