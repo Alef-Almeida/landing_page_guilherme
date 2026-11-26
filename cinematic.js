@@ -43,6 +43,51 @@
   const words = manifesto ? [...manifesto.querySelectorAll('[data-word]')] : [];
   const abort = new AbortController();
   const signal = abort.signal;
+  // One shared sun sits above the shift cards; links keep their native behavior.
+  const sunScene = document.querySelector('.schedule-sun-scene');
+  if (sunScene) {
+    let pointerPhase = null;
+    let focusPhase = null;
+    const renderSun = () => {
+      sunScene.dataset.sunPhase = pointerPhase ?? focusPhase ?? 'idle';
+    };
+    document.querySelectorAll('#agenda [data-whatsapp-shift]').forEach((button) => {
+      const phase = button.dataset.whatsappShift;
+      button.addEventListener(
+        'pointerenter',
+        (event) => {
+          if (event.pointerType === 'touch') return;
+          pointerPhase = phase;
+          renderSun();
+        },
+        { passive: true, signal },
+      );
+      button.addEventListener(
+        'pointerleave',
+        () => {
+          pointerPhase = null;
+          renderSun();
+        },
+        { passive: true, signal },
+      );
+      button.addEventListener(
+        'focus',
+        () => {
+          focusPhase = phase;
+          renderSun();
+        },
+        { signal },
+      );
+      button.addEventListener(
+        'blur',
+        () => {
+          focusPhase = null;
+          renderSun();
+        },
+        { signal },
+      );
+    });
+  }
   let frame = 0;
   let scrollTarget = null;
   let inertiaPosition = 0;
