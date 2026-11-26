@@ -5,6 +5,35 @@
   const preference = matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
   const header = document.querySelector('.site-header');
+  const compactNav = document.querySelector('.scroll-nav');
+  let previousY = scrollY;
+  let directionDistance = 0;
+  let headerPinnedUntil = 0;
+  function setCompact(compact) {
+    root.classList.toggle('nav-condensed', compact);
+    if (header) header.inert = compact;
+    if (compactNav) compactNav.inert = !compact;
+  }
+  function showHeader() {
+    setCompact(false);
+    directionDistance = 0;
+    headerPinnedUntil = performance.now() + 900;
+  }
+  function updateNavigation() {
+    if (!compactNav || !header) return;
+    const delta = scrollY - previousY;
+    previousY = scrollY;
+    const protectedState = header.querySelector(':focus-visible, [aria-expanded="true"]');
+    if (scrollY < 160 || protectedState || performance.now() < headerPinnedUntil) {
+      setCompact(false);
+      directionDistance = 0;
+      return;
+    }
+    if (Math.sign(delta) !== Math.sign(directionDistance)) directionDistance = 0;
+    directionDistance += delta;
+    if (directionDistance > 36) setCompact(true);
+    else if (directionDistance < -18) setCompact(false);
+  }
   const hero = document.querySelector('.hero-vessel');
   const path = document.getElementById('journey-path');
   const progressPath = document.getElementById('journey-progress');
@@ -56,6 +85,7 @@
       }
     }
     lastTime = time;
+    updateNavigation();
     header?.classList.toggle('is-scrolled', scrollY > 40);
     header?.style.setProperty('--reading-progress', String(clamp(scrollY / maxScroll)));
     hero?.style.setProperty('--scroll-depth', paused() ? '0px' : `${Math.min(scrollY, innerHeight) * -0.06}px`);
@@ -119,6 +149,33 @@
     });
 
   window.addEventListener('scroll', schedule, { passive: true, signal });
+  if (compactNav) {
+    compactNav.hidden = false;
+    compactNav.querySelector('button')?.addEventListener(
+      'click',
+      () => {
+        showHeader();
+        // Visibility can still be transitioning when this button hides itself.
+        const restoreFocus = () => {
+          if (!root.classList.contains('nav-condensed') && document.activeElement === document.body) {
+            header?.querySelector('a')?.focus({ preventScroll: true });
+          }
+        };
+        requestAnimationFrame(restoreFocus);
+        setTimeout(restoreFocus, paused() ? 0 : 550);
+      },
+      { signal },
+    );
+    compactNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', showHeader, { signal }));
+  }
+  header?.addEventListener('focusin', showHeader, { signal });
+  window.addEventListener(
+    'keydown',
+    (event) => {
+      if (event.key === 'Tab' && !compactNav?.contains(document.activeElement)) showHeader();
+    },
+    { capture: true, signal },
+  );
   window.addEventListener('resize', measure, { passive: true, signal });
   window.addEventListener(
     'wheel',
