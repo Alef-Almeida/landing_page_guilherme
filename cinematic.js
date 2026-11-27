@@ -214,6 +214,13 @@
   const contentSurface = document.querySelector('#conteudos > .mx-auto');
   contentSurface?.classList.add('cinema-reveal', 'editorial-surface');
   contentSurface?.style.setProperty('--reveal-delay', '0ms');
+  const aboutPortrait = document.querySelector('#sobre .about-portrait');
+  aboutPortrait?.classList.add('cinema-reveal');
+  aboutPortrait?.style.setProperty('--reveal-delay', '0ms');
+  document.querySelectorAll('#sobre .about-copy > :not(.stats-grid), #sobre .stats-grid > .stat').forEach((el, index) => {
+    el.classList.add('cinema-reveal', 'about-copy-reveal');
+    el.style.setProperty('--reveal-delay', `${100 + index * 85}ms`);
+  });
   document.querySelectorAll('.service-card, .content-card').forEach((card) => {
     card.classList.add('editorial-card');
     const siblings = [...card.parentElement.children].filter((el) => el.matches('.service-card, .content-card'));
