@@ -2903,6 +2903,11 @@ html.nav-condensed .scroll-nav {
 .cinematic-page #conteudos .content-points {
   border-color: rgba(23, 50, 77, 0.13);
 }
+@media (min-width: 768px) {
+  .cinematic-page #conteudos .content-card h3 {
+    min-height: 2.4em;
+  }
+}
 .cinematic-page #conteudos .content-card a:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
