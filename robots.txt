@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://guilherme-psicologia.annualpeace1.chatgpt.site/sitemap.xml

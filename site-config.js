@@ -11,11 +11,10 @@
     site: {
       // Endereço público da página, com https e barra final, por exemplo 'https://www.dominio.com.br/'.
       // Depois de preencher, rode `npm run seo` para gerar canonical, Open Graph, robots.txt e sitemap.xml.
-      // Pendente: DEC-04.
-      url: '',
+      url: 'https://guilherme-psicologia.annualpeace1.chatgpt.site/',
       // Domínios em que o link do WhatsApp fica ativo, por exemplo ['www.dominio.com.br', 'dominio.com.br'].
       // Inclui localhost e 127.0.0.1 para funcionamento imediato no ambiente local.
-      productionHosts: ['localhost', '127.0.0.1'],
+      productionHosts: ['localhost', '127.0.0.1', 'guilherme-psicologia.annualpeace1.chatgpt.site'],
     },
 
     whatsapp: {
