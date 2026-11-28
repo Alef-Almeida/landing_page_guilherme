@@ -2931,6 +2931,7 @@ html.a11y-pausar .cinematic-page #sobre .about-portrait::before {
   right: auto;
 }
 .cinematic-page #sobre .portrait-credential {
+  z-index: 3;
   border-radius: 4px;
   background: #f8f5f1;
   border: 1px solid rgba(23, 50, 77, 0.2);
