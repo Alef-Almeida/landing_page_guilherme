@@ -120,6 +120,28 @@
     return animation;
   };
 
+  // Decorative routes follow each section's scroll progress; content and controls stay still.
+  const scrollStages = [...document.querySelectorAll('main > section, .site-footer')].map((section, index) => {
+    const atmosphere = document.createElement('div');
+    atmosphere.className = `scroll-atmosphere${index % 2 ? ' is-reversed' : ''}`;
+    atmosphere.setAttribute('aria-hidden', 'true');
+    const curves = [
+      'M30 300 C260 280 30 70 300 48',
+      'M24 76 C308 12 60 264 316 300',
+      'M26 280 C34 12 340 22 300 280',
+    ];
+    const marker = index % 3 === 0
+      ? '<image href="./assets/paper-boat.svg" x="-25" y="-18" width="50" height="36" />'
+      : '<circle r="7" class="scroll-marker-core"/><circle r="15" class="scroll-marker-ring"/>';
+    atmosphere.innerHTML = `<div class="scroll-glow"></div><svg class="scroll-orbit" viewBox="0 0 360 360" fill="none"><circle class="scroll-ring" cx="180" cy="180" r="118"/><circle class="scroll-ring scroll-ring-inner" cx="180" cy="180" r="78"/><path class="scroll-route" d="${curves[index % curves.length]}"/><g class="scroll-traveler">${marker}</g><circle class="scroll-satellite" cx="180" cy="62" r="5"/></svg>`;
+    section.classList.add('scroll-stage');
+    section.append(atmosphere);
+    const route = atmosphere.querySelector('.scroll-route');
+    const length = route.getTotalLength();
+    route.style.strokeDasharray = String(length);
+    return { section, route, length, traveler: atmosphere.querySelector('.scroll-traveler'), lastProgress: null };
+  });
+
   function measure() {
     maxScroll = Math.max(1, root.scrollHeight - innerHeight);
     geometry = {};
@@ -131,6 +153,12 @@
       const rect = element.getBoundingClientRect();
       geometry[name] = { top: rect.top + scrollY, height: rect.height };
     }
+    scrollStages.forEach((stage) => {
+      const rect = stage.section.getBoundingClientRect();
+      stage.top = rect.top + scrollY;
+      stage.height = rect.height;
+      stage.lastProgress = null;
+    });
     pathLength = path?.getTotalLength() || 0;
     if (progressPath) {
       progressPath.style.strokeDasharray = String(pathLength);
@@ -156,6 +184,15 @@
     header?.classList.toggle('is-scrolled', scrollY > 40);
     header?.style.setProperty('--reading-progress', String(clamp(scrollY / maxScroll)));
     hero?.style.setProperty('--scroll-depth', paused() ? '0px' : `${Math.min(scrollY, innerHeight) * -0.06}px`);
+    scrollStages.forEach((stage) => {
+      const progress = paused() ? 0.5 : clamp((scrollY + innerHeight - stage.top) / (stage.height + innerHeight));
+      if (stage.lastProgress === progress) return;
+      stage.lastProgress = progress;
+      stage.section.style.setProperty('--stage-progress', progress.toFixed(4));
+      const point = stage.route.getPointAtLength(progress * stage.length);
+      stage.traveler.setAttribute('transform', `translate(${point.x} ${point.y})`);
+      stage.route.style.strokeDashoffset = String(stage.length * (1 - progress));
+    });
     if (geometry.journey && path && boat) {
       const g = geometry.journey;
       const p = paused() ? 1 : clamp((scrollY + innerHeight * 0.7 - g.top) / (g.height * 0.85));
@@ -230,7 +267,7 @@
   document.querySelectorAll('.content-card, .about-tab-content').forEach((el) => el.setAttribute('data-spotlight', ''));
   document
     .querySelectorAll(
-      '.cinema-reveal, .service-card, .journey-step, main > section > div > .section-title, .content-card, .about-tab-list, .about-tab-content',
+      '.cinema-reveal, .service-card, .journey-step, main > section > div > .section-title, .content-card, .about-tab-list, .about-tab-content, .hero-card, #faq details, .contact-steps > div, .contact-panel, .schedule-panel',
     )
     .forEach((el, i) => {
       el.classList.add('cinema-reveal');
