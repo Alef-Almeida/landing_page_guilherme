@@ -12,7 +12,9 @@ const html = readFileSync(new URL('../../index.html', import.meta.url), 'utf8');
 describe('gerador de SEO', () => {
   test('sem site.url não gera canonical, robots.txt nem sitemap.xml', () => {
     const result = buildSeo({ site: { url: '' } }, html);
-    assert.equal(result.html, html);
+    const domainTags = result.html.match(/<!-- seo:dominio:inicio[^>]*-->([\s\S]*?)<!-- seo:dominio:fim -->/)[1];
+    assert.equal(domainTags.trim(), '');
+    assert.equal(buildSeo({ site: { url: '' } }, result.html).html, result.html);
     assert.deepEqual(result.files, { 'robots.txt': null, 'sitemap.xml': null });
   });
 
