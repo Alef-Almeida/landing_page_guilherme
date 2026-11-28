@@ -29,7 +29,10 @@
     <meta property="og:image" content="https://guilherme-psicologia.annualpeace1.chatgpt.site/assets/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Guilherme Teixeira, psicólogo clínico: cuidar da mente é abrir espaço para novas possibilidades." />
+    <meta
+      property="og:image:alt"
+      content="Guilherme Teixeira, psicólogo clínico: cuidar da mente é abrir espaço para novas possibilidades."
+    />
     <meta name="twitter:image" content="https://guilherme-psicologia.annualpeace1.chatgpt.site/assets/og-image.jpg" />
     <!-- seo:dominio:fim -->
     <script type="application/ld+json">
@@ -225,7 +228,19 @@
         <a class="nav-link" href="#agenda">Agenda</a>
         <a class="nav-link" href="#contato">Contato</a>
       </div>
-      <button type="button" class="scroll-nav-expand" aria-label="Mostrar navegação completa">↗</button>
+      <button type="button" class="scroll-nav-expand" aria-label="Mostrar navegação completa">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
     </nav>
 
     <main id="inicio" tabindex="-1">
@@ -1039,7 +1054,6 @@
               <div class="schedule-shifts">
                 <article class="schedule-shift-card" data-spotlight>
                   <div>
-                    <span class="schedule-shift-kicker">01 · PERÍODO MATUTINO</span>
                     <strong class="schedule-shift-title">Turno da manhã</strong>
                     <p class="schedule-shift-desc">
                       Ideal para quem prefere iniciar o dia com o seu momento de escuta e cuidado terapêutico.
@@ -1051,13 +1065,12 @@
                       data-whatsapp-shift="morning"
                       aria-disabled="true"
                       class="schedule-consult-cta"
-                      >Consultar turno da manhã <span aria-hidden="true">↗</span></a
+                      ><span>Consultar disponibilidade<span class="sr-only"> no turno da manhã</span></span></a
                     >
                   </div>
                 </article>
                 <article class="schedule-shift-card" data-spotlight>
                   <div>
-                    <span class="schedule-shift-kicker">02 · PERÍODO VESPERTINO</span>
                     <strong class="schedule-shift-title">Turno da tarde</strong>
                     <p class="schedule-shift-desc">
                       Ideal para quem busca encaixar as sessões ao longo da tarde com tranquilidade na rotina.
@@ -1069,7 +1082,7 @@
                       data-whatsapp-shift="afternoon"
                       aria-disabled="true"
                       class="schedule-consult-cta"
-                      >Consultar turno da tarde <span aria-hidden="true">↗</span></a
+                      ><span>Consultar disponibilidade<span class="sr-only"> no turno da tarde</span></span></a
                     >
                   </div>
                 </article>
@@ -1124,7 +1137,7 @@
               data-whatsapp-cta="general"
               aria-disabled="true"
               class="inline-flex items-center justify-center rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white transition motion-reduce:transition-none hover:-translate-y-1 hover:shadow-soft"
-              >Falar pelo WhatsApp <span class="ml-2" aria-hidden="true">↗</span></a
+              >Falar pelo WhatsApp</a
             >
             <p class="whatsapp-status" data-whatsapp-status hidden></p>
             <noscript>
