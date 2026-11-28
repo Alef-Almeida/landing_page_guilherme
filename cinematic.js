@@ -121,6 +121,8 @@
   };
 
   // Decorative routes follow each section's scroll progress; content and controls stay still.
+  // Same line drawing as paper-boat.svg, inheriting each route's peach or blue.
+  const scrollBoat = `<svg class="scroll-boat" x="-25" y="-18" width="50" height="36" viewBox="20 8 84 54"><path d="m35 27 18 4 8-19 10 19 18-4-13 19-14 3-13-4-14-18Z"/><path d="m35 27 27 14 27-14M61 12l1 29M53 31l-4 14 13-4 14 5-5-15M49 45l13 4 14-3"/><path d="M24 47c10-6 17-6 27-1 10 6 17 7 28 2 9-5 14 1 21-4M48 57c6-4 12-4 19-1"/></svg>`;
   const scrollStages = [...document.querySelectorAll('main > section, .site-footer')].map((section, index) => {
     const atmosphere = document.createElement('div');
     atmosphere.className = `scroll-atmosphere${index % 2 ? ' is-reversed' : ''}`;
@@ -130,10 +132,7 @@
       'M24 76 C308 12 60 264 316 300',
       'M26 280 C34 12 340 22 300 280',
     ];
-    const marker = index % 3 === 0
-      ? '<image href="./assets/paper-boat.svg" x="-25" y="-18" width="50" height="36" />'
-      : '<circle r="7" class="scroll-marker-core"/><circle r="15" class="scroll-marker-ring"/>';
-    atmosphere.innerHTML = `<div class="scroll-glow"></div><svg class="scroll-orbit" viewBox="0 0 360 360" fill="none"><circle class="scroll-ring" cx="180" cy="180" r="118"/><circle class="scroll-ring scroll-ring-inner" cx="180" cy="180" r="78"/><path class="scroll-route" d="${curves[index % curves.length]}"/><g class="scroll-traveler">${marker}</g><circle class="scroll-satellite" cx="180" cy="62" r="5"/></svg>`;
+    atmosphere.innerHTML = `<div class="scroll-glow"></div><svg class="scroll-orbit" viewBox="0 0 360 360" fill="none"><circle class="scroll-ring" cx="180" cy="180" r="118"/><circle class="scroll-ring scroll-ring-inner" cx="180" cy="180" r="78"/><path class="scroll-route" d="${curves[index % curves.length]}"/><g class="scroll-traveler">${scrollBoat}</g><g class="scroll-satellite" transform="translate(180 62) scale(.65)">${scrollBoat}</g></svg>`;
     section.classList.add('scroll-stage');
     section.append(atmosphere);
     const route = atmosphere.querySelector('.scroll-route');

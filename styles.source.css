@@ -3344,13 +3344,12 @@ html.cinema-motion .scroll-atmosphere {
   stroke-width: 1.4;
   stroke-linecap: round;
 }
-.scroll-marker-core,
-.scroll-satellite {
-  fill: currentColor;
-}
-.scroll-marker-ring {
+.scroll-boat {
+  fill: none;
   stroke: currentColor;
-  opacity: 0.5;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .scroll-glow {
   position: absolute;
